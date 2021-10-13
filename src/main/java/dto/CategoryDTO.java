@@ -6,6 +6,7 @@ public class CategoryDTO {
 	private int categoryNo;
 	private String categoryName;
 	private List<CategoryDetailsDTO> categoryDetailsList;
+	
 	public CategoryDTO() {}
 
 	public CategoryDTO(int categoryNo, String categoryName) {

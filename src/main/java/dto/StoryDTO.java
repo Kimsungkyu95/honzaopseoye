@@ -1,15 +1,11 @@
 package dto;
 
-import java.util.List;
-
 public class StoryDTO {
 	private int storyNo;
 	private int memberNo;
 	private String storyTitle;
 	private String storyRegdate;
 	private int storyVisited;
-	
-	//private MemberDTO member;
 	
 	public StoryDTO() {}
 
@@ -37,6 +33,14 @@ public class StoryDTO {
 	public void setStoryNo(int storyNo) {
 		this.storyNo = storyNo;
 	}
+	
+	public int getMemberNo() {
+		return memberNo;
+	}
+
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+	}
 
 	public String getStoryTitle() {
 		return storyTitle;
@@ -62,14 +66,7 @@ public class StoryDTO {
 		this.storyVisited = storyVisited;
 	}
 
-	public int getMemberNo() {
-		return memberNo;
-	}
-
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
-	}
-
+	
 	
 	
 }

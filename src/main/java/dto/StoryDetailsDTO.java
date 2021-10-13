@@ -3,17 +3,18 @@ package dto;
 public class StoryDetailsDTO {
 	private int storyDetailsNo;
 	private int restaurantNo;
-	private String storyContent;
 	private int storyNo;
+	private String storyContent;
+	
 	
 	public StoryDetailsDTO() {}
 
-	public StoryDetailsDTO(int storyDetailsNo, int restaurantNo, String storyContent, int storyNo) {
+	public StoryDetailsDTO(int storyDetailsNo, int restaurantNo, int storyNo, String storyContent) {
 		super();
 		this.storyDetailsNo = storyDetailsNo;
 		this.restaurantNo = restaurantNo;
-		this.storyContent = storyContent;
 		this.storyNo = storyNo;
+		this.storyContent = storyContent;
 	}
 
 	public int getStoryDetailsNo() {
@@ -31,6 +32,14 @@ public class StoryDetailsDTO {
 	public void setRestaurantNo(int restaurantNo) {
 		this.restaurantNo = restaurantNo;
 	}
+	
+	public int getStoryNo() {
+		return storyNo;
+	}
+
+	public void setStoryNo(int storyNo) {
+		this.storyNo = storyNo;
+	}
 
 	public String getStoryContent() {
 		return storyContent;
@@ -40,12 +49,6 @@ public class StoryDetailsDTO {
 		this.storyContent = storyContent;
 	}
 
-	public int getStoryNo() {
-		return storyNo;
-	}
-
-	public void setStoryNo(int storyNo) {
-		this.storyNo = storyNo;
-	}
+	
 	
 }

@@ -6,7 +6,7 @@ public class RestaurantImgDTO {
 	private String restaurantImg;
 	
 	public RestaurantImgDTO() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public RestaurantImgDTO(int restaurantImgNo, int restaurantNo, String restaurantImg) {

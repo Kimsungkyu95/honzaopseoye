@@ -7,6 +7,7 @@ public class MemberDTO {
 	private String memberID;
 	private String memberPwd;
 	private String memberName;
+	private String memberEmail;
 	private String memberPhone;
 	private String memberBirth;
 	private String memberJoinDate;
@@ -18,7 +19,7 @@ public class MemberDTO {
 	
 	public MemberDTO() {}
 
-	public MemberDTO(int memberNo, String memberID, String memberPwd, String memberName, String memberPhone,
+	public MemberDTO(int memberNo, String memberID, String memberPwd, String memberName, String memberEmail, String memberPhone,
 			String memberBirth, String memberJoinDate, int memberExp, String profileImage, List<ReviewDTO> reviewList,
 			List<StoryDTO> storyList) {
 		super();
@@ -26,6 +27,7 @@ public class MemberDTO {
 		this.memberID = memberID;
 		this.memberPwd = memberPwd;
 		this.memberName = memberName;
+		this.memberEmail = memberEmail;
 		this.memberPhone = memberPhone;
 		this.memberBirth = memberBirth;
 		this.memberJoinDate = memberJoinDate;
@@ -35,12 +37,13 @@ public class MemberDTO {
 		this.storyList = storyList;
 	}
 
-	public MemberDTO(String memberID, String memberPwd, String memberName, String memberPhone, String memberBirth,
+	public MemberDTO(String memberID, String memberPwd, String memberName, String memberEmail, String memberPhone, String memberBirth,
 			String profileImage) {
 		super();
 		this.memberID = memberID;
 		this.memberPwd = memberPwd;
 		this.memberName = memberName;
+		this.memberEmail = memberEmail;
 		this.memberPhone = memberPhone;
 		this.memberBirth = memberBirth;
 		this.profileImage = profileImage;
@@ -76,6 +79,14 @@ public class MemberDTO {
 
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
+	}
+	
+	public String getMemberEmail() {
+		return memberEmail;
+	}
+
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
 	}
 
 	public String getMemberPhone() {
