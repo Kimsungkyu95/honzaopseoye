@@ -5,9 +5,7 @@ public class StoryImageDTO {
 	private int storyDetailsNo;
 	private String storyImg;
 	
-	public StoryImageDTO() {
-		
-	}
+	public StoryImageDTO() {}
 	
 	public StoryImageDTO(int storyImgNo, int storyDetailsNo, String storyImg) {
 		super();
