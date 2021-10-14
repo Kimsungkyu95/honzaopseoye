@@ -13,7 +13,7 @@
 
     <title>footer</title>
 <style>
-	p{color:white}
+	#footerP{color:white}
 </style>
 <script type="text/javascript" >
 	
@@ -23,15 +23,15 @@
 
 <footer class="text-muted py-5" style="background-color: gray">
   <div class="container">
-    <p class="float-end mb-1">
+    <p class="float-end mb-1" id="footerP">
     </p>
-    <p class="mb-1">This site is about famous restaurant eating alone © 혼자옵서예,
+    <p class="mb-1" id="footerP">This site is about famous restaurant eating alone © 혼자옵서예,
      Please Don't worry about eating alone.!</p>
-    <p class="mb-1">About Question : 
+    <p class="mb-1" id="footerP">About Question : 
     Visit the homepage or Contact by Phone
     010-9981-1894.
     </p>
-     <p class="mb-1">
+     <p class="mb-1" id="footerP">
      KOSTA TEAM 1.
      </p>
   </div>

@@ -72,8 +72,21 @@ html {
 <style type="text/css">
 
 </style>
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-
+function registration() {
+	location.href="${pageContext.request.contextPath}/member/registForm.jsp";
+}
+$(function() {
+	$("#idFind").click(function() {
+		location.href="${pageContext.request.contextPath}/member/idFindForm.jsp";
+	});
+	
+	
+	$("#pwdFind").click(function() {
+		location.href="${pageContext.request.contextPath}/member/pwdFindForm.jsp";
+	});
+})
 </script>
 </head>
 <body>
@@ -102,11 +115,14 @@ html {
         <input type="checkbox" value="remember-me"> 로그인 상태 유지
       </label>
     </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
+    <button class="w-100 btn btn-lg btn-primary h3" type="submit">로그인</button>
+    <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold w-100 h3" onclick="registration();">회원가입</button>
     <div class="text-center h3">
-	<button type="button" class="btn btn-secondary btn-sm">아이디 찾기</button>
-	<button type="button" class="btn btn-secondary btn-sm">비번 찾기</button>
+	<button type="button" class="btn btn-secondary btn-sm" id="idFind">아이디 찾기</button>
+	<button type="button" class="btn btn-secondary btn-sm" id="pwdFind">비번 찾기</button>
 	</div>
+	
+        
     <p class="mt-5 mb-3 text-muted">©혼자옵서예</p>
   </form>
 </main>

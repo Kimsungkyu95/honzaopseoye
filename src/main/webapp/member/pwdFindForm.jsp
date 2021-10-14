@@ -27,10 +27,10 @@
 <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function() {
-	$("#idFindResult").hide();
+	$("#pwdFindResult").hide();
 	
-	$("#idFindButton").click(function() {
-		$("#idFindResult").show();
+	$("#pwdFindButton").click(function() {
+		$("#pwdFindResult").show();
 	});
 })
 </script>
@@ -47,24 +47,28 @@ $(function() {
         <span class="fs-4">아이디 찾기</span>
       </p>
     </header>
-
-	 <div class="p-5 mb-4 bg-light rounded-3" >
+    
+    <div class="p-5 mb-4 bg-light rounded-3" >
       <div class="container-fluid py-5">
-        <p class="col-md-8 fs-4">가입할 때 사용했던 이메일 주소를 입력해주세요.</p>
+        <p class="col-md-8 fs-4">아이디와 가입할 때 사용했던 이메일 주소를 입력해주세요.</p>
         <form style="width:500px">
-				<input class="form-control me-2" type="email" placeholder="Email 주소 입력" aria-label="Search">
+				<input class="form-control me-2" type="text" placeholder="ID 입력">
 				<div style="height: 10px"></div>
-        <button class="btn btn-primary btn-lg" type="button" id="idFindButton">아이디 조회</button>
+				<input class="form-control me-2" type="email" placeholder="Email 주소 입력" >
+				<div style="height: 10px"></div>
+        <button class="btn btn-primary btn-lg" type="button" id="pwdFindButton">비밀번호 조회</button>
 			</form>
       </div>
     </div>
 
-    <div class="p-5 mb-4 bg-light rounded-3" id="idFindResult">
+    <div class="p-5 mb-4 bg-light rounded-3" id="pwdFindResult">
       <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">아이디 출력 | 혹은 메일 주소 없음 출력</h1>
+        <h1 class="display-5 fw-bold">비밀번호 출력 | 혹은 일치하는 정보 없음 출력</h1>
         <button class="btn btn-primary btn-lg" type="button">로그인 | 혹은 숨기기</button>
       </div>
     </div>
+    
+
     <footer class="pt-3 mt-4 text-muted border-top">
       © 2021
     </footer>
