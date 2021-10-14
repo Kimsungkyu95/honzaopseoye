@@ -13,21 +13,27 @@
 
     <title>footer</title>
 <style>
-
+	p{color:white}
 </style>
 <script type="text/javascript" >
-
+	
 </script>
 </head>
 <body>
 
-<footer class="text-muted py-5">
+<footer class="text-muted py-5" style="background-color: gray">
   <div class="container">
     <p class="float-end mb-1">
-      <a href="#">footer</a>
     </p>
-    <p class="mb-1">Album example is © 혼자옵서예, but please download and customize it for yourself!</p>
-    <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="/docs/5.0/getting-started/introduction/">getting started guide</a>.</p>
+    <p class="mb-1">This site is about famous restaurant eating alone © 혼자옵서예,
+     Please Don't worry about eating alone.!</p>
+    <p class="mb-1">About Question : 
+    Visit the homepage or Contact by Phone
+    010-9981-1894.
+    </p>
+     <p class="mb-1">
+     KOSTA TEAM 1.
+     </p>
   </div>
 </footer>
 
