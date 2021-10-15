@@ -14,23 +14,5 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Edu/2차 프로젝트 관련 정리/jar파일모음/json-simple-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Edu/2차 프로젝트 관련 정리/jar파일모음/poi-5.0.0/poi-5.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Edu/2차 프로젝트 관련 정리/jar파일모음/poi-5.0.0/poi-examples-5.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Edu/2차 프로젝트 관련 정리/jar파일모음/poi-5.0.0/poi-excelant-5.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Edu/2차 프로젝트 관련 정리/jar파일모음/poi-5.0.0/poi-integration-5.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Edu/2차 프로젝트 관련 정리/jar파일모음/poi-5.0.0/poi-ooxml-5.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Edu/2차 프로젝트 관련 정리/jar파일모음/poi-5.0.0/poi-ooxml-full-5.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Edu/2차 프로젝트 관련 정리/jar파일모음/poi-5.0.0/poi-ooxml-lite-5.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Edu/2차 프로젝트 관련 정리/jar파일모음/poi-5.0.0/poi-scratchpad-5.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Edu/2차 프로젝트 관련 정리/jar파일모음/poi-5.0.0/lib/commons-codec-1.15.jar"/>
-	<classpathentry kind="lib" path="C:/Edu/2차 프로젝트 관련 정리/jar파일모음/poi-5.0.0/lib/commons-collections4-4.4.jar"/>
-	<classpathentry kind="lib" path="C:/Edu/2차 프로젝트 관련 정리/jar파일모음/poi-5.0.0/lib/commons-math3-3.6.1.jar"/>
-	<classpathentry kind="lib" path="C:/Edu/2차 프로젝트 관련 정리/jar파일모음/poi-5.0.0/lib/SparseBitSet-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Edu/2차 프로젝트 관련 정리/jar파일모음/poi-5.0.0/ooxml-lib/commons-compress-1.20.jar"/>
-	<classpathentry kind="lib" path="C:/Edu/2차 프로젝트 관련 정리/jar파일모음/poi-5.0.0/ooxml-lib/curvesapi-1.06.jar"/>
-	<classpathentry kind="lib" path="C:/Edu/2차 프로젝트 관련 정리/jar파일모음/poi-5.0.0/ooxml-lib/xmlbeans-4.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Edu/2차 프로젝트 관련 정리/jar파일모음/jsoup-1.11.3.jar"/>
-	<classpathentry kind="lib" path="C:/app/changwan/product/18.0.0/dbhomeXE/jdbc/lib/ojdbc8.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

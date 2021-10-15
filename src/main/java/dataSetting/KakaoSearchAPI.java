@@ -1,3 +1,4 @@
+/*
 package dataSetting;
 
 import java.io.BufferedReader;
@@ -45,24 +46,7 @@ public class KakaoSearchAPI {
             
             //documents 배열추출(JSONArray 형태) 
             JSONArray restaurantArray = (JSONArray) jsonObject.get("documents");
-/*          
-            for(int i=0; i < restaurantArray.size(); i++) {
-            	System.out.println("==========================restaurant_" + i + "======================");
-            	//JSONArray 안에서 JSONOject 추출
-            	JSONObject restaurantObject = (JSONObject) restaurantArray.get(i);
-            	
-            	//JSONObject의 value 추출
-            	System.out.println("address_name : " + restaurantObject.get("address_name"));
-            	System.out.println("category_name : " + restaurantObject.get("category_name"));
-            	System.out.println("phone : " + restaurantObject.get("phone"));
-            	System.out.println("place_name : " + restaurantObject.get("place_name"));
-            	System.out.println("place_url : " + restaurantObject.get("place_url"));
-            	System.out.println("road_address_name : " + restaurantObject.get("road_address_name"));
-            	System.out.println("longitude : " + restaurantObject.get("x"));
-            	System.out.println("latitude : " + restaurantObject.get("y"));   
 
-            }
-*/
             restaurantObject = (JSONObject) restaurantArray.get(0);
             
 		}catch(Exception e) {
@@ -130,3 +114,4 @@ public class KakaoSearchAPI {
 		}
 	}
 }
+*/

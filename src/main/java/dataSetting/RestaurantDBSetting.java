@@ -1,3 +1,4 @@
+/*
 package dataSetting;
 
 import java.awt.image.BufferedImage;
@@ -112,3 +113,4 @@ public class RestaurantDBSetting {
 //		}
 	}
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package dataSetting;
 
 import java.io.FileInputStream;
@@ -45,30 +46,7 @@ public class ReadExcel {
 							}						
 //							System.out.println("================================================");
 							String dong = cell.getStringCellValue(); //동 가져오기
-							/*
-							String value = "";
-							//데이터 타입별로 내용 읽기
-							switch(cell.getCellType()) {
-							case FORMULA:
-								value = cell.getCellFormula();
-								break;
-							case NUMERIC:
-								value = cell.getNumericCellValue() + "";
-								break;
-							case STRING:
-								value = cell.getStringCellValue();
-								break;
-							case BLANK:
-								value = cell.getBooleanCellValue() + "";
-								break;
-							case ERROR:
-								value = cell.getErrorCellValue() + "";
-								break;
-							default:
-								break;
-							}
-							System.out.println(i + "행" + j + " 열의 값 = " + value);
-							*/
+
 							restaurantObject = kakao.search(gu, dong, "한정식");	//세부 카테고리 교체
 							String placeName = (String)restaurantObject.get("place_name");
 							
@@ -84,18 +62,6 @@ public class ReadExcel {
 								System.out.println(i + "번째 구 " + j + "번째 동 " + "맛집 데이터 삽입에 실패하였습니다.");
 							}
 												
-							
-							/*
-							System.out.println("address_name : " + restaurantObject.get("address_name"));
-			            	System.out.println("category_name : " + restaurantObject.get("category_name"));
-			            	System.out.println("phone : " + restaurantObject.get("phone"));
-			            	System.out.println("place_name : " + restaurantObject.get("place_name"));
-			            	System.out.println("place_url : " + restaurantObject.get("place_url"));
-			            	System.out.println("road_address_name : " + restaurantObject.get("road_address_name"));
-			            	System.out.println("longitude : " + restaurantObject.get("x"));
-			            	System.out.println("latitude : " + restaurantObject.get("y"));
-			            	System.out.println();
-			            	*/
 			            	
 			            	
 						}
@@ -118,3 +84,4 @@ public class ReadExcel {
 	}
 
 }
+*/
