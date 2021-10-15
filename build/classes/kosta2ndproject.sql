@@ -301,3 +301,17 @@ select * from restaurant join restaurant_img on restaurant.restaurant_no = resta
 --------------------------------------------------------------------------------
 --커밋 
 commit;
+
+
+--------------------------------------------------------------------------------
+--회원 기능
+--로그인
+select member_id, member_name from member where member_id = 'park' and member_pwd='1111'
+
+--회원가입
+insert into member (member_no, member_id, member_pwd, member_name, member_email, member_phone, member_birth, member_join_date, member_exp) values(MEMBER_SEQ.NEXTVAL, 'rhg201', '1111', '류홍걸', 'rhg201@gmail.com', '010-1111-2222', '1990-01-01', sysdate, 100);
+insert into member (member_no, member_id, member_pwd, member_name, member_email, member_phone, member_birth, member_join_date, member_exp) values(MEMBER_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, sysdate, 0);
+
+--아이디 찾기
+select member_id from member where member_email='park1@gmail.com'
+select member_id from member where member_email=?

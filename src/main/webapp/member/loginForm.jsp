@@ -78,7 +78,7 @@ function registration() {
 	location.href="${pageContext.request.contextPath}/member/registForm.jsp";
 }
 $(function() {
-	var form = window.document.loginForm;
+	var form = window.document.loginFormActual;
 	
 	$("#idFind").click(function() {
 		location.href="${pageContext.request.contextPath}/member/idFindForm.jsp";
@@ -98,7 +98,7 @@ $(function() {
 			//console.log("111");
 		}
 		
-		$("#loginForm").submit();
+		document.getElementById("loginFormActual").submit();
 	})
 })
 </script>
@@ -111,7 +111,7 @@ $(function() {
 
 <div class="loginForm">
 <main class="form-signin shadow-lg">
-  <form method="get" action="#" name="loginForm">
+  <form method="post" action="${pageContext.request.contextPath}/front?key=member&methodName=login" name="loginFormActual" id="loginFormActual">
     
     <h1 class="h3 mb-3 fw-normal">로그인 정보</h1>
 
@@ -126,7 +126,7 @@ $(function() {
 
     <div class="checkbox mb-3">
       <label>
-        <input type="checkbox" value="remember-me"> 로그인 상태 유지
+        <input type="checkbox" name="remember-me" value="remember-me"> 로그인 상태 유지
       </label>
     </div>
     <div class=" mb-3 text-muted" id="validation">

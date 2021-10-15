@@ -183,14 +183,14 @@ $(function() {
 <div class="b-example-divider" style="height: 360px">
 </div>
 
-<form method="post" action="${pageContext.request.contextPath}/member/levelTest.jsp" id="actualRegistration">
-<input type="text" name="memberId" value="${param.memberId}">
-<input type="text" name="memberPwd" value="${param.memberPwd}">
-<input type="text" name="memberName" value="${param.memberName}">
-<input type="text" name="memberEmail" value="${param.memberEmail}">
-<input type="text" name="memberPhone" value="${param.memberPhone}">
-<input type="text" name="memberBirth" value="${param.memberBirth}">
-${param.memberLevel}
+<form method="post" action="${pageContext.request.contextPath}/front?key=member&methodName=insert" id="actualRegistration">
+<input type="hidden" name="memberId" value="${param.memberId}">
+<input type="hidden" name="memberPwd" value="${param.memberPwd}">
+<input type="hidden" name="memberName" value="${param.memberName}">
+<input type="hidden" name="memberEmail" value="${param.memberEmail}">
+<input type="hidden" name="memberPhone" value="${param.memberPhone}">
+<input type="hidden" name="memberBirth" value="${param.memberBirth}">
+<%-- ${param.memberLevel} --%>
 </form>
 
 <!-- Q1-1 -->	

@@ -32,6 +32,9 @@ public class DispatcherServlet extends HttpServlet {
 		String key = request.getParameter("key");
 		String methodName = request.getParameter("methodName");
 		
+		//System.out.println("key: " + key);
+		//System.out.println("methodName: " + methodName);
+		
 		try {
 			if(key==null || key.equals("")) {
 				key="elec";

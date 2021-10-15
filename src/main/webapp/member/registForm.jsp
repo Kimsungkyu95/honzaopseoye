@@ -85,6 +85,54 @@ $(function() {
 		
 	})
 	
+	$("#memberId").keyup(function() {
+		if($(this).val()==""){
+			return;
+		}
+		
+		//-----------------비동기화통신-----------------------------------
+		$.ajax({
+			url: "../memberIdCheck", 	// ../ 상위로 한칸 올라가서.. 서블릿 
+											//이게 폴더 밑에 있으니까 루트로 갈려면 한칸 올라가야됨.
+			type: "post",				//메소드 방식(get, post, put, delete)
+			dataType: "text",			//서버가 응답해주는 데이터의 타입(text-생략시 기본-, html, xml, json)
+			data: {id: $(this).val() }, //서버에 보낼 때 파라메터
+			success: function(result) { //성공하면 callback 함수	
+				//console.log(result);
+				$("#idInvalid").text(result);
+							
+			},
+			error: function(error) { //실패했을 때 함수	
+				console.log("Something went wrong."); 	
+			}
+		});
+		//-----------------비동기화통신-----------------------------------
+	})
+	
+	$("#memberEmail").keyup(function() {
+		if($(this).val()==""){
+			return;
+		}
+		
+		//-----------------비동기화통신-----------------------------------
+		$.ajax({
+			url: "../memberEmailCheck", 	// ../ 상위로 한칸 올라가서.. 서블릿 
+											//이게 폴더 밑에 있으니까 루트로 갈려면 한칸 올라가야됨.
+			type: "post",				//메소드 방식(get, post, put, delete)
+			dataType: "text",			//서버가 응답해주는 데이터의 타입(text-생략시 기본-, html, xml, json)
+			data: {email: $(this).val() }, //서버에 보낼 때 파라메터
+			success: function(result) { //성공하면 callback 함수	
+				//console.log(result);
+				$("#emailInvalid").text(result);
+							
+			},
+			error: function(error) { //실패했을 때 함수	
+				console.log("Something went wrong."); 	
+			}
+		});
+		//-----------------비동기화통신-----------------------------------
+	})
+	
 });
 
 </script>
@@ -104,6 +152,8 @@ $(function() {
               <label for="memberId" class="form-label">ID <span class="text-muted"></span></label>
               <input type="text" class="form-control" id="memberId" name="memberId" >
             </div>
+            <div  class="text-muted" id="idInvalid">
+            </div>
             
   		<div style="height: 30px"></div>
   		
@@ -118,7 +168,7 @@ $(function() {
               <label for="memberPwdConfirm" class="form-label">Password Confirm <span class="text-muted"></span></label>
               <input type="password" class="form-control" id="memberPwdConfirm">
               <p>
-              <div class=" mb-3" id="pwdConfirmInvalid">
+              <div class=" text-muted" id="pwdConfirmInvalid">
               </div>
             </div>
             
@@ -133,7 +183,9 @@ $(function() {
   		
   		<div class="col-100">
               <label for="memberEmail" class="form-label">Email <span class="text-muted"></span></label>
-              <input type="email" class="form-control" id="memberEmail" placeholder="you@example.com" name="memberEmail" >
+              <input type="email" class="form-control" id="memberEmail" placeholder="you@example.com" id="memberEmail" name="memberEmail" >
+            </div>
+            <div  class="text-muted" id="emailInvalid">
             </div>
             
   		<div style="height: 30px"></div>

@@ -39,8 +39,28 @@ $(function() {
 			return;
 		}
 		
-		$("#invalid-feedback").html("");
-		$("#idFindResult").show();
+		//-----------------비동기화통신-----------------------------------
+		$.ajax({
+			url: "../front?key=member&methodName=selectIdByEmail", 	// ../ 상위로 한칸 올라가서.. 서블릿 
+											//이게 폴더 밑에 있으니까 루트로 갈려면 한칸 올라가야됨.
+			type: "post",				//메소드 방식(get, post, put, delete)
+			dataType: "text",			//서버가 응답해주는 데이터의 타입(text-생략시 기본-, html, xml, json)
+			data: {id: $(this).val() }, //서버에 보낼 때 파라메터
+			success: function(result) { //성공하면 callback 함수	
+				//console.log(result);
+				$("#result").text(result);
+			
+				$("#invalid-feedback").html("");
+				$("#idFindResult").show();
+							
+			},
+			error: function(error) { //실패했을 때 함수	
+				console.log("Something went wrong."); 	
+			}
+		});
+		//-----------------비동기화통신-----------------------------------
+		
+		
 	});
 })
 </script>
@@ -73,8 +93,8 @@ $(function() {
 
     <div class="p-5 mb-4 bg-light rounded-3" id="idFindResult">
       <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">아이디 출력 | 혹은 메일 주소 없음 출력</h1>
-        <button class="btn btn-primary btn-lg" type="button">로그인 | 혹은 숨기기</button>
+        <h1 class="display-5 fw-bold" id="result"></h1>
+        <button class="btn btn-primary btn-lg" id="loginButton" type="button">로그인</button>
       </div>
     </div>
     <footer class="pt-3 mt-4 text-muted border-top">

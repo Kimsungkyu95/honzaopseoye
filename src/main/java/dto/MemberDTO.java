@@ -49,6 +49,22 @@ public class MemberDTO {
 		this.profileImage = profileImage;
 	}
 
+
+	public MemberDTO(String memberID, String memberPwd, String memberName) {
+		super();
+		this.memberID = memberID;
+		this.memberPwd = memberPwd;
+		this.memberName = memberName;
+	}
+
+	
+
+	public MemberDTO(String memberID, String memberPwd) {
+		super();
+		this.memberID = memberID;
+		this.memberPwd = memberPwd;
+	}
+
 	public int getMemberNo() {
 		return memberNo;
 	}
