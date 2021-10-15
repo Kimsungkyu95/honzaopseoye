@@ -44,7 +44,7 @@ $(function() {
   <div class="container py-4">
     <header class="pb-3 mb-4 border-bottom">
       <p class="d-flex align-items-center text-dark text-decoration-none">
-        <span class="fs-4">아이디 찾기</span>
+        <span class="fs-4">비밀번호 찾기</span>
       </p>
     </header>
     
