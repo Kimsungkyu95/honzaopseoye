@@ -35,7 +35,7 @@ img{height:200px; width:300px; margin-right:20px; margin-bottom:20px}
         </h2>
 <hr>
   
- <table class="left">
+ <table class="left shadow-lg">
 	 <tr>
 	 	<td><img src="img/삼겹살.jpeg"></td>
 	 	<td><img src="img/초밥1.jpeg"></td>
@@ -48,7 +48,7 @@ img{height:200px; width:300px; margin-right:20px; margin-bottom:20px}
   
   <form>
   <div style="float:right; width:800px; margin:56px">
-  	<div class="h-100 p-5 bg-light border rounded-3">
+  	<div class="h-100 p-5 bg-light border rounded-3 shadow-lg">
           <h2><b>스토리 제목</b></h2>
           <!-- 글번호, 회원번호, 조회수, 등록일 -->
           <h6>#1 | <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
