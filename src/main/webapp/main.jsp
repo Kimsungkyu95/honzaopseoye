@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <!-- Required meta tags -->
-<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Bootstrap CSS -->
@@ -31,21 +30,22 @@
  <jsp:include page="common/header.jsp"/>
  	
 	<main >
- 	
+ 	  <!--메인 맛집 부분 div -->
 	  <div class="container py-5" style="float:left" id="frame">
-		
+	  
+		<!-- 카테고리 div -->
 		<h4>카테고리 검색</h4>
 	    <div class="p-5 mb-4 bg-light border rounded-3">
 	      <div class="container-fluid py-5">
 	        <p class="col-md-6 fs-4"></p>
-	        <button class="btn btn-outline-secondary" type="button">카테고리별 맛집</button>
+	        <button class="btn btn-outline-secondary" type="button" onclick="location.href='categoryByRestaurant.jsp' ">카테고리별 맛집</button>
 	      </div>
 	    </div>
 	 
-	
+		<!-- 추천맛집 div -->
 	    <div class="row align-items-md-stretch">
 	      <div class="col-md-6">
-	      <h4>추천맛집목록</h4>
+	      <h4>추천 맛집 목록</h4>
 	        <div class="h-100 p-5 text-white bg-light border rounded-3">
 	          <img src = "img/삼겹살.jpeg" width="100%"></img>
 	          <p></p>
@@ -53,21 +53,21 @@
 	        </div>
 	      </div>
 	      
+	      <!-- 맛집스토리 div -->
 	      <div class="col-md-6">
-	      <h4>맛집 칼럼</h4>
+	      <h4>맛집 스토리 목록</h4>
 	        <div class="h-100 p-5 bg-light border rounded-3">
 	          <img src = "img/회.jpeg" width="100%"></img>
 	          <p></p>
 	          <button class="btn btn-outline-secondary" type="button">맛집 스토리</button>
 	        </div>
 	      </div>
+	      
 	    </div>
-	    <div class="row align-items-md-stretch">
-	    </div>
-	  </div>
-  
+	    <!-- 메인맛집부분 div끝  -->
 	</main>
-
+	
+		<!-- select로 위치 찾기 -->
 		<div class="text-center" id="divSelect">
 			  <h4 style="margin-top:10px">서울특별시 </h4>
 			  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="width:150px">
@@ -84,8 +84,8 @@
 				</select>
 		</div>
 	
-		
-		<div id="map"> <!-- 지도를  생성할 div 영역  -->
+		<!-- 지도를  생성할 div 영역  -->
+		<div id="map"> 
 			<script type="text/javascript" >
 				var container = document.getElementById('map'); // 지도를 표시할 div 
 				var options = {
@@ -107,6 +107,8 @@
 				marker.setMap(map);
 			</script>
 		</div>
+		
+	
 		
 
 	
