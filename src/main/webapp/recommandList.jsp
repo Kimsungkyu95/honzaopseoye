@@ -40,7 +40,7 @@
 	  $("select[name=kind]").change(function(){
 		  
 		  let param=$(this).val();
-		  let str="<br><h4><b>&nbsp;&nbsp;"
+		  let str="<br><h4>&nbsp;&nbsp;"
 		  str+=param+"</h4>"
 		  let myLevel="현재 나의 레벨은";
 		  let comment="&nbsp;&nbsp;조회수 높은 맛집 리스트입니다";
