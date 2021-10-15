@@ -78,6 +78,8 @@ function registration() {
 	location.href="${pageContext.request.contextPath}/member/registForm.jsp";
 }
 $(function() {
+	var form = window.document.loginForm;
+	
 	$("#idFind").click(function() {
 		location.href="${pageContext.request.contextPath}/member/idFindForm.jsp";
 	});
@@ -86,6 +88,18 @@ $(function() {
 	$("#pwdFind").click(function() {
 		location.href="${pageContext.request.contextPath}/member/pwdFindForm.jsp";
 	});
+	
+	$("#login").click(function() {
+		
+		//console.log("id: " + form.memberId.value);
+		
+		if((form.memberId.value == "") || (form.memberPwd.value == "")){
+			$("#validation").html("아이디와 비밀번호를 입력해주세요");
+			//console.log("111");
+		}
+		
+		$("#loginForm").submit();
+	})
 })
 </script>
 </head>
@@ -97,16 +111,16 @@ $(function() {
 
 <div class="loginForm">
 <main class="form-signin shadow-lg">
-  <form>
+  <form method="get" action="#" name="loginForm">
     
     <h1 class="h3 mb-3 fw-normal">로그인 정보</h1>
 
     <div class="form-floating">
-      <input type="text" class="form-control" id="floatingInput" placeholder="ID">
+      <input type="text" class="form-control" id="floatingInput" placeholder="ID" name="memberId" id="memberId">
       <label for="floatingInput">아이디</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="memberPwd">
       <label for="floatingPassword">비밀번호</label>
     </div>
 
@@ -115,7 +129,10 @@ $(function() {
         <input type="checkbox" value="remember-me"> 로그인 상태 유지
       </label>
     </div>
-    <button class="w-100 btn btn-lg btn-primary h3" type="submit">로그인</button>
+    <div class=" mb-3 text-muted" id="validation">
+    
+    </div>
+    <button class="w-100 btn btn-lg btn-primary h3" type="button" id="login">로그인</button>
     <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold w-100 h3" onclick="registration();">회원가입</button>
     <div class="text-center h3">
 	<button type="button" class="btn btn-secondary btn-sm" id="idFind">아이디 찾기</button>
@@ -123,7 +140,7 @@ $(function() {
 	</div>
 	
         
-    <p class="mt-5 mb-3 text-muted">©혼자옵서예</p>
+    
   </form>
 </main>
 </div >

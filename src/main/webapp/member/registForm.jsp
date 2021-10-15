@@ -5,75 +5,130 @@
 <head>
 <meta charset="UTF-8">
 <title>Registration Form</title>
-<!-- Bootstrap CSS -->
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap core CSS -->
+<link href="https://getbootstrap.kr/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <style type="text/css">
-
+.container {
+  max-width: 60px;
+}
 </style>
 <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-function levelTest() {
-	location.href="${pageContext.request.contextPath}/#";
-}
 
+$(function() {
+	var form = window.document.registForm;
+	
+	$("#levelTest").click(function() {
+		
+		if((form.memberId.value == "") || (form.pwdFind.value == "")){
+			$("#validation").html("아이디와 비밀번호를 입력해주세요");
+			//console.log("111");
+		}
+		
+		$("#registForm").submit();
+		
+	}); 
+});
 
 </script>
 </head>
 <body>
  <jsp:include page="../common/header.jsp"/>
-
-<div class="row">
-    <div class="col-md-6 col-sm-12 col-lg-6 col-md-offset-3">
-		<div class="panel panel-primary">
-			<div class="panel-heading text-center">
-			<h1>회원 정보를 입력해주세요. </h1>
+ 
+ 
+<div class="b-example-divider" style="height: 60px"></div>
+ 
+<div class="container" style="width: 700px">
+	<div class=" p-4 pe-lg-30 col-md-0 col-lg-0   pb-0 pt-lg-10 rounded-3 shadow-lg">
+        <h4 class="">회원 가입</h4>
+        <form id="registForm" method="post" action="${pageContext.request.contextPath}/member/levelTest.jsp">
+          
+            <div class="col-100">
+              <label for="memberId" class="form-label">ID <span class="text-muted"></span></label>
+              <input type="text" class="form-control" id="memberId" name="memberId" >
+              <div class="invalid-feedback">
+                아이디를 입력해주세요.
+              </div>
+            </div>
+            
+  		<div style="height: 30px"></div>
+  		
+  		<div class="col-100">
+              <label for="memberPwd" class="form-label">Password <span class="text-muted"></span></label>
+              <input type="password" class="form-control" id="memberPwd" name="memberPwd"> 
+              <div class="invalid-feedback">
+              </div>
+            </div>
+            
+  		<div style="height: 10px"></div>
+  		
+  		<div class="col-100">
+              <label for="memberPwdConfirm" class="form-label">Password Confirm <span class="text-muted"></span></label>
+              <input type="password" class="form-control" id="memberPwdConfirm">
+              <div class="invalid-feedback">
+                비밀번호가 일치하지 않습니다.
+              </div>
+            </div>
+            
+  		<div style="height: 30px"></div>
+  		
+  		<div class="col-100">
+              <label for="memberName" class="form-label">Name <span class="text-muted"></span></label>
+              <input type="text" class="form-control" id="memberName" placeholder="김아무개" name="memberName">
+              <div class="invalid-feedback">
+                성함을 입력해주세요.
+              </div>
+            </div>
+            
+  		<div style="height: 30px"></div>
+  		
+  		<div class="col-100">
+              <label for="memberEmail" class="form-label">Email <span class="text-muted"></span></label>
+              <input type="email" class="form-control" id="memberEmail" placeholder="you@example.com" name="memberEmail">
+              <div class="invalid-feedback">
+                이메일 주소를 입력해주세요.
+              </div>
+            </div>
+            
+  		<div style="height: 30px"></div>
+  		
+  		<div class="col-100">
+              <label for="memberPhone" class="form-label">Phone Numebr <span class="text-muted"></span></label>
+              <input type="tel" class="form-control" id="memberPhone" placeholder="000-0000-0000" name="memberPhone">
+              <div class="invalid-feedback">
+                전화번호를 입력해주세요.
+              </div>
+            </div>
+            
+  		<div style="height: 30px"></div>
+  		
+  		<div class="col-100">
+              <label for="memberBirth" class="form-label">Birth <span class="text-muted"></span></label>
+              <input type="date" class="form-control" id="memberBirth" name="memberBirth">
+              <div class="invalid-feedback">
+                생일을 입력해주세요.
+              </div>
+            </div>
+            
+  		<div style="height: 30px"></div>
 			
-			</div>
-			<div class="panel-body shadow-lg">
-				<form name="myform">
-					<div class="form-group">
-						<label for="memberId"><h3>아이디</h3> </label>
-						<input id="memberId" name="memberId" class="form-control" type="text" data-validation="required">
-						<span id="error_id" class="text-danger"></span>
-					</div>
-					<div class="form-group">
-						<label for="memberPassword"><h3>비밀번호</h3> </label>
-						<input id="memberPassword" name="memberPassword" class="form-control" type="password" >
-						<span id="error_lastname" class="text-danger"></span>
-					</div>
-					<div class="form-group">
-						<label for="memberName"><h3>이름</h3> </label>
-						<input id="memberName" name="memberName"  class="form-control" type="text" >
-						<span id="error_name" class="text-danger"></span>
-					</div>
-						<div class="form-group">
-						<label for="memberEmail"><h3>이메일</h3> </label>
-						<input id="memberEmail" name="memberEmail"  class="form-control" type="email" data-validation="email" >
-						<span id="error_email" class="text-danger"></span>
-					</div>
-					<div class="form-group">
-						<label for="memberPhone"><h3>전화번호</h3> </label>
-						<input type="text" id="memberPhone" name="memberPhone" class="form-control" >
-						<span id="error_phone" class="text-danger"></span>
-					</div>
-					<div class="form-group">
-						<label for="memberBirth"><h3>생년월일</h3> </label>
-						<input type="date" name="memberBirth" id="memberBirth" class="form-control">
-						<span id="error_birth" class="text-danger"></span>
-					</div>		
-					<div class="text-center">
-						<button type="submit" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold" onclick="levelTest();">혼밥레벨 테스트</button>
-					</div>
-				</form>
-
-			</div>
-		</div>
-	</div>
+		  <div class="text-center">
+		   <button class="w-80 btn btn-primary btn-lg" type="button" id="levelTest">레벨 테스트 하러가기!</button>
+		  </div>	
+         
+          
+  		<div style="height: 70px"></div>
+        </form>
+      </div>
+      
 </div>
 
+<div class="b-example-divider" style="height: 60px"></div>
+      
  <jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
