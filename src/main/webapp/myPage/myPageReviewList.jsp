@@ -59,17 +59,23 @@
     				<td>
     					<div class="">
     						<img id="img" src="../img/삼겹살.jpeg" width="100%">
+    						<p>
     					</div>
+    					
+    					<div class="col text-center">
+				    		<!-- 수정하기페이지로 이동 -->
+				    		<button type="button" class="btn btn-secondary btn-lg">수정하기</button>
+				    		<!-- 바로삭제 -->
+							<button type="reset" class="btn btn-secondary btn-lg">삭제하기</button>
+							<button type="button" class="btn btn-secondary btn-lg" onclick="location.href='myPage.jsp'">마이페이지</button>
+				    	</div>
     				</td>
     				
     			</tr>
     		</tbody>
     	</table>
     	
-    	<div class="col text-center">
-    		<button type="button" class="btn btn-secondary btn-lg">수정</button>
-			<button type="button" class="btn btn-secondary btn-lg">삭제</button>
-    	</div>
+    	
     	 
     </div>
 	

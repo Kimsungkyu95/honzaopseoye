@@ -14,6 +14,7 @@
     <style>
     	h1{text-align:center;}
     	.table{text-align:center}
+    	
     </style>
   </head>
   <body>
@@ -42,27 +43,27 @@
 		    </tr>
 		    <tr>
 		      <th scope="row">아이디</th>
-		      <td>memberId</td>
+		      <td colspan="2"><input type="text" name="id" value=memberName /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">비밀번호</th>
-		      <td colspan="2">memberPwd</td>
+		      <td colspan="2"><input type="text" name="id" value=memberPwd /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">이름</th>
-		      <td colspan="2">memberName</td>
+		      <td colspan="2"><input type="text" name="id" value=memberName /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">이메일</th>
-		      <td colspan="2">memberEmail</td>
+		      <td colspan="2"><input type="text" name="id" value=memberEmail /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">전화번호</th>
-		      <td colspan="2">memberPhone</td>
+		      <td colspan="2"><input type="text" name="id" value=memberPhone /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">생년월일</th>
-		      <td colspan="2">memberBirth</td>
+		      <td colspan="2"><input type="text" name="id" value=memberBirth /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">가입일</th>
@@ -70,7 +71,7 @@
 		    </tr>
 		    <tr>
 		      <th scope="row">경험치</th>
-		      <td colspan="2">memberExp</td>
+		      <td colspan="2"><input type="text" name="id" value=memberExp /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">프로필이미지</th>
@@ -78,6 +79,11 @@
 		    </tr>
 		  </tbody>
 		</table>
+		
+		<button type="submit" class="btn btn-secondary btn-lg">수정하기</button>
+		<button type="reset" class="btn btn-secondary btn-lg">취소</button>
+		<button type="button" onclick="location.href='adminMemberList.jsp'" class="btn btn-secondary btn-lg">회원관리리스트</button>
+		
 	</div>
 
 	<footer class="pt-3 mt-4 text-muted border-top">
