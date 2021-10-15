@@ -10,11 +10,57 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>myPagePassword</title>
+    
+    <style>
+    	h1{text-align:center;}
+    	.centerContainer{
+    		text-align:middle;
+    		width:1000px;
+    		margin: 0 auto;
+    	}
+    </style>
+    
   </head>
   <body>
     <jsp:include page="../common/header.jsp"/>
-
+	
+	<h1 class="p-3 mb-2 bg-light text-dark">비밀번호 변경</h1>
+	<div class="p-5 mb-4 bg-light border rounded-3">
+		
+		<form>
+		    <h1 class="h3 mb-3 fw-normal">현재비밀번호와 새로운 비밀번호를 입력해주세요.</h1>
+			
+			<p class="centerContainer" >
+			안전한 비밀번호로 내정보를 보호하세요
+			다른 사이트/아이디에서 사용한 적 없는 비밀번호
+			이전에 사용한 적 없는 비밀번호
+			가 안전합니다. 
+			</p>
+			
+		    <div class="form-floating">
+		      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+		      <label for="floatingInput">현재 비밀번호</label>
+		    </div>
+		    <div class="form-floating">
+		      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+		      <label for="floatingPassword">새 비밀번호</label>
+		    </div>
+		    <div class="form-floating">
+		      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+		      <label for="floatingPassword">새 비밀번호 확인</label>
+		    </div>
+		    
+		    <p>
+	
+		    <div class="d-grid gap-2">
+			  <button class="btn btn-primary" type="button">확인</button>
+			  <button class="btn btn-primary" type="button">취소</button>
+			</div>
+		    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+		  </form>
+	</div>
+	
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

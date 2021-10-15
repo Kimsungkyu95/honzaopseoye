@@ -9,9 +9,14 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+	
+	<script type="text/javascript" >
+	</script>
+	
     <title>myPage</title>
-    
+    <style>
+    	h1{text-align:center;}
+    </style>
   </head>
   <body>
     <jsp:include page="../common/header.jsp"/>
@@ -27,7 +32,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
     
-    <div class="p-3 mb-2 bg-light text-dark">MyPage</div>
+    <h1 class="p-3 mb-2 bg-light text-dark">마이페이지</h1>
     
 	<div class="row row-cols-1 row-cols-md-2 g-4">
 
@@ -41,7 +46,7 @@
         	<br>
         	수정화면에서 확인가능합니다.
         </p>
-        <button type="button" class="btn btn-secondary btn-lg">수정</button>
+        <button type="button" onclick="location.href='myPageAccount.jsp'" class="btn btn-secondary btn-lg">수정</button>
       </div>
     </div>
   </div>
@@ -53,7 +58,7 @@
         	나를 표현하는 프로필 정보입니다. <br>
 			수정화면에서 프로필 사진을 변경하세요.        
         </p>
-        <button type="button" class="btn btn-secondary btn-lg">수정</button>
+        <button type="button" onclick="location.href='myPageImage.jsp'" class="btn btn-secondary btn-lg">수정</button>
       </div>
     </div>
   </div>
@@ -65,7 +70,7 @@
         	로그인시 사용하는 비밀번호를 변경합니다.<br>
         	개인정보를 안전하게 보호하세요.        
         </p>
-        <button type="button" class="btn btn-secondary btn-lg">변경하기</button>
+        <button type="button" onclick="location.href='myPagePassword.jsp'" class="btn btn-secondary btn-lg">변경하기</button>
       </div>
     </div>
   </div>
@@ -74,7 +79,7 @@
       <div class="card-body">
         <h5 class="card-title">나의 레벨</h5>
         <p class="card-text">현재 나의경험치와 레벨을 확인하세요</p>
-        <button type="button" class="btn btn-secondary btn-lg">LEVEL</button>
+        <button type="button" onclick="location.href='myPageLevel.jsp'" class="btn btn-secondary btn-lg">LEVEL</button>
       </div>
     </div>
   </div>
@@ -87,7 +92,7 @@
         	<br>
         	조회, 수정, 삭제가 가능합니다.
         </p>
-        <button type="button" class="btn btn-secondary btn-lg">REVIEW</button>
+        <button type="button" onclick="location.href='myPageReviewList.jsp'" class="btn btn-secondary btn-lg">REVIEW</button>
       </div>
     </div>
   </div>
@@ -100,7 +105,7 @@
         	<br>
         	조회, 수정, 삭제가 가능합니다.  	
         </p>
-        <button type="button" class="btn btn-secondary btn-lg">WISHLIST</button>
+        <button type="button" onclick="location.href='myPageWishList.jsp'" class="btn btn-secondary btn-lg">WISHLIST</button> 
       </div>
     </div>
   </div>
