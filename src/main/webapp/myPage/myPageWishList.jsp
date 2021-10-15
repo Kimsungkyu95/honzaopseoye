@@ -15,6 +15,14 @@
   <body>
     <jsp:include page="../common/header.jsp"/>
 
+	<h1 class="p-3 mb-2 bg-light text-dark">나의 위시리스트</h1>
+	<div class="p-5 mb-4 bg-light border rounded-3">
+	
+	
+	
+	</div>
+
+	
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
