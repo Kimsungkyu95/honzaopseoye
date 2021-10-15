@@ -12,6 +12,11 @@
 
 
 	<title>myPageImage</title>
+	
+	<style>
+    	h1{text-align:center;}
+    </style>
+	
   </head>
   
   
@@ -20,7 +25,7 @@
     <jsp:include page="../common/header.jsp"/>
 
 	
-	<h1 class="p-3 mb-2 bg-light text-dark">나의프로필</h1>
+	<h1 class="p-3 mb-2 bg-light text-dark">프로필변경</h1>
     
     <div class="p-5 mb-4 bg-light border rounded-3">
     
@@ -43,8 +48,12 @@
     						<img id="img" src="../img/humanicon.png" width="100" height="100">
     					</div>
     					<div class="">
-    						<button type="button" class="btn btn-outline-warning">사진변경</button>
-							<button type="button" class="btn btn-outline-info">삭제</button>
+    						<form method="post"  action="UpLoad" enctype="multipart/form-data">
+							  파일첨부:<input type="file"  name="file"/><p>
+							  <input type="submit" class="btn btn-outline-warning" value="사진변경"/>
+							  <button type="button" class="btn btn-outline-info">삭제</button>
+							</form>
+							
     					</div>
     				</td>
     				

@@ -56,6 +56,7 @@
 		</table>
     
     	<button type="button" class="btn btn-secondary btn-lg">수정</button>
+    	<button type="button" class="btn btn-secondary btn-lg" onclick="location.href='myPage.jsp'">취소</button>
     </div>
 
 

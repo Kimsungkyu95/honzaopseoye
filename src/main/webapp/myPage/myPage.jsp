@@ -14,7 +14,9 @@
 	</script>
 	
     <title>myPage</title>
-    
+    <style>
+    	h1{text-align:center;}
+    </style>
   </head>
   <body>
     <jsp:include page="../common/header.jsp"/>
@@ -44,7 +46,7 @@
         	<br>
         	수정화면에서 확인가능합니다.
         </p>
-        <button type="button" class="btn btn-secondary btn-lg">수정</button>
+        <button type="button" onclick="location.href='myPageAccount.jsp'" class="btn btn-secondary btn-lg">수정</button>
       </div>
     </div>
   </div>
@@ -56,7 +58,7 @@
         	나를 표현하는 프로필 정보입니다. <br>
 			수정화면에서 프로필 사진을 변경하세요.        
         </p>
-        <button type="button" class="btn btn-secondary btn-lg">수정</button>
+        <button type="button" onclick="location.href='myPageImage.jsp'" class="btn btn-secondary btn-lg">수정</button>
       </div>
     </div>
   </div>
@@ -68,7 +70,7 @@
         	로그인시 사용하는 비밀번호를 변경합니다.<br>
         	개인정보를 안전하게 보호하세요.        
         </p>
-        <button type="button" class="btn btn-secondary btn-lg">변경하기</button>
+        <button type="button" onclick="location.href='myPagePassword.jsp'" class="btn btn-secondary btn-lg">변경하기</button>
       </div>
     </div>
   </div>
@@ -77,7 +79,7 @@
       <div class="card-body">
         <h5 class="card-title">나의 레벨</h5>
         <p class="card-text">현재 나의경험치와 레벨을 확인하세요</p>
-        <button type="button" class="btn btn-secondary btn-lg">LEVEL</button>
+        <button type="button" onclick="location.href='myPageLevel.jsp'" class="btn btn-secondary btn-lg">LEVEL</button>
       </div>
     </div>
   </div>
@@ -90,7 +92,7 @@
         	<br>
         	조회, 수정, 삭제가 가능합니다.
         </p>
-        <button type="button" class="btn btn-secondary btn-lg">REVIEW</button>
+        <button type="button" onclick="location.href='myPageReviewList.jsp'" class="btn btn-secondary btn-lg">REVIEW</button>
       </div>
     </div>
   </div>
@@ -103,7 +105,7 @@
         	<br>
         	조회, 수정, 삭제가 가능합니다.  	
         </p>
-        <button type="button" class="btn btn-secondary btn-lg">WISHLIST</button> 
+        <button type="button" onclick="location.href='myPageWishList.jsp'" class="btn btn-secondary btn-lg">WISHLIST</button> 
       </div>
     </div>
   </div>
