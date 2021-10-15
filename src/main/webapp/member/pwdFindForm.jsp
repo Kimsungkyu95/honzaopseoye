@@ -27,9 +27,24 @@
 <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function() {
+	var form = window.document.pwdFindForm;
 	$("#pwdFindResult").hide();
 	
 	$("#pwdFindButton").click(function() {
+
+		if(form.id.value == ""){
+			$("#invalid-feedback").html("아이디를 입력해주세요");
+			$("#id").focus();
+			return;
+		}
+		
+		if(form.email.value == ""){
+			$("#invalid-feedback").html("이메일을 입력해주세요");
+			$("#email").focus();
+			return;
+		}
+		
+		$("#invalid-feedback").html("");
 		$("#pwdFindResult").show();
 	});
 })
@@ -51,11 +66,13 @@ $(function() {
     <div class="p-5 mb-4 bg-light rounded-3" >
       <div class="container-fluid py-5">
         <p class="col-md-8 fs-4">아이디와 가입할 때 사용했던 이메일 주소를 입력해주세요.</p>
-        <form style="width:500px">
-				<input class="form-control me-2" type="text" placeholder="ID 입력">
+        <form style="width:500px" id="pwdFindForm" name="pwdFindForm">
+				<input class="form-control me-2" type="text" placeholder="ID 입력" id="id" name="id">
 				<div style="height: 10px"></div>
-				<input class="form-control me-2" type="email" placeholder="Email 주소 입력" >
+				<input class="form-control me-2" type="email" placeholder="Email 주소 입력" id="email" name="email">
 				<div style="height: 10px"></div>
+				<div  class=" mb-3 text-muted" id="invalid-feedback">
+              </div>
         <button class="btn btn-primary btn-lg" type="button" id="pwdFindButton">비밀번호 조회</button>
 			</form>
       </div>
@@ -70,7 +87,7 @@ $(function() {
     
 
     <footer class="pt-3 mt-4 text-muted border-top">
-      © 2021
+     
     </footer>
   </div>
 </main>
