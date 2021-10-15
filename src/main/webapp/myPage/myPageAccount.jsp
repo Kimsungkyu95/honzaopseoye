@@ -10,10 +10,57 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+    <title>myPageAccount</title>
     
+    <style type="text/css">
+    	table{text-align:center;}
+    	h1{text-align:center;}
+    </style>
   </head>
   <body>
     <jsp:include page="../common/header.jsp"/>
+
+	<h1 class="p-3 mb-2 bg-light text-dark">계정정보</h1>
+    
+    <div class="p-5 mb-4 bg-light border rounded-3">
+    
+    	<table class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">정보</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <th scope="row">아이디</th>
+		      <td>Otto</td>
+		    </tr>
+		    <tr>
+		      <th scope="row">이름</th>
+		      <td>김김김</td>
+		    </tr>
+		    <tr>
+		      <th scope="row">이메일</th>
+		      <td>kosta@kosta.com</td>
+		    </tr>
+		    <tr>
+		      <th scope="row">전화번호</th>
+		      <td>010-0102-4959</td>
+		    </tr>
+		    <tr>
+		      <th scope="row">생년월일</th>
+		      <td>00.10.13</td>
+		    </tr>
+		  </tbody>
+		</table>
+    
+    	<button type="button" class="btn btn-secondary btn-lg">수정</button>
+    	<button type="button" class="btn btn-secondary btn-lg" onclick="location.href='myPage.jsp'">취소</button>
+    </div>
+
+
+
 
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -25,14 +72,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
-    
-    <div class="p-3 mb-2 bg-light text-dark">MyPageAccount</div>
-    
-    <div class="p-5 mb-4 bg-light border rounded-3">
-	    <img src="../img/humanicon.png" class="rounded-circle" alt="...">
-	    <div>아이콘 제작자 <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>    
-    </div>
-    
     <footer class="pt-3 mt-4 text-muted border-top" style="clear:both">
       <jsp:include page="../common/footer.jsp"/>
     </footer>

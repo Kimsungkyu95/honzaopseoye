@@ -10,12 +10,60 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+
+	<title>myPageImage</title>
+	
+	<style>
+    	h1{text-align:center;}
+    </style>
+	
   </head>
+  
+  
+  
   <body>
     <jsp:include page="../common/header.jsp"/>
 
 	
+	<h1 class="p-3 mb-2 bg-light text-dark">프로필변경</h1>
+    
+    <div class="p-5 mb-4 bg-light border rounded-3">
+    
+    	<div class="">
+    		<h2>프로필 수정</h2>
+    		대표 프로필을 수정할 수 있습니다.</p>
+    	</div>
+    	<table border="0" class="table table-bordered">
+    		<colgroup>
+    			<col style="width:22%">
+    			<col>
+    		</colgroup>
+    		<tbody>
+    			<tr>
+    				<th scope="row">
+    					<div class="">프로필 사진</div>
+    				</th>
+    				<td>
+    					<div class="">
+    						<img id="img" src="../img/humanicon.png" width="100" height="100">
+    					</div>
+    					<div class="">
+    						<form method="post"  action="UpLoad" enctype="multipart/form-data">
+							  파일첨부:<input type="file"  name="file"/><p>
+							  <input type="submit" class="btn btn-outline-warning" value="사진변경"/>
+							  <button type="button" class="btn btn-outline-info">삭제</button>
+							</form>
+							
+    					</div>
+    				</td>
+    				
+    			</tr>
+    		</tbody>
+    	</table>
+    	
+    	<button type="button" class="btn btn-secondary btn-lg">적용</button> 
+	    <button type="button" class="btn btn-secondary btn-lg">취소</button>   
+    </div>
 	
 
 
