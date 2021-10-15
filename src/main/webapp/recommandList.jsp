@@ -4,6 +4,9 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
+    <!-- jQuery추가 -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,101 +24,127 @@
     
     <style type="text/css">
   table{background-color:#E6E1FF; border:1px solid #C6BBEF; border-radius:5px;}
-  tr td{border:20px solid white; padding-bottom:20px;}
+  tr td{border:20px solid white; padding-bottom:20px; width:25%;}
   img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+	    object-fit: cover;
+		width: 100%;
+		height: 300px;
   } 
   select{border:1px solid #C6BBEF; color:#3C3B41; border-radius:3px}  
+ 
+  
 </style>
+
+<script>
+    $(function(){
+	  $("select[name=kind]").change(function(){
+		  
+		  let param=$(this).val();
+		  let str="<br><h4><b>&nbsp;&nbsp;"
+		  str+=param+"</h4>"
+		  let myLevel="현재 나의 레벨은";
+		  let comment="&nbsp;&nbsp;조회수 높은 맛집 리스트입니다";
+		  let tagList="&nbsp;&nbsp;&nbsp;";
+		  let tags=['분위기', '감성', '루프탑','포토존', '향신료', '국물', '밥', '면', 
+				  '빵', '오리', '닭', '돼지', '소', '치즈', '아주매움', '신라면맵기', '순한맛',
+				  '얼큰', '뜨끈','맥주와꿀조합','만19세이상', '야식추천','간단하게', '든든하게',
+				  '속편한', '수제', '유기농', '반려동물동반가능', '브런치', '다이어트', '채식',
+				  '비건', '집밥', '공간넓음', '교통좋음', '주차가능', '조용함', '신나는분위기',
+				  '시끌벅적', '노래빵빵', '아기자기'];
+		  
+		  //레벨 선택 바
+		  let levelBar="<div class='btn-toolbar' role='toolbar' aria-label='Toolbar with button groups'>"
+		  levelBar+="<div class='btn-group btn-group-lg' role='group' aria-label='First group'>&nbsp;&nbsp;&nbsp;"
+		  levelBar+="<button type='button' class='btn btn-primary' data-bs-toggle='tooltip' data-bs-placement='top' title='처음이신가요?'>Lv.1 병아리</button>"
+		  levelBar+="<button type='button' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='신입'>Lv.2 신입</button>"
+		  levelBar+="<button type='button' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='도전해보세요'>Lv.3 도전자</button>"
+		  levelBar+="<button type='button' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='혼밥이 크게 어렵지 않다면'>Lv.4 경력자</button>"
+		  levelBar+="<button type='button' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='먹고 싶은 혼밥 메뉴를 탐험해보세요'>Lv.5 능력자</button>"
+		  levelBar+="<button type='button' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='개척하세요'>Lv.6 전사</button>"
+		  levelBar+="<button type='button' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='끝판왕'>Lv.7 전능자</button></div></div>"
+		  
+		  //태그 반복문 돌리기
+		  $.each(tags, function(index, item){			  
+		 	  tagList+='<button type="button" class="btn btn-outline-secondary">#'
+			  tagList+=item+'</button> '; 
+		 	  if(index == 9 || index == 18 || index == 27)
+			  	  tagList+='<p><p>&nbsp;&nbsp;&nbsp;';
+          });
+		
+		  
+		  $("#display2").empty();
+		  $("#display3").empty();
+		  $("#display4").empty();
+		  $("#display5").empty();
+		  
+		  if(param == "혼밥레벨별 맛집"){
+			  str+="<h5>&nbsp;&nbsp;&nbsp;"+myLevel+"</h5>"
+		      $("#display1").html(str);
+			  $("#display2").html(levelBar);
+		  }else if(param =="태그별 추천"){
+			  $("#display1").html(str);
+			  $("#display3").html(tagList);
+		  }else{
+			  $("#display1").html(str);
+			  if(param == "많이 검색된 맛집"){
+			      $("#display4").html(comment);
+			  }else{
+				  $("#display4").html("&nbsp;&nbsp;인기있는 맛집 리스트입니다");
+			  }
+		  }
+	 });
+	 
+});
+
+</script>
+
+
     
-  </head>
-  <body>
-
-
+    
+</head>
+<body>
 
 <br>
 <h5>&nbsp;&nbsp;&nbsp;원하시는 추천을 해드려요! &nbsp;&nbsp;&nbsp;
- <!--  <ul class="dropdown-menu dropdown-menu-macos mx-0 shadow" style="width: 220px;">
-    <li><a class="dropdown-item active" href="#">--선택--</a></li>
-    <li><a class="dropdown-item" href="#">혼밥레벨별 맛집</a></li>
-    <li><a class="dropdown-item" href="#">많이 검색된 맛집</a></li>
-    <li><a class="dropdown-item" href="#">태그로 추천받기</a></li>
-  </ul>--> 
+
 <select name="kind">
-    <option value="">--선택--</option>
-    <option value="level">혼밥레벨별 맛집</option>
-    <option value="visited">많이 검색된 맛집</option>
-    <option value="tag">태그로 추천받기</option>
+    <option value="모두가 좋아하는 맛집">--선택--</option>
+    <option value="혼밥레벨별 맛집">혼밥레벨별 맛집</option>
+    <option value="많이 검색된 맛집">많이 검색된 맛집</option>
+    <option value="태그별 추천">태그로 추천받기</option>
 </select>
 </h5>
 
 
 <p><p><br>
-<span><h3>&nbsp;혼밥레벨별 추천<!-- 혼밥레벨별 추천 --></h3></span>
+<div id="display1"> </div>
 <p>
-<!-- ajax 이용해서 태그별 추천 때, 혼밥레벨별 추천 때에 따라 div 영역에 표시하기 -->
-<form><!-- 
-<div id="list">&nbsp;&nbsp;<button type="button" class="btn btn-outline-secondary">#분위기</button> 
-               <button type="button" class="btn btn-outline-secondary">#감성</button> 
-               <button type="button" class="btn btn-outline-secondary">#루프탑</button> 
-               <button type="button" class="btn btn-outline-secondary">#포토존</button> 
-               <button type="button" class="btn btn-outline-secondary">#향신료</button> 
-               <button type="button" class="btn btn-outline-secondary">#국물</button> 
-               <button type="button" class="btn btn-outline-secondary">#밥</button>
-               <p><p>&nbsp;
-               <button type="button" class="btn btn-outline-secondary">#면</button> 
-               <button type="button" class="btn btn-outline-secondary">#빵</button> 
-               <button type="button" class="btn btn-outline-secondary">#오리</button> 
-               <button type="button" class="btn btn-outline-secondary">#닭</button> 
-               <button type="button" class="btn btn-outline-secondary">#돼지</button> 
-               <button type="button" class="btn btn-outline-secondary">#소</button> 
-               <button type="button" class="btn btn-outline-secondary">#치즈</button> 
-               <p><p>&nbsp;
-               <button type="button" class="btn btn-outline-secondary">#아주매움</button> 
-               <button type="button" class="btn btn-outline-secondary">#신라면맵기</button> 
-               <button type="button" class="btn btn-outline-secondary">#순한맛</button> 
-               <button type="button" class="btn btn-outline-secondary">#얼큰</button> 
-               <button type="button" class="btn btn-outline-secondary">#뜨끈</button> 
-               <button type="button" class="btn btn-outline-secondary">#맥주와꿀조합</button> 
-               <button type="button" class="btn btn-outline-secondary">#만19세이상</button> 
-               <button type="button" class="btn btn-outline-secondary">#야식추천</button> 
-               <p>           
-</div>
- -->
 
-</form>
  <h5>
- <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-  <div class="btn-group btn-group-lg" role="group" aria-label="First group">
-    &nbsp;&nbsp;&nbsp;
-    <button type="button" class="btn btn-primary">Lv.1 병아리</button>
-    <button type="button" class="btn btn-primary">Lv.2 신입</button>
-    <button type="button" class="btn btn-primary">Lv.3 도전자</button>
-    <button type="button" class="btn btn-primary">Lv.4 경력자</button>
-    <button type="button" class="btn btn-primary">Lv.5 능력자</button>
-    <button type="button" class="btn btn-primary">Lv.6 전사</button>
-    <button type="button" class="btn btn-primary">Lv.7 전능자</button>
-  </div>
- </div>
-
+ <div id="display2"></div>
+ <div id="display3"></div>
+ <div id="display4"></div>  
  </h5> 
+
 <p><p>
+ <div id="list">
+    <div id="display5"><h4><br>&nbsp;&nbsp;후회없는 디폴트 맛집</h4></div>
     <table> <!--javaScript/jQuery로 반복문 : 해당 추천리스트 길이에 따라 테이블 반복문돌리기 -->
 		<tr>
 			<td><a href=""><img src="img/삼겹살.jpeg"/></a><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
-			<td><img src="img/삼겹살.jpeg" /><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
-			<td><img src="img/삼겹살.jpeg"/><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
+			<td><img src="img/초밥1.jpeg" /><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
+			<td><img src="img/회.jpeg"/><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
 			<td><img src="img/삼겹살.jpeg"/><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
 		</tr>
 		<tr>
-			<td><img src="img/회.jpeg"/><br>설명1<br>설명2</td>
+			<td><img src="img/삼겹살.jpeg"/><br>설명1<br>설명2</td>
 			<td><img src="img/회.jpeg" /><br>설명1<br>설명2</td>
-			<td><img src="img/회.jpeg"/><br>설명1<br>설명2</td>
-			<td><img src="img/회.jpeg"/><br>설명1<br>설명2</td>
+			<td><img src="img/초밥2.jpg"/><br>설명1<br>설명2</td>
+			<td><img src="img/삼겹살.jpeg"/><br>설명1<br>설명2</td>
 		</tr>
 	</table>
+ </div>	
+
 	
 	
   <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
