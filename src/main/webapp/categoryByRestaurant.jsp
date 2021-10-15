@@ -15,7 +15,7 @@
 	.card-body{width:300px; height:100px}
 	#dropdown{margin-bottom:40px}
 	#span{margin-left:300px}
-	
+	a:link, a:visited{color:black; text-decoration:none; padding-left:2px}
 </style>
 <script type="text/javascript" ></script>
 <script src="js/jquery-3.6.0.min.js"></script>
@@ -23,6 +23,7 @@
 </head>
 <body>
 <!-- 페이징 처리 필요.. -->
+
 <jsp:include page="common/header.jsp"/>
 
 <div class="album py-5 bg-light">
@@ -75,7 +76,7 @@
               <p class="card-text"></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                 식당이름 :
+                 식당이름 : <a href="#">교대이층집</a> <!-- 식당이름 넘겨주기 -->
                 </div>
                 <div class="btn-group">
                   별점 :
