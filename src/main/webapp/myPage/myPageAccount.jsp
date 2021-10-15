@@ -34,29 +34,32 @@
 		  <tbody>
 		    <tr>
 		      <th scope="row">아이디</th>
-		      <td>Otto</td>
+		      <td><input type="text" name="id" value=memberId /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">이름</th>
-		      <td>김김김</td>
+		      <td><input type="text" name="id" value=memberName /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">이메일</th>
-		      <td>kosta@kosta.com</td>
+		      <td><input type="text" name="id" value=memberEmail /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">전화번호</th>
-		      <td>010-0102-4959</td>
+		      <td><input type="text" name="id" value=memberPhone /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">생년월일</th>
-		      <td>00.10.13</td>
+		      <td><input type="text" name="id" value=memberBirth/></td>
 		    </tr>
 		  </tbody>
 		</table>
-    
-    	<button type="button" class="btn btn-secondary btn-lg">수정</button>
-    	<button type="button" class="btn btn-secondary btn-lg" onclick="location.href='myPage.jsp'">취소</button>
+    	
+    	<button type="submit" class="btn btn-secondary btn-lg">수정하기</button>
+		<button type="reset" class="btn btn-secondary btn-lg">취소</button>
+		<button type="button" class="btn btn-secondary btn-lg" onclick="location.href='myPage.jsp'">마이페이지</button>
+
+	
     </div>
 
 

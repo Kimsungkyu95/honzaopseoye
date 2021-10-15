@@ -37,31 +37,22 @@
 		      <th scope="col">경험치</th>
 		    </tr>
 		  </thead>
+		  
+		  
+		  
 		  <tbody>
 		    <tr>
-		      <th scope="row">1</th>
-		      <td>Mark</td>
-		      <td>Otto</td>
-		      <td>@mdo</td>
-		      <td>d</td>
-		      <td>e</td>
-		    </tr>
-		    <tr>
-		      <th scope="row">2</th>
-		      <td>Jacob</td>
-		      <td>Thornton</td>
-		      <td>@fat</td>
-		      <td>@fat</td>
-		      <td>@fat</td>
-		    </tr>
-		    <tr>
-		      <th scope="row">3</th>
-		      <td colspan="2">Larry the Bird</td>
-		      <td>@twitter</td>
-		      <td>@fat</td>
-		      <td>@fat</td>
+		      <th scope="row">memberNo</th>
+		      <!-- id를 가져고 이동 -->
+		      <td><a href="adminMemberDetail.jsp">memberId</td>
+		      <td>memberName</td>
+		      <td>memberJoinDate</td>
+		      <td>memberExp</td>
 		    </tr>
 		  </tbody>
+		  
+		  
+		  
 		</table>
 	</div>
 
