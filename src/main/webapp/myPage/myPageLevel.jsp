@@ -10,7 +10,12 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>myPageLevel</title>
+    
+    <style>
+    	h1{text-align:center;}
+    </style>
+    
   </head>
   <body>
     <jsp:include page="../common/header.jsp"/>
@@ -27,10 +32,15 @@
     -->
     
     
-    <div class="p-3 mb-2 bg-light text-dark">MyPage</div>
+    <h1 class="p-3 mb-2 bg-light text-dark">나의 레벨</h1>
     
     <div class="p-5 mb-4 bg-light border rounded-3">
     	<h1>김아무개 Lv.3</h1>
+    	
+    	<!-- 게이지바 -->
+    	<div class="progress">
+		  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+		</div>
     	
     	<h3>현재 경험치 : 650Exp</h3>
     	<h3>다음 레벨까지 남은 경험치 : 350Exp</h3>
