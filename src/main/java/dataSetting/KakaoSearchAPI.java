@@ -57,6 +57,48 @@ public class KakaoSearchAPI {
 		
 	}
 	
+	public JSONArray searchArr(String gu, String dong, String value) {
+		JSONObject restaurantObject = null;
+		JSONArray restaurantArray = null;
+		try {
+			String temp = URLEncoder.encode(gu + " " + dong + " " + value + " 맛집", "UTF-8"); //한글 인코딩처리 필수
+			String str = "https://dapi.kakao.com/v2/local/search/keyword.json?query="+temp;
+			URL url = new URL(str);
+			
+			//URLConnection 생성
+	        URLConnection conn = url.openConnection();
+	        
+	        // Authorization 정보 head에 넣어주기
+	        conn.setRequestProperty("Authorization", "KakaoAK 9928b38057b1c51974e1664c4910ed86");
+	        
+	        // Content-Type 설정
+	        //conn.setRequestProperty("Content-Type", "application/json");
+	 
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+            String line = "";
+            StringBuilder jsonData = new StringBuilder();
+            
+            while ((line = br.readLine()) != null) {
+            	//System.out.println(line);
+                jsonData.append(line);
+            }
+            
+            //jsonData 파싱
+            JSONParser jsonParser = new JSONParser();
+            JSONObject jsonObject = (JSONObject)jsonParser.parse(jsonData.toString());
+            
+            //documents 배열추출(JSONArray 형태) 
+            restaurantArray = (JSONArray) jsonObject.get("documents");
+            
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return restaurantArray;
+		
+	}
+	
 	public List<String> imgSearch(String dong, String CategoryDetailsName, String name) {
 		List<String> imgUrlList = new ArrayList<String>();
 		try {
@@ -114,4 +156,5 @@ public class KakaoSearchAPI {
 		}
 	}
 }
+
 */
