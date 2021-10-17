@@ -22,23 +22,23 @@ public class RecommendController implements Controller {
 	}
 	
 	public ModelAndView recByCommon(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException{
+			throws Exception{
 		return null;
 	}
 	
 	public ModelAndView recByLevel(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException{
+			throws Exception{
 		return null;
 	}
 	
 	public ModelAndView recByVisited(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException{
+			throws Exception{
 		return null;
 	
 	}
 	
 	public ModelAndView recByTag(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException{
+			throws Exception{
 		return null;
 	
 	}
