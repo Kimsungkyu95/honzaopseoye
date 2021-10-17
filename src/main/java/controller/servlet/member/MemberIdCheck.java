@@ -1,4 +1,4 @@
-package controller;
+package controller.servlet.member;
 
 import java.io.IOException;
 import java.io.PrintWriter;

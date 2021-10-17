@@ -41,13 +41,17 @@ $(function() {
 		
 		//-----------------비동기화통신-----------------------------------
 		$.ajax({
-			url: "../front?key=member&methodName=selectIdByEmail", 	// ../ 상위로 한칸 올라가서.. 서블릿 
+			url: "../selectIdByEmail", 	// ../ 상위로 한칸 올라가서.. 서블릿 
 											//이게 폴더 밑에 있으니까 루트로 갈려면 한칸 올라가야됨.
 			type: "post",				//메소드 방식(get, post, put, delete)
 			dataType: "text",			//서버가 응답해주는 데이터의 타입(text-생략시 기본-, html, xml, json)
 			data: {id: $(this).val() }, //서버에 보낼 때 파라메터
 			success: function(result) { //성공하면 callback 함수	
 				//console.log(result);
+				if(result=="해당 이메일로 가입된 정보를 찾을 수 없습니다."){
+					console.log("true");
+				}
+			
 				$("#result").text(result);
 			
 				$("#invalid-feedback").html("");
