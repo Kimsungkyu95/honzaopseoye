@@ -4,18 +4,19 @@ pageEncoding="UTF-8"%>
 <html lang="en">
 <head>
 <!-- Required meta tags -->
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <title>header</title>
 <style>
-	
+	nav{height:60px}
+	svg{padding-bottom:2px}
 </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light"  style="background-color: #adb5bd";>
-	<div class="container-fluid" style="height:60px">
+	<div class="container-fluid" style="">
 		<a class="navbar-brand" href="${pageContext.request.contextPath}/main.jsp">
 		<!-- 홈아이콘 -->
 			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-smile" viewBox="0 0 16 16">
@@ -25,23 +26,23 @@ pageEncoding="UTF-8"%>
 				혼자옵서예
 		</a>
 		
-		<!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-		</button> 존재유무? -->
-		
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<!-- 마이페이지 -->
 				<li class="nav-item">
-
-				<a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/myPage/myPage.jsp">MyPage</a>
-
+					<a class="nav-link" href="${pageContext.request.contextPath}/myPage/myPage.jsp">MyPage</a>
 				</li>
+				<!-- 로그인 -->
 				<li class="nav-item">
 					<a class="nav-link" href="${pageContext.request.contextPath}/member/loginForm.jsp">LogIn</a>
 				</li>
+				<!-- 위시리스트 -->
+				<li class="nav-item">
+					<a class="nav-link" href="${pageContext.request.contextPath}/myPage/myPageWishList.jsp">WishList</a>
+				</li>
+				<!-- 현재위치? -->
 				<li class="nav-item">
 					<a class="nav-link" href="#">
-					
 					<!-- 위치 아이콘 -->
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
 						<path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481
@@ -51,7 +52,8 @@ pageEncoding="UTF-8"%>
 					</svg>
 					현재위치
 					</a>
-			   </li>
+			     </li>
+			   
 			</ul>
 			
 			<!-- 검색창 -->
@@ -59,8 +61,10 @@ pageEncoding="UTF-8"%>
 				<input class="form-control me-2" type="search" placeholder="검색어를 입력하세요." aria-label="Search">
 				<button class="btn btn-outline-success" type="submit">search</button>
 			</form>
+			
 		</div>
 	</div>
 </nav>
+
 </body>
 </html>
