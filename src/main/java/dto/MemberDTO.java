@@ -48,6 +48,14 @@ public class MemberDTO {
 		this.memberBirth = memberBirth;
 		this.profileImage = profileImage;
 	}
+	
+	public MemberDTO(int memberNo, String memberID, String memberName, String MemberJoinDate, int memberExp) {
+		this.memberNo = memberNo;
+		this.memberID = memberID;
+		this.memberName = memberName;
+		this.memberJoinDate = memberJoinDate;
+		this.memberExp = memberExp;
+	}
 
 
 	public MemberDTO(String memberID, String memberPwd, String memberName) {

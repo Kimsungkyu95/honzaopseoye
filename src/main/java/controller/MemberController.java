@@ -108,5 +108,7 @@ public class MemberController implements Controller {
 		out.print(id);
 		
 	}
+	
+	
 
 }

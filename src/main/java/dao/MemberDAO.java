@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import dto.MemberDTO;
 
@@ -15,4 +16,16 @@ public interface MemberDAO {
 	int insert(MemberDTO member) throws SQLException;
 
 	String selectIdByEmail(String email) throws SQLException;
+	
+	int updateByNo(MemberDTO member) throws SQLException;
+	
+	int updateLevelByNo(int exp) throws SQLException;
+	
+	int updateImageByNo(String image) throws SQLException;
+	
+	int updatePwdByNo(String pwd)throws SQLException;
+	
+	int deleteByNo(int no) throws SQLException;
+	
+	ArrayList<MemberDTO> memberList() throws SQLException;
 }
