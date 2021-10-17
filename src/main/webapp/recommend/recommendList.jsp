@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <jsp:include page="common/header.jsp"/>
+    <jsp:include page="../common/header.jsp"/>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -41,9 +41,9 @@
 		  
 		  let param=$(this).val();
 		  let str="<br><h4>&nbsp;&nbsp;"
+		  let comment="&nbsp;&nbsp;조회수가 높은 리스트입니다"
 		  str+=param+"</h4>"
 		  let myLevel="현재 나의 레벨은";
-		  let comment="&nbsp;&nbsp;조회수 높은 맛집 리스트입니다";
 		  let tagList="&nbsp;&nbsp;&nbsp;";
 		  let tags=['분위기', '감성', '루프탑','포토존', '향신료', '국물', '밥', '면', 
 				  '빵', '오리', '닭', '돼지', '소', '치즈', '아주매움', '신라면맵기', '순한맛',
@@ -55,22 +55,13 @@
 		  //레벨 선택 바
 		  let levelBar="<div class='btn-toolbar' role='toolbar' aria-label='Toolbar with button groups'>"
 		  levelBar+="<div class='btn-group btn-group-lg' role='group' aria-label='First group'>&nbsp;&nbsp;&nbsp;"
-		  levelBar+="<button type='button' class='btn btn-primary' data-bs-toggle='tooltip' data-bs-placement='top' title='처음이신가요?'>Lv.1 병아리</button>"
-		  levelBar+="<button type='button' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='신입'>Lv.2 신입</button>"
-		  levelBar+="<button type='button' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='도전해보세요'>Lv.3 도전자</button>"
-		  levelBar+="<button type='button' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='혼밥이 크게 어렵지 않다면'>Lv.4 경력자</button>"
-		  levelBar+="<button type='button' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='먹고 싶은 혼밥 메뉴를 탐험해보세요'>Lv.5 능력자</button>"
-		  levelBar+="<button type='button' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='개척하세요'>Lv.6 전사</button>"
-		  levelBar+="<button type='button' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='끝판왕'>Lv.7 전능자</button></div></div>"
-		  
-		  //태그 반복문 돌리기
-		  $.each(tags, function(index, item){			  
-		 	  tagList+='<button type="button" class="btn btn-outline-secondary">#'
-			  tagList+=item+'</button> '; 
-		 	  if(index == 9 || index == 18 || index == 27)
-			  	  tagList+='<p><p>&nbsp;&nbsp;&nbsp;';
-          });
-		
+		  levelBar+="<button type='button' value='1' class='btn btn-primary' data-bs-toggle='tooltip' data-bs-placement='top' title='처음이신가요?'>Lv.1 병아리</button>"
+		  levelBar+="<button type='button' value='2' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='신입'>Lv.2 신입</button>"
+		  levelBar+="<button type='button' value='3' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='도전해보세요'>Lv.3 도전자</button>"
+		  levelBar+="<button type='button' value='4' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='혼밥이 크게 어렵지 않다면'>Lv.4 경력자</button>"
+		  levelBar+="<button type='button' value='5' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='먹고 싶은 혼밥 메뉴를 탐험해보세요'>Lv.5 능력자</button>"
+		  levelBar+="<button type='button' value='6' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='개척하세요'>Lv.6 전사</button>"
+		  levelBar+="<button type='button' value='7' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='끝판왕'>Lv.7 전능자</button></div></div>"
 		  
 		  $("#display2").empty();
 		  $("#display3").empty();
@@ -81,18 +72,54 @@
 			  str+="<h5>&nbsp;&nbsp;&nbsp;"+myLevel+"</h5>"
 		      $("#display1").html(str);
 			  $("#display2").html(levelBar);
+			  
+			  //해당 레벨을 클릭했을때 아래 레벨에 해당하는 추천목록 띄우기
+			  
+				 $("button").click(function(){
+					 for(let i=1;i<=7;i++){
+						if($(this).val()==i){
+						   	alert(i);
+						}//if
+				      }//for
+				 });
+
+			  
 		  }else if(param =="태그별 추천"){
+
+			//태그 반복문 돌리기
+			  $.each(tags, function(index, item){			  
+			 	  tagList+='<button type="button" value="'+index+'" class="btn btn-outline-secondary">#'
+				  tagList+=item+'</button> '; 
+			 	  if(index == 9 || index == 18 || index == 27)
+				  	  tagList+='<p><p>&nbsp;&nbsp;&nbsp;';
+	          });
+			
+			  
 			  $("#display1").html(str);
 			  $("#display3").html(tagList);
+			  
+			//해당 태그를 클릭했을때 태그에 해당하는 추천목록 아래에 띄우기
+			
+				for(let i=0;i<=tags.length;i++){
+				     $("button").click(function(){
+						if($(this).val() == i){
+						    alert(i);
+					    }
+					 });
+				  }
+			  
+			  
+			  
 		  }else{
+			  
 			  $("#display1").html(str);
 			  if(param == "많이 검색된 맛집"){
 			      $("#display4").html(comment);
-			  }else{
-				  $("#display4").html("&nbsp;&nbsp;인기있는 맛집 리스트입니다");
 			  }
 		  }
 	 });
+	  
+	  
 	 
 });
 
@@ -108,7 +135,7 @@
 <h5>&nbsp;&nbsp;&nbsp;원하시는 추천을 해드려요! &nbsp;&nbsp;&nbsp;
 
 <select name="kind">
-    <option value="모두가 좋아하는 맛집">--선택--</option>
+    <option value="후회없는 디폴트 맛집">--선택--</option>
     <option value="혼밥레벨별 맛집">혼밥레벨별 맛집</option>
     <option value="많이 검색된 맛집">많이 검색된 맛집</option>
     <option value="태그별 추천">태그로 추천받기</option>
@@ -127,25 +154,26 @@
  </h5> 
 
 <p><p>
- <div id="list">
+
     <div id="display5"><h4><br>&nbsp;&nbsp;후회없는 디폴트 맛집</h4></div>
-    <table> <!--javaScript/jQuery로 반복문 : 해당 추천리스트 길이에 따라 테이블 반복문돌리기 -->
+    
+ <div id="table"> 
+    <table> <!--해당 추천리스트 길이에 따라 테이블 반복문돌리기 -->
 		<tr>
-			<td><a href=""><img src="img/삼겹살.jpeg"/></a><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
-			<td><img src="img/초밥1.jpeg" /><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
-			<td><img src="img/회.jpeg"/><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
-			<td><img src="img/삼겹살.jpeg"/><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
+			<td><a href=""><img src="../img/삼겹살.jpeg"/></a><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
+			<td><img src="../img/초밥1.jpeg" /><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
+			<td><img src="../img/회.jpeg"/><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
+			<td><img src="../img/삼겹살.jpeg"/><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
 		</tr>
 		<tr>
-			<td><img src="img/삼겹살.jpeg"/><br>설명1<br>설명2</td>
-			<td><img src="img/회.jpeg" /><br>설명1<br>설명2</td>
-			<td><img src="img/초밥2.jpg"/><br>설명1<br>설명2</td>
-			<td><img src="img/삼겹살.jpeg"/><br>설명1<br>설명2</td>
+			<td><img src="../img/삼겹살.jpeg"/><br>설명1<br>설명2</td>
+			<td><img src="../img/회.jpeg" /><br>설명1<br>설명2</td>
+			<td><img src="../img/초밥2.jpg"/><br>설명1<br>설명2</td>
+			<td><img src="../img/삼겹살.jpeg"/><br>설명1<br>설명2</td>
 		</tr>
 	</table>
  </div>	
 
-	
 	
   <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -153,4 +181,4 @@
     <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
-     <jsp:include page="common/footer.jsp"/>
+     <jsp:include page="../common/footer.jsp"/>

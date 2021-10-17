@@ -35,14 +35,14 @@ img{height:200px; width:300px; margin-right:20px; margin-bottom:20px}
         </h2>
 <hr>
   
- <table class="left shadow-lg">
+ <table class="left">
 	 <tr>
-	 	<td><img src="img/삼겹살.jpeg"></td>
-	 	<td><img src="img/초밥1.jpeg"></td>
+	 	<td><img src="../img/삼겹살.jpeg"></td>
+	 	<td><img src="../img/초밥1.jpeg"></td>
 	 </tr>
 	 <tr>
-	 	<td><img src="img/초밥2.jpg"></td>
-	 	<td><img src="img/초밥1.jpeg"></td>
+	 	<td><img src="../img/초밥2.jpg"></td>
+	 	<td><img src="../img/초밥1.jpeg"></td>
 	 </tr>
  </table>
   
@@ -51,31 +51,15 @@ img{height:200px; width:300px; margin-right:20px; margin-bottom:20px}
   	<div class="h-100 p-5 bg-light border rounded-3 shadow-lg">
           <h2><b>스토리 제목</b></h2>
           <!-- 글번호, 회원번호, 조회수, 등록일 -->
-          <h6>#1 | <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-  <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-</svg> 90 <p>
+          <h6>#1 &nbsp;| &nbsp;<img src="img/eyeicon.png" style="width:20px;height:auto;margin-top:17px">90 <p>
           회원번호 : 3 | 등록일 : 2022-11-21<span style="float:right">by.작성자이름</span></h6>
           <hr>
           <br><br>
           <h4>
          
           <p>
-          
-          가을엔 테라스에서 계절을 온몸으로 만끽하며 맛있는 브런치를 먹어줘야 제맛! 성수동의 핫플, 성수연방에 새로 자리한 브런치 카페 메이플탑 입니다.
-
-메이플탑은 미국 남부식 브런치를 맛볼 수 있는 곳인데요. 교포인 대표님이 미국에서 먹던 그 맛을 한국에서도 느끼고 싶어 이곳을 오픈하게 되었다고 해요.
-
-알고 보니 메이플탑에서는 코로나19로 어려운 소상공인들과 함께 win-win할 수 있게 다양한 곳에서 공급받은 재료로 풍성한 브런치 메뉴를 선보이고 있더라고요.
-
-베이컨과 햄은 존쿡델리미트, 풀드포크는 라이너스바베큐, 훈제연어는 세스크멘슬, 그래놀라는 그라놀로지 등 등 식재료별로 믿을 수 있는 곳을 통해 재료를 수급받고 있답니다.
-
-모던하면서도 어딘가 레트로한 느낌이 묻어나는 인테리어가 인상적인데요. 요즘같이 선선한 날씨에는  테라스에서 브런치를 즐기기에 좋을 것 같더라구요.
-
-반려견 동반도 가능하다고 하니, 댕댕이와 함께 여유로운 브런치를 즐기러 오기에도 딱! 
-
-망고걸의 한 줄 평
-: "브렉퍼스트 샤퀴테리로 찐 미국 바이브!"
+             스토리 내용
+             
           </p>
           <br><br>
           </h4>

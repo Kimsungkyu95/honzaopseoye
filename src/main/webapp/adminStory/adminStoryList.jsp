@@ -22,6 +22,7 @@
     
 <style type="text/css">
 	#buttons{align-content: center}
+	a{text-decoration:none;color:gray;}
 </style>
     
     
@@ -34,7 +35,7 @@
 <hr>
 <form>
 <div class="table-responsive">
-        <table class="table table-striped table-sm">
+        <table class="table table-hover">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -107,8 +108,8 @@
         </table>
       </div>
       
-      <div id="buttons" style="float:right;">
-         <input type="text" value="검색어를 입력하세요" id="search">
+      <div id="buttons" style="float:right; margin-right:100px">
+         <input type="text" value="" id="search">
          <input type="button" value="검색">
          
       </div>
