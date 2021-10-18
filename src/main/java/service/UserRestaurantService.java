@@ -11,6 +11,6 @@ public interface UserRestaurantService {
 	/**
 	 * 카레고리상세별 식당목록 검색
 	 * */
-	List<CategoryDTO> selectCategory(String category, String categoryDetail) throws SQLException;
+	List<RestaurantDTO> selectCategory(String categoryDetail) throws SQLException;
 	
 }
