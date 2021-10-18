@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -188,51 +187,23 @@ public class MemberController implements Controller {
 	
 	public ModelAndView deleteByNo(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		
-		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
-		
-		service.deleteByNo(memberNo);
-		
-		return new ModelAndView("adminUser/adminMemberList.jsp");	
+			
+		return null;	
 	}
 	
 	public ModelAndView selectMemberList(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		
-		ArrayList<MemberDTO> list = service.selectMemberList();
-		request.setAttribute("list", list);
-		
-		return new ModelAndView("adminUser/adminMemberList.jsp");	
+		return null;	
 	}
 	
 	public ModelAndView selectMemberByNo(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		
-		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
-		MemberDTO member = service.selectMemberByNo(memberNo);
-		
-		request.setAttribute("member", member);
-		return new ModelAndView("adminUser/adminMemberDetail.jsp");	
+		return null;	
 	}
 	
 	public ModelAndView updateMemberDetail(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		
-		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
-		String memberID = request.getParameter("memberID");
-		String memberPwd = request.getParameter("memberPwd");
-		String memberName = request.getParameter("memberName");
-		String memberEmail = request.getParameter("memberEmail");
-		String memberPhone = request.getParameter("memberPhone");
-		String memberBirth = request.getParameter("memberBirth");
-		int memberExp = Integer.parseInt(request.getParameter("memberExp"));
-		String  profileImage = request.getParameter("prefileImage");
-		
-		MemberDTO member = new MemberDTO(memberNo, memberID, memberPwd, memberName, memberEmail,memberPhone, memberBirth, memberExp, profileImage);
-		service.updateMemberDetail(member);
-		
-		return new ModelAndView("adminUser/amdinMemberDetail.jsp");
-			
+		return null;	
 	}
 	
 }

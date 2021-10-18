@@ -138,7 +138,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void updateMemberDetail(MemberDTO member) throws SQLException {
-		int result = dao.updateMemberDetail(member);
+		int result = dao.updatePwdByNo(member);
 		
 		if(result == 0) {
 			throw new SQLException("회원정보 업데이트에 실패했습니다.");

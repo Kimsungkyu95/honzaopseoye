@@ -511,7 +511,6 @@ public class MemberDAOImpl implements MemberDAO {
 		PreparedStatement ps = null;
 		
 		int memberNo = member.getMemberNo();
-		String memberID = member.getMemberID();
 		String memberPwd = member.getMemberPwd();
 		String memberName = member.getMemberName();
 		String memberEmail = member.getMemberEmail();
@@ -524,8 +523,7 @@ public class MemberDAOImpl implements MemberDAO {
 			con=DbUtil.getConnection();
 			ps=con.prepareStatement(sql);
 			
-			
-			ps.setString(1, memberID);
+			ps.setInt(1, memberNo);
 			ps.setString(2, memberPwd);
 			ps.setString(3, memberName);
 			ps.setString(4, memberEmail);
@@ -533,8 +531,6 @@ public class MemberDAOImpl implements MemberDAO {
 			ps.setString(6, memberBirth);
 			ps.setInt(7, memberExp);
 			ps.setString(8, profileImage);
-			ps.setInt(9, memberNo);
-
 			
 			returnValue = ps.executeUpdate();
 			
