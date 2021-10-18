@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dto.MemberDTO;
+import service.LevelUpExpService;
+import service.LevelUpExpServiceImpl;
 import service.MemberService;
 import service.MemberServiceImpl;
 
@@ -70,7 +72,13 @@ public class MemberController implements Controller {
 		String phone = request.getParameter("memberPhone");
 		String birth = request.getParameter("memberBirth");
 		
-		MemberDTO member = new MemberDTO(0, id, pwd, name, email, phone, birth, phone, 0, birth, null, null);
+		//--------------레벨에 필요한 최소경험치 구하기-----------------------
+		int memberLevel = Integer.parseInt(request.getParameter("memberLevel"));
+		LevelUpExpService levelUpExpService = new LevelUpExpServiceImpl();
+		int minExp = levelUpExpService.selectMinExpByMemberLevel(memberLevel);
+		//--------------레벨에 필요한 최소경험치 구하기-----------------------
+		
+		MemberDTO member = new MemberDTO(0, id, pwd, name, email, phone, birth, null, minExp, null, null, null);
 		
 		service.insert(member);
 		
@@ -148,19 +156,34 @@ public class MemberController implements Controller {
 		
 		service.updateImageByNo(member);
 		
-		MemberDTO dbmember = service.selectMemberByNo(memberNo);
-		
+		MemberDTO dbmember = service.selectMemberByNo(memberNo);	
 		request.setAttribute("member", dbmember);
 		return new ModelAndView("myPage/myPageLevel.jsp");
 	}
 	
 	public ModelAndView updatePwdByNo(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		return null;	
+		
+		String url = "error/error.jsp";
+		String errorMsg = "Something Went Wrong.";
+		
+		String profileImage = request.getParameter("memberPwd");
+		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
+		
+		MemberDTO member = new MemberDTO();
+		member.setProfileImage(profileImage);
+		member.setMemberNo(memberNo);
+
+		service.updatePwdByNo(member);
+		
+		MemberDTO dbmember = service.selectMemberByNo(memberNo);
+		request.setAttribute("memberNo", memberNo);
+		return new ModelAndView("myPage/myPagePassword.jsp");
 	}
 	
 	public ModelAndView deleteByNo(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+			
 		return null;	
 	}
 	
