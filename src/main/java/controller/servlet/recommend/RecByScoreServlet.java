@@ -29,8 +29,6 @@ public class RecByScoreServlet extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		out.print(arr);
-			
-	
 	}
 
 }

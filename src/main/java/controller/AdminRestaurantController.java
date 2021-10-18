@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
@@ -60,10 +61,10 @@ public class AdminRestaurantController implements Controller {
         Double restaurantLongitude = Double.parseDouble(multi.getParameter("longitude"));
         Double restaurantLatitude = Double.parseDouble(multi.getParameter("latitude"));
         
+        //해시태그 배열 받아오기
+        List<String> hashTagName = Arrays.asList(multi.getParameterValues("hashTag"));
         
-        System.out.println(multi.getParameter("hashTag"));
-        //List<String> hashTagName = 
-        
+        System.out.println(hashTagName);
         
         //업로드한 맛집이름 디렉토리에 있는 이미지 이름 모두 가져오기
         List<String> imgList = new ArrayList<String>();
@@ -76,7 +77,7 @@ public class AdminRestaurantController implements Controller {
         	 }
         }
         
-        RestaurantDTO restaurantDTO = new RestaurantDTO(0, 0, restaurantName, restaurantPhone, restaurantAddr, restaurantRoadAddr, gu, dong, restaurantLongitude, restaurantLatitude, imgList, null, imgList);
+        RestaurantDTO restaurantDTO = new RestaurantDTO(0, 0, restaurantName, restaurantPhone, restaurantAddr, restaurantRoadAddr, gu, dong, restaurantLongitude, restaurantLatitude, hashTagName, null, imgList);
         
         
         System.out.println(imgList);
