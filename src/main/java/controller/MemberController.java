@@ -79,8 +79,12 @@ public class MemberController implements Controller {
 		//--------------레벨에 필요한 최소경험치 구하기-----------------------
 		
 		MemberDTO member = new MemberDTO(0, id, pwd, name, email, phone, birth, null, minExp, null, null, null);
-		
 		service.insert(member);
+		
+		//--------------경험치에 해당하는 레벨-------------------------------------
+		int memberLevelActual = levelUpExpService.selectMemberLevelByExp(minExp);
+		request.setAttribute("level", memberLevelActual);
+		//--------------경험치에 해당하는 레벨-------------------------------------
 		
 		request.setAttribute("name", name);
 		//-----자동으로 로그인 시켜버리기--------

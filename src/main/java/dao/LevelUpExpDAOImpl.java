@@ -60,4 +60,43 @@ public class LevelUpExpDAOImpl implements LevelUpExpDAO {
 		return minExp;
 	}
 
+
+
+	@Override
+	public int selectMemberLevelByExp(int exp) throws SQLException {
+		int memberLevel=-1;
+		
+		String sql = proFile.getProperty("levelUp.selectMemberLevelByExp");
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con=DbUtil.getConnection();
+			ps=con.prepareStatement(sql);
+			
+			ps.setInt(1, exp);
+			ps.setInt(2, exp);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+
+				memberLevel = rs.getInt(1);
+				
+			}
+			
+			
+		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			e.printStackTrace();
+		}finally {
+			DbUtil.dbClose(rs, ps, con);
+		}
+		
+		return memberLevel;
+	}
+	
+	
+
 }

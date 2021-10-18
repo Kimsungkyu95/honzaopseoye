@@ -160,6 +160,7 @@ public class MemberDAOImpl implements MemberDAO {
 		String memberEmail = member.getMemberEmail();
 		String memberPhone = member.getMemberPhone();
 		String memberBirth = member.getMemberBirth();
+		int memberExp = member.getMemberExp();
 		
 		Date birth = Date.valueOf(memberBirth);
 		
@@ -173,6 +174,7 @@ public class MemberDAOImpl implements MemberDAO {
 			ps.setString(4, memberEmail);
 			ps.setString(5, memberPhone);
 			ps.setDate(6, birth);
+			ps.setInt(7, memberExp);
 			
 			
 			returnValue = ps.executeUpdate();

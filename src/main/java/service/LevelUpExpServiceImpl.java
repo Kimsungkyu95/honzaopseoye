@@ -20,4 +20,15 @@ public class LevelUpExpServiceImpl implements LevelUpExpService {
 		return minExp;
 	}
 
+	@Override
+	public int selectMemberLevelByExp(int exp) throws SQLException {
+		int memberLevel = dao.selectMemberLevelByExp(exp);
+		
+		if(memberLevel==-1) {
+			throw new SQLException("해당 경험치에 해당하는 레벨 정보를 찾을 수 없습니다.");
+		}
+		
+		return memberLevel;
+	}
+
 }
