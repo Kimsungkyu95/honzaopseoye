@@ -26,78 +26,51 @@ public class UserRestaurantDAOImpl implements UserRestaurantDAO {
 		}
 	}
 	
-	//카테고리 가져오기
+	//카테고리상세 번호에 따른 맛집 리스트 가져오기
 	@Override
-	public List<CategoryDTO> selectCategory(String category, String categoryDetail) throws SQLException {
+	public List<RestaurantDTO> selectCategory(String categoryDetail) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String sql =  proFile.getProperty("userRestaurant.selectCategory");
-		//select * from category
-		List<CategoryDTO>categoryList = new ArrayList<CategoryDTO>();
-		try {
-			con = DbUtil.getConnection();
-			ps =  con.prepareStatement(sql);
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				CategoryDTO c = new CategoryDTO(rs.getInt(1), rs.getString(2), this.selectCategoryDetails(rs.getInt(1)));
-				categoryList.add(c);	
-			}
-			
-		} finally {
-			DbUtil.dbClose(rs, ps, con);
-		}
-		return categoryList;
-	}
-	
-	//카테고리 번호에 따른 카테고리 상세 가져오기
-	public List<CategoryDetailsDTO> selectCategoryDetails(int categoryNo) throws SQLException {
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		List<CategoryDetailsDTO>categoryDetailsList = new ArrayList<CategoryDetailsDTO>();
-		String sql =  proFile.getProperty("userRestaurant.selectCategoryDetails");
-		//select * from category_details where category_no=?
-		try {
-			con = DbUtil.getConnection();
-			ps =  con.prepareStatement(sql);
-			ps.setInt(1, categoryNo);
-			
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				CategoryDetailsDTO cd = new CategoryDetailsDTO(rs.getInt(1),rs.getString(2), this.selectRestaurant(rs.getInt(1)));
-				categoryDetailsList.add(cd);
-			}
-			
-		} finally {
-			DbUtil.dbClose(rs, ps, con);
-		}
-		return categoryDetailsList;
-	}
-	
-	//카테고리상세번호에 따른 맛집 가져오기
-	public List<RestaurantDTO> selectRestaurant(int categoryDetailsNo) throws SQLException {
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		String sql =  proFile.getProperty("userRestaurant.selectCategoryDetails");
+		String sql =  proFile.getProperty("userRestaurant.selectRestaurant");
+		//select restaurant_no ,restaurant_level ,restaurant_name from restaurant where category_details_no=?
 		List<RestaurantDTO>restaurantList = new ArrayList<RestaurantDTO>();
-		//select restaurant_no, restaurant_level, restaurant_name from restaurant where category_details_no=?;
 		try {
 			con = DbUtil.getConnection();
 			ps =  con.prepareStatement(sql);
-			ps.setInt(1, categoryDetailsNo);
-			
+			ps.setInt(1, this.selectRestaurant(categoryDetail));
 			rs = ps.executeQuery();
-			while(rs.next()) {
-				RestaurantDTO r = new RestaurantDTO(rs.getInt(1), rs.getInt(2), rs.getString(3));
-				restaurantList.add(r);
+			if(rs.next()) {
+				RestaurantDTO restaurantDTO = new RestaurantDTO(rs.getInt(1), rs.getInt(2), rs.getString(3));
+				restaurantList.add(restaurantDTO);	
 			}
 			
 		} finally {
 			DbUtil.dbClose(rs, ps, con);
 		}
 		return restaurantList;
+	}
+	
+	//카테고리 상세이름에 따른 카테고리 상세번호 
+	public int selectRestaurant(String categoryDetail) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql =  proFile.getProperty("userRestaurant.selectCategoryDetails");
+		//select category_details_no from category_details where category_details_name=?
+		int result=0;
+		try {
+			con = DbUtil.getConnection();
+			ps =  con.prepareStatement(sql);
+			ps.setString(1, categoryDetail);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} finally {
+			DbUtil.dbClose(rs, ps, con);
+		}
+		return result;
 	}
 
 }

@@ -21,6 +21,7 @@ public class CategoryDTO {
 		this.categoryName = categoryName;
 		this.categoryDetailsList = categoryDetailsList;
 	}
+	
 
 	public int getCategoryNo() {
 		return categoryNo;
