@@ -30,24 +30,25 @@
     <script>
         $(function () {
             //카테고리 설정
-            디저트 = ["디저트"];
-            패스트푸드 = ["패스트푸드"]
-            피자 = ["피지"]
-            치킨 = ["치킨"]
-            분식 = ["분식"]
-            한식 = ["고기", "국밥", "국수", "냉면", "한정식"]
-            일식 = ["돈까스", "일본라멘", "초밥", "회"]
-            중식 = ["중화요리"]
-            양식 = ["이탈리안", "세계음식"]
-            뷔페 = ["뷔페"]
-            술집 = ["술집"]
+            dessert = [{eng:"dessert", kor : "디저트"}];
+            fastfood = [{eng:"fastfood", kor: "패스트푸드"}];
+            pizza = [{eng:"pizza", kor: "피자"}]
+            chicken = [{eng:"chicken", kor: "치킨"}]
+            snack = [{eng:"snack", kor: "분식"}]
+            korean = [{eng:"meat", kor: "고기"}, {eng:"soup", kor:"국밥"}, {eng:"nuddle", kor:"국수"}, {eng:"coldnuddle", kor:"냉면"}, {eng:"hanjeongsik", kor:"한정식"}]
+            japanese = [{eng:"porkcutlet", kor: "돈까스"}, {eng:"lamen", kor:"lamen"}, {eng:"sushi", kor:"초밥"}, {eng:"sashimi", kor:"회"}]
+            chinese = [{eng:"chinese", kor:"중화요리"}]
+            western = [{eng:"italian", kor : "이탈리안"}, {eng : "worldfood", kor : "세계음식"}]
+            buffet = [{eng:"buffet", kor:"뷔페"}]
+            bar = [{eng:"bar", kor:"술집"}]
 
             $('#first-category').change(function () {
                 let str = `<option selected value="0">-상세카테고리선택-</option>`;
                 if ($(this).val() != 0) {
                     let secondList = new Function("return " + $(this).val())();
+                    console.log(secondList);
                     for (item of secondList) {
-                        str += `<option value=${item}>${item}</option>`;
+                        str += `<option value=${item.eng}>${item.kor}</option>`;
                     }
                 }
                 $('#second-category').empty().html(str);
@@ -196,17 +197,17 @@
                     <div class="col">
                         <select class="form-select" id="first-category" name="firstCategory">
                             <option selected value="0">-카테고리선택-</option>
-                            <option value="디저트">디저트</option>
-                            <option value="패스트푸드">패스트푸드</option>
-                            <option value="피자">피자</option>
-                            <option value="치킨">치킨</option>
-                            <option value="분식">분식</option>
-                            <option value="한식">한식</option>
-                            <option value="일식">일식</option>
-                            <option value="중식">중식</option>
-                            <option value="양식">양식</option>
-                            <option value="뷔페">뷔페</option>
-                            <option value="술집">술집</option>
+                            <option value="dessert">디저트</option>
+                            <option value="fastfood">패스트푸드</option>
+                            <option value="pizza">피자</option>
+                            <option value="chicken">치킨</option>
+                            <option value="snack">분식</option>
+                            <option value="korean">한식</option>
+                            <option value="japanese">일식</option>
+                            <option value="chinese">중식</option>
+                            <option value="western">양식</option>
+                            <option value="buffet">뷔페</option>
+                            <option value="bar">술집</option>
                         </select>
                     </div>
                     <div class="col">

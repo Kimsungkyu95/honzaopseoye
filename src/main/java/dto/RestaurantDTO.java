@@ -61,11 +61,17 @@ public class RestaurantDTO {
 	}
 
 	public RestaurantDTO() { }
+	
+	//카테고리별로 뿌릴때 식당간단정보 
+	public RestaurantDTO(int restaurantNo, int restaurantLevel, String restaurantName) {
+		super();
+		this.restaurantNo = restaurantNo;
+		this.restaurantLevel = restaurantLevel;
+		this.restaurantName = restaurantName;
+	}
 
 	public RestaurantDTO(int restaurantNo, String restaurantName, String restaurantPhone, String restaurantAddr,
-			int restaurantLongitude, int restaurantLatitude, String restaurantRegDate, int restaurantVisited,
-			List<String> hashTagName) {
-		super();
+			int restaurantLongitude, int restaurantLatitude, String restaurantRegDate, int restaurantVisited) {
 		this.restaurantNo = restaurantNo;
 		this.restaurantName = restaurantName;
 		this.restaurantPhone = restaurantPhone;
@@ -74,6 +80,15 @@ public class RestaurantDTO {
 		this.restaurantLatitude = restaurantLatitude;
 		this.restaurantRegDate = restaurantRegDate;
 		this.restaurantVisited = restaurantVisited;
+	}
+
+
+
+	public RestaurantDTO(int restaurantNo, String restaurantName, String restaurantPhone, String restaurantAddr,
+			int restaurantLongitude, int restaurantLatitude, String restaurantRegDate, int restaurantVisited,
+			List<String> hashTagName) {
+		this(restaurantNo,restaurantName,restaurantPhone,restaurantAddr,restaurantLongitude,restaurantLatitude,restaurantRegDate,
+				restaurantVisited);
 		this.hashTagName = hashTagName;
 	}
 	
@@ -103,6 +118,23 @@ public class RestaurantDTO {
 
 	public void setRestaurantNo(int restaurantNo) {
 		this.restaurantNo = restaurantNo;
+	}
+	
+
+	public int getRestaurantLevel() {
+		return restaurantLevel;
+	}
+
+	public void setRestaurantLevel(int restaurantLevel) {
+		this.restaurantLevel = restaurantLevel;
+	}
+
+	public List<MenuDTO> getMenuList() {
+		return menuList;
+	}
+
+	public void setMenuList(List<MenuDTO> menuList) {
+		this.menuList = menuList;
 	}
 
 	public String getRestaurantName() {
