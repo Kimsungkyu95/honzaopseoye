@@ -216,6 +216,54 @@ public class RestaurantDTO {
 	public void setHashTagName(List<String> hashTagName) {
 		this.hashTagName = hashTagName;
 	}
+
+	public int getCategoryDetailsNo() {
+		return categoryDetailsNo;
+	}
+
+	public void setCategoryDetailsNo(int categoryDetailsNo) {
+		this.categoryDetailsNo = categoryDetailsNo;
+	}
+
+	public String getRestaurantRoadAddr() {
+		return restaurantRoadAddr;
+	}
+
+	public void setRestaurantRoadAddr(String restaurantRoadAddr) {
+		this.restaurantRoadAddr = restaurantRoadAddr;
+	}
+
+	public String getGu() {
+		return gu;
+	}
+
+	public void setGu(String gu) {
+		this.gu = gu;
+	}
+
+	public String getDong() {
+		return dong;
+	}
+
+	public void setDong(String dong) {
+		this.dong = dong;
+	}
+
+	public List<String> getImgList() {
+		return imgList;
+	}
+
+	public void setImgList(List<String> imgList) {
+		this.imgList = imgList;
+	}
+
+	public void setRestaurantLongitude(double restaurantLongitude) {
+		this.restaurantLongitude = restaurantLongitude;
+	}
+
+	public void setRestaurantLatitude(double restaurantLatitude) {
+		this.restaurantLatitude = restaurantLatitude;
+	}
 	
 	
 }

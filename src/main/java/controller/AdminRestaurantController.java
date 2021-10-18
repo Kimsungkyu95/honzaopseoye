@@ -38,6 +38,7 @@ public class AdminRestaurantController implements Controller {
 		String encoding = "UTF-8";
         String saveDir = request.getServletContext().getRealPath("/img/restaurantImage/") + request.getParameter("firstCategory") + "\\" + request.getParameter("secondCategory") + "\\" + request.getParameter("restaurantName");
         File forder = new File(saveDir);	
+        
 		//맛집이름 폴더 존재하지 않으면 생성
 		if(!forder.exists()) {
 			try {
@@ -47,11 +48,16 @@ public class AdminRestaurantController implements Controller {
 			}
 		}		
 		
+		//MultipartRequest 객체생성 
         MultipartRequest multi = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
+        
+        //파라미터 받기
+        int restaurantLevel = Integer.parseInt(multi.getParameter("level"));
         String restaurantName = multi.getParameter("restaurantName");
         String restaurantPhone = multi.getParameter("phone");
         String restaurantAddr = multi.getParameter("jibunAddress");
         String restaurantRoadAddr = multi.getParameter("roadAddress");
+        String categoryDetailsName = multi.getParameter("secondCategory");
         String [] addrList = restaurantAddr.split(" ");
         String gu = null;
         String dong = null;
@@ -68,6 +74,7 @@ public class AdminRestaurantController implements Controller {
         for(String hashtag : hashTagArr) {
         	if(hashtag != "") {
         		hashTagName.add(hashtag);
+        		//System.out.println(hashtag);
         	}
         }
         
@@ -75,8 +82,9 @@ public class AdminRestaurantController implements Controller {
         String [] menuNameArr = multi.getParameterValues("menuName");
         String [] menuPriceArr = multi.getParameterValues("menuPrice");
         List<MenuDTO> menuList = new ArrayList<MenuDTO>();
-        for(int i=0; i <= menuNameArr.length; i++) {
+        for(int i=0; i < menuNameArr.length; i++) {
         	menuList.add(new MenuDTO(menuNameArr[i], Integer.parseInt(menuPriceArr[i])));
+        	//System.out.println(menuNameArr[i] + ", " + menuPriceArr[i]);
         }
         
         
@@ -91,10 +99,9 @@ public class AdminRestaurantController implements Controller {
         	 }
         }
         
-        RestaurantDTO restaurantDTO = new RestaurantDTO(0, 0, restaurantName, restaurantPhone, restaurantAddr, restaurantRoadAddr, gu, dong, restaurantLongitude, restaurantLatitude, hashTagName, menuList, imgList);
+        RestaurantDTO restaurantDTO = new RestaurantDTO(0, restaurantLevel, restaurantName, restaurantPhone, restaurantAddr, restaurantRoadAddr, gu, dong, restaurantLongitude, restaurantLatitude, hashTagName, menuList, imgList);
+        adminRestaurantService.insert(restaurantDTO, categoryDetailsName);
         
-        
-        System.out.println(imgList);
 		return null;
 
 	}
