@@ -24,8 +24,15 @@ $(function() {
 	let idDuple=true;
 	let emailDuple=true;
 	let pwdConfirm=false;
+	let email = false;
 	
 	$("#levelTest").click(function() {
+		
+		if(!email){
+			$("#invalid-feedback").html("@를 포함하는 올바른 이메일 형식을 사용해주세요.");
+			$("#memberEmail").focus();
+			return;
+		}  
 		
 		if(idDuple==true){
 			$("#invalid-feedback").html("사용 가능한 아이디를 입력해주세요");
@@ -142,32 +149,40 @@ $(function() {
 		if($(this).val()==""){
 			return;
 		}
+
+		//console.log(email);
+		//console.log($(this).val());
+		email = $("#memberEmail").val().includes("@");
 		
-		console.log($(this).val());
-		
-		//-----------------비동기화통신-----------------------------------
-		$.ajax({
-			url: "../memberEmailCheck", 	// ../ 상위로 한칸 올라가서.. 서블릿 
-											//이게 폴더 밑에 있으니까 루트로 갈려면 한칸 올라가야됨.
-			type: "post",				//메소드 방식(get, post, put, delete)
-			dataType: "text",			//서버가 응답해주는 데이터의 타입(text-생략시 기본-, html, xml, json)
-			data: {email: $(this).val() }, //서버에 보낼 때 파라메터
-			success: function(result) { //성공하면 callback 함수	
-				//console.log(result);
-				$("#emailInvalid").text(result);
-				if(result === "중복되는 이메일이 존재합니다."){
-					emailDuple=true;
-				}else{
-					emailDuple=false;
-					//console.log("emailDuple=false");
+		if(email){
+			$("#emailCheck").text("올바른 이메일 형식입니다.");
+			//-----------------비동기화통신-----------------------------------
+			$.ajax({
+				url: "../memberEmailCheck", 	// ../ 상위로 한칸 올라가서.. 서블릿 
+												//이게 폴더 밑에 있으니까 루트로 갈려면 한칸 올라가야됨.
+				type: "post",				//메소드 방식(get, post, put, delete)
+				dataType: "text",			//서버가 응답해주는 데이터의 타입(text-생략시 기본-, html, xml, json)
+				data: {email: $(this).val() }, //서버에 보낼 때 파라메터
+				success: function(result) { //성공하면 callback 함수	
+					//console.log(result);
+					$("#emailInvalid").text(result);
+					if(result === "중복되는 이메일이 존재합니다."){
+						emailDuple=true;
+					}else{
+						emailDuple=false;
+						//console.log("emailDuple=false");
+					}
+								
+				},
+				error: function(error) { //실패했을 때 함수	
+					console.log("Something went wrong."); 	
 				}
-							
-			},
-			error: function(error) { //실패했을 때 함수	
-				console.log("Something went wrong."); 	
-			}
-		});
-		//-----------------비동기화통신-----------------------------------
+			});
+			//-----------------비동기화통신-----------------------------------
+		}else{
+			$("#emailCheck").text("@를 포함하는 올바른 이메일 형식을 사용해주세요.");
+		}
+		
 	})
 	
 });
@@ -221,6 +236,8 @@ $(function() {
   		<div class="col-100">
               <label for="memberEmail" class="form-label">Email <span class="text-muted"></span></label>
               <input type="email" class="form-control" id="memberEmail" placeholder="you@example.com" id="memberEmail" name="memberEmail" >
+            </div>
+            <div  class="text-muted" id="emailCheck">
             </div>
             <div  class="text-muted" id="emailInvalid">
             </div>
