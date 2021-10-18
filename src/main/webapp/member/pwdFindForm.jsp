@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ID Find Form</title>
+<title>PWD Find Form</title>
     <!-- Bootstrap core CSS -->
 <link href="https://getbootstrap.kr/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
@@ -44,9 +44,41 @@ $(function() {
 			return;
 		}
 		
-		$("#invalid-feedback").html("");
-		$("#pwdFindResult").show();
+		//-----------------비동기화통신-----------------------------------
+		$.ajax({
+			url: "../memberSelectPwdByIdEmail", 	// ../ 상위로 한칸 올라가서.. 서블릿 
+											//이게 폴더 밑에 있으니까 루트로 갈려면 한칸 올라가야됨.
+			type: "post",				//메소드 방식(get, post, put, delete)
+			dataType: "text",			//서버가 응답해주는 데이터의 타입(text-생략시 기본-, html, xml, json)
+			data: {id: $("#id").val(), email: $("#email").val() }, //서버에 보낼 때 파라메터
+			success: function(result) { //성공하면 callback 함수	
+				//console.log(result);
+				let print = "회원님의 비밀번호는 " + result + " 입니다.";
+			
+				if(result=="failed"){
+					console.log("true");
+					$("#loginButton").hide();
+					print="해당 아이디와 이메일이 일치하는 회원정보를 찾을 수 없습니다.";
+					$("#id").focus();
+				}
+			
+				$("#loginButton").show();
+				$("#result").text(print);
+			
+				$("#invalid-feedback").html("");
+				$("#pwdFindResult").show();
+							
+			},
+			error: function(error) { //실패했을 때 함수	
+				console.log("Something went wrong."); 	
+			}
+		});
+		//-----------------비동기화통신-----------------------------------
 	});
+	
+	$("#loginButton").click(function() {
+		$(location).attr('href','${pageContext.request.contextPath}/member/loginForm.jsp');
+	})
 })
 </script>
 <meta name="theme-color" content="#7952b3">
@@ -80,8 +112,8 @@ $(function() {
 
     <div class="p-5 mb-4 bg-light rounded-3" id="pwdFindResult">
       <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">비밀번호 출력 | 혹은 일치하는 정보 없음 출력</h1>
-        <button class="btn btn-primary btn-lg" type="button">로그인 | 혹은 숨기기</button>
+        <h1 class="display-5 fw-bold" id="result"></h1>
+        <button class="btn btn-primary btn-lg" id="loginButton" type="button">로그인</button>
       </div>
     </div>
     

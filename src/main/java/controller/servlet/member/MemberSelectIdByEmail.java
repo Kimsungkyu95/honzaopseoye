@@ -13,37 +13,26 @@ import service.MemberService;
 import service.MemberServiceImpl;
 
 /**
- * Servlet implementation class MemberEmailCheck
+ * Servlet implementation class MemberSelectIdByEmail
  */
-@WebServlet("/memberEmailCheck")
-public class MemberEmailCheck extends HttpServlet {
+@WebServlet("/memberSelectIdByEmail")
+public class MemberSelectIdByEmail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
-		
 		MemberService service = new MemberServiceImpl();
 		PrintWriter out = response.getWriter();
 		
-		String searchEmail = request.getParameter("email");
-		
-		//System.out.println("----servlet----");
-		//System.out.println("input email : " + searchEmail);
+		String email = request.getParameter("email");
+		//System.out.println("servlet email: " + email);
 		
 		try {
-			String email = service.emailCheck(searchEmail);
-			
-			if(searchEmail.equals(email)) {
-				out.print("중복되는 이메일이 존재합니다.");
-			}else {
-				out.print("사용가능한 이메일 입니다.");
-			}
-			
-
-			//System.out.println("output email : " + email);
-			//System.out.println("----servlet----");
-			
-		} catch (Exception e) {
+		String id = service.selectIdByEmail(email);		
+		
+		out.print(id);
+		
+		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}

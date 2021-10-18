@@ -315,3 +315,6 @@ insert into member (member_no, member_id, member_pwd, member_name, member_email,
 --아이디 찾기
 select member_id from member where member_email='park1@gmail.com'
 select member_id from member where member_email=?
+
+--이메일 중복 체크
+select member_email from member where member_email='park';

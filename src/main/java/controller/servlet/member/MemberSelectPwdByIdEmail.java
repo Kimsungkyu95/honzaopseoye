@@ -13,36 +13,31 @@ import service.MemberService;
 import service.MemberServiceImpl;
 
 /**
- * Servlet implementation class MemberEmailCheck
+ * Servlet implementation class MemberSelectPwdByIdEmail
  */
-@WebServlet("/memberEmailCheck")
-public class MemberEmailCheck extends HttpServlet {
+@WebServlet("/memberSelectPwdByIdEmail")
+public class MemberSelectPwdByIdEmail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
-		
 		MemberService service = new MemberServiceImpl();
 		PrintWriter out = response.getWriter();
 		
-		String searchEmail = request.getParameter("email");
+		String id = request.getParameter("id");
+		String email = request.getParameter("email");
 		
-		//System.out.println("----servlet----");
-		//System.out.println("input email : " + searchEmail);
+		//System.out.println("----servelt----");
+		//System.out.println("id : " + id);
+		//System.out.println("email : " + email);
 		
 		try {
-			String email = service.emailCheck(searchEmail);
+			String pwd = service.selectPwdByIdEmail(id, email);		
 			
-			if(searchEmail.equals(email)) {
-				out.print("중복되는 이메일이 존재합니다.");
-			}else {
-				out.print("사용가능한 이메일 입니다.");
-			}
+			//System.out.println("pwd returned : " + pwd);
+			//System.out.println("----servelt----");
 			
-
-			//System.out.println("output email : " + email);
-			//System.out.println("----servlet----");
-			
+			out.print(pwd);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

@@ -41,18 +41,24 @@ $(function() {
 		
 		//-----------------비동기화통신-----------------------------------
 		$.ajax({
-			url: "../selectIdByEmail", 	// ../ 상위로 한칸 올라가서.. 서블릿 
+			url: "../memberSelectIdByEmail", 	// ../ 상위로 한칸 올라가서.. 서블릿 
 											//이게 폴더 밑에 있으니까 루트로 갈려면 한칸 올라가야됨.
 			type: "post",				//메소드 방식(get, post, put, delete)
 			dataType: "text",			//서버가 응답해주는 데이터의 타입(text-생략시 기본-, html, xml, json)
-			data: {id: $(this).val() }, //서버에 보낼 때 파라메터
+			data: {email: $("#email").val() }, //서버에 보낼 때 파라메터
 			success: function(result) { //성공하면 callback 함수	
 				//console.log(result);
-				if(result=="해당 이메일로 가입된 정보를 찾을 수 없습니다."){
-					console.log("true");
+				let print = "회원님의 아이디는 " + result + " 입니다.";
+				
+				if(result=="failed"){
+					//console.log("true");
+					$("#loginButton").hide();
+					print="해당 이메일에 해당하는 회원정보를 찾을 수 없습니다.";
+					$("#email").focus();
 				}
 			
-				$("#result").text(result);
+				$("#loginButton").show();
+				$("#result").text(print);
 			
 				$("#invalid-feedback").html("");
 				$("#idFindResult").show();
@@ -66,6 +72,10 @@ $(function() {
 		
 		
 	});
+	
+	$("#loginButton").click(function() {
+		$(location).attr('href','${pageContext.request.contextPath}/member/loginForm.jsp');
+	})
 })
 </script>
 <meta name="theme-color" content="#7952b3">

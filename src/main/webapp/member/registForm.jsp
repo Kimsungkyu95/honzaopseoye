@@ -21,8 +21,29 @@
 
 $(function() {
 	var form = window.document.registForm;
+	let idDuple=true;
+	let emailDuple=true;
+	let pwdConfirm=false;
 	
 	$("#levelTest").click(function() {
+		
+		if(idDuple==true){
+			$("#invalid-feedback").html("사용 가능한 아이디를 입력해주세요");
+			$("#memberId").focus();
+			return;
+		}
+		
+		if(emailDuple==true){
+			$("#invalid-feedback").html("사용 가능한 이메일을 입력해주세요");
+			$("#memberEmail").focus();
+			return;
+		}
+		
+		if(!pwdConfirm){
+			$("#invalid-feedback").html("비밀번호를 확인해주세요");
+			$("#memberPwdConfirm").focus();
+			return;
+		}
 		
 		if(form.memberId.value == ""){
 			$("#invalid-feedback").html("아이디를 입력해주세요");
@@ -78,8 +99,10 @@ $(function() {
 		
 		if($(this).val() != pwd){
 			$("#pwdConfirmInvalid").html("비밀번호가 일치하지 않습니다.");
+			pwdConfirm=false;
 		}else{
 			$("#pwdConfirmInvalid").html("비밀번호가 일치합니다.");
+			pwdConfirm=true;
 			
 		}
 		
@@ -100,6 +123,12 @@ $(function() {
 			success: function(result) { //성공하면 callback 함수	
 				//console.log(result);
 				$("#idInvalid").text(result);
+				if(result === "중복되는 아이디가 존재합니다."){
+					idDuple=true;
+				}else{
+					idDuple=false;
+					//console.log("idDuple=false");
+				}
 							
 			},
 			error: function(error) { //실패했을 때 함수	
@@ -114,6 +143,8 @@ $(function() {
 			return;
 		}
 		
+		console.log($(this).val());
+		
 		//-----------------비동기화통신-----------------------------------
 		$.ajax({
 			url: "../memberEmailCheck", 	// ../ 상위로 한칸 올라가서.. 서블릿 
@@ -124,6 +155,12 @@ $(function() {
 			success: function(result) { //성공하면 callback 함수	
 				//console.log(result);
 				$("#emailInvalid").text(result);
+				if(result === "중복되는 이메일이 존재합니다."){
+					emailDuple=true;
+				}else{
+					emailDuple=false;
+					//console.log("emailDuple=false");
+				}
 							
 			},
 			error: function(error) { //실패했을 때 함수	

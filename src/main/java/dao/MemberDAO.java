@@ -28,4 +28,6 @@ public interface MemberDAO {
 	int deleteByNo(int no) throws SQLException;
 	
 	ArrayList<MemberDTO> memberList() throws SQLException;
+	
+	String selectPwdByIdEmail(String id, String email) throws SQLException;
 }

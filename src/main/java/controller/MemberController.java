@@ -32,24 +32,14 @@ public class MemberController implements Controller {
 		
 		String id = request.getParameter("memberId");
 		String pwd = request.getParameter("memberPwd");
-		
-		String rememberMe = request.getParameter("remember-me");
-		boolean remember = false;
-		//System.out.println("rememberMe: " + rememberMe);
-		if(rememberMe.equals("remember-me")) {
-			remember=true;
-		}
-		
+				
 		MemberDTO member = new MemberDTO(id, pwd);
 		
-		MemberDTO loginMember = service.login(member, remember);
+		MemberDTO loginMember = service.login(member);
 			
 		HttpSession session = request.getSession();
 		session.setAttribute("loginId", loginMember.getMemberID());
 		session.setAttribute("loginName", loginMember.getMemberName());
-		if(remember) {
-			
-		}
 				
 		mv.setViewName("main.jsp");
 		mv.setRedirect(true);
@@ -97,18 +87,4 @@ public class MemberController implements Controller {
 		return mv;
 	}
 	
-	public void selectIdByEmail(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		
-		String email = request.getParameter("email");
-		
-		String id = service.selectIdByEmail(email);
-		
-		PrintWriter out = response.getWriter();
-		out.print(id);
-		
-	}
-	
-	
-
 }

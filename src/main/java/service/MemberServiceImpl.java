@@ -11,7 +11,7 @@ public class MemberServiceImpl implements MemberService {
 	MemberDAO dao = new MemberDAOImpl();
 
 	@Override
-	public MemberDTO login(MemberDTO member, boolean remember) throws SQLException {
+	public MemberDTO login(MemberDTO member) throws SQLException {
 		MemberDTO returnValue = dao.login(member);
 		
 		if(returnValue == null) {
@@ -29,8 +29,13 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public String emailCheck(String email) throws SQLException {
-		String memberEmail = dao.idCheck(email);
+		//System.out.println("----service----");
+		//System.out.println("input email : " + email);
+		String memberEmail = dao.emailCheck(email);
 		
+
+		//System.out.println("memberEmail : " + memberEmail);
+		//System.out.println("----service----");
 		return memberEmail;
 	}
 
@@ -46,13 +51,27 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public String selectIdByEmail(String email) throws SQLException {
-		String memberId = dao.idCheck(email);
+		//System.out.println("service");
+		String memberId = dao.selectIdByEmail(email);
 		
 		if(memberId==null) {
-			return "이메일에 해당하는 회원 정보를 찾을 수 없습니다.";
+			//System.out.println("failed");
+			
+			return "failed";
 		}
 		
 		return memberId;
+	}
+
+	@Override
+	public String selectPwdByIdEmail(String id, String email) throws SQLException {
+		String memberPwd = dao.selectPwdByIdEmail(id, email);
+		
+		if(memberPwd==null) {
+			memberPwd = "failed";
+		}
+		
+		return memberPwd;
 	}
 	
 	

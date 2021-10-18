@@ -111,6 +111,9 @@ public class MemberDAOImpl implements MemberDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
+		//System.out.println("----dao----");
+		//System.out.println("input email : " + email);
+		
 		try {
 			con=DbUtil.getConnection();
 			ps=con.prepareStatement(sql);
@@ -134,7 +137,9 @@ public class MemberDAOImpl implements MemberDAO {
 			DbUtil.dbClose(rs, ps, con);
 		}
 
-		
+
+		//System.out.println("returnValue : " + returnValue);
+		//System.out.println("----dao----");
 		return returnValue;
 	}
 
@@ -186,6 +191,7 @@ public class MemberDAOImpl implements MemberDAO {
 		String returnValue = null;
 		
 		String sql = proFile.getProperty("member.selectIdByEmail");
+		//System.out.println("dao");
 		
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -196,13 +202,14 @@ public class MemberDAOImpl implements MemberDAO {
 			ps=con.prepareStatement(sql);
 			
 			ps.setString(1, email);
+			//System.out.println("dao email: " + email);
 			
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
 
 				String id = rs.getString(1);
-				
+				//System.out.println("id:" + id);				
 				returnValue = id;
 				
 			}
@@ -376,6 +383,46 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 		
 		return list;
+	}
+
+	@Override
+	public String selectPwdByIdEmail(String id, String email) throws SQLException {
+		String returnValue = null;
+		
+		String sql = proFile.getProperty("member.selectPwdByIdEmail");
+		//System.out.println("dao");
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con=DbUtil.getConnection();
+			ps=con.prepareStatement(sql);
+			
+			ps.setString(1, id);
+			ps.setString(2, email);
+			//System.out.println("dao email: " + email);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+
+				String pwd = rs.getString(1);
+				//System.out.println("id:" + id);				
+				returnValue = pwd;
+				
+			}
+			
+			
+		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			e.printStackTrace();
+		}finally {
+			DbUtil.dbClose(rs, ps, con);
+		}
+
+		
+		return returnValue;
 	}
 
 	
