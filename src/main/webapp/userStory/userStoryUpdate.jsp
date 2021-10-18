@@ -15,7 +15,7 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
-<title>userStoryCreate</title>
+<title>userStoryUpdate</title>
 
 <style type="text/css">
 
@@ -26,12 +26,13 @@
 		let index = 1;
 		
 		$("[value=추가]").click(function() {
-			let f = "<hr style='color: red; height: 5px;'><input type='file' name='file"+ index++ +"'><input type='button' value='삭제'><input type='text' name='restaurantTitle"+ index++ +"' class='form-control mt-4 mb-2'	placeholder='맛집 이름을 입력해주세요.' required><textarea class='form-control' rows='5' name='photoContent"+ index++ +"' placeholder='사진에 대한 설명을 입력해주세요.''></textarea><p><p>";
+			let f = "<hr style='color: red; height: 5px;'><div class='shadow-lg'><input type='file' name='file"+ index++ +"' multiple><input type='button' value='삭제'><input type='text' name='restaurantTitle"+ index++ +"' class='form-control mt-4 mb-2'	placeholder='맛집 이름을 입력해주세요.' required><textarea class='form-control' rows='5' name='photoContent"+ index++ +"' placeholder='사진에 대한 설명을 입력해주세요.''></textarea></div><p><p>";
 						
 			$("#photoAdd").append(f);
 		});
 		
 		$(document).on("click","[value=삭제]" ,function() {
+			$(this).prev().prev().prev().remove();
 			$(this).prev().prev().remove();
 			$(this).prev().remove();
 			$(this).next().next().remove(); 
@@ -42,6 +43,7 @@
 </script>
 </head>
 <body>
+
 	<jsp:include page="../common/header.jsp" />
 	<main>
 		<form action="writerAction" method="post">
@@ -53,8 +55,8 @@
 			<p><br><hr style="height: 5px;"><p><br>
 			
 			<div class="form-group">
-				<div id="photoAdd">
-				<input type="file" name="file0"><input type="button" value="삭제">
+				<div id="photoAdd" class="shadow-lg">
+				<input type="file" name="file0" multiple><input type="button" value="삭제">
 				<input type="text" name="restaurantTitle0" class="form-control mt-4 mb-2"
 				placeholder="맛집 이름을 입력해주세요." required>
 					<textarea class="form-control" rows="5" name="photoContent0"
@@ -66,6 +68,8 @@
 				<textarea class="form-control" rows="10" name="bdContent"
 					placeholder="내용을 입력해주세요."></textarea>
 			</div>
+			<input type=password name="password"
+				placeholder="비밀번호를 입력해주세요." required>
 			<button type="submit" class="btn btn-secondary mb-3">수정</button>
 		</form>
 	</main>

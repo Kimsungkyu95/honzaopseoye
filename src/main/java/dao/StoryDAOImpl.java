@@ -29,37 +29,32 @@ public class StoryDAOImpl implements StoryDAO {
 	
 	@Override
 	public List<StoryDTO> selectAll() throws SQLException {
-		Connection con=null;
-		PreparedStatement ps=null;
-		ResultSet rs=null;
-		
-		List<StoryDTO> storyList = new ArrayList<StoryDTO>();
-		String sql = proFile.getProperty("userStory.select");
-		
-		try {
-			con = DbUtil.getConnection();
-			ps = con.prepareStatement(sql);
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				StoryDTO story = new StoryDTO(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getInt(5));
-				
-				storyList.add(story);
-			}
-		}finally {
-			DbUtil.dbClose(rs, ps, con);
-		}
-		
-		return storyList;
+//		Connection con=null;
+//		PreparedStatement ps=null;
+//		ResultSet rs=null;
+//		
+//		List<StoryDTO> storyList = new ArrayList<StoryDTO>();
+//		String sql = proFile.getProperty("userStory.select");
+//		
+//		try {
+//			con = DbUtil.getConnection();
+//			ps = con.prepareStatement(sql);
+//			rs = ps.executeQuery();
+//			while(rs.next()) {
+//				StoryDTO story = new StoryDTO(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getInt(5));
+//				
+//				storyList.add(story);
+//			}
+//		}finally {
+//			DbUtil.dbClose(rs, ps, con);
+//		}
+//		
+//		return storyList;
+		return null;
 	}
 	
 	@Override
 	public int increamentByReadnum(int storyNo) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int delete(String storyNo, String password) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -84,37 +79,161 @@ public class StoryDAOImpl implements StoryDAO {
 
 	@Override
 	public int insertStory(StoryDTO storyDTO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con=null;
+		PreparedStatement ps=null;
+		int result=0;
+		String sql = proFile.getProperty("userStory.insert");
+//		userStory.insert=insert into story values(STORY_SEQ.NEXTVAL, ?, ?, SYSDATE, ?)
+		
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, storyDTO.getMemberNo());
+			ps.setString(2, storyDTO.getStoryTitle());
+			ps.setInt(3, storyDTO.getStoryVisited());
+			
+			result = ps.executeUpdate();
+		}finally {
+			DbUtil.dbClose(ps, con);
+		}
+		
+		return result;
 	}
 
 	@Override
 	public int insertStoryDetails(StoryDetailsDTO storyDetailsDTO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con=null;
+		PreparedStatement ps=null;
+		int result=0;
+		String sql = proFile.getProperty("userStoryDetails.insert");
+//		userStoryDetails.insert=insert into story_details(STORY_DETAILS_SEQ.NEXTVAL, ?, STORY_SEQ.CURRVAL, ?)
+		
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, storyDetailsDTO.getRestaurantNo());
+			ps.setString(2, storyDetailsDTO.getStoryContent());
+			
+			result = ps.executeUpdate();
+		}finally {
+			DbUtil.dbClose(ps, con);
+		}
+		
+		return result;
 	}
 
 	@Override
 	public int insertStoryImg(StoryImageDTO storyImageDTO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con=null;
+		PreparedStatement ps=null;
+		int result=0;
+		String sql = proFile.getProperty("userStoryImg.insert");
+//		userStoryImg.insert=insert into story_img values(STORY_IMG_SEQ.NEXTVAL, STORY_DETAILS_SEQ.CURRVAL, ?)
+		
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, storyImageDTO.getStoryImg());
+			
+			result = ps.executeUpdate();
+		}finally {
+			DbUtil.dbClose(ps, con);
+		}
+		
+		return result;
 	}
 
 	@Override
 	public int updateStory(StoryDTO storyDTO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con=null;
+		PreparedStatement ps=null;
+		int result=0;
+		String sql = proFile.getProperty("userStory.update");
+//		userStory.update=update story set story_title=? where story_no=?
+		
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, storyDTO.getStoryTitle());
+			ps.setInt(2, storyDTO.getStoryNo());
+			
+			result = ps.executeUpdate();
+		}finally {
+			DbUtil.dbClose(ps, con);
+		}
+		
+		return result;
 	}
 
 	@Override
 	public int updateStoryDetails(StoryDetailsDTO storyDetailsDTO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con=null;
+		PreparedStatement ps=null;
+		int result=0;
+		String sql = proFile.getProperty("userStoryDetails.update");
+//		userStoryDetails.update=update story_details set story_content=? where story_details_no=?
+		
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, storyDetailsDTO.getStoryContent());
+			ps.setInt(2, storyDetailsDTO.getStoryDetailsNo());
+			
+			result = ps.executeUpdate();
+		}finally {
+			DbUtil.dbClose(ps, con);
+		}
+		
+		return result;
 	}
 
 	@Override
 	public int updateStoryImg(StoryImageDTO storyImageDTO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con=null;
+		PreparedStatement ps=null;
+		int result=0;
+		String sql = proFile.getProperty("userStoryImg.update");
+//		userStoryImg.update=update story_img set story_img=? where story_img_no=?
+		
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, storyImageDTO.getStoryImg());
+			ps.setInt(2, storyImageDTO.getStoryImgNo());
+			
+			result = ps.executeUpdate();
+		}finally {
+			DbUtil.dbClose(ps, con);
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public int delete(String storyNo, String password) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		int result=0;
+		String sql = proFile.getProperty("userStory.delete");
+//		userStory.delete=delete from story where story_no=?
+		
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, storyNo);
+			
+			result = ps.executeUpdate();
+		}finally {
+			DbUtil.dbClose(ps, con);
+		}
+		
+		return result;
 	}
 }

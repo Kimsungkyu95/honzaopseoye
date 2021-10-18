@@ -68,6 +68,8 @@
 				<textarea class="form-control" rows="10" name="bdContent"
 					placeholder="내용을 입력해주세요."></textarea>
 			</div>
+			<input type=password name="password"
+				placeholder="비밀번호를 입력해주세요." required>
 			<button type="submit" class="btn btn-secondary mb-3">업로드</button>
 		</form>
 	</main>
