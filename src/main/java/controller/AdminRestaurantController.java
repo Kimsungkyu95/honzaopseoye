@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import dto.MenuDTO;
 import dto.RestaurantDTO;
 import service.AdminRestaurantService;
 import service.AdminRestaurantServiceImpl;
@@ -62,9 +63,22 @@ public class AdminRestaurantController implements Controller {
         Double restaurantLatitude = Double.parseDouble(multi.getParameter("latitude"));
         
         //해시태그 배열 받아오기
-        List<String> hashTagName = Arrays.asList(multi.getParameterValues("hashTag"));
+        String [] hashTagArr = multi.getParameterValues("hashTag");
+        List<String> hashTagName = new ArrayList<String>();
+        for(String hashtag : hashTagArr) {
+        	if(hashtag != "") {
+        		hashTagName.add(hashtag);
+        	}
+        }
         
-        System.out.println(hashTagName);
+        //메뉴 배열받아오기
+        String [] menuNameArr = multi.getParameterValues("menuName");
+        String [] menuPriceArr = multi.getParameterValues("menuPrice");
+        List<MenuDTO> menuList = new ArrayList<MenuDTO>();
+        for(int i=0; i <= menuNameArr.length; i++) {
+        	menuList.add(new MenuDTO(menuNameArr[i], Integer.parseInt(menuPriceArr[i])));
+        }
+        
         
         //업로드한 맛집이름 디렉토리에 있는 이미지 이름 모두 가져오기
         List<String> imgList = new ArrayList<String>();
@@ -77,7 +91,7 @@ public class AdminRestaurantController implements Controller {
         	 }
         }
         
-        RestaurantDTO restaurantDTO = new RestaurantDTO(0, 0, restaurantName, restaurantPhone, restaurantAddr, restaurantRoadAddr, gu, dong, restaurantLongitude, restaurantLatitude, hashTagName, null, imgList);
+        RestaurantDTO restaurantDTO = new RestaurantDTO(0, 0, restaurantName, restaurantPhone, restaurantAddr, restaurantRoadAddr, gu, dong, restaurantLongitude, restaurantLatitude, hashTagName, menuList, imgList);
         
         
         System.out.println(imgList);

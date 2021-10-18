@@ -15,7 +15,13 @@ public class MenuDTO {
 		this.menuName = menuName;
 		this.menuPrice = menuPrice;
 	}
-
+	
+	public MenuDTO(String menuName, int menuPrice) {
+		super();
+		this.menuName = menuName;
+		this.menuPrice = menuPrice;
+	}
+	
 	public int getMenuNo() {
 		return menuNo;
 	}
