@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+\${pageContext.request.contextPath} = ${pageContext.request.contextPath} <br>
+\${path} : ${path}
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -29,7 +35,6 @@
 		<table class="table">
 		  <thead>
 		    <tr>
-		      <th scope="col">#</th>
 		      <th scope="col">회원번호</th>
 		      <th scope="col">아이디</th>
 		      <th scope="col">이름</th>

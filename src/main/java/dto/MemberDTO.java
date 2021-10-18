@@ -37,6 +37,19 @@ public class MemberDTO {
 		this.storyList = storyList;
 	}
 
+	public MemberDTO(int memberNo, String memberID, String memberPwd, String memberName, String memberEmail, String memberPhone,
+			String memberBirth, int memberExp) {
+		super();
+		this.memberNo = memberNo;
+		this.memberID = memberID;
+		this.memberPwd = memberPwd;
+		this.memberName = memberName;
+		this.memberEmail = memberEmail;
+		this.memberPhone = memberPhone;
+		this.memberJoinDate = memberJoinDate;
+		this.memberExp = memberExp;
+	}
+	
 	public MemberDTO(String memberID, String memberPwd, String memberName, String memberEmail, String memberPhone, String memberBirth,
 			String profileImage) {
 		super();
@@ -76,6 +89,18 @@ public class MemberDTO {
 		this.memberExp = memberExp;
 		this.profileImage = profileImage;
 	}
+	
+	public MemberDTO(int memberNo, String memberID, String memberPwd, String memberName, String memberEmail, String memberPhone, String memberBirth, int membeExp, String profileImage) {
+		this.memberNo = memberNo;
+		this.memberID = memberID;
+		this.memberPwd = memberPwd;
+		this.memberName = memberName;
+		this.memberEmail = memberEmail;
+		this.memberPhone = memberPhone;
+		this.memberBirth = memberBirth;
+		this.memberExp = memberExp;
+		this.profileImage = profileImage;
+	}
 
 	public MemberDTO(String memberID, String memberPwd) {
 		super();
@@ -89,7 +114,7 @@ public class MemberDTO {
 		this.memberEmail = memberEmail;
 		this.memberPhone = memberPhone;
 		this.memberBirth = memberBirth;
-	}
+	}	
 	
 	public int getMemberNo() {
 		return memberNo;
