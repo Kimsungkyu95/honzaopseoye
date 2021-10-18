@@ -38,6 +38,9 @@ drop sequence menu_seq;
 drop sequence category_seq;
 drop sequence category_details_seq;
 
+SELECT *
+FROM USER_SEQUENCES;
+
 --------------------------------------------------------------------------------
 --테이블 생성
 -->회원
@@ -69,29 +72,32 @@ CREATE TABLE Category_details(
 
 -->맛집레벨별경험치량
 CREATE TABLE LEVELGIVE_EXP(
-    RESTAURANT_LEVEL_NO NUMBER PRIMARY KEY,
+    RESTAURANT_LEVEL NUMBER PRIMARY KEY,
     GIVE_EXP NUMBER NOT NULL
 );
 
 -->맛집
-CREATE TABLE restaurant(
+CREATE TABLE restaurant (
 	restaurant_no number primary key,
     category_details_no	number references category_details(category_details_no),
-	restaurant_level number references levelgive_exp(restaurant_level_no),
-    restaurant_name varchar2(30) not NULL,
-	phone varchar2(30) not NULL,
+	restaurant_level number references Levelgive_exp(restaurant_level),
+    restaurant_name varchar2(100) not NULL,
+	phone varchar2(30) NULL,
 	restaurant_addr varchar2(100) not NULL,
-	longitude number not null,
-	latitude number not null,
-	restaurant_regdate date DEFAULT SYSDATE,
+    restaurant_road_addr varchar2(100) NULL,
+    gu varchar2(30) not null,
+    dong varchar2(30) not null,
+	longitude number null,
+	latitude number null,
+	restaurant_regdate date not NULL,
 	restaurant_visited number not NULL
 );
 
 -->리뷰
 create table review(
 review_no number not null primary key,
-member_no number not null references member(member_no),
-restaurant_no number not null references restaurant(restaurant_no),
+member_no number not null references member(member_no) on delete cascade,
+restaurant_no number not null references restaurant(restaurant_no) on delete cascade,
 review_score number not null,
 review_content VARCHAR2(200) not null,
 review_regdate date DEFAULT SYSDATE
@@ -100,24 +106,25 @@ review_regdate date DEFAULT SYSDATE
 -->스토리
 create table story(
 story_no number not null primary key,
-member_no number not null references member(member_no),
+member_no number not null references member(member_no) on delete cascade,
 story_title VARCHAR2(100) not null,
 story_regdate date DEFAULT SYSDATE,
-story_visited number not null
+story_visited number not null,
+story_password varchar2(20) 
 );
 
 -->스토리상세
 create table story_details(
 story_details_no number not null primary key,
-restaurant_no number not null references restaurant(restaurant_no),
-story_no number not null references story(story_no),
+restaurant_no number not null references restaurant(restaurant_no) on delete cascade,
+story_no number not null references story(story_no) on delete cascade,
 story_content varchar2(1000) not null
 );
 
 -->스토리이미지
 create table story_img(
 story_img_no number not null primary key,
-story_details_no number not null references story_details(story_details_no),
+story_details_no number not null references story_details(story_details_no) on delete cascade,
 story_img varchar2(100) not null 
 );
 
@@ -137,26 +144,24 @@ CREATE TABLE HASHTAG(
 -->해쉬태그관계
 CREATE TABLE HASHTAG_RELATION(
     HASHTAG_RELATION_NO NUMBER PRIMARY KEY,
-    HASHTAG_NO NUMBER NOT NULL REFERENCES HASHTAG(HASHTAG_NO),
-    RESTAURANT_NO NUMBER NOT NULL REFERENCES RESTAURANT(RESTAURANT_NO)  
+    HASHTAG_NO NUMBER NOT NULL REFERENCES HASHTAG(HASHTAG_NO) on delete cascade,
+    RESTAURANT_NO NUMBER NOT NULL REFERENCES RESTAURANT(RESTAURANT_NO) on delete cascade 
 );
 
 -->맛집이미지
 CREATE TABLE restaurant_img(
 	restaurant_img_no number primary key,
-	restaurant_no number REFERENCES restaurant(restaurant_no),
+	restaurant_no number REFERENCES restaurant(restaurant_no) on delete cascade,
 	restaurant_img varchar2(100) not null
 );
 
 -->메뉴
 CREATE TABLE menu(
 	menu_no	number primary key,
-    restaurant_no number references restaurant(restaurant_no),
+    restaurant_no number references restaurant(restaurant_no) on delete cascade,
 	menu_name varchar2(30) not NULL,
 	menu_price number
 );
-
-
 
 --------------------------------------------------------------------------------
 --시퀀스 생성 

@@ -23,7 +23,11 @@ public class AdminRestaurantDAOImpl implements AdminRestaurantDAO {
 
 	@Override
 	public int insert(RestaurantDTO restaurantDTO) {
-		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int result = 0;
+		String sql = proFile.getProperty("adminRestaurant.selectCategoryDetailsNo");
 		return 0;
 	}
 

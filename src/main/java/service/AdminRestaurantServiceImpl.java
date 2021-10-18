@@ -17,6 +17,11 @@ public class AdminRestaurantServiceImpl implements AdminRestaurantService {
 			throw new SQLException("존재하지 않는 카테고리입니다.");
 		}
 		
+		restaurantDTO.setCategoryDetailsNo(categoryDetailsNo);
+		int result = adminRestaurantDAO.insert(restaurantDTO);
+		if(result == 0) {
+			throw new SQLException("맛집 등록에 실패했습니다");
+		}
 		
 
 	}
