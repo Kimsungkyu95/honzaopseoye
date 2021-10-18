@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <jsp:include page="../common/header.jsp"/>
 <!DOCTYPE html>
 <html lang="ko">
@@ -78,7 +79,7 @@
 				 $("button").click(function(){
 					 for(let i=1;i<=7;i++){
 						if($(this).val()==i){
-						   	//alert(i);
+						   	alert(i);
 						   	
 						}//if
 				      }//for
@@ -117,9 +118,8 @@
 			      $("#display4").html(comment);
 			  }
 		  }
-	 });
-
-				  
+	 });//change끝
+ 			  
 	//추천 페이지 첫 화면 맛집 리스트
 	  function recByScore(){
 		  $.ajax({
@@ -131,12 +131,12 @@
 					//결과를 테이블에 넣는다.
 					let str="<table><tr>";
                     $.each(result, function(index, item){
-                    	alert(item.restaurantName);
-						/*if((index+1)%4==0){
+                    	//alert(item.restaurantName);
+						if((index+1)%4==0){
 							str+="</tr><tr>";
 						}
                     	str+="<td><a href='#'>"+item.restaurantImg+"</a><br>"+item.restaurantName+", "+item.reviewScore+"<br>"+item.restaurantAddr+"-"+item.menuName+"</td>";              
-                    */
+                    
                     });
 					str+="</tr></table>";
 					
@@ -144,7 +144,7 @@
                   //div영역에 표시
                     //계속 클릭하면 계속 추가가 된다.
     				$("#table").remove();
-    				$("#table").after(str);  //공백은 하위요소
+    				$("#table").html(str);  //공백은 하위요소
     				//append,prepend 뒤에 추가, 앞에 추가 
     				//before, after 앞에 추가, 뒤에 추가
                     
@@ -194,7 +194,10 @@
 
 <div id="display5"><h4><br>&nbsp;&nbsp;후회없는 디폴트 맛집</h4></div>
  
-<div id="table"> </div>
+<div id="table"> 
+
+
+</div>
 
 
 	
