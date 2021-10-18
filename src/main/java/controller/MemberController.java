@@ -87,4 +87,96 @@ public class MemberController implements Controller {
 		return mv;
 	}
 	
+	public void selectIdByEmail(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		
+		String email = request.getParameter("email");
+		
+		String id = service.selectIdByEmail(email);
+		
+		PrintWriter out = response.getWriter();
+		out.print(id);
+		
+	}
+
+	public ModelAndView updateByNo(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		String url = "error/error.jsp";
+		String errorMsg = "Something Went Wrong.";
+		
+		String memberName = request.getParameter("memberName");
+		String memberEmail = request.getParameter("memberEmail");
+		String memberPhone = request.getParameter("memberPhone");
+		String memberBirth = request.getParameter("memberBirth");
+		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
+		
+		MemberDTO member = new MemberDTO(memberNo, memberName, memberEmail, memberPhone, memberBirth);
+		service.updateByNo(member);
+		
+		
+		return new ModelAndView("myPage/myPageAccount.jsp");
+		
+	}
+	
+	public ModelAndView updateExpByNo(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		String url = "error/error.jsp";
+		String errorMsg = "Something Went Wrong.";
+		
+		int memberExp = Integer.parseInt(request.getParameter("memberExp"));
+		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
+		
+		MemberDTO member = new MemberDTO();
+		member.setMemberExp(memberExp);
+		member.setMemberNo(memberNo);
+		
+		service.updateExpByNo(member);
+
+		return new ModelAndView("myPage/myPageLevel.jsp");
+	}
+	public ModelAndView updateImageByNo(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		String url = "error/error.jsp";
+		String errorMsg = "Something Went Wrong.";
+		
+		String profileImage = request.getParameter("profileImage");
+		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
+		
+		MemberDTO member = new MemberDTO();
+		member.setProfileImage(profileImage);
+		member.setMemberNo(memberNo);
+		
+		service.updateImageByNo(member);
+		
+		MemberDTO dbmember = service.selectMemberByNo(memberNo);
+		
+		request.setAttribute("member", dbmember);
+		return new ModelAndView("myPage/myPageLevel.jsp");
+	}
+	
+	public ModelAndView updatePwdByNo(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		return null;	
+	}
+	
+	public ModelAndView deleteByNo(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		return null;	
+	}
+	
+	public ModelAndView selectMemberList(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		return null;	
+	}
+	
+	public ModelAndView selectMemberByNo(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		return null;	
+	}
+	
+	public ModelAndView updateMemberDetail(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		return null;	
+	}
+	
 }

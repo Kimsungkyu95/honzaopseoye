@@ -83,6 +83,14 @@ public class MemberDTO {
 		this.memberPwd = memberPwd;
 	}
 
+	public MemberDTO(int memberNo, String memberName, String memberEmail, String memberPhone, String memberBirth) {
+		this.memberNo = memberNo;
+		this.memberName = memberName;
+		this.memberEmail = memberEmail;
+		this.memberPhone = memberPhone;
+		this.memberBirth = memberBirth;
+	}
+	
 	public int getMemberNo() {
 		return memberNo;
 	}
