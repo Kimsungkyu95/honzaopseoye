@@ -229,7 +229,7 @@ public class MemberDAOImpl implements MemberDAO {
 	public int updateByNo(MemberDTO member) throws SQLException {
 		int returnValue = 0;
 		
-		String sql = proFile.getProperty("");
+		String sql = proFile.getProperty("updateByNo");
 		
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -238,6 +238,7 @@ public class MemberDAOImpl implements MemberDAO {
 		String memberEmail = member.getMemberEmail();
 		String memberPhone = member.getMemberPhone();
 		String memberBirth = member.getMemberBirth();
+		int memberNo = member.getMemberNo();
 		
 		Date birth = Date.valueOf(memberBirth);
 		
@@ -249,6 +250,7 @@ public class MemberDAOImpl implements MemberDAO {
 			ps.setString(2, memberEmail);
 			ps.setString(3, memberPhone);
 			ps.setString(4, memberBirth);
+			ps.setInt(5, memberNo);
 			
 			returnValue = ps.executeUpdate();
 			
@@ -261,21 +263,23 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public int updateLevelByNo(int exp) throws SQLException {
+	public int updateExpByNo(MemberDTO member) throws SQLException {
 		int returnValue = 0;
 		
-		String sql = proFile.getProperty("");
+		String sql = proFile.getProperty("updateExpByNo");
 		
 		Connection con = null;
 		PreparedStatement ps = null;
 		
-		int memberExp = exp;
+		int memberExp = member.getMemberExp();
+		int memberNo = member.getMemberNo();
 
 		try {
 			con=DbUtil.getConnection();
 			ps=con.prepareStatement(sql);
 			
 			ps.setInt(1, memberExp);
+			ps.setInt(2, memberNo);
 			
 			returnValue = ps.executeUpdate();
 			
@@ -288,21 +292,23 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public int updateImageByNo(String image) throws SQLException {
+	public int updateImageByNo(MemberDTO member) throws SQLException {
 		int returnValue = 0;
 		
-		String sql = proFile.getProperty("");
+		String sql = proFile.getProperty("updateImageByNo");
 		
 		Connection con = null;
 		PreparedStatement ps = null;
 		
-		String profileImage = image;
+		String profileImage = member.getProfileImage();
+		int memberNo = member.getMemberNo();
 		
 		try {
 			con=DbUtil.getConnection();
 			ps=con.prepareStatement(sql);
 			
 			ps.setString(1, profileImage);
+			ps.setInt(2, memberNo);
 			
 			returnValue = ps.executeUpdate();
 			
@@ -315,16 +321,39 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public int updatePwdByNo(String pwd) throws SQLException {
+	public int updatePwdByNo(MemberDTO member) throws SQLException {
+		int returnValue = 0;
 		
-		return 0;
+		String sql = proFile.getProperty("updatePwdByNo");
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		String memberPwd = member.getMemberPwd();
+		int memberNo = member.getMemberNo();
+		
+		try {
+			con=DbUtil.getConnection();
+			ps=con.prepareStatement(sql);
+			
+			ps.setString(1, memberPwd);
+			ps.setInt(2, memberNo);
+			
+			returnValue = ps.executeUpdate();
+			
+		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			e.printStackTrace();
+		}finally {
+			DbUtil.dbClose(ps, con);
+		}
+		return returnValue;
 	}
 
 	@Override
 	public int deleteByNo(int no) throws SQLException {
 		int returnValue = 0;
 		
-		String sql = proFile.getProperty("");
+		String sql = proFile.getProperty("deleteByNo");
 		//delete from member where num=?
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -348,9 +377,9 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public ArrayList<MemberDTO> memberList() throws SQLException {
+	public ArrayList<MemberDTO> selectMemberList() throws SQLException {
 		
-		String sql = proFile.getProperty("");
+		String sql = proFile.getProperty("selectMemberList");
 		//select*from member
 		
 		Connection con = null;
@@ -425,8 +454,91 @@ public class MemberDAOImpl implements MemberDAO {
 		return returnValue;
 	}
 
+	@Override
+	public MemberDTO selectMemberByNo(int no) throws SQLException {
+		MemberDTO returnValue = null;	
+		String sql = proFile.getProperty("");
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con=DbUtil.getConnection();
+			ps=con.prepareStatement(sql);
+			
+			ps.setInt(1, no);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+
+				String loginId = rs.getString(1);
+				String loginName = rs.getString(2);
+				
+				int memberNo = rs.getInt(1);
+				String memberID = rs.getString(2);
+				String memberPwd = rs.getString(3);
+				String memberName = rs.getString(4);
+				String memberEmail = rs.getString(5);
+				String memberPhone = rs.getString(6);
+				String memberBirth = rs.getString(7);
+				String joinDate = rs.getString(8);
+				int memberExp = rs.getInt(9);
+				String profileImage = rs.getString(10);
+				
+				returnValue = new MemberDTO(memberNo, memberID, memberPwd, memberName, memberEmail, memberPhone,memberBirth, joinDate, memberExp, profileImage);				
+			}
+		
+		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			e.printStackTrace();
+		}finally {
+			DbUtil.dbClose(rs, ps, con);
+		}
+		return returnValue;
+	}
+
 	
-	
+	@Override
+	public int updateMemberDetail(MemberDTO member) throws SQLException {
+		int returnValue = 0;
+		
+		String sql = proFile.getProperty("");
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		int memberNo = member.getMemberNo();
+		String memberPwd = member.getMemberPwd();
+		String memberName = member.getMemberName();
+		String memberEmail = member.getMemberEmail();
+		String memberPhone = member.getMemberPhone();
+		String memberBirth = member.getMemberBirth();
+		int memberExp = member.getMemberExp();
+		String profileImage = member.getProfileImage();
+		
+		try {
+			con=DbUtil.getConnection();
+			ps=con.prepareStatement(sql);
+			
+			ps.setInt(1, memberNo);
+			ps.setString(2, memberPwd);
+			ps.setString(3, memberName);
+			ps.setString(4, memberEmail);
+			ps.setString(5, memberPhone);
+			ps.setString(6, memberBirth);
+			ps.setInt(7, memberExp);
+			ps.setString(8, profileImage);
+			
+			returnValue = ps.executeUpdate();
+			
+		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			e.printStackTrace();
+		}finally {
+			DbUtil.dbClose(ps, con);
+		}
+		return returnValue;
+	}
 	
 	
 

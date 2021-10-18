@@ -19,15 +19,19 @@ public interface MemberDAO {
 	
 	int updateByNo(MemberDTO member) throws SQLException;
 	
-	int updateLevelByNo(int exp) throws SQLException;
+	int updateExpByNo(MemberDTO member) throws SQLException;
 	
-	int updateImageByNo(String image) throws SQLException;
+	int updateImageByNo(MemberDTO member) throws SQLException;
 	
-	int updatePwdByNo(String pwd)throws SQLException;
+	int updatePwdByNo(MemberDTO member)throws SQLException;
 	
 	int deleteByNo(int no) throws SQLException;
 	
-	ArrayList<MemberDTO> memberList() throws SQLException;
+	MemberDTO selectMemberByNo(int no) throws SQLException;
+	
+	int updateMemberDetail(MemberDTO member)throws SQLException;
+	
+	ArrayList<MemberDTO> selectMemberList() throws SQLException;
 	
 	String selectPwdByIdEmail(String id, String email) throws SQLException;
 }
