@@ -29,18 +29,17 @@ public class UserRestaurantController implements Controller {
 	 * */
 	public ModelAndView selectCategory(HttpServletRequest request, HttpServletResponse response)
 			throws Exception{
-		String category = request.getParameter("category"); //한식 
-		String categoryDetail = request.getParameter("categoryDetail"); //고기,국밥 
-
-		List<CategoryDTO>restaurantList = new ArrayList<CategoryDTO>();
+		List<RestaurantDTO>restaurantList = new ArrayList<RestaurantDTO>();
 		
-		restaurantList= urService.selectCategory(category,categoryDetail);
+		String categoryDetail = request.getParameter("categoryDetail"); //meat, sushi...
+		
+		restaurantList= urService.selectCategory(categoryDetail);
 		
 		request.setAttribute("list", restaurantList); //뷰에서 ${requestScope.list} 
 		
 		ModelAndView mv = new ModelAndView("categoryByRestaurant.jsp");
 		
-		return null;
+		return mv;
 	}
 
 }
