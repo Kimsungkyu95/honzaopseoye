@@ -123,14 +123,18 @@ $(function() {
       <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="memberPwd">
       <label for="floatingPassword">비밀번호</label>
     </div>
-
+	
+	<!-- 
     <div class="checkbox mb-3">
       <label>
         <input type="checkbox" name="remember-me" value="remember-me"> 로그인 상태 유지
       </label>
     </div>
-    <div class=" mb-3 text-muted" id="validation">
+    -->
     
+    
+    <div class=" mb-3 text-muted" id="validation">
+         
     </div>
     <button class="w-100 btn btn-lg btn-primary h3" type="button" id="login">로그인</button>
     <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold w-100 h3" onclick="registration();">회원가입</button>
