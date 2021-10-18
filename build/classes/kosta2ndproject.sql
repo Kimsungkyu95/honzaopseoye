@@ -318,3 +318,6 @@ select member_id from member where member_email=?
 
 --이메일 중복 체크
 select member_email from member where member_email='park';
+
+--
+select member_level from levelup_exp where (30>=min_exp) and (30<=max_exp)
