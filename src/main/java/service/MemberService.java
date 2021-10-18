@@ -1,6 +1,7 @@
 package service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import dto.MemberDTO;
 
@@ -17,4 +18,19 @@ public interface MemberService {
 	
 	String selectPwdByIdEmail(String id, String email) throws SQLException;
 
+	void updateByNo(MemberDTO member) throws SQLException;
+	
+	void updateExpByNo(MemberDTO member) throws SQLException;
+	
+	void updateImageByNo(MemberDTO member) throws SQLException;
+	
+	void updatePwdByNo(MemberDTO member)throws SQLException;
+	
+	void deleteByNo(int no) throws SQLException;
+	
+	ArrayList<MemberDTO> selectMemberList() throws SQLException;
+	
+	MemberDTO selectMemberByNo(int no) throws SQLException;
+	
+	void updateMemberDetail(MemberDTO member)throws SQLException;
 }

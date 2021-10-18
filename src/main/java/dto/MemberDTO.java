@@ -65,7 +65,17 @@ public class MemberDTO {
 		this.memberName = memberName;
 	}
 
-	
+	public MemberDTO(int memberNo, String memberID, String memberPwd, String memberName, String memberEmail, String memberPhone, String memberBirth, String joinDate, int membeExp, String profileImage) {
+		this.memberNo = memberNo;
+		this.memberID = memberID;
+		this.memberPwd = memberPwd;
+		this.memberName = memberName;
+		this.memberEmail = memberEmail;
+		this.memberPhone = memberPhone;
+		this.memberBirth = memberBirth;
+		this.memberExp = memberExp;
+		this.profileImage = profileImage;
+	}
 
 	public MemberDTO(String memberID, String memberPwd) {
 		super();
