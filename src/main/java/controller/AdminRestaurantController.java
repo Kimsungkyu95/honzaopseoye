@@ -3,6 +3,8 @@ package controller;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -46,21 +48,44 @@ public class AdminRestaurantController implements Controller {
         MultipartRequest multi = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
         String restaurantName = multi.getParameter("restaurantName");
         String restaurantPhone = multi.getParameter("phone");
+        String restaurantAddr = multi.getParameter("jibunAddress");
+        String restaurantRoadAddr = multi.getParameter("roadAddress");
+        String [] addrList = restaurantAddr.split(" ");
+        String gu = null;
+        String dong = null;
+        if(addrList.length > 0) {
+        	gu = addrList[1];
+        	dong = addrList[2];        	
+        }
+        String restaurantLongitude = multi.getParameter("longitude");
+        String restaurantLatitude = multi.getParameter("latitude");
         
+        List<String> imgList = new ArrayList<String>();
+        Enumeration<String> files = multi.getFileNames();
+        while(files.hasMoreElements()) {
+        	imgList.add(files.nextElement());
+        }
+        System.out.println(imgList);
 		return null;
         /*
     	private int restaurantNo;
-    	private String restaurantName;
-    	private String restaurantPhone;
-    	private String restaurantAddr;
-    	private int restaurantLongitude;
-    	private int restaurantLatitude;
-    	private String restaurantRegDate;
-    	private int restaurantVisited;
-    	private List<ReviewDTO> reviewList;
-    	private List<StoryDetailsDTO> storyDetailsList;
-    	private List<String>hashTagName;
-    	private List<MenuDTO> menuList;*/
+	private int categoryDetailsNo;
+	private int restaurantLevel;
+	private String restaurantName;
+	private String restaurantPhone;
+	private String restaurantAddr; 서울 송파구 잠실동 22
+	private String restaurantRoadAddr;
+	private String gu;
+	private String dong;
+	private int restaurantLongitude;
+	private int restaurantLatitude;
+	private String restaurantRegDate;
+	private int restaurantVisited;
+	private List<ReviewDTO> reviewList;
+	private List<StoryDetailsDTO> storyDetailsList;
+	private List<String>hashTagName;
+	private List<MenuDTO> menuList;
+	private List<String> imgList;*/
 	}
 	
 

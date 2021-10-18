@@ -5,20 +5,16 @@ import java.util.List;
 
 import dao.UserRestaurantDAO;
 import dao.UserRestaurantDAOImpl;
+import dto.CategoryDTO;
+import dto.CategoryDetailsDTO;
 import dto.RestaurantDTO;
 
 public class UserRestaurantServiceImpl implements UserRestaurantService {
 	private UserRestaurantDAO urDao = new UserRestaurantDAOImpl();
-	@Override
-	public List<RestaurantDTO> selectByCategory() throws SQLException {
-		// TODO Auto-generated method stub
-		return urDao.selectByCategory();
-	}
 
 	@Override
-	public List<RestaurantDTO> selectByCategoryDetail() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CategoryDTO> selectCategory(String category,String categoryDetail) throws SQLException {
+		return urDao.selectCategory(category,categoryDetail);
 	}
 
 }

@@ -33,52 +33,40 @@
 <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script type="text/javascript">
-	let dessert=["디저트"];
-	let fastfood=["패스트푸드"];
-	let pizza=["피자"];
-	let chicken=["치킨"];
-	let bunsik=["분식"];
-	let korea=["고기","국밥","국수","냉면","한정식"];
-	let japan=["돈까스","일본라멘","초밥","회"];
-	let china=["중화요리"];
-	let western=["이탈리안","세계음식"];
-	let buffet=["뷔페"];
-	let drink=["술집"];
+	
+	let dessert=[{eng:"dessert",kor:"디저트"}];
+	let fastfood=[{eng:"fastfood",kor:"패스트푸드"}];
+	let pizza=[{eng:"pizza",kor:"피자"}];
+	let chicken=[{eng:"chicken",kor:"치킨"}];
+	let snack=[{eng:"snack",kor:"분식"}];
+	let korean=[{eng:"meat",kor:"고기"},{eng:"soup",kor:"국밥"}, {eng:"nuddle",kor:"국수"}, {eng:"coldnuddle",kor:"냉면"}, {eng:"hanjeongsik",kor:"한정식"}];
+	let japanese=[{eng:"porkcutlet",kor:"돈까스"}, {eng:"lamen",kor:"일본라멘"}, {eng : "sushi",kor: "초밥"}, {eng: "sashimi",kor:"회"}];
+	let chinese=[{eng:"chinese",kor:"중화요리"}];
+	let western=[{eng:"italian", kor : "이탈리안"}, {eng : "worldfood", kor : "세계음식"}]
+	let buffet=[{eng:"buffef", kor : "뷔페"}];
+	let bar=[{eng:"bar", kor : "술집"}];
+	
 	function categoryChoice(th, fr){
 	  	while(fr.categoryDetail.length>1){
 	  		fr.categoryDetail.options[1] = null;
 	  	}
 	  	let arr = new Function('return ' + th.value)();
-	  	//alert(arr)
 		for(i=0; i<arr.length; i++){
-			fr.categoryDetail.options[fr.categoryDetail.length] = new Option(arr[i], arr[i]);
+			fr.categoryDetail.options[fr.categoryDetail.length] = new Option(arr[i].kor, arr[i].eng);
 		}
 	}
 	
-	function checkValid() {
-		var f = window.document.selectForm;
-		if ( f.modelName.value == "" ) {
-			alert( "모델이름을 입력해 주세요." );
-			f.modelName.focus();
-			return false;
+	function searchKeyword(fr) {
+		if(fr.category.value=="0"){
+			alert("카테고리를 선택 하세요.")
+			return;
 		}
-		if ( f.price.value == "" ) {
-			alert( "가격을 입력해 주세요." );
-			f.price.focus();
-			return false;
+		else if(fr.categoryDetail.value=="0"){
+			alert("카테고리상세를 선택 하세요.")
+			return;
 		}
-		if ( f.description.value == "" ) {
-	        alert( "상품 설명을 입력해 주세요." );
-	        f.description.focus();
-	        return false;
-	    }
-		if ( f.password.value == "" ) {
-	        alert( "비밀번호를 입력해 주세요" );
-	        f.password.focus();
-	        return false;
-	    }
+		fr.submit();
 	}
-
 	
 </script>
 </head>
@@ -89,44 +77,53 @@
 
 <!--큰틀 -->
  <div class="container" id="frame">
+ 
 	<!-- 드롭다운 div -->  
     <div id="dropdown">
-		<!-- select로 위치 찾기 -->
+		<!-- select로 카테고리별 맛집 찾기 -->
 		<div id="divSelect">
-			  <form name="selectForm"  style="margin-left:4px" method="post" action="">
+			  <form name="selectForm"  style="margin-left:4px" method="post" action="${path}/front">
 			  <select name="category" onChange = "categoryChoice(this, form)">
 			       <option value="0">--카테고리--</option>
 				   <option value="dessert">디저트</option>
 				   <option value="fastfood">패스트푸드</option>
 				   <option value="pizza">피자</option>
 				   <option value="chicken">치킨</option>
-				   <option value="bunsik">분식</option>
-				   <option value="korea">한식</option>
-				   <option value="japan">일식</option>
-				   <option value="china">중식</option>
+				   <option value="snack">분식</option>
+				   <option value="korean">한식</option>
+				   <option value="japanese">일식</option>
+				   <option value="chinese">중식</option>
 				   <option value="western">양식</option>
 				   <option value="buffet">뷔페</option>
-				   <option value="drink">술집</option>
+				   <option value="bar">술집</option>
    			  </select>
 			  <select name="categoryDetail">
        			   <option value="0">--카테고리 상세--</option>
    			  </select>
    			  <select name="option">
-   			  	   <option value="0">--옵션--</option>
        			   <option value="direction">거리순</option>
        			   <option value="alotReview">리뷰많은순</option>
        			   <option value="highRank">별점높은순</option>
    			  </select>
-   			  	<span><button type="submit"  id="btn">검색</button></span>
+   			  	<span>
+					<input type="button" value="검색" onclick="searchKeyword(form)"/> 
+			    </span>
    			  </form>
 		</div>
 	</div>
     
+    <c:forEach items="${requestScope.list} " var="restaurantDTO">  
 	 <!--맛집카테고리별 식당 div -->
       <div id="list">
 	    <table>
 			<tr>
-				<td><a href="#"><img src="img/삼겹살.jpeg"/></a><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
+				<td>
+					   <a href="#">
+						<img src="img/삼겹살.jpeg"/>
+					   </a>
+					   	<br>
+					   	<br>레벨
+			    </td>
 				<td><img src="img/초밥1.jpeg" /><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
 				<td><img src="img/회.jpeg"/><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
 				<td><img src="img/삼겹살.jpeg"/><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
@@ -137,17 +134,9 @@
 				<td><img src="img/초밥2.jpg"/><br>설명1<br>설명2</td>
 				<td><img src="img/삼겹살.jpeg"/><br>설명1<br>설명2</td>
 			</tr>
-		</table>
- 	</div>	
-      <!--  <nav aria-label="Page navigation example" >
-		  <ul class="pagination">
-		    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-		    <li class="page-item"><a class="page-link" href="#">1</a></li>
-		    <li class="page-item"><a class="page-link" href="#">2</a></li>
-		    <li class="page-item"><a class="page-link" href="#">3</a></li>
-		    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-		  </ul>
-	  </nav> -->
+		 </table>
+ 		</div>	
+ 	</c:forEach>
         
 </div>
 

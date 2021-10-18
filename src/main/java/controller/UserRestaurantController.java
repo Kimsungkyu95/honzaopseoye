@@ -8,12 +8,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dto.CategoryDTO;
+import dto.CategoryDetailsDTO;
 import dto.RestaurantDTO;
 import service.UserRestaurantService;
 import service.UserRestaurantServiceImpl;
 
 
 public class UserRestaurantController implements Controller {
+	
 	private UserRestaurantService urService = new UserRestaurantServiceImpl();
 
 	@Override
@@ -22,27 +25,20 @@ public class UserRestaurantController implements Controller {
 		return null;
 	}
 	/**
-	 * 카테고리로 맛집목록검색
+	 * 카테고리 목록 검색
 	 * */
-	public ModelAndView selectByCategory(HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView selectCategory(HttpServletRequest request, HttpServletResponse response)
 			throws Exception{
-		String pageNo = request.getParameter("pageNo");
-		if(pageNo==null || pageNo.equals("")) {
-			pageNo="1";
-		}
-		List<RestaurantDTO>restaurantList = new ArrayList<RestaurantDTO>();
-		restaurantList= urService.selectByCategory();
-	
-		return null;
-	}
-	/**
-	 * 카테고리상세로 맛집목록검색
-	 * */
-	public ModelAndView selectByCategoryDetail(HttpServletRequest request, HttpServletResponse response)
-			throws Exception{
+		String category = request.getParameter("category"); //한식 
+		String categoryDetail = request.getParameter("categoryDetail"); //고기,국밥 
+
+		List<CategoryDTO>restaurantList = new ArrayList<CategoryDTO>();
 		
-		List<RestaurantDTO>restaurantList = new ArrayList<RestaurantDTO>();
-		restaurantList= urService.selectByCategoryDetail();
+		restaurantList= urService.selectCategory(category,categoryDetail);
+		
+		request.setAttribute("list", restaurantList); //뷰에서 ${requestScope.list} 
+		
+		ModelAndView mv = new ModelAndView("categoryByRestaurant.jsp");
 		
 		return null;
 	}

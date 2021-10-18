@@ -31,17 +31,16 @@ public class DispatcherServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String key = request.getParameter("key");
 		String methodName = request.getParameter("methodName");
-		
-		//System.out.println("key: " + key);
-		//System.out.println("methodName: " + methodName);
-		
-		try {
+			
+			//이부분 수정 
+			try {
 			if(key==null || key.equals("")) {
 				key="elec";
 			}
 			if(methodName==null || methodName.equals("")) {
 				methodName = "select";
 			}
+		
 			Class<?> clz = clzMap.get(key);//reflection개념을 적용하기 위한 객체를 구한다.
 			//String을 하나의 메소드의 개념으로 만드는 과정 
 			Method method = clz.getMethod(methodName, HttpServletRequest.class,  HttpServletResponse.class);

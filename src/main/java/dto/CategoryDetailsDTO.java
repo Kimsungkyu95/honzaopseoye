@@ -8,11 +8,19 @@ public class CategoryDetailsDTO {
 	private List<RestaurantDTO>restaurantList;
 	
 	public CategoryDetailsDTO() {}
-
-	public CategoryDetailsDTO(int categoryDetailsNo, String categoryDetailsName, List<RestaurantDTO> restaurantList) {
+	
+	
+	
+	public CategoryDetailsDTO(int categoryDetailsNo, String categoryDetailsName) {
 		super();
 		this.categoryDetailsNo = categoryDetailsNo;
 		this.categoryDetailsName = categoryDetailsName;
+	}
+
+
+
+	public CategoryDetailsDTO(int categoryDetailsNo, String categoryDetailsName, List<RestaurantDTO> restaurantList) {
+		this(categoryDetailsNo,categoryDetailsName);
 		this.restaurantList = restaurantList;
 	}
 

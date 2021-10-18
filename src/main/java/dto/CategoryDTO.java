@@ -14,6 +14,13 @@ public class CategoryDTO {
 		this.categoryNo = categoryNo;
 		this.categoryName = categoryName;
 	}
+	
+	public CategoryDTO(int categoryNo, String categoryName, List<CategoryDetailsDTO> categoryDetailsList) {
+		super();
+		this.categoryNo = categoryNo;
+		this.categoryName = categoryName;
+		this.categoryDetailsList = categoryDetailsList;
+	}
 
 	public int getCategoryNo() {
 		return categoryNo;
