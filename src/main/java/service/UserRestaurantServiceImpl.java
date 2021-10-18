@@ -13,8 +13,8 @@ public class UserRestaurantServiceImpl implements UserRestaurantService {
 	private UserRestaurantDAO urDao = new UserRestaurantDAOImpl();
 
 	@Override
-	public List<CategoryDTO> selectCategory(String category,String categoryDetail) throws SQLException {
-		return urDao.selectCategory(category,categoryDetail);
+	public List<RestaurantDTO> selectCategory(String categoryDetail) throws SQLException {
+		return urDao.selectCategory(categoryDetail);
 	}
 
 }

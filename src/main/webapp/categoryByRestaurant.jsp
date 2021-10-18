@@ -65,6 +65,7 @@
 			alert("카테고리상세를 선택 하세요.")
 			return;
 		}
+		
 		fr.submit();
 	}
 	
@@ -83,46 +84,49 @@
 		<!-- select로 카테고리별 맛집 찾기 -->
 		<div id="divSelect">
 			  <form name="selectForm"  style="margin-left:4px" method="post" action="${path}/front">
-			  <select name="category" onChange = "categoryChoice(this, form)">
-			       <option value="0">--카테고리--</option>
-				   <option value="dessert">디저트</option>
-				   <option value="fastfood">패스트푸드</option>
-				   <option value="pizza">피자</option>
-				   <option value="chicken">치킨</option>
-				   <option value="snack">분식</option>
-				   <option value="korean">한식</option>
-				   <option value="japanese">일식</option>
-				   <option value="chinese">중식</option>
-				   <option value="western">양식</option>
-				   <option value="buffet">뷔페</option>
-				   <option value="bar">술집</option>
-   			  </select>
-			  <select name="categoryDetail">
-       			   <option value="0">--카테고리 상세--</option>
-   			  </select>
-   			  <select name="option">
-       			   <option value="direction">거리순</option>
-       			   <option value="alotReview">리뷰많은순</option>
-       			   <option value="highRank">별점높은순</option>
-   			  </select>
-   			  	<span>
-					<input type="button" value="검색" onclick="searchKeyword(form)"/> 
-			    </span>
+			   <input type="hidden" name="key" value="userRestaurant">
+			   <input type="hidden" name="methodName" value="selectCategory">
+				  <select name="category" onChange = "categoryChoice(this, form)">
+				       <option value="0">--카테고리--</option>
+					   <option value="dessert">디저트</option>
+					   <option value="fastfood">패스트푸드</option>
+					   <option value="pizza">피자</option>
+					   <option value="chicken">치킨</option>
+					   <option value="snack">분식</option>
+					   <option value="korean">한식</option>
+					   <option value="japanese">일식</option>
+					   <option value="chinese">중식</option>
+					   <option value="western">양식</option>
+					   <option value="buffet">뷔페</option>
+					   <option value="bar">술집</option>
+	   			  </select>
+				  <select name="categoryDetail">
+	       			   <option value="0">--카테고리 상세--</option>
+	   			  </select>
+	   			  <select name="option">
+	       			   <option value="direction">거리순</option>
+	       			   <option value="alotReview">리뷰많은순</option>
+	       			   <option value="highRank">별점높은순</option>
+	   			  </select>
+	   			  	<span>
+						<input type="button" value="검색" onclick="searchKeyword(form)"/> 
+				    </span>
    			  </form>
 		</div>
 	</div>
-    
-    <c:forEach items="${requestScope.list} " var="restaurantDTO">  
+<c:forEach items="${requestScope.list}" var="restaurantDTO"> 
+    <!--결과 뿌려주는곳  -->
 	 <!--맛집카테고리별 식당 div -->
+	 
       <div id="list">
 	    <table>
 			<tr>
 				<td>
 					   <a href="#">
-						<img src="img/삼겹살.jpeg"/>
+						<img src="img/restaurantImage/dessert/dessert/캡처1.PNG"/>
 					   </a>
-					   	<br>
-					   	<br>레벨
+					   	<br>${restaurantDTO.restaurantName}
+					   	<br>${restaurantDTO.restaurantLevel}
 			    </td>
 				<td><img src="img/초밥1.jpeg" /><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
 				<td><img src="img/회.jpeg"/><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
@@ -136,7 +140,7 @@
 			</tr>
 		 </table>
  		</div>	
- 	</c:forEach>
+</c:forEach> 
         
 </div>
 
