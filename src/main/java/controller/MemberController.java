@@ -148,19 +148,34 @@ public class MemberController implements Controller {
 		
 		service.updateImageByNo(member);
 		
-		MemberDTO dbmember = service.selectMemberByNo(memberNo);
-		
+		MemberDTO dbmember = service.selectMemberByNo(memberNo);	
 		request.setAttribute("member", dbmember);
 		return new ModelAndView("myPage/myPageLevel.jsp");
 	}
 	
 	public ModelAndView updatePwdByNo(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		return null;	
+		
+		String url = "error/error.jsp";
+		String errorMsg = "Something Went Wrong.";
+		
+		String profileImage = request.getParameter("memberPwd");
+		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
+		
+		MemberDTO member = new MemberDTO();
+		member.setProfileImage(profileImage);
+		member.setMemberNo(memberNo);
+
+		service.updatePwdByNo(member);
+		
+		MemberDTO dbmember = service.selectMemberByNo(memberNo);
+		request.setAttribute("memberNo", memberNo);
+		return new ModelAndView("myPage/myPagePassword.jsp");
 	}
 	
 	public ModelAndView deleteByNo(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+			
 		return null;	
 	}
 	
