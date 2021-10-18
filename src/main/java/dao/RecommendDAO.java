@@ -3,16 +3,16 @@ package dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import dto.RestaurantDTO;
+import dto.RecommendDTO;
 
 public interface RecommendDAO {
 	
-    List<RestaurantDTO> recByCommon() throws SQLException;
+    List<RecommendDTO> recByScore();
 	
-	List<RestaurantDTO> recByLevel(int levelNo) throws SQLException;
+	List<RecommendDTO> recByLevel(int levelNo) throws SQLException;
 	
-	List<RestaurantDTO> recByVisited() throws SQLException;
+	List<RecommendDTO> recByVisited() throws SQLException;
 	
-	List<RestaurantDTO> recByTag(int tagNo) throws SQLException;
+	List<RecommendDTO> recByTag(int tagNo) throws SQLException;
 
 }

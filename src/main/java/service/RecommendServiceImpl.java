@@ -5,32 +5,32 @@ import java.util.List;
 
 import dao.RecommendDAO;
 import dao.RecommendDAOImpl;
-import dto.RestaurantDTO;
+import dto.RecommendDTO;
 
 public class RecommendServiceImpl implements RecommendService {
 	
 	private RecommendDAO recommendDao = new RecommendDAOImpl();
 
 	@Override
-	public List<RestaurantDTO> recByCommon() throws SQLException {
+	public List<RecommendDTO> recByScore() throws SQLException {
 		
 		return null;
 	}
 
 	@Override
-	public List<RestaurantDTO> recByLevel(int levelNo) throws SQLException {
+	public List<RecommendDTO> recByLevel(int levelNo) throws SQLException {
 		
 		return null;
 	}
 
 	@Override
-	public List<RestaurantDTO> recByVisited() throws SQLException {
+	public List<RecommendDTO> recByVisited() throws SQLException {
 	    
 		return null;
 	}
 
 	@Override
-	public List<RestaurantDTO> recByTag(int tagNo) throws SQLException {
+	public List<RecommendDTO> recByTag(int tagNo) throws SQLException {
 		
 		return null;
 	}
