@@ -138,7 +138,17 @@
                 $(this).prev().prev().remove();
             })
 
-        })
+            $("#restaurantInsert").submit(function(){
+
+            	let firstCategory = $("#first-category").val();
+            	let secondCategory = $("#second-category").val();
+            	let restaurantName = $("#restaurant-name").val();
+            	
+            	document.restaurantInsert.action  = "../front?key=adminRestaurant&methodName=insert&firstCategory="+firstCategory+"&secondCategory="+secondCategory+"&restaurantName="+restaurantName;
+            	
+            })
+            
+        })//ready
     </script>
 </head>
 
@@ -174,11 +184,11 @@
 
     <!-- form -->
     <div class="container p-5" id="form-container">
-        <form class="shadow-lg p-5" action="/front?key=adminRestaurant&methodName=insert" method="post" enctype="multipart/form-data">
+        <form class="shadow-lg p-5" id="restaurantInsert"  name="restaurantInsert" method="post" enctype="multipart/form-data">
             <h2>맛집 등록</h2>
             <div class="mb-3 mt-4">
                 <label class="form-label">맛집 이름</label>
-                <input type="text" class="form-control" name="restaurantName">
+                <input type="text" class="form-control" name="restaurantName" id="restaurant-name">
             </div>
             <div class="mb-3">
                 <label class="form-label">카테고리</label>

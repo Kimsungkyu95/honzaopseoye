@@ -4,9 +4,14 @@ import java.util.List;
 
 public class RestaurantDTO {
 	private int restaurantNo;
+	private int categoryDetailsNo;
+	private int restaurantLevel;
 	private String restaurantName;
 	private String restaurantPhone;
 	private String restaurantAddr;
+	private String restaurantRoadAddr;
+	private String gu;
+	private String dong;
 	private int restaurantLongitude;
 	private int restaurantLatitude;
 	private String restaurantRegDate;
@@ -15,7 +20,46 @@ public class RestaurantDTO {
 	private List<StoryDetailsDTO> storyDetailsList;
 	private List<String>hashTagName;
 	private List<MenuDTO> menuList;
+	private List<String> imgList;
 	
+	public RestaurantDTO(int restaurantLevel, String restaurantName, String restaurantPhone, String restaurantAddr,
+			String restaurantRoadAddr, String gu, String dong, int restaurantLongitude, int restaurantLatitude,
+			List<String> hashTagName, List<MenuDTO> menuList, List<String> imgList) {
+		super();
+		this.restaurantLevel = restaurantLevel;
+		this.restaurantName = restaurantName;
+		this.restaurantPhone = restaurantPhone;
+		this.restaurantAddr = restaurantAddr;
+		this.restaurantRoadAddr = restaurantRoadAddr;
+		this.gu = gu;
+		this.dong = dong;
+		this.restaurantLongitude = restaurantLongitude;
+		this.restaurantLatitude = restaurantLatitude;
+		this.hashTagName = hashTagName;
+		this.menuList = menuList;
+		this.imgList = imgList;
+	}
+
+	public RestaurantDTO(int categoryDetailsNo, int restaurantLevel, String restaurantName, String restaurantPhone,
+			String restaurantAddr, String restaurantRoadAddr, String gu, String dong, int restaurantLongitude,
+			int restaurantLatitude, List<String> hashTagName,
+			List<MenuDTO> menuList, List<String> imgList) {
+		super();
+		this.categoryDetailsNo = categoryDetailsNo;
+		this.restaurantLevel = restaurantLevel;
+		this.restaurantName = restaurantName;
+		this.restaurantPhone = restaurantPhone;
+		this.restaurantAddr = restaurantAddr;
+		this.restaurantRoadAddr = restaurantRoadAddr;
+		this.gu = gu;
+		this.dong = dong;
+		this.restaurantLongitude = restaurantLongitude;
+		this.restaurantLatitude = restaurantLatitude;
+		this.hashTagName = hashTagName;
+		this.menuList = menuList;
+		this.imgList = imgList;
+	}
+
 	public RestaurantDTO() { }
 
 	public RestaurantDTO(int restaurantNo, String restaurantName, String restaurantPhone, String restaurantAddr,
