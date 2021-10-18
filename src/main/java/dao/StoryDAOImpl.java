@@ -152,7 +152,7 @@ public class StoryDAOImpl implements StoryDAO {
 		PreparedStatement ps=null;
 		int result=0;
 		String sql = proFile.getProperty("userStory.update");
-//		userStory.update=update story set story_title=? where story_no=?
+//		userStory.update=update story set story_title=? where story_no=? and password=?
 		
 		try {
 			con = DbUtil.getConnection();
@@ -160,6 +160,7 @@ public class StoryDAOImpl implements StoryDAO {
 			
 			ps.setString(1, storyDTO.getStoryTitle());
 			ps.setInt(2, storyDTO.getStoryNo());
+			ps.setString(3, storyDTO.getStoryPassword());
 			
 			result = ps.executeUpdate();
 		}finally {
@@ -175,7 +176,7 @@ public class StoryDAOImpl implements StoryDAO {
 		PreparedStatement ps=null;
 		int result=0;
 		String sql = proFile.getProperty("userStoryDetails.update");
-//		userStoryDetails.update=update story_details set story_content=? where story_details_no=?
+//		userStoryDetails.update=update story_details set story_content=? where story_details_no=? and password=?
 		
 		try {
 			con = DbUtil.getConnection();
@@ -198,7 +199,7 @@ public class StoryDAOImpl implements StoryDAO {
 		PreparedStatement ps=null;
 		int result=0;
 		String sql = proFile.getProperty("userStoryImg.update");
-//		userStoryImg.update=update story_img set story_img=? where story_img_no=?
+//		userStoryImg.update=update story_img set story_img=? where story_img_no=? and password=?
 		
 		try {
 			con = DbUtil.getConnection();
@@ -221,7 +222,7 @@ public class StoryDAOImpl implements StoryDAO {
 		PreparedStatement ps=null;
 		int result=0;
 		String sql = proFile.getProperty("userStory.delete");
-//		userStory.delete=delete from story where story_no=?
+//		userStory.delete=delete from story where story_no=? and password=?
 		
 		try {
 			con = DbUtil.getConnection();
