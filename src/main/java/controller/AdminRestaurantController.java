@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,9 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import dto.MenuDTO;
-import dto.ReviewDTO;
-import dto.StoryDetailsDTO;
+import dto.RestaurantDTO;
 import service.AdminRestaurantService;
 import service.AdminRestaurantServiceImpl;
 
@@ -37,14 +36,15 @@ public class AdminRestaurantController implements Controller {
 		String encoding = "UTF-8";
         String saveDir = request.getServletContext().getRealPath("/img/restaurantImage/") + request.getParameter("firstCategory") + "\\" + request.getParameter("secondCategory") + "\\" + request.getParameter("restaurantName");
         File forder = new File(saveDir);	
-		//폴더 존재하지 않으면 생성!
+		//맛집이름 폴더 존재하지 않으면 생성
 		if(!forder.exists()) {
 			try {
 				forder.mkdir(); //폴더 생성
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
-		}	
+		}		
+		
         MultipartRequest multi = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
         String restaurantName = multi.getParameter("restaurantName");
         String restaurantPhone = multi.getParameter("phone");
@@ -57,35 +57,31 @@ public class AdminRestaurantController implements Controller {
         	gu = addrList[1];
         	dong = addrList[2];        	
         }
-        String restaurantLongitude = multi.getParameter("longitude");
-        String restaurantLatitude = multi.getParameter("latitude");
+        Double restaurantLongitude = Double.parseDouble(multi.getParameter("longitude"));
+        Double restaurantLatitude = Double.parseDouble(multi.getParameter("latitude"));
         
+        
+        System.out.println(multi.getParameter("hashTag"));
+        //List<String> hashTagName = 
+        
+        
+        //업로드한 맛집이름 디렉토리에 있는 이미지 이름 모두 가져오기
         List<String> imgList = new ArrayList<String>();
-        Enumeration<String> files = multi.getFileNames();
-        while(files.hasMoreElements()) {
-        	imgList.add(files.nextElement());
+        File dir = new File(saveDir);
+        if(dir.isDirectory()) {
+        	 File files [] = dir.listFiles();
+        	 for(int i = 0; i < files.length; i++) {
+        		 String fileName = files[i].toString();
+        		 imgList.add(fileName.substring(fileName.lastIndexOf("\\")+1));
+        	 }
         }
+        
+        RestaurantDTO restaurantDTO = new RestaurantDTO(0, 0, restaurantName, restaurantPhone, restaurantAddr, restaurantRoadAddr, gu, dong, restaurantLongitude, restaurantLatitude, imgList, null, imgList);
+        
+        
         System.out.println(imgList);
 		return null;
-        /*
-    	private int restaurantNo;
-	private int categoryDetailsNo;
-	private int restaurantLevel;
-	private String restaurantName;
-	private String restaurantPhone;
-	private String restaurantAddr; 서울 송파구 잠실동 22
-	private String restaurantRoadAddr;
-	private String gu;
-	private String dong;
-	private int restaurantLongitude;
-	private int restaurantLatitude;
-	private String restaurantRegDate;
-	private int restaurantVisited;
-	private List<ReviewDTO> reviewList;
-	private List<StoryDetailsDTO> storyDetailsList;
-	private List<String>hashTagName;
-	private List<MenuDTO> menuList;
-	private List<String> imgList;*/
+
 	}
 	
 

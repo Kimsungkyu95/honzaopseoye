@@ -12,18 +12,18 @@ public class RestaurantDTO {
 	private String restaurantRoadAddr;
 	private String gu;
 	private String dong;
-	private int restaurantLongitude;
-	private int restaurantLatitude;
+	private double restaurantLongitude;
+	private double restaurantLatitude;
 	private String restaurantRegDate;
 	private int restaurantVisited;
 	private List<ReviewDTO> reviewList;
 	private List<StoryDetailsDTO> storyDetailsList;
-	private List<String>hashTagName;
+	private List<String> hashTagName;
 	private List<MenuDTO> menuList;
 	private List<String> imgList;
 	
 	public RestaurantDTO(int restaurantLevel, String restaurantName, String restaurantPhone, String restaurantAddr,
-			String restaurantRoadAddr, String gu, String dong, int restaurantLongitude, int restaurantLatitude,
+			String restaurantRoadAddr, String gu, String dong, double restaurantLongitude, double restaurantLatitude,
 			List<String> hashTagName, List<MenuDTO> menuList, List<String> imgList) {
 		super();
 		this.restaurantLevel = restaurantLevel;
@@ -41,8 +41,8 @@ public class RestaurantDTO {
 	}
 
 	public RestaurantDTO(int categoryDetailsNo, int restaurantLevel, String restaurantName, String restaurantPhone,
-			String restaurantAddr, String restaurantRoadAddr, String gu, String dong, int restaurantLongitude,
-			int restaurantLatitude, List<String> hashTagName,
+			String restaurantAddr, String restaurantRoadAddr, String gu, String dong, double restaurantLongitude,
+			double restaurantLatitude, List<String> hashTagName,
 			List<MenuDTO> menuList, List<String> imgList) {
 		super();
 		this.categoryDetailsNo = categoryDetailsNo;
@@ -71,7 +71,7 @@ public class RestaurantDTO {
 	}
 
 	public RestaurantDTO(int restaurantNo, String restaurantName, String restaurantPhone, String restaurantAddr,
-			int restaurantLongitude, int restaurantLatitude, String restaurantRegDate, int restaurantVisited) {
+			double restaurantLongitude, double restaurantLatitude, String restaurantRegDate, int restaurantVisited) {
 		this.restaurantNo = restaurantNo;
 		this.restaurantName = restaurantName;
 		this.restaurantPhone = restaurantPhone;
@@ -85,7 +85,7 @@ public class RestaurantDTO {
 
 
 	public RestaurantDTO(int restaurantNo, String restaurantName, String restaurantPhone, String restaurantAddr,
-			int restaurantLongitude, int restaurantLatitude, String restaurantRegDate, int restaurantVisited,
+			double restaurantLongitude, double restaurantLatitude, String restaurantRegDate, int restaurantVisited,
 			List<String> hashTagName) {
 		this(restaurantNo,restaurantName,restaurantPhone,restaurantAddr,restaurantLongitude,restaurantLatitude,restaurantRegDate,
 				restaurantVisited);
@@ -94,7 +94,7 @@ public class RestaurantDTO {
 	
 
 	public RestaurantDTO(int restaurantNo, String restaurantName, String restaurantPhone, String restaurantAddr,
-			int restaurantLongitude, int restaurantLatitude, String restaurantRegDate, int restaurantVisited,
+			double restaurantLongitude, double restaurantLatitude, String restaurantRegDate, int restaurantVisited,
 			List<ReviewDTO> reviewList, List<StoryDetailsDTO> storyDetailsList, List<String> hashTagName,
 			List<MenuDTO> menuList) {
 		super();
@@ -161,7 +161,7 @@ public class RestaurantDTO {
 		this.restaurantAddr = restaurantAddr;
 	}
 
-	public int getRestaurantLongitude() {
+	public double getRestaurantLongitude() {
 		return restaurantLongitude;
 	}
 
@@ -169,7 +169,7 @@ public class RestaurantDTO {
 		this.restaurantLongitude = restaurantLongitude;
 	}
 
-	public int getRestaurantLatitude() {
+	public double getRestaurantLatitude() {
 		return restaurantLatitude;
 	}
 
