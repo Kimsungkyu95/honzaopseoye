@@ -32,7 +32,7 @@
         <h1 class="fw-light">Today's Story</h1>
         <p class="lead text-muted">당신의 스토리를 올려보세요.</p>
         <p>
-          <a href="${path}/userStoryCreate.jsp" class="btn btn-primary my-2">Story Create</a>
+          <a href="${pageContext.request.contextPath}/userStory/userStoryCreate.jsp" class="btn btn-primary my-2">Story Create</a>
         </p>
       </div>
     </div>

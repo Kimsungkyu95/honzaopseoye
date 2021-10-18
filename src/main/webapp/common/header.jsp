@@ -40,6 +40,10 @@ pageEncoding="UTF-8"%>
 				<li class="nav-item">
 					<a class="nav-link" href="${pageContext.request.contextPath}/myPage/myPageWishList.jsp">WishList</a>
 				</li>
+				<!-- 스토리 -->
+				<li class="nav-item">
+					<a class="nav-link" href="${pageContext.request.contextPath}/userStory/userStoryList.jsp">Story</a>
+				</li>
 				<!-- 현재위치? -->
 				<li class="nav-item">
 					<a class="nav-link" href="#">
