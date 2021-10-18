@@ -14,5 +14,10 @@ public interface UserRestaurantDAO {
 	 * */
 	List<RestaurantDTO> selectCategory(String categoryDetail) throws SQLException;
 	
+	/**
+	 * 맛집상세 
+	 * */
+	RestaurantDTO selectByRestaurantNo(String restaurantNo) throws SQLException;
+	
 	
 }

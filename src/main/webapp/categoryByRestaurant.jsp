@@ -114,34 +114,68 @@
    			  </form>
 		</div>
 	</div>
-<c:forEach items="${requestScope.list}" var="restaurantDTO"> 
+	
+
+	
+
     <!--결과 뿌려주는곳  -->
+    
 	 <!--맛집카테고리별 식당 div -->
-	 
       <div id="list">
 	    <table>
+	     <c:choose>
+			    <c:when test="${empty requestScope.list}">
+				   <tr>
+			        <td>
+			            <!-- 카테고리 선택 안했을시  -->
+			        </td>
+			      </tr>
+			    </c:when>
+			<c:otherwise>
+			<c:forEach items="${requestScope.list}" var="restaurant"> 
 			<tr>
 				<td>
-					   <a href="#">
-						<img src="img/restaurantImage/dessert/dessert/캡처1.PNG"/>
-					   </a>
-					   	<br>${restaurantDTO.restaurantName}
-					   	<br>${restaurantDTO.restaurantLevel}
+				   		<a href="#">
+							  <img src="img/restaurantImage/${param.category}/${param.categoryDetail}/캡처1.PNG"/>
+						  </a><br>
+					   		이름 : <a href="${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo=${restaurant.restaurantNo}">
+					   					${restaurant.restaurantName}
+					   					<%-- ${restaurant.restaurantNo} --%>
+					   				</a><br>
+					   		레벨 : ${restaurant.restaurantLevel}
 			    </td>
-				<td><img src="img/초밥1.jpeg" /><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
-				<td><img src="img/회.jpeg"/><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
-				<td><img src="img/삼겹살.jpeg"/><br>맛집이름, 별점<br>대략위치-대표메뉴</td>
+				<td>
+					<img src="img/초밥1.jpeg" />
+					<br>맛집이름, 별점<br>대략위치-대표메뉴
+				</td>
+				<td>
+					<img src="img/회.jpeg"/>
+					<br>맛집이름, 별점<br>대략위치-대표메뉴
+				</td>
+				<td>
+					<img src="img/삼겹살.jpeg"/>
+					<br>맛집이름, 별점<br>대략위치-대표메뉴
+				</td>
 			</tr>
-			<tr>
-				<td><img src="img/삼겹살.jpeg"/><br>설명1<br>설명2</td>
-				<td><img src="img/회.jpeg" /><br>설명1<br>설명2</td>
-				<td><img src="img/초밥2.jpg"/><br>설명1<br>설명2</td>
-				<td><img src="img/삼겹살.jpeg"/><br>설명1<br>설명2</td>
+		    <tr>
+				<td>
+					<img src="img/삼겹살.jpeg"/><br>설명1<br>설명2
+				</td>
+				<td>
+					<img src="img/회.jpeg" /><br>설명1<br>설명2
+				</td>
+				<td>
+					<img src="img/초밥2.jpg"/><br>설명1<br>설명2
+				</td>
+				<td>
+					<img src="img/삼겹살.jpeg"/><br>설명1<br>설명2
+				</td>
 			</tr>
+				  </c:forEach> 
+				</c:otherwise>
+			</c:choose>
 		 </table>
- 		</div>	
-</c:forEach> 
-        
+ 	</div>	
 </div>
 
 

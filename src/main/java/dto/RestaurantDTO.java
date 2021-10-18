@@ -22,6 +22,8 @@ public class RestaurantDTO {
 	private List<MenuDTO> menuList;
 	private List<String> imgList;
 	
+	public RestaurantDTO() {}
+	
 	public RestaurantDTO(int restaurantLevel, String restaurantName, String restaurantPhone, String restaurantAddr,
 			String restaurantRoadAddr, String gu, String dong, double restaurantLongitude, double restaurantLatitude,
 			List<String> hashTagName, List<MenuDTO> menuList, List<String> imgList) {
@@ -59,8 +61,6 @@ public class RestaurantDTO {
 		this.menuList = menuList;
 		this.imgList = imgList;
 	}
-
-	public RestaurantDTO() { }
 	
 	//카테고리별로 뿌릴때 식당간단정보 
 	public RestaurantDTO(int restaurantNo, int restaurantLevel, String restaurantName) {
@@ -69,46 +69,32 @@ public class RestaurantDTO {
 		this.restaurantLevel = restaurantLevel;
 		this.restaurantName = restaurantName;
 	}
-
-	public RestaurantDTO(int restaurantNo, String restaurantName, String restaurantPhone, String restaurantAddr,
+	
+	//맛집상세에 따른 정보 
+	public RestaurantDTO(int restaurantNo, int categoryDetailsNo, int restaurantLevel, String restaurantName,
+			String restaurantPhone, String restaurantAddr, String restaurantRoadAddr, String gu, String dong,
 			double restaurantLongitude, double restaurantLatitude, String restaurantRegDate, int restaurantVisited) {
-		this.restaurantNo = restaurantNo;
-		this.restaurantName = restaurantName;
+		this(restaurantNo,restaurantLevel,restaurantName);
+		this.categoryDetailsNo = categoryDetailsNo;
 		this.restaurantPhone = restaurantPhone;
 		this.restaurantAddr = restaurantAddr;
+		this.restaurantRoadAddr = restaurantRoadAddr;
+		this.gu = gu;
+		this.dong = dong;
 		this.restaurantLongitude = restaurantLongitude;
 		this.restaurantLatitude = restaurantLatitude;
 		this.restaurantRegDate = restaurantRegDate;
 		this.restaurantVisited = restaurantVisited;
-	}
-
-
-
-	public RestaurantDTO(int restaurantNo, String restaurantName, String restaurantPhone, String restaurantAddr,
-			double restaurantLongitude, double restaurantLatitude, String restaurantRegDate, int restaurantVisited,
-			List<String> hashTagName) {
-		this(restaurantNo,restaurantName,restaurantPhone,restaurantAddr,restaurantLongitude,restaurantLatitude,restaurantRegDate,
-				restaurantVisited);
-		this.hashTagName = hashTagName;
 	}
 	
-
-	public RestaurantDTO(int restaurantNo, String restaurantName, String restaurantPhone, String restaurantAddr,
+	//맛집에 따른 리뷰 및 메뉴 
+	public RestaurantDTO(int restaurantNo, int categoryDetailsNo, int restaurantLevel, String restaurantName,
+			String restaurantPhone, String restaurantAddr, String restaurantRoadAddr, String gu, String dong,
 			double restaurantLongitude, double restaurantLatitude, String restaurantRegDate, int restaurantVisited,
-			List<ReviewDTO> reviewList, List<StoryDetailsDTO> storyDetailsList, List<String> hashTagName,
-			List<MenuDTO> menuList) {
-		super();
-		this.restaurantNo = restaurantNo;
-		this.restaurantName = restaurantName;
-		this.restaurantPhone = restaurantPhone;
-		this.restaurantAddr = restaurantAddr;
-		this.restaurantLongitude = restaurantLongitude;
-		this.restaurantLatitude = restaurantLatitude;
-		this.restaurantRegDate = restaurantRegDate;
-		this.restaurantVisited = restaurantVisited;
+			List<ReviewDTO> reviewList, List<MenuDTO> menuList) {
+		this(restaurantNo,categoryDetailsNo,restaurantLevel,restaurantName,restaurantPhone,restaurantAddr,restaurantRoadAddr,
+				gu,dong,restaurantLongitude,restaurantLatitude,restaurantRegDate,restaurantVisited);
 		this.reviewList = reviewList;
-		this.storyDetailsList = storyDetailsList;
-		this.hashTagName = hashTagName;
 		this.menuList = menuList;
 	}
 
@@ -264,6 +250,7 @@ public class RestaurantDTO {
 	public void setRestaurantLatitude(double restaurantLatitude) {
 		this.restaurantLatitude = restaurantLatitude;
 	}
+	
 	
 	
 }

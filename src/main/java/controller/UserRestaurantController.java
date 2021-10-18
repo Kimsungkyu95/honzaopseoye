@@ -41,5 +41,17 @@ public class UserRestaurantController implements Controller {
 		
 		return mv;
 	}
+	
+	/**
+	 * 맛집상세정보 
+	 * */
+	public ModelAndView selectByRestaurantNo(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		String restaurantNo = request.getParameter("restaurantNo");
+		RestaurantDTO restaurantDTO = urService.selectByRestaurantNo(restaurantNo);
+		request.setAttribute("restaurant",restaurantDTO);
+		
+		return new ModelAndView("restaurant.jsp");
+	}
 
 }

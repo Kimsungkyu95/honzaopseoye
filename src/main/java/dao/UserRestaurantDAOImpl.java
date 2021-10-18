@@ -72,5 +72,28 @@ public class UserRestaurantDAOImpl implements UserRestaurantDAO {
 		}
 		return result;
 	}
+	
+	//맛집상세 정보 
+	@Override
+	public RestaurantDTO selectByRestaurantNo(String restaurantNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		RestaurantDTO restaurantDTO = null;
+		//String sql =  proFile.getProperty("");
+		String sql = "select * from restaurant where restaurant_no=?";
+		try {
+			con = DbUtil.getConnection();
+			ps =  con.prepareStatement(sql);
+			ps.setInt(1, Integer.parseInt(restaurantNo));
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				restaurantDTO =new RestaurantDTO();
+			}
+		} finally {
+			DbUtil.dbClose(rs, ps, con);
+		}
+		return restaurantDTO;
+	}
 
 }

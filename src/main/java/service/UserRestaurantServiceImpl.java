@@ -17,4 +17,10 @@ public class UserRestaurantServiceImpl implements UserRestaurantService {
 		return urDao.selectCategory(categoryDetail);
 	}
 
+	@Override
+	public RestaurantDTO selectByRestaurantNo(String restaurantNo) throws SQLException {
+		RestaurantDTO restaurantDTO = urDao.selectByRestaurantNo(restaurantNo);
+		return restaurantDTO;
+	}
+
 }
