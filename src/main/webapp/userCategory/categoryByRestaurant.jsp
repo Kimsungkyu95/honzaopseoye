@@ -27,6 +27,7 @@
    select{border:1px solid #C6BBEF; color:#3C3B41; border-radius:3px}  
    #btn{height:27px}
    span{font-size:13px}
+   
 </style>
 
 <script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
@@ -124,13 +125,13 @@
 <table>
 	<!--  30 /4 =>8 행 일때는 2개열만  -->
     <c:choose>
-		    <c:when test="${empty requestScope.list}">
-			   <tr>
-		        <td colspan="5">
-		            <p align="center"><b><span style="font-size:9pt;">등록된 상품이 없습니다.</span></b></p>
-		        </td>
-		    </tr>
-		    </c:when>
+		   <c:when test="${empty requestScope.list}">
+		     	<tr>
+		     		<td>
+		     			값이없습니다. 
+		     		</td>
+		     	</tr>
+		    </c:when> 
     <c:otherwise>
        <c:set var="i" value="0"/>
        <c:set var="j" value="4"/>
@@ -140,8 +141,7 @@
 		 </c:if>
 					<td>
 						<a href="${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo=${restaurant.restaurantNo}">
-							<%--  <img src="${restaurant.imgList[0]}"/>  --%>
-							  <img src="${path}/img/스테이크.jpeg" />  
+							<img src="${restaurant.imgList[0]}"/> 
 						  </a><br>
 					   		이름 : <a href="${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo=${restaurant.restaurantNo}">
 					   					${restaurant.restaurantName}
@@ -163,8 +163,8 @@
 
 <!--큰 div영역 끝  -->
 
-
-
+<div id="footer">
  <jsp:include page="../common/footer.jsp"/>
+ </div>
 </body>
 </html>
