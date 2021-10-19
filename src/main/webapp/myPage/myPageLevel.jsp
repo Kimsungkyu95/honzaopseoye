@@ -43,15 +43,15 @@
     	
     	<!-- 게이지바 -->
     	<div class="progress">
-		  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+		  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: ${levelExp.minExp / levelExp.maxExp * 100}%"></div>
 		</div>
     	
-    	<h3>현재 경험치 : <p>${levelExp.memberLevel}</p></h3>
-    	<p>${levelExp.minExp}</p>
-    	<p>${levelExp.maxExp }</p>
-    	<h3>다음 레벨까지 남은 경험치 : 350Exp</h3>
+    	<h3>현재 레벨 : <a>${levelExp.memberLevel}</a></h3>
+    	<%-- <p>현재경험치 : ${levelExp.minExp}</p>
+    	<p>레벨 최대경험치 : ${levelExp.maxExp }</p> --%>
+    	<h3>다음 레벨까지 남은 경험치 : <a>${levelExp.maxExp - levelExp.minExp}Exp</a></h3>
     	<br>
-    	<button type="button" class="btn btn-secondary btn-lg">레벨낮추기</button>
+    	<button type="button" class="btn btn-secondary btn-lg">뒤로가기</button>
     </div>
     
     

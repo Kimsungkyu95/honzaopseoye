@@ -570,9 +570,9 @@ public class MemberDAOImpl implements MemberDAO {
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				int minExp=rs.getInt(1);
 				int maxExp=rs.getInt(2);
 				int memberLevel=rs.getInt(3);
+				int minExp=rs.getInt(4);
 	
 				returnValue = new LevelUpExpDTO(memberLevel, minExp, maxExp);			
 			}
