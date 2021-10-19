@@ -29,8 +29,7 @@
    span{font-size:13px}
 </style>
 
-
-<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script type="text/javascript">
 	
@@ -74,7 +73,7 @@
 <body>
 <!-- 페이징 처리 필요.. -->
 
-<jsp:include page="common/header.jsp"/>
+<jsp:include page="../common/header.jsp"/>
 
 <!--큰틀 -->
  <div class="container" id="frame">
@@ -125,24 +124,30 @@
 	    <table>
 	     <c:choose>
 			    <c:when test="${empty requestScope.list}">
+			    
 				   <tr>
 			        <td>
 			            <!-- 카테고리 선택 안했을시  -->
+			           
+						  <img src="img/restaurantImage/dessert/dessert/캡처1.PNG"/>
+					  </a>
+				   		
 			        </td>
 			      </tr>
 			    </c:when>
+			    
 			<c:otherwise>
 			<c:forEach items="${requestScope.list}" var="restaurant"> 
 			<tr>
 				<td>
-				   		<a href="#">
-							  <img src="img/restaurantImage/${param.category}/${param.categoryDetail}/캡처1.PNG"/>
-						  </a><br>
-					   		이름 : <a href="${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo=${restaurant.restaurantNo}">
-					   					${restaurant.restaurantName}
-					   					<%-- ${restaurant.restaurantNo} --%>
-					   				</a><br>
-					   		레벨 : ${restaurant.restaurantLevel}
+			   		<a href="${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo=${restaurant.restaurantNo}">
+						  <img src="img/restaurantImage/${param.category}/${param.categoryDetail}/캡처1.PNG"/>
+					  </a><br>
+				   		이름 : <a href="${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo=${restaurant.restaurantNo}">
+				   					${restaurant.restaurantName}
+				   					<%-- ${restaurant.restaurantNo} --%>
+				   				</a><br>
+				   		레벨 : ${restaurant.restaurantLevel}
 			    </td>
 				<td>
 					<img src="img/초밥1.jpeg" />
@@ -183,6 +188,6 @@
 
 
 
- <jsp:include page="common/footer.jsp"/>
+ <jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
