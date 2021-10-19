@@ -60,6 +60,11 @@ public class StoryDAOImpl implements StoryDAO {
 			
 			List<String> storyImgList = storyDTO.getStoryImgList();
 			
+			//이미지 리스트에 이미지가 있는경우
+			if(storyImgList.size() >= 1) {
+				int imgResult = insertStoryImg(storyImgList, con);
+			}
+			
 			con.commit();
 		}finally {
 			DbUtil.dbClose(ps, con);
@@ -67,33 +72,6 @@ public class StoryDAOImpl implements StoryDAO {
 		
 		return result;
 	}
-
-//	public int insertStoryDetails(List<StoryDetailsDTO> storyDetailsDTOList, Connection con) throws SQLException {
-//		PreparedStatement ps=null;
-//		int result=0;
-//		String sql = proFile.getProperty("userStoryDetails.insert");
-////		userStoryDetails.insert=insert into story_details(STORY_DETAILS_SEQ.NEXTVAL, ?, STORY_SEQ.CURRVAL, ?)
-//		
-//		try {
-//			ps = con.prepareStatement(sql);
-//			
-//			for(StoryDetailsDTO storyDetailsDTO: storyDetailsDTOList) {
-//				ps.setInt(1, storyDetailsDTO.getRestaurantNo());
-//				ps.setString(2, storyDetailsDTO.getStoryContent());
-//				
-//				result = ps.executeUpdate();
-//				
-//				if(result == 0) {
-//					throw new SQLException("스토리 상세 삽입에 실패했습니다.");
-//				}
-//			}
-//			
-//		}finally {
-//			DbUtil.dbClose(ps, null);
-//		}
-//		
-//		return result;
-//	}
 
 	public int insertStoryImg(List<String> storyImgList, Connection con) throws SQLException {
 		PreparedStatement ps=null;

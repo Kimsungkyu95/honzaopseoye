@@ -31,7 +31,7 @@ public class StoryServiceImpl implements StoryService {
 	}
 
 	@Override
-	public void insertStoryImg(StoryImgDTO storyImageDTO) throws SQLException {
+	public void insertStoryImg(StoryImgDTO storyImgDTO) throws SQLException {
 		
 	}
 
