@@ -42,9 +42,9 @@
 			<div class="form-group">
 				<div id="photoAdd" class="shadow-lg">
 				<input type="file" name="storyPhoto" multiple>
-				<input type="text" name="restaurantTitle" class="form-control mt-4 mb-2"
+				<input type="text" name="restaurantName" class="form-control mt-4 mb-2"
 				placeholder="맛집 이름을 입력해주세요." required>
-				<textarea class="form-control" rows="10" name="bdContent"
+				<textarea class="form-control" rows="10" name="storyContent"
 					placeholder="내용을 입력해주세요." required></textarea>
 				</div>
 			</div>

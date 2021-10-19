@@ -26,8 +26,8 @@ public class StoryServiceImpl implements StoryService {
 
 	@Override
 	public void insertStory(StoryDTO storyDTO) throws SQLException {
-		 if(storyDAO.insertStory(storyDTO) == 0 )
-			  throw new SQLException("등록되지 않았습니다.");
+		if(storyDAO.insertStory(storyDTO) == 0 )
+			  throw new SQLException("스토리가 등록되지 않았습니다.");
 	}
 
 	@Override

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import dto.MenuDTO;
 import dto.StoryDTO;
 import dto.StoryImgDTO;
 import util.DbUtil;
@@ -45,7 +44,7 @@ public class StoryDAOImpl implements StoryDAO {
 		PreparedStatement ps=null;
 		int result=0;
 		String sql = proFile.getProperty("userStory.insert");
-//		userStory.insert=insert into story values(STORY_SEQ.NEXTVAL, ?, ?, SYSDATE, 0, ?)
+//		userStory.insert=insert into story values(STORY_SEQ.NEXTVAL,?,?,?,?,SYSDATE,0,?)
 		
 		try {
 			con = DbUtil.getConnection();
@@ -54,7 +53,9 @@ public class StoryDAOImpl implements StoryDAO {
 			
 			ps.setInt(1, storyDTO.getMemberNo());
 			ps.setString(2, storyDTO.getStoryTitle());
-			ps.setString(3, storyDTO.getStoryPassword());
+			ps.setString(3, storyDTO.getRestaurantName());
+			ps.setString(4, storyDTO.getStoryContent());
+			ps.setString(5, storyDTO.getStoryPassword());
 			
 			result = ps.executeUpdate();
 			
@@ -122,16 +123,13 @@ public class StoryDAOImpl implements StoryDAO {
 		return result;
 	}
 
-	@Override
-	public int updateStoryImg(StoryImgDTO storyImageDTO) throws SQLException {
-		Connection con=null;
+	public int updateStoryImg(StoryImgDTO storyImageDTO, Connection con) throws SQLException {
 		PreparedStatement ps=null;
 		int result=0;
 		String sql = proFile.getProperty("userStoryImg.update");
 //		userStoryImg.update=update story_img set story_img=? where story_img_no=?
 		
 		try {
-			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			
 			ps.setString(1, storyImageDTO.getStoryImg());
@@ -139,7 +137,7 @@ public class StoryDAOImpl implements StoryDAO {
 			
 			result = ps.executeUpdate();
 		}finally {
-			DbUtil.dbClose(ps, con);
+			DbUtil.dbClose(ps, null);
 		}
 		
 		return result;

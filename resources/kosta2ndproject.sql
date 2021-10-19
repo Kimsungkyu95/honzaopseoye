@@ -106,25 +106,19 @@ review_regdate date DEFAULT SYSDATE
 -->스토리
 create table story(
 story_no number not null primary key,
-member_no number not null references member(member_no) on delete cascade,
+member_no number not null references member(member_no),
 story_title VARCHAR2(100) not null,
+restaurant_name varchar2(100) not null,
+story_content varchar2(1000),
 story_regdate date DEFAULT SYSDATE,
 story_visited number not null,
-story_password varchar2(20) 
-);
-
--->스토리상세
-create table story_details(
-story_details_no number not null primary key,
-restaurant_no number not null references restaurant(restaurant_no) on delete cascade,
-story_no number not null references story(story_no) on delete cascade,
-story_content varchar2(1000) not null
+story_password varchar(20) not null
 );
 
 -->스토리이미지
 create table story_img(
 story_img_no number not null primary key,
-story_details_no number not null references story_details(story_details_no) on delete cascade,
+story_no number not null references story(story_no),
 story_img varchar2(100) not null 
 );
 
@@ -168,7 +162,6 @@ CREATE TABLE menu(
 CREATE SEQUENCE MEMBER_SEQ NOCACHE;
 CREATE SEQUENCE REVIEW_SEQ NOCACHE;
 CREATE SEQUENCE STORY_SEQ NOCACHE;
-CREATE SEQUENCE STORY_DETAILS_SEQ NOCACHE;
 CREATE SEQUENCE STORY_IMG_SEQ NOCACHE;
 
 CREATE SEQUENCE LEVELUP_EXP_SEQ NOCACHE;

@@ -51,7 +51,9 @@
               <p class="card-text">간단한 스토리 소개 내용</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">스토리 보러 »</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">
+                  <a href="${pageContext.request.contextPath}/userStory/userStoryDetails.jsp" style="color: gray;">
+                  스토리 보러 »</a></button>
                 </div>
                 <small class="text-muted">조회수</small>
               </div>

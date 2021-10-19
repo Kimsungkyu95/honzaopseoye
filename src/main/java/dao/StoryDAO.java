@@ -37,11 +37,6 @@ public interface StoryDAO {
 	  int updateStory(StoryDTO storyDTO) throws SQLException;
 	   
 	  /**
-	   * 스토리 이미지 레코드 수정
-	   */
-	  int updateStoryImg(StoryImgDTO storyImageDTO) throws SQLException;
-	  
-	  /**
 	   * 스토리 삭제
 	   */
 	  int delete(String storyNo, String password) throws SQLException;

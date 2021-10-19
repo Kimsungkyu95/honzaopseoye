@@ -53,6 +53,7 @@
 			<input type=password name="password"
 				placeholder="비밀번호를 입력해주세요." required>
 			<button type="submit" class="btn btn-secondary mb-3">수정</button>
+			<button type="submit" class="btn btn-secondary mb-3">삭제</button>
 		</form>
 	</main>
 	<hr>

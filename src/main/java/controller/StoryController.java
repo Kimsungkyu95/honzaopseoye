@@ -13,13 +13,11 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import controller.ModelAndView;
-import dto.RestaurantDTO;
 import dto.StoryDTO;
 import service.StoryService;
 import service.StoryServiceImpl;
 
 public class StoryController implements Controller {
-	
 	private StoryService storyService = new StoryServiceImpl();
 
 	@Override
@@ -57,12 +55,11 @@ public class StoryController implements Controller {
 	 */
 	public ModelAndView insert(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-	        String saveDir=request.getServletContext().getRealPath("/img/storySave") + "/" + request.getParameter("storyTitle");
-			
+	       String saveDir=request.getServletContext().getRealPath("/img/storySave") + "/" + request.getParameter("storyTitle");
 	       int maxSize = 1024*1024*100; 
 			String encoding="UTF-8";
-			
 			File folder = new File(saveDir);
+			
 			if(!folder.exists()) {
 				try {
 					folder.mkdir();
@@ -73,11 +70,9 @@ public class StoryController implements Controller {
 				
 			MultipartRequest m = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
 			
-			String storyTitlePhoto =  m.getParameter("storyTitlePhoto");
 			String storyTitle =  m.getParameter("storyTitle");
-			String storyPhoto =  m.getParameter("storyPhoto");
-			String restaurantTitle =  m.getParameter("restaurantTitle");
-			String storyPhotoContent = m.getParameter("storyphotoContent");
+			String restaurantName =  m.getParameter("restaurantName");
+			String storyContent = m.getParameter("storyContent");
 			String password =  m.getParameter("password");
 			
 			//업로드한 맛집이름 디렉토리에 있는 이미지 이름 모두 가져오기
@@ -87,12 +82,12 @@ public class StoryController implements Controller {
 	        	 File files [] = dir.listFiles();
 	        	 for(int i = 0; i < files.length; i++) {
 	        		 String fileName = files[i].toString();
-	        		 storyImgList.add(fileName.substring(fileName.lastIndexOf("/")+1));
+	        		 storyImgList.add(fileName.substring(fileName.lastIndexOf("\\")+1));
 	        	 }
 	        }
 	        
-//	        StoryDTO storyDTO = new StoryDTO(storyTitle, story, restaurantAddr, restaurantRoadAddr, gu, dong, restaurantLongitude, restaurantLatitude, hashTagName, menuList, imgList);
-//	        adminRestaurantService.insert(restaurantDTO, categoryDetailsName);
+	        StoryDTO storyDTO = new StoryDTO(storyTitle, restaurantName, storyContent, password, storyImgList);
+	        storyService.insertStory(storyDTO);
 			
 			return new ModelAndView("front", true);
 	}

@@ -35,6 +35,7 @@
 			2021-10-15 | <img src="../img/eyeicon.png" style="width: 20px; height: 20px;">
 			<span>조회수</span><p>
 			<p><hr>
+			<button type="submit" class="btn btn-secondary mb-3"><a href="${pageContext.request.contextPath}/userStory/userStoryUpdate.jsp" style="color: white;">수정</a></button>
         </div>
       </div>
     </div>
