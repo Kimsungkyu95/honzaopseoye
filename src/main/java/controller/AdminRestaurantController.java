@@ -110,9 +110,28 @@ public class AdminRestaurantController implements Controller {
 	}
 	
 	
-	public ModelAndView Select(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	public ModelAndView pagingSelect(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, SQLException {
+		
+		String pageNo = request.getParameter("pageNo");
+		if(pageNo == null || pageNo.equals("")) {
+			pageNo = "1";
+		}
+		String selectKey = request.getParameter("selectKey");
+		if(selectKey == null || selectKey.equals("")) {
+			selectKey = "restaurantName";
+		}
+		String selectValue = request.getParameter("selectValue");
+		if(selectValue == null || selectValue.equals("")) {
+			selectValue = "";
+		}
+		
+		List<RestaurantDTO> restaurantList = adminRestaurantService.pagingSelect(Integer.parseInt(pageNo), selectKey, selectValue);
+		
+		request.setAttribute("pageNo", pageNo);
+		request.setAttribute("restaurantList", restaurantList);
+		
+		
 		return null;
 	}
 

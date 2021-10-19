@@ -1,6 +1,7 @@
 package service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import dao.AdminRestaurantDAO;
 import dao.AdminRestaurantDAOImpl;
@@ -9,6 +10,7 @@ import dto.RestaurantDTO;
 public class AdminRestaurantServiceImpl implements AdminRestaurantService {
 	
 	private AdminRestaurantDAO adminRestaurantDAO = new AdminRestaurantDAOImpl();
+	
 	@Override
 	public void insert(RestaurantDTO restaurantDTO, String categoryDetailsName) throws SQLException{
 		// 카테고리 알아오기
@@ -24,6 +26,12 @@ public class AdminRestaurantServiceImpl implements AdminRestaurantService {
 		}
 		
 
+	}
+	@Override
+	public List<RestaurantDTO> pagingSelect(int pageNo, String selectKey, String selectValue) throws SQLException {
+		List<RestaurantDTO> restaurantList = adminRestaurantDAO.pagingSelect(pageNo, selectKey, selectValue);
+		
+		return restaurantList;
 	}
 
 }

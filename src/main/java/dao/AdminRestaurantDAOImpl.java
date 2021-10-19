@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -182,6 +183,78 @@ public class AdminRestaurantDAOImpl implements AdminRestaurantDAO {
 		}
 		
 		return result;
+	}
+
+	
+	public int getTotalCount(String selectKey, String selectValue) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int result = 0;
+		String sql = "";
+		switch (selectKey) {
+		case "restaurantName":
+			sql = proFile.getProperty("adminRestaurant.restaurantNameTotalCount");
+			break;
+		case "categoryName":
+			sql = proFile.getProperty("adminRestaurant.categoryNameTotalCount");
+			break;
+		default: //레스토랑 주소일경우
+			sql = proFile.getProperty("adminRestaurant.restaurantAddrTotalCount");
+			break;
+		}		
+		
+		try {
+			conn = DbUtil.getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, selectValue);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+		}finally {
+			DbUtil.dbClose(rs, ps, conn);
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public List<RestaurantDTO> pagingSelect(int pageNo, String selectKey, String selectValue) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<RestaurantDTO> restaurantList = new ArrayList<RestaurantDTO>();
+		
+		String sql = "";
+		switch (selectKey) {
+		case "restaurantName":
+			sql = proFile.getProperty("adminRestaurant.pagingSelectbyRestaurantName");
+			break;
+		case "categoryName":
+			sql = proFile.getProperty("adminRestaurant.pagingSelectbyCategoryName");
+			break;
+		default: //레스토랑 주소일 경우
+			sql = proFile.getProperty("adminRestaurant.pagingSelectbyRestaurantAddr");
+			break;
+		}
+		
+		try {
+			conn = DbUtil.getConnection();
+			ps = conn.prepareStatement(sql);		
+			int totalCount = getTotalCount(selectKey, selectValue);
+			
+			
+		}finally {
+			DbUtil.dbClose(rs, ps, conn);
+		}
+		
+		
+		
+		
+		
+		return restaurantList;
 	}
 
 }

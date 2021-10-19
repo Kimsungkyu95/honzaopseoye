@@ -11,105 +11,18 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <!-- jqGrid -->
-
-    <link rel="stylesheet" href="../jqGrid/css/jquery-ui.css">
-    <link rel="stylesheet" href="../jqGrid/css/ui.jqgrid.css">
-
-    <script src="../jqGrid/js/jquery-1.7.2.min.js"></script>
-    <script src="../jqGrid/js/i18n/grid.locale-kr.js"></script>
-    <script src="../jqGrid/js/jquery.jqGrid.min.js"></script>
-    <script src="../jqGrid/js/grid.common.js"></script>
-    <script src="../jqGrid/js/grid.formedit.js"></script>
-    <script src="../jqGrid/js/jqDnR.js"></script>
-    <script src="../jqGrid/js/jqModal.js"></script>
-
     <title>Hello, world!</title>
     <style>
-        #grid-container {
-            display: flex;
-            justify-content: center;
-        }
-
-        form {
-            display: flex;
-            justify-content: center;
-        }
         th, td {
             text-align: center;
             vertical-align: middle;
         }
+        form {
+            display: flex;
+            justify-content: center;
+        }
 
     </style>
-    <script>
-    
-        $(function(){
-        	function selectAll(){
-        		$.ajax({
-     				url: "${pageContext.request.contextPath}/adminRestaurantList", //서버요청주소
-     				type: "post", //method방식(get, post, put, delete)
-     				dataType: "json", //서버가 응답해주는 데이터의 type(text, html, xml, json)
-     				//data: //서버에게 보낼 parameter정보
-     				success: function(result){
-     					console.log(result);
-     					$('#jqGrid').jqGrid({
-     		                width: 1200,
-     		                datatype: "local",
-     		                data: result,
-     		                colNames:['맛집번호','맛집이름', '전화번호', '주소', '대카테고리', '소카테고리', '등록일', '조회수'],
-     		                colModel:[
-     		                    {name:'restaurantNo', width:60}, //name은 서버로부터 넘어오는 데이터 명이다.
-     		                    {name:'restaurantName', width:90},
-     		                    {name:'phone', width:100},
-     		                    {name:'restaurantAddr', width:80},
-     		                    {name:'category', width:150, align:"right"},
-     		                    {name:'categoryDetails', width:80, align:"right"},
-     		                    {name:'regDate', width:80, align:"right"},
-     		                    {name:'visited', width:80, align:"right"}
-     		                ],
-     		                rowNum: 5,
-     		                pager: '#jqGridPager',
-     		                caption: "맛집 목록 테이블",
-     		                jsonReader : {
-     		                	repeatitems : false,
-     		                }
-     		            }) //jqGrid끝 
-     		            $('#jqGrid').jqGrid('navGrid', '#jqGridPager',{
-     		            	edit : true,
-     		            	add : true,
-     		            	del : true,
-     		            	search : true
-     		            })
-     					
-     				}, //성공했을 때 callback함수
-     				error: function(err){
-     					alert(err + "발생했어요.");
-     				} //실패했을 때 callback함수
-     			}); //ajax 끝
-        	}
-        	
-        	$('#printjqGrid').click(selectAll);
-	        
-        	//행선택시
-        	$('#selectRow').click(function(){
-        		var selRowId = $('#jqGrid').jqGrid('getGridParam', 'selrow');
-        		var selRowData = $('#jqGrid').jqGrid('getRowData', selRowId);
-        		console.log(selRowId);
-        		console.log(selRowData);
-        	})
-        	
-        	/* for(var i=0; i<selRowIdsLength; i ++) {
-    $('#grid3').jqGrid('delRowData', selRowIds[0])
-  }*/
-        	
-        	
-        	$('#deleteRow').click(function(){
-        		var selRowId = $('#jqGrid').jqGrid('getGridParam', 'selrow');
-        		$('#jqGrid').jqGrid('delRowData', selRowId);
-        	})
-        })
-        
-    </script>
 </head>
 
 <body>
@@ -141,14 +54,15 @@
             </div>
         </div>
     </nav>
+
     <div class="container mt-5 shadow-lg">
         <form class="row g-3 rounded p-2">
             <div class="col-auto">  
                 <select class="form-select col-auto" aria-label="Default select example">
                     <option selected>검색옵션</option>
-                    <option value="restaurantName">맛집이름</option>
-                    <option value="categoryDetailsName">카테고리명</option>
-                    <option value="restaurantAddr">주소</option>
+                    <option value="1">맛집이름</option>
+                    <option value="2">주소</option>
+                    <option value="2">카테고리</option>
                 </select>
             </div>
             <div class="col-auto">
@@ -161,14 +75,104 @@
         </form>
     </div>
 
-    <div class="container mt-5 p-5" id="grid-container">
-        <table id="jqGrid"></table>
-        <div id="jqGridPager"></div>
+    <div class="container bg-light pt-4 pb-3 px-5 mt-4 rounded shadow-lg">
+        <h2>맛집 목록</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">맛집이름</th>
+                    <th scope="col">전화번호</th>
+                    <th scope="col">카테고리</th>
+                    <th scope="col">상세카테고리</th>
+                    <th scope="col">주소</th>
+                    <th scope="col">등록일</th>
+                    <th scope="col">조회수</th>
+                    <th scope="col">삭제</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>602디저트</td>
+                    <td>02-419-1511</td>
+                    <td>일식</td>
+                    <td>돈까스</td>                    
+                    <td>서울 강남구 일원동 677-11</td>
+                    <td>2021-10-15</td>
+                    <td>5</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm">삭제</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>요리하는남자</td>
+                    <td>02-419-1511</td>
+                    <td>한식</td>
+                    <td>냉면</td>
+                    <td>서울 송파구 잠실동 180-9</td>
+                    <td>2021-10-12</td>
+                    <td>3</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm">삭제</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>602디저트</td>
+                    <td></td>
+                    <td>일식</td>
+                    <td>돈까스</td>
+                    <td>서울 강남구 일원동 677-11</td>
+                    <td>2021-10-15</td>
+                    <td>5</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm">삭제</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td>요리하는남자</td>
+                    <td>02-419-1511</td>
+                    <td>한식</td>
+                    <td>냉면</td>
+                    <td>서울 송파구 잠실동 180-9</td>
+                    <td>2021-10-12</td>
+                    <td>3</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm">삭제</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">5</th>
+                    <td>602디저트</td>
+                    <td></td>
+                    <td>한식</td>
+                    <td>냉면</td>
+                    <td>서울 강남구 일원동 677-11</td>
+                    <td>2021-10-15</td>
+                    <td>5</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm">삭제</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
     </div>
-    
-    <button id="printjqGrid">jqGrid 출력</button>
-	<button id="selectRow">행 선택</button>
-	<button id="deleteRow">행 삭제</button>
+    <nav aria-label="Page navigation example" class="mt-4">
+        <ul class="pagination" style="justify-content: center;">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
+    <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
