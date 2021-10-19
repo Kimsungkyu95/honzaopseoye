@@ -14,19 +14,19 @@ import dao.RecommendDAO;
 import dao.RecommendDAOImpl;
 import dto.RecommendDTO;
 
-@WebServlet("/recByLevel")
-public class RecByLevelServlet extends HttpServlet {
+@WebServlet("/recByTag")
+public class RecByTagServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String levelNo=request.getParameter("level");
+		String tagNo=request.getParameter("tag");
 		
 		RecommendDAO dao = new RecommendDAOImpl();
-		List<RecommendDTO> list = dao.recByLevel(Integer.parseInt(levelNo));
+		List<RecommendDTO> list = dao.recByLevel((Integer.parseInt(tagNo)+1));
 		
 		PrintWriter out = response.getWriter();
 		out.print(list);
+	}
 
-     }
-	
 }

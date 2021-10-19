@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+ 
   
 <!DOCTYPE html>
 <html lang="ko">
@@ -24,18 +27,88 @@
 	#buttons{align-content: center}
 	a{text-decoration:none;color:gray;}
 </style>
-    
-    
+<script language=javascript>
+$(function(){
+	
+	 function selectAll(){
+		  $.ajax({
+				//속성 : 값 (속성의 순서를 상관없다),
+				url: "../adminStorySelectAll", //back단의 서버요청주소
+				type: "post", //method방식(get,post,put,delete)
+				dataType: "json", //서버가 응답해주는 데이터의 type(text, html, xml, json)
+				//data: {keyWord: $(this).val()}, //서버에게 보낼 parameter정보
+				success: function(result){
+					//결과를 테이블에 넣는다.
+					let str="";
+                   $.each(result, function(index, item){
+                   	//alert(item.name);
+                   	str+="<tr>";
+                   	str+="<td>"+(index+1)+"</td>";
+                   	str+="<td><a href='#'>"+item.id+"</a></td>";
+                   	str+=`<td>${item.name}</td>`;
+                   	str+=`<td>${item.age}</td>`;
+                   	str+=`<td>${item.tel}</td>`;
+                   	str+=`<td>${item.addr}</td>`;
+                   	str+=`<td><input type="button" value='삭제' id='${item.id}'></td>`;
+                   	str+="</tr>";
+                   });
+                    
+                 //div영역에 표시
+                   //계속 클릭하면 계속 추가가 된다.
+   				$("#listTable tr:gt(0)").remove();
+   				$("#listTable tr:eq(0)").after(str);  //공백은 하위요소
+   				//append,prepend 뒤에 추가, 앞에 추가 
+   				//before, after 앞에 추가, 뒤에 추가
+   				
+   				$("a").css("textDecoration","none");
+                   
+				}, //성공했을때 callback함수(되돌아와서 해야될 기능들)
+				error: function(err){ 
+					alert(err+"발생했어요.");
+				}//실패했을때 함수
+			});
+	   }
+	
+	
+	
+	$(document).on("click", "[value='삭제']", function(){
+		 //alert($(this).attr("id"));
+		 if(confirm("정말 삭제하실래요?")){
+	
+		  $.ajax({
+					//속성 : 값 (속성의 순서를 상관없다),
+					url: "../adminStoryDelete", //back단의 서버요청주소
+					type: "post", //method방식(get,post,put,delete)
+					dataType: "text", //서버가 응답해주는 데이터의 type(text, html, xml, json)
+					data: {storyNo:$(this).attr("id")}, //form을 한 번에 전송해주는 serialize()
+					success: function(result){
+						if(result==0){
+							alert("실패하였습니다."); //등록, 수정일수도 있기때문에
+						}else{
+							selectAll();
+						}
+					}, //성공했을때 callback함수(되돌아와서 해야될 기능들)
+					error: function(err){ 
+						alert("에러가 발생했어요.");
+					}//실패했을때 함수
+				});//ajax의 끝
+		 }
+	 });
+	
+}
+</script>    
+
+
   </head>
   <body>
  <br>
 <div><h2><b style="font-style:italic; margin:30px;">스토리 목록</b>
         <a href="#" style="float:right;margin-right:200px;text-decoration:none;color:gray;font-style:italic;">메인으로</a>
         </h2>
-<hr>
+
 <form>
-<div class="table-responsive">
-        <table class="table table-hover">
+<div class="table-responsive" >
+        <table class="table table-hover" style="margin-left: auto; margin-right: auto;">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -46,82 +119,63 @@
               <th scope="col">스토리관리</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>2</td>
-              <td><a href="">문득 일본라멘이 땡겨서</a></td>
-              <td>2021-10-14</td>
-              <td>13</td>
-              <td><input type="button" id="delete" value="삭제"></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>3</td>
-              <td><a href="">나 혼자 산다 - 고기구워먹기</a></td>
-              <td>2021-10-14</td>
-              <td>13</td>
-              <td><input type="button" id="delete" value="삭제"></td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>1</td>
-              <td><a href="">비싸지 않고 분위기 좋은 혼밥식당</a></td>
-              <td>2021-10-14</td>
-              <td>1</td>
-              <td><input type="button" id="delete" value="삭제"></td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>4</td>
-              <td><a href="">치킨집의 혁명</a></td>
-              <td>2021-10-14</td>
-              <td>15</td>
-              <td><input type="button" id="delete" value="삭제"></td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>5</td>
-              <td><a href="">오늘도 혼자서 냉면을 먹는다</a></td>
-              <td>2021-10-14</td>
-              <td>100</td>
-              <td><input type="button" id="delete" value="삭제"></td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>7</td>
-              <td><a href="">냉면로드</a></td>
-              <td>2021-10-14</td>
-              <td>90</td>
-              <td><input type="button" id="delete" value="삭제"></td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>6</td>
-              <td><a href="">누들로드</a></td>
-              <td>2021-10-14</td>
-              <td>5</td>
-              <td><input type="button" id="delete" value="삭제"></td>
-            </tr>
-           
-          </tbody>
-        </table>
-      </div>
-      
-      <div id="buttons" style="float:right; margin-right:100px">
-         <input type="text" value="" id="search">
-         <input type="button" value="검색">
-         
-      </div>
-      
-      
-   </form>
+          <tbody>  
+          
+   <c:choose>
+    <c:when test="${empty requestScope.list}">
+	   <tr>
+        <td colspan="5">
+            <p align="center"><b><span style="font-size:9pt;">등록된 스토리가 없습니다.</span></b></p>
+        </td>
+    </tr>
+    </c:when>
+    <c:otherwise>
+	<c:forEach items="${requestScope.list}" var="storyDto">
+		    <tr>
+		        <td>
+		            <p align="center"><span style="font-size:9pt;">
+		            #${storyDto.storyNo}</span></p>
+		        </td>
+		        <td>
+					<p><span style="font-size:9pt;">
+					  ${storyDto.memberNo}
+					</span></p>
+		        </td>
+		        
+		        <td>
+		            <p align="center"><span style="font-size:9pt;">
+		            <fmt:formatNumber value="${storyDto.storyTitle}"/></span></p>
+		        </td>
+		        <td>
+		            <p align="center"><span style="font-size:9pt;">
+		            ${storyDto.storyRegdate}</span></p>
+		        </td>
+		         
+		         <td>
+		            <p align="center"><span style="font-size:9pt;">
+		            <fmt:formatNumber value="${storyDto.storyVisited}"/>회</span></p>
+		        </td>
+		        <td>
+		            <p align="center"><span style="font-size:9pt;">
+		           
+		            <input type="button" id="delete" value="삭제"></span></p>
+		        </td>
+		    </tr>
+    </c:forEach>
+	</c:otherwise>
+    </c:choose>
+    </tbody>
+</table>
+
+<div align=center>
+	<div id="buttons" style="float:center; margin-right:100px">
+	         <input type="text" value="" id="search">
+	         <input type="button" value="검색">
+	<span style="font-size:9pt;">&lt;<a href="${path}/front">메인으로 돌아가기</a>&gt;</span></div>
+</div>
 
 
-
-
-
-
+          
 
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

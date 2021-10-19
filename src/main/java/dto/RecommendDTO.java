@@ -17,7 +17,13 @@ public class RecommendDTO {
 		this.gu = gu;
 		this.menuName = menuName;
 	}
+	public RecommendDTO(String restaurantImg, String restaurantName, int reviewScore, String gu) {
 	
+		this.restaurantImg = restaurantImg;
+		this.restaurantName = restaurantName;
+		this.reviewScore = reviewScore;
+		this.gu = gu;
+	}
 	public String getRestaurantImg() {
 		return restaurantImg;
 	}

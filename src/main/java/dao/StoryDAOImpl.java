@@ -189,8 +189,53 @@ public class StoryDAOImpl implements StoryDAO {
 	}
 
 	@Override
-	public List<StoryDTO> selectAll() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<StoryDTO> selectAll() {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null; 
+		List<StoryDTO> list = new ArrayList<StoryDTO>();
+		String sql = "";
+		try {
+			con = DbUtil.getConnection();
+			ps=con.prepareStatement(sql);
+
+			rs=ps.executeQuery();
+			while(rs.next()) { 
+				StoryDTO storylist=new StoryDTO(rs.getInt(1), rs.getInt(2), 
+						rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),
+						rs.getInt(7),rs.getString(8));
+				list.add(storylist);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();	
+		}finally {
+			DbUtil.dbClose(rs, ps, con);
+			
+		}
+		
+		return list;
+	}
+	
+	@Override
+	public int deleteByStoryNo(int storyNo){
+		Connection con=null;
+		PreparedStatement ps=null;
+		int result=0;
+		String sql = "";
+		
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, storyNo);
+			result = ps.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DbUtil.dbClose(ps, con);
+		}
+		
+		return result;
 	}
 }

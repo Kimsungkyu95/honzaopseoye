@@ -29,15 +29,19 @@ public class StoryDTO {
 		this.storyPassword = storyPassword;
 		this.storyImgList = storyImgList;
 	}
-
-	public StoryDTO(String storyTitle, String restaurantName, String storyContent, String storyPassword,
-			List<String> storyImgList) {
+	
+	public StoryDTO(int storyNo, int memberNo, String storyTitle, String restaurantName, String storyContent,
+			String storyRegdate, int storyVisited, String storyPassword) {
 		super();
+		this.storyNo = storyNo;
+		this.memberNo = memberNo;
 		this.storyTitle = storyTitle;
 		this.restaurantName = restaurantName;
 		this.storyContent = storyContent;
+		this.storyRegdate = storyRegdate;
+		this.storyVisited = storyVisited;
 		this.storyPassword = storyPassword;
-		this.storyImgList = storyImgList;
+		
 	}
 
 	public int getStoryNo() {

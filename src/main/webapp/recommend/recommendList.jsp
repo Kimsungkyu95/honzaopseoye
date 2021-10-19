@@ -74,16 +74,23 @@
 		      $("#display1").html(str);
 			  $("#display2").html(levelBar);
 			  
-			  //해당 레벨을 클릭했을때 아래 레벨에 해당하는 추천목록 띄우기
-			  
-				 $("button").click(function(){
-					 for(let i=1;i<=7;i++){
-						if($(this).val()==i){
-						   	alert(i);
-						   	
-						}//if
-				      }//for
-				 });
+			  //해당 레벨을 클릭했을때 아래 레벨에 해당하는 추천목록 띄우기  
+			  $("button").click(function(){
+				  $.ajax({
+						url: "../recByLevel", //back단의 서버요청주소
+						type: "post", //method방식(get,post,put,delete)
+						dataType: "json", //서버가 응답해주는 데이터의 type(text, html, xml, json)
+						data: {level:$(this).val()}, //서버에게 보낼 parameter정보
+						success: function(result){
+							alert(result);
+		                    
+						}, //성공했을때 callback함수(되돌아와서 해야될 기능들)
+						error: function(err){ 
+							alert("에러가 발생했어요.");
+						}//실패했을때 함수
+		            });
+						   
+				});
 
 			  
 		  }else if(param =="태그별 추천"){
@@ -92,8 +99,9 @@
 			  $.each(tags, function(index, item){			  
 			 	  tagList+='<button type="button" value="'+index+'" class="btn btn-outline-secondary">#';
 				  tagList+=item+'</button> '; 
-			 	  if((index+1)%9==0)
+			 	  if((index+1)%9==0){
 				  	  tagList+='<p><p>&nbsp;&nbsp;&nbsp;';
+			 	  }
 	          });
 			
 			  
@@ -101,13 +109,27 @@
 			  $("#display3").html(tagList);
 			  
 			//해당 태그를 클릭했을때 태그에 해당하는 추천목록 아래에 띄우기
-				for(let i=0;i<=tags.length;i++){
+		
+			  for(let i=0;i<=tags.length;i++){
 				     $("button").click(function(){
 						if($(this).val() == i){
-						    alert(i+1);
+							 $.ajax({
+									url: "../recByTag", //back단의 서버요청주소
+									type: "post", //method방식(get,post,put,delete)
+									dataType: "json", //서버가 응답해주는 데이터의 type(text, html, xml, json)
+									data: {level:$(this).val()}, //서버에게 보낼 parameter정보
+									success: function(result){
+										alert(result);
+					                    
+									}, //성공했을때 callback함수(되돌아와서 해야될 기능들)
+									error: function(err){ 
+										alert("에러가 발생했어요.");
+									}//실패했을때 함수
+					            });
 					    }
 					 });
 				  }
+			  
 
 			
 			
@@ -116,6 +138,20 @@
 			  $("#display1").html(str);
 			  if(param == "많이 검색된 맛집"){
 			      $("#display4").html(comment);
+			      
+			      $.ajax({
+						url: "../recByVisited", 
+						type: "post", //method방식(get,post,put,delete)
+						dataType: "json", //서버가 응답해주는 데이터의 type(text, html, xml, json)
+						success: function(result){
+							alert(result);
+		                    
+						}, //성공했을때 callback함수(되돌아와서 해야될 기능들)
+						error: function(err){ 
+							alert("에러가 발생했어요.");
+						}//실패했을때 함수
+		            });
+			      
 			  }
 		  }
 	 });//change끝
@@ -123,14 +159,13 @@
 	//추천 페이지 첫 화면 맛집 리스트
 	  function recByScore(){
 		  $.ajax({
-				url: "../recByScore", //back단의 서버요청주소
-				type: "post", //method방식(get,post,put,delete)
+				url: "../recByScore",
+				type: "post", //(get,post,put,delete)
 				dataType: "json", //서버가 응답해주는 데이터의 type(text, html, xml, json)
-				//data: {keyWord: $(this).val()}, //서버에게 보낼 parameter정보
 				success: function(result){
 					//alert(result);
-					//결과를 테이블에 넣는다.
-					let str="<tr>";
+					let str="";
+					str="<tr><table>";
                     $.each(result, function(index, item){
                     	//alert(item.menuName);
 						if((index+1)%4==0){
@@ -139,61 +174,21 @@
                     	str+="<td><a href='#'>"+item.restaurantImg+"</a><br>"+item.restaurantName+", "+item.reviewScore+"<br>"+item.gu+"-"+item.menuName+"</td>";              
                     
                     });
-					str+="</tr>";
+					str+="</tr></table>";
 					
-                     
-                  //div영역에 표시
-                    //계속 클릭하면 계속 추가가 된다.
-    				//$("#table").remove();
-    				$("#table").html(str);  //공백은 하위요소
-    				//append,prepend 뒤에 추가, 앞에 추가 
-    				//before, after 앞에 추가, 뒤에 추가
-                    
-				}, //성공했을때 callback함수(되돌아와서 해야될 기능들)
-				error: function(err){ 
-					alert("에러가 발생했어요.");
-				}//실패했을때 함수
-        });
-      }
-	 
-	 
-	 //레벨별 추천 결과 띄우기
-	  function recByLevel(){
-		  $.ajax({
-				url: "../recByLevel", //back단의 서버요청주소
-				type: "post", //method방식(get,post,put,delete)
-				dataType: "json", //서버가 응답해주는 데이터의 type(text, html, xml, json)
-				data: {level: $(this).val()}, //서버에게 보낼 parameter정보
-				success: function(result){
-					//alert(result);
-					//결과를 테이블에 넣는다.
-					let str="<tr>";
-                    $.each(result, function(index, item){
-                    	//alert(item.menuName);
-						if((index+1)%4==0){
-							str+="</tr><tr>";
-						}
-                    	str+="<td><a href='#'>"+item.restaurantImg+"</a><br>"+item.restaurantName+", "+item.reviewScore+"<br>"+item.gu+"-"+item.menuName+"</td>";              
-                    
-                    });
-					str+="</tr>";
-					
-                     
-                  //div영역에 표시
-                    //계속 클릭하면 계속 추가가 된다.
-    				//$("#table").remove();
-    				$("#table").html(str);  //공백은 하위요소
-    				//append,prepend 뒤에 추가, 앞에 추가 
-    				//before, after 앞에 추가, 뒤에 추가
-                    
-				}, //성공했을때 callback함수(되돌아와서 해야될 기능들)
-				error: function(err){ 
-					alert("에러가 발생했어요.");
-				}//실패했을때 함수
-        });
-      }
-	 
+                    //테이블에 정보넣기
+    				$("#table").html(str); 
 
+                    
+				}, //성공했을때 callback함수(되돌아와서 해야될 기능들)
+				error: function(err){ 
+					alert("에러가 발생했어요.");
+				}
+        });
+      }
+
+	 
+	 
    recByScore();	
 	  
 	 
@@ -233,10 +228,8 @@
 
 <div id="display5"><h4><br>&nbsp;&nbsp;후회없는 디폴트 맛집</h4></div>
  
-<div> 
-<table id="table">
+<div id="table"> 
 
-</table>
 </div>
 
 

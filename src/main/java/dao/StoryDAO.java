@@ -8,7 +8,7 @@ import dto.StoryDTO;
 import dto.StoryImgDTO;
 
 public interface StoryDAO {
-	  List<StoryDTO> selectAll() throws SQLException;
+	  List<StoryDTO> selectAll();
 	  
 	  /**
 	   * 스토리 검색
@@ -40,4 +40,8 @@ public interface StoryDAO {
 	   * 스토리 삭제
 	   */
 	  int delete(String storyNo, String password) throws SQLException;
+	  /**
+	   * 스토리번호로 삭제
+	   * */
+	  int deleteByStoryNo(int storyNo);
 }

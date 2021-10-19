@@ -11,8 +11,8 @@ public interface RecommendDAO {
 	
 	List<RecommendDTO> recByLevel(int levelNo);
 	
-	List<RecommendDTO> recByVisited() throws SQLException;
+	List<RecommendDTO> recByVisited();
 	
-	List<RecommendDTO> recByTag(int tagNo) throws SQLException;
+	List<RecommendDTO> recByTag(int tagNo);
 
 }
