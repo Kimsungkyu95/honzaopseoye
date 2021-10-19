@@ -3,6 +3,7 @@ package dao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import dto.LevelUpExpDTO;
 import dto.MemberDTO;
 
 public interface MemberDAO {
@@ -35,5 +36,5 @@ public interface MemberDAO {
 	
 	String selectPwdByIdEmail(String id, String email) throws SQLException;
 
-	int selectExpById(String id);
+	LevelUpExpDTO selectExpById(String id);
 }

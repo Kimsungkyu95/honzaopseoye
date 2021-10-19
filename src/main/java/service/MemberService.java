@@ -3,6 +3,7 @@ package service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import dto.LevelUpExpDTO;
 import dto.MemberDTO;
 
 public interface MemberService {
@@ -34,5 +35,5 @@ public interface MemberService {
 	
 	void updateMemberDetail(MemberDTO member)throws SQLException;
 	
-	int selectExpById(String membeID)throws SQLException;
+	LevelUpExpDTO selectExpById(String membeID)throws SQLException;
 }

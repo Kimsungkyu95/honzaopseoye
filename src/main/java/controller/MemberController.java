@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dto.LevelUpExpDTO;
 import dto.MemberDTO;
 import service.LevelUpExpService;
 import service.LevelUpExpServiceImpl;
@@ -236,8 +237,8 @@ public class MemberController implements Controller {
 			throws Exception {
 		String memberID = request.getParameter("memberID");
 		
-		int memberExp = service.selectExpById(memberID);
-		request.setAttribute("memberExp", memberExp);
+		LevelUpExpDTO levelExp = service.selectExpById(memberID);
+		request.setAttribute("levelExp", levelExp);
 		
 		return new ModelAndView("/myPage/myPageLevel.jsp", false);
 	}

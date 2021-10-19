@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import dto.LevelUpExpDTO;
 import dto.MemberDTO;
 import util.DbUtil;
 
@@ -553,8 +554,8 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public int selectExpById(String id) {
-		int returnValue=-1;	
+	public LevelUpExpDTO selectExpById(String id) {
+		LevelUpExpDTO returnValue = null;	
 		String sql = proFile.getProperty("member.selectExpById");
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -565,13 +566,15 @@ public class MemberDAOImpl implements MemberDAO {
 			ps=con.prepareStatement(sql);
 			
 			ps.setString(1, id);
-			
+			ps.setString(2, id);
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				int memberExp=rs.getInt(1);
-
-				returnValue = memberExp;			
+				int minExp=rs.getInt(1);
+				int maxExp=rs.getInt(2);
+				int memberLevel=rs.getInt(3);
+	
+				returnValue = new LevelUpExpDTO(memberLevel, minExp, maxExp);			
 			}
 		
 		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.

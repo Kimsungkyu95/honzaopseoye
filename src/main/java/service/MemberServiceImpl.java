@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import dao.MemberDAO;
 import dao.MemberDAOImpl;
+import dto.LevelUpExpDTO;
 import dto.MemberDTO;
 
 public class MemberServiceImpl implements MemberService {
@@ -142,13 +143,10 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int selectExpById(String membeID) throws SQLException {
-		int memberExp = dao.selectExpById(membeID);
-		
-		if(memberExp < 0) {
-			throw new SQLException("error");
-		}		
-		return memberExp;
+	public LevelUpExpDTO selectExpById(String membeID) throws SQLException {
+		LevelUpExpDTO levelExp =dao.selectExpById(membeID);
+			
+		return levelExp;
 	}
 
 }
