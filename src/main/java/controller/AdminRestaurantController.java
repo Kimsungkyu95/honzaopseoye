@@ -72,7 +72,7 @@ public class AdminRestaurantController implements Controller {
         String [] hashTagArr = multi.getParameterValues("hashTag");
         List<String> hashTagName = new ArrayList<String>();
         for(String hashtag : hashTagArr) {
-        	if(hashtag != "") {
+        	if(!hashtag.equals("")) {
         		hashTagName.add(hashtag);
         		//System.out.println(hashtag);
         	}
@@ -83,6 +83,9 @@ public class AdminRestaurantController implements Controller {
         String [] menuPriceArr = multi.getParameterValues("menuPrice");
         List<MenuDTO> menuList = new ArrayList<MenuDTO>();
         for(int i=0; i < menuNameArr.length; i++) {
+        	if(menuNameArr[i].equals("")) {
+        		break;
+        	}
         	menuList.add(new MenuDTO(menuNameArr[i], Integer.parseInt(menuPriceArr[i])));
         	//System.out.println(menuNameArr[i] + ", " + menuPriceArr[i]);
         }
@@ -106,5 +109,11 @@ public class AdminRestaurantController implements Controller {
 
 	}
 	
+	
+	public ModelAndView Select(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

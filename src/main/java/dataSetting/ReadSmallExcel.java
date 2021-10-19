@@ -69,9 +69,9 @@ public class ReadSmallExcel {
 							}else {
 								System.out.println(i + "번째 구 " + j + "번째 동 " + "맛집 데이터 삽입에 실패하였습니다.");
 							}
-*/							
+*/						
 ////////////////////////////////////restaurantArray 받아오기///////////////////////////////////////////////////////////
-/*							restaurantArray = kakao.searchArr(gu, dong, "한정식");
+/*							restaurantArray = kakao.searchArr(gu, dong, "분식"); //소카테고리(한글)
 							for(int k = 0; k < Math.min(5, restaurantArray.size()) ; k++) {
 								JSONObject jsonObj = (JSONObject)restaurantArray.get(k);
 								
@@ -79,7 +79,7 @@ public class ReadSmallExcel {
 								List<String> imgUrlList = imageCrawl.imageCrawling(placeUrl);
 								
 								//데이터베이스 insert 및 이미지 폴더에 이미지 삽입
-								int result = rdbs.restaurantInsert(jsonObj, imgUrlList, gu, dong, "한식", "한정식", 10); //대 카테고리 / 소 카테고리 / 소 카테고리 번호
+								int result = rdbs.restaurantInsert(jsonObj, imgUrlList, gu, dong, "snack", "snack", 5); //대 카테고리(영어) / 소 카테고리(영어) / 소 카테고리 번호
 								
 								if(result > 0) {
 									System.out.println(i + "번째 구 " + j + "번째 동 " + k + "번째 맛집 데이터 삽입에 성공하였습니다.");
