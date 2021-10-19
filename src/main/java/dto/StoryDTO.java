@@ -1,5 +1,7 @@
 package dto;
 
+import java.util.List;
+
 public class StoryDTO {
 	private int storyNo;
 	private int memberNo;
@@ -8,17 +10,12 @@ public class StoryDTO {
 	private int storyVisited;
 	private String storyPassword;
 	
+	private List<String> storyImgList;
+	
 	public StoryDTO() {}
-
-	public StoryDTO(int storyNo, String storyTitle, String storyRegdate, int storyVisited) {
-		super();
-		this.storyNo = storyNo;
-		this.storyTitle = storyTitle;
-		this.storyRegdate = storyRegdate;
-		this.storyVisited = storyVisited;
-	}
-
-	public StoryDTO(int storyNo, int memberNo, String storyTitle, String storyRegdate, int storyVisited, String storyPassword) {
+	
+	public StoryDTO(int storyNo, int memberNo, String storyTitle, String storyRegdate, int storyVisited,
+			String storyPassword, List<String> storyImgList) {
 		super();
 		this.storyNo = storyNo;
 		this.memberNo = memberNo;
@@ -26,6 +23,7 @@ public class StoryDTO {
 		this.storyRegdate = storyRegdate;
 		this.storyVisited = storyVisited;
 		this.storyPassword = storyPassword;
+		this.storyImgList = storyImgList;
 	}
 
 	public int getStoryNo() {
@@ -74,5 +72,13 @@ public class StoryDTO {
 
 	public void setStoryPassword(String storyPassword) {
 		this.storyPassword = storyPassword;
+	}
+
+	public List<String> getStoryImgList() {
+		return storyImgList;
+	}
+
+	public void setStoryImgList(List<String> storyImgList) {
+		this.storyImgList = storyImgList;
 	}
 }

@@ -4,8 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import dto.StoryDTO;
-import dto.StoryDetailsDTO;
-import dto.StoryImageDTO;
+import dto.StoryImgDTO;
 
 public interface StoryService {
 	
@@ -15,15 +14,11 @@ public interface StoryService {
 
 	 void insertStory(StoryDTO storyDTO) throws SQLException;
 	 
-	 void insertStoryDetails(StoryDetailsDTO storyDetailsDTO) throws SQLException;
-	 
-	 void insertStoryImg(StoryImageDTO storyImageDTO) throws SQLException;
+	 void insertStoryImg(StoryImgDTO storyImageDTO) throws SQLException;
 	 
 	 void updateStory(StoryDTO storyDTO) throws SQLException;
 	 
-	 void updateStoryDetails(StoryDetailsDTO storyDetailsDTO) throws SQLException;
-	 
-	 void updateStoryImg(StoryImageDTO storyImageDTO) throws SQLException;
+	 void updateStoryImg(StoryImgDTO storyImageDTO) throws SQLException;
 		 
      void delete(String storyNo, String password , String path) throws SQLException;
 	 

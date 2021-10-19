@@ -39,6 +39,11 @@
 			$(this).next().remove();  
 			$(this).remove();
 		});
+		
+		$("#storyForm").submit(function(){
+			let storyTitle = $('[name=storyTitle]').val();
+			document.getElementById('storyForm').action = '../front?key=userStory&methodName=insert&storyTitle=' + storyTitle;
+		})
 	});
 </script>
 </head>
@@ -46,7 +51,7 @@
 
 	<jsp:include page="../common/header.jsp" />
 	<main>
-		<form action="writerAction" method="post">
+		<form action="#" method="post" id="storyForm">
 			<input type="hidden" name="bdGroup"> <input type="hidden"
 				name="bdOrder"> <input type="hidden" name="bdIndent">
 			<input type="file" name="storyTitlePhoto"> 대표 이미지를 선택해주세요. <input

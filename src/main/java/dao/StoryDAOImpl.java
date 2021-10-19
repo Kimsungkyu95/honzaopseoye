@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import dto.MenuDTO;
 import dto.StoryDTO;
-import dto.StoryDetailsDTO;
-import dto.StoryImageDTO;
+import dto.StoryImgDTO;
 import util.DbUtil;
 
 public class StoryDAOImpl implements StoryDAO {
@@ -34,13 +34,7 @@ public class StoryDAOImpl implements StoryDAO {
 	}
 
 	@Override
-	public StoryDetailsDTO selectByStoryDetailsNo(String storyDetailsNo) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public StoryImageDTO selectByStoryImgNo(String storyImgNo) throws SQLException {
+	public StoryImgDTO selectByStoryImgNo(String storyImgNo) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -51,17 +45,22 @@ public class StoryDAOImpl implements StoryDAO {
 		PreparedStatement ps=null;
 		int result=0;
 		String sql = proFile.getProperty("userStory.insert");
-//		userStory.insert=insert into story values(STORY_SEQ.NEXTVAL, ?, ?, SYSDATE, ?)
+//		userStory.insert=insert into story values(STORY_SEQ.NEXTVAL, ?, ?, SYSDATE, 0, ?)
 		
 		try {
 			con = DbUtil.getConnection();
+			con.setAutoCommit(false);
 			ps = con.prepareStatement(sql);
 			
 			ps.setInt(1, storyDTO.getMemberNo());
 			ps.setString(2, storyDTO.getStoryTitle());
-			ps.setInt(3, storyDTO.getStoryVisited());
+			ps.setString(3, storyDTO.getStoryPassword());
 			
 			result = ps.executeUpdate();
+			
+			List<String> storyImgList = storyDTO.getStoryImgList();
+			
+			con.commit();
 		}finally {
 			DbUtil.dbClose(ps, con);
 		}
@@ -69,46 +68,53 @@ public class StoryDAOImpl implements StoryDAO {
 		return result;
 	}
 
-	@Override
-	public int insertStoryDetails(StoryDetailsDTO storyDetailsDTO) throws SQLException {
-		Connection con=null;
-		PreparedStatement ps=null;
-		int result=0;
-		String sql = proFile.getProperty("userStoryDetails.insert");
-//		userStoryDetails.insert=insert into story_details(STORY_DETAILS_SEQ.NEXTVAL, ?, STORY_SEQ.CURRVAL, ?)
-		
-		try {
-			con = DbUtil.getConnection();
-			ps = con.prepareStatement(sql);
-			
-			ps.setInt(1, storyDetailsDTO.getRestaurantNo());
-			ps.setString(2, storyDetailsDTO.getStoryContent());
-			
-			result = ps.executeUpdate();
-		}finally {
-			DbUtil.dbClose(ps, con);
-		}
-		
-		return result;
-	}
+//	public int insertStoryDetails(List<StoryDetailsDTO> storyDetailsDTOList, Connection con) throws SQLException {
+//		PreparedStatement ps=null;
+//		int result=0;
+//		String sql = proFile.getProperty("userStoryDetails.insert");
+////		userStoryDetails.insert=insert into story_details(STORY_DETAILS_SEQ.NEXTVAL, ?, STORY_SEQ.CURRVAL, ?)
+//		
+//		try {
+//			ps = con.prepareStatement(sql);
+//			
+//			for(StoryDetailsDTO storyDetailsDTO: storyDetailsDTOList) {
+//				ps.setInt(1, storyDetailsDTO.getRestaurantNo());
+//				ps.setString(2, storyDetailsDTO.getStoryContent());
+//				
+//				result = ps.executeUpdate();
+//				
+//				if(result == 0) {
+//					throw new SQLException("스토리 상세 삽입에 실패했습니다.");
+//				}
+//			}
+//			
+//		}finally {
+//			DbUtil.dbClose(ps, null);
+//		}
+//		
+//		return result;
+//	}
 
-	@Override
-	public int insertStoryImg(StoryImageDTO storyImageDTO) throws SQLException {
-		Connection con=null;
+	public int insertStoryImg(List<String> storyImgList, Connection con) throws SQLException {
 		PreparedStatement ps=null;
 		int result=0;
 		String sql = proFile.getProperty("userStoryImg.insert");
 //		userStoryImg.insert=insert into story_img values(STORY_IMG_SEQ.NEXTVAL, STORY_DETAILS_SEQ.CURRVAL, ?)
 		
 		try {
-			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			
-			ps.setString(1, storyImageDTO.getStoryImg());
+			for(String storyImg: storyImgList) {
+				ps.setString(1, storyImg);
 			
-			result = ps.executeUpdate();
+				result = ps.executeUpdate();
+				
+				if(result == 0) {
+					throw new SQLException("스토리 이미지 삽입에 실패했습니다.");
+				}
+			}
 		}finally {
-			DbUtil.dbClose(ps, con);
+			DbUtil.dbClose(ps, null);
 		}
 		
 		return result;
@@ -139,30 +145,7 @@ public class StoryDAOImpl implements StoryDAO {
 	}
 
 	@Override
-	public int updateStoryDetails(StoryDetailsDTO storyDetailsDTO) throws SQLException {
-		Connection con=null;
-		PreparedStatement ps=null;
-		int result=0;
-		String sql = proFile.getProperty("userStoryDetails.update");
-//		userStoryDetails.update=update story_details set story_content=? where story_details_no=? 
-		
-		try {
-			con = DbUtil.getConnection();
-			ps = con.prepareStatement(sql);
-			
-			ps.setString(1, storyDetailsDTO.getStoryContent());
-			ps.setInt(2, storyDetailsDTO.getStoryDetailsNo());
-			
-			result = ps.executeUpdate();
-		}finally {
-			DbUtil.dbClose(ps, con);
-		}
-		
-		return result;
-	}
-
-	@Override
-	public int updateStoryImg(StoryImageDTO storyImageDTO) throws SQLException {
+	public int updateStoryImg(StoryImgDTO storyImageDTO) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		int result=0;

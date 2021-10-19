@@ -50,8 +50,8 @@ public class StoryController implements Controller {
 	}
 	
 	/**
-	 * �뒪�넗由� �벑濡�
-	 * */
+	 * 레코드 삽입
+	 */
 	public ModelAndView insert(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 	       String saveDir=request.getServletContext().getRealPath("/storySave");
