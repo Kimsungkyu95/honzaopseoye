@@ -4,17 +4,17 @@ public class RecommendDTO {
 	private String restaurantImg;
 	private String restaurantName;
 	private int reviewScore;
-	private String restaurantAddr;
+	private String gu;
 	private String menuName;
 	
 	public RecommendDTO() {}
-	public RecommendDTO(String restaurantImg, String restaurantName, int reviewScore, String restaurantAddr,
+	public RecommendDTO(String restaurantImg, String restaurantName, int reviewScore, String gu,
 			String menuName) {
 	
 		this.restaurantImg = restaurantImg;
 		this.restaurantName = restaurantName;
 		this.reviewScore = reviewScore;
-		this.restaurantAddr = restaurantAddr;
+		this.gu = gu;
 		this.menuName = menuName;
 	}
 	
@@ -36,11 +36,11 @@ public class RecommendDTO {
 	public void setReviewScore(int reviewScore) {
 		this.reviewScore = reviewScore;
 	}
-	public String getRestaurantAddr() {
-		return restaurantAddr;
+	public String getGu() {
+		return gu;
 	}
-	public void setRestaurantAddr(String restaurantAddr) {
-		this.restaurantAddr = restaurantAddr;
+	public void setGu(String Gu) {
+		this.gu = gu;
 	}
 	public String getMenuName() {
 		return menuName;

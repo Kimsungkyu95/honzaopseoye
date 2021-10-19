@@ -35,7 +35,7 @@ recommend.recByVisited=select * from restaurant natural join review natural join
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<RecommendDTO> list = new ArrayList<RecommendDTO>();
-		String sql = "select restaurant_img, restaurant_name, review_score, restaurant_addr, menu_name from restaurant natural join review natural join restaurant_img natural join menu where REVIEW_SCORE > 0 and rownum <=3";
+		String sql = "select restaurant_img, restaurant_name, review_score, gu, menu_name from restaurant natural join review natural join restaurant_img natural join menu where REVIEW_SCORE > 0 and rownum <=16";
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
@@ -53,7 +53,7 @@ recommend.recByVisited=select * from restaurant natural join review natural join
 		return list;
 	}
 
-	public List<RecommendDTO> recByLevel(int levelNo) throws SQLException {
+	public List<RecommendDTO> recByLevel(int levelNo) {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -68,6 +68,8 @@ recommend.recByVisited=select * from restaurant natural join review natural join
 			while (rs.next()) {
 				list.add(new RecommendDTO(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5)));
 		    }
+		} catch (SQLException e) {
+			   e.printStackTrace();
 		}finally {
 			DbUtil.dbClose(rs, ps, con);
 		}

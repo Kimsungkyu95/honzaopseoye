@@ -15,7 +15,7 @@
     <title>부트스트랩 101 템플릿</title>
 
     <!-- 부트스트랩 -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
     <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
     <!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
     <!--[if lt IE 9]>
@@ -128,22 +128,23 @@
 				dataType: "json", //서버가 응답해주는 데이터의 type(text, html, xml, json)
 				//data: {keyWord: $(this).val()}, //서버에게 보낼 parameter정보
 				success: function(result){
+					//alert(result);
 					//결과를 테이블에 넣는다.
-					let str="<table><tr>";
+					let str="<tr>";
                     $.each(result, function(index, item){
-                    	//alert(item.restaurantName);
+                    	//alert(item.menuName);
 						if((index+1)%4==0){
 							str+="</tr><tr>";
 						}
-                    	str+="<td><a href='#'>"+item.restaurantImg+"</a><br>"+item.restaurantName+", "+item.reviewScore+"<br>"+item.restaurantAddr+"-"+item.menuName+"</td>";              
+                    	str+="<td><a href='#'>"+item.restaurantImg+"</a><br>"+item.restaurantName+", "+item.reviewScore+"<br>"+item.gu+"-"+item.menuName+"</td>";              
                     
                     });
-					str+="</tr></table>";
+					str+="</tr>";
 					
                      
                   //div영역에 표시
                     //계속 클릭하면 계속 추가가 된다.
-    				$("#table").remove();
+    				//$("#table").remove();
     				$("#table").html(str);  //공백은 하위요소
     				//append,prepend 뒤에 추가, 앞에 추가 
     				//before, after 앞에 추가, 뒤에 추가
@@ -154,6 +155,44 @@
 				}//실패했을때 함수
         });
       }
+	 
+	 
+	 //레벨별 추천 결과 띄우기
+	  function recByLevel(){
+		  $.ajax({
+				url: "../recByLevel", //back단의 서버요청주소
+				type: "post", //method방식(get,post,put,delete)
+				dataType: "json", //서버가 응답해주는 데이터의 type(text, html, xml, json)
+				data: {level: $(this).val()}, //서버에게 보낼 parameter정보
+				success: function(result){
+					//alert(result);
+					//결과를 테이블에 넣는다.
+					let str="<tr>";
+                    $.each(result, function(index, item){
+                    	//alert(item.menuName);
+						if((index+1)%4==0){
+							str+="</tr><tr>";
+						}
+                    	str+="<td><a href='#'>"+item.restaurantImg+"</a><br>"+item.restaurantName+", "+item.reviewScore+"<br>"+item.gu+"-"+item.menuName+"</td>";              
+                    
+                    });
+					str+="</tr>";
+					
+                     
+                  //div영역에 표시
+                    //계속 클릭하면 계속 추가가 된다.
+    				//$("#table").remove();
+    				$("#table").html(str);  //공백은 하위요소
+    				//append,prepend 뒤에 추가, 앞에 추가 
+    				//before, after 앞에 추가, 뒤에 추가
+                    
+				}, //성공했을때 callback함수(되돌아와서 해야될 기능들)
+				error: function(err){ 
+					alert("에러가 발생했어요.");
+				}//실패했을때 함수
+        });
+      }
+	 
 
    recByScore();	
 	  
@@ -194,9 +233,10 @@
 
 <div id="display5"><h4><br>&nbsp;&nbsp;후회없는 디폴트 맛집</h4></div>
  
-<div id="table"> 
+<div> 
+<table id="table">
 
-
+</table>
 </div>
 
 
@@ -204,7 +244,7 @@
   <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-    <script src="js/bootstrap.min.js"></script>
+    <!-- <script src="js/bootstrap.min.js"></script> -->
   </body>
 </html>
      <jsp:include page="../common/footer.jsp"/>
