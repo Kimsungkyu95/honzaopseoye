@@ -51,7 +51,7 @@ public class StoryDAOImpl implements StoryDAO {
 			con.setAutoCommit(false);
 			ps = con.prepareStatement(sql);
 			
-			ps.setInt(1, storyDTO.getMemberNo());
+			ps.setInt(1, 1);
 			ps.setString(2, storyDTO.getStoryTitle());
 			ps.setString(3, storyDTO.getRestaurantName());
 			ps.setString(4, storyDTO.getStoryContent());
@@ -78,7 +78,7 @@ public class StoryDAOImpl implements StoryDAO {
 		PreparedStatement ps=null;
 		int result=0;
 		String sql = proFile.getProperty("userStoryImg.insert");
-//		userStoryImg.insert=insert into story_img values(STORY_IMG_SEQ.NEXTVAL, STORY_DETAILS_SEQ.CURRVAL, ?)
+//		userStoryImg.insert=insert into story_img values(STORY_IMG_SEQ.NEXTVAL, STORY_SEQ.CURRVAL, ?)
 		
 		try {
 			ps = con.prepareStatement(sql);

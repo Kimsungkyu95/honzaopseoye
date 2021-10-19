@@ -67,7 +67,7 @@ public class StoryController implements Controller {
 					e.printStackTrace();
 				}
 			}
-				
+			
 			MultipartRequest m = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
 			
 			String storyTitle =  m.getParameter("storyTitle");
@@ -89,7 +89,7 @@ public class StoryController implements Controller {
 	        StoryDTO storyDTO = new StoryDTO(storyTitle, restaurantName, storyContent, password, storyImgList);
 	        storyService.insertStory(storyDTO);
 			
-			return new ModelAndView("front", true);
+			return new ModelAndView(request.getServletContext().getContextPath() + "/userStory/userStoryList.jsp", true);
 	}
 	
 	/**

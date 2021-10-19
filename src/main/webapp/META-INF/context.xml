@@ -38,8 +38,7 @@
                       password="12345678"
                       maxTotal="20" 
                       maxIdle="10"
-                      maxWaitMillis="-1"
-                      initialSize="20"/>
+                      maxWaitMillis="-1"/>
     
 </Context>
 

@@ -34,7 +34,7 @@
 
 	<jsp:include page="../common/header.jsp" />
 	<main>
-		<form action="#" method="post" id="storyForm">
+		<form action="#" method="post" id="storyForm" enctype="multipart/form-data">
 			<input type="text" name="storyTitle" class="form-control mt-4 mb-2"
 				placeholder="제목을 입력해주세요." required>
 			<p><br><hr style="height: 5px; color: red;"><p><br>
