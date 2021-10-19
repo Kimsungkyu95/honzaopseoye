@@ -23,7 +23,7 @@ public class RecByTagServlet extends HttpServlet {
 		String tagNo=request.getParameter("tag");
 		
 		RecommendDAO dao = new RecommendDAOImpl();
-		List<RecommendDTO> list = dao.recByLevel((Integer.parseInt(tagNo)+1));
+		List<RecommendDTO> list = dao.recByLevel(Integer.parseInt(tagNo));
 		
 		PrintWriter out = response.getWriter();
 		out.print(list);

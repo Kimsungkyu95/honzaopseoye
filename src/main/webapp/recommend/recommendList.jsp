@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
-    <title>부트스트랩 101 템플릿</title>
+    <title>추천 페이지</title>
 
     <!-- 부트스트랩 -->
     <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
@@ -110,25 +110,23 @@
 			  
 			//해당 태그를 클릭했을때 태그에 해당하는 추천목록 아래에 띄우기
 		
-			  for(let i=0;i<=tags.length;i++){
-				     $("button").click(function(){
-						if($(this).val() == i){
-							 $.ajax({
-									url: "../recByTag", //back단의 서버요청주소
-									type: "post", //method방식(get,post,put,delete)
-									dataType: "json", //서버가 응답해주는 데이터의 type(text, html, xml, json)
-									data: {level:$(this).val()}, //서버에게 보낼 parameter정보
-									success: function(result){
-										alert(result);
-					                    
-									}, //성공했을때 callback함수(되돌아와서 해야될 기능들)
-									error: function(err){ 
-										alert("에러가 발생했어요.");
-									}//실패했을때 함수
-					            });
-					    }
-					 });
-				  }
+			  
+		     $("button").click(function(){
+				 $.ajax({
+						url: "../recByTag", //back단의 서버요청주소
+						type: "post", //method방식(get,post,put,delete)
+						dataType: "json", //서버가 응답해주는 데이터의 type(text, html, xml, json)
+						data: {tag:$(this).val()}, //서버에게 보낼 parameter정보
+						success: function(result){
+							alert(result);
+		                    
+						}, //성공했을때 callback함수(되돌아와서 해야될 기능들)
+						error: function(err){ 
+							alert("에러가 발생했어요.");
+						}//실패했을때 함수
+		            });
+			 });
+				
 			  
 
 			

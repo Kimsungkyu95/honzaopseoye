@@ -103,7 +103,7 @@ public class RecommendDAOImpl implements RecommendDAO {
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, tagNo);
+			ps.setInt(1, tagNo+1);
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
