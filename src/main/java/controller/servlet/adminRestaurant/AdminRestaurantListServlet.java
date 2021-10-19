@@ -54,10 +54,14 @@ public class AdminRestaurantListServlet extends HttpServlet {
 		gridModels.add(gridModel11);
 		gridModels.add(gridModel12);
 		
+		for(int i = 13; i < 2000; i++) {
+			gridModels.add(new GridModel(i, "레스토랑" + i, "010-2222-2222", "서울 강남구", "중식", "중화요리", "2021-10-20", i));
+		}
+		
 		JSONArray jsonArray = JSONArray.fromObject(gridModels);
 		
-//		String json = "{'page':1,'total':'3','records':'1','rows':"+jsonArray+"}";
-//		JSONObject jsonObject = (JSONObject)JSONSerializer.toJSON(json);
+		String json = "{'page':1,'total':'3','records':'1','rows':"+jsonArray+"}";
+		JSONObject jsonObject = (JSONObject)JSONSerializer.toJSON(json);
 		
 		PrintWriter out = response.getWriter();
 //		out.print(jsonObject);

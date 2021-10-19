@@ -44,69 +44,44 @@
     <script>
     
         $(function(){
-        	function selectAll(){
-        		$.ajax({
-     				url: "${pageContext.request.contextPath}/adminRestaurantList", //서버요청주소
-     				type: "post", //method방식(get, post, put, delete)
-     				dataType: "json", //서버가 응답해주는 데이터의 type(text, html, xml, json)
-     				//data: //서버에게 보낼 parameter정보
-     				success: function(result){
-     					console.log(result);
-     					$('#jqGrid').jqGrid({
-     		                width: 1200,
-     		                datatype: "local",
-     		                data: result,
-     		                colNames:['맛집번호','맛집이름', '전화번호', '주소', '대카테고리', '소카테고리', '등록일', '조회수'],
-     		                colModel:[
-     		                    {name:'restaurantNo', width:60}, //name은 서버로부터 넘어오는 데이터 명이다.
-     		                    {name:'restaurantName', width:90},
-     		                    {name:'phone', width:100},
-     		                    {name:'restaurantAddr', width:80},
-     		                    {name:'category', width:150, align:"right"},
-     		                    {name:'categoryDetails', width:80, align:"right"},
-     		                    {name:'regDate', width:80, align:"right"},
-     		                    {name:'visited', width:80, align:"right"}
-     		                ],
-     		                rowNum: 5,
-     		                pager: '#jqGridPager',
-     		                caption: "맛집 목록 테이블",
-     		                jsonReader : {
-     		                	repeatitems : false,
-     		                }
-     		            }) //jqGrid끝 
-     		            $('#jqGrid').jqGrid('navGrid', '#jqGridPager',{
-     		            	edit : true,
-     		            	add : true,
-     		            	del : true,
-     		            	search : true
-     		            })
-     					
-     				}, //성공했을 때 callback함수
-     				error: function(err){
-     					alert(err + "발생했어요.");
-     				} //실패했을 때 callback함수
-     			}); //ajax 끝
-        	}
-        	
-        	$('#printjqGrid').click(selectAll);
-	        
-        	//행선택시
-        	$('#selectRow').click(function(){
-        		var selRowId = $('#jqGrid').jqGrid('getGridParam', 'selrow');
-        		var selRowData = $('#jqGrid').jqGrid('getRowData', selRowId);
-        		console.log(selRowId);
-        		console.log(selRowData);
-        	})
-        	
-        	/* for(var i=0; i<selRowIdsLength; i ++) {
-    $('#grid3').jqGrid('delRowData', selRowIds[0])
-  }*/
+        	$('#jqGrid').jqGrid({
+	                width: 1200,
+	                url: "${pageContext.request.contextPath}/adminRestaurantList",
+	                datatype: "json",
+	                
+	                colNames:[' ' ,'맛집번호','맛집이름', '전화번호', '주소', '대카테고리', '소카테고리', '등록일', '조회수'],
+	                colModel:[
+	                	{name:'myac', width: 50, fixed:true, sortable : false, formatter:'actions', formatoptions:{keys:true, delbutton:true, editbutton:true}},
+	                    {name:'restaurantNo', width:60, editable:true}, //name은 서버로부터 넘어오는 데이터 명이다.
+	                    {name:'restaurantName', width:90, editable:true},
+	                    {name:'phone', width:100, editable:true},
+	                    {name:'restaurantAddr', width:80, editable:true},
+	                    {name:'category', width:150, align:"right", editable:true},
+	                    {name:'categoryDetails', width:80, align:"right", editable:true},
+	                    {name:'regDate', width:80, align:"right", editable:true},
+	                    {name:'visited', width:80, align:"right", editable:true}
+	                ],
+	                rowNum: 5,
+	                pager: '#jqGridPager',
+	                caption: "맛집 목록 테이블",
+	                rowList : [ 10, 20, 30 ],
+                    sortname : 'invid',
+                    sortorder : 'desc',
+	                viewrecords : true,
+	                gridview : true,
+	                jsonReader : {
+	                	repeatitems : false,
+	                },
+	                editurl : "${pageContext.request.contextPath}/adminRestaurantList"
+	            }) //jqGrid끝 
+	            $('#jqGrid').jqGrid('navGrid', '#jqGridPager',{
+	            	edit : true,
+	            	add : true,
+	            	del : true,
+	            	search : true
+	            })
         	
         	
-        	$('#deleteRow').click(function(){
-        		var selRowId = $('#jqGrid').jqGrid('getGridParam', 'selrow');
-        		$('#jqGrid').jqGrid('delRowData', selRowId);
-        	})
         })
         
     </script>
@@ -165,10 +140,6 @@
         <table id="jqGrid"></table>
         <div id="jqGridPager"></div>
     </div>
-    
-    <button id="printjqGrid">jqGrid 출력</button>
-	<button id="selectRow">행 선택</button>
-	<button id="deleteRow">행 삭제</button>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
