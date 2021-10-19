@@ -128,7 +128,7 @@ public class MemberController implements Controller {
 		service.updateByNo(member);
 		
 		
-		return new ModelAndView("/myPage/myPageAccount.jsp");
+		return new ModelAndView("/myPage/myPage.jsp");
 		
 	}
 	
