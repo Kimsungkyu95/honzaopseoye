@@ -23,22 +23,10 @@
 <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		let index = 1;
-		
-		$("[value=추가]").click(function() {
-			let f = "<hr style='color: red; height: 5px;'><div class='shadow-lg'><input type='file' name='storyPhoto"+ index++ +"' multiple><input type='button' value='삭제'><input type='text' name='restaurantTitle"+ index++ +"' class='form-control mt-4 mb-2'	placeholder='맛집 이름을 입력해주세요.' required><textarea class='form-control' rows='5' name='storyPhotoContent"+ index++ +"' placeholder='사진에 대한 설명을 입력해주세요.''></textarea></div><p><p>";
-						
-			$("#photoAdd").append(f);
-		});
-		
-		$(document).on("click","[value=삭제]" ,function() {
-			$(this).prev().prev().prev().remove();
-			$(this).prev().prev().remove();
-			$(this).prev().remove();
-			$(this).next().next().remove(); 
-			$(this).next().remove();  
-			$(this).remove();
-		});
+		$("#storyForm").submit(function(){
+			let storyTitle = $('[name=storyTitle]').val();
+			document.getElementById('storyForm').action = '../front?key=userStory&methodName=insert&storyTitle=' + storyTitle;
+		})
 	});
 </script>
 </head>
@@ -46,27 +34,19 @@
 
 	<jsp:include page="../common/header.jsp" />
 	<main>
-		<form action="writerAction" method="post">
-			<input type="hidden" name="bdGroup"> <input type="hidden"
-				name="bdOrder"> <input type="hidden" name="bdIndent">
-			<input type="file" name="storyTitlePhoto"> 대표 이미지를 선택해주세요. <input
-				type="text" name="storyTitle" class="form-control mt-4 mb-2"
+		<form action="#" method="post" id="storyForm">
+			<input type="text" name="storyTitle" class="form-control mt-4 mb-2"
 				placeholder="제목을 입력해주세요." required>
-			<p><br><hr style="height: 5px;"><p><br>
+			<p><br><hr style="height: 5px; color: red;"><p><br>
 			
 			<div class="form-group">
 				<div id="photoAdd" class="shadow-lg">
-				<input type="file" name="storyPhoto0" multiple><input type="button" value="삭제">
-				<input type="text" name="restaurantTitle0" class="form-control mt-4 mb-2"
+				<input type="file" name="storyPhoto" multiple>
+				<input type="text" name="restaurantTitle" class="form-control mt-4 mb-2"
 				placeholder="맛집 이름을 입력해주세요." required>
-					<textarea class="form-control" rows="5" name="storyphotoContent0"
-						placeholder="사진에 대한 설명을 입력해주세요."></textarea>
-					<p>
-					<p>
-				</div>
-				<input type="button" value="추가">
 				<textarea class="form-control" rows="10" name="bdContent"
-					placeholder="내용을 입력해주세요."></textarea>
+					placeholder="내용을 입력해주세요." required></textarea>
+				</div>
 			</div>
 			<input type=password name="password"
 				placeholder="비밀번호를 입력해주세요." required>

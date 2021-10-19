@@ -17,7 +17,6 @@ public class RestaurantDTO {
 	private String restaurantRegDate;
 	private int restaurantVisited;
 	private List<ReviewDTO> reviewList;
-	private List<StoryDetailsDTO> storyDetailsList;
 	private List<String> hashTagName;
 	private List<MenuDTO> menuList;
 	private List<String> imgList;
@@ -185,14 +184,6 @@ public class RestaurantDTO {
 
 	public void setReviewList(List<ReviewDTO> reviewList) {
 		this.reviewList = reviewList;
-	}
-
-	public List<StoryDetailsDTO> getStoryDetailsList() {
-		return storyDetailsList;
-	}
-
-	public void setStoryDetailsList(List<StoryDetailsDTO> storyDetailsList) {
-		this.storyDetailsList = storyDetailsList;
 	}
 
 	public List<String> getHashTagName() {

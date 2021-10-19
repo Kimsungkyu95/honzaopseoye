@@ -1,18 +1,19 @@
 package dto;
 
-public class StoryImageDTO {
+public class StoryImgDTO {
 	private int storyImgNo;
 	private int storyDetailsNo;
 	private String storyImg;
 	
-	public StoryImageDTO() {}
+	public StoryImgDTO() {}
 	
-	public StoryImageDTO(int storyImgNo, int storyDetailsNo, String storyImg) {
+	public StoryImgDTO(int storyImgNo, int storyDetailsNo, String storyImg) {
 		super();
 		this.storyImgNo = storyImgNo;
 		this.storyDetailsNo = storyDetailsNo;
 		this.storyImg = storyImg;
 	}
+	
 	public int getStoryImgNo() {
 		return storyImgNo;
 	}

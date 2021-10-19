@@ -6,8 +6,7 @@ import java.util.List;
 import dao.StoryDAO;
 import dao.StoryDAOImpl;
 import dto.StoryDTO;
-import dto.StoryDetailsDTO;
-import dto.StoryImageDTO;
+import dto.StoryImgDTO;
 
 public class StoryServiceImpl implements StoryService {
 	
@@ -32,15 +31,8 @@ public class StoryServiceImpl implements StoryService {
 	}
 
 	@Override
-	public void insertStoryDetails(StoryDetailsDTO storyDetailsDTO) throws SQLException {
-		if(storyDAO.insertStoryDetails(storyDetailsDTO) == 0 )
-			  throw new SQLException("등록되지 않았습니다.");
-	}
-
-	@Override
-	public void insertStoryImg(StoryImageDTO storyImageDTO) throws SQLException {
-		if(storyDAO.insertStoryImg(storyImageDTO) == 0 )
-			  throw new SQLException("등록되지 않았습니다.");
+	public void insertStoryImg(StoryImgDTO storyImgDTO) throws SQLException {
+		
 	}
 
 	@Override
@@ -49,13 +41,7 @@ public class StoryServiceImpl implements StoryService {
 	}
 
 	@Override
-	public void updateStoryDetails(StoryDetailsDTO storyDetailsDTO) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateStoryImg(StoryImageDTO storyImageDTO) throws SQLException {
+	public void updateStoryImg(StoryImgDTO storyImageDTO) throws SQLException {
 		// TODO Auto-generated method stub
 		
 	}

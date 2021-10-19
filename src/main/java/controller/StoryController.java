@@ -2,6 +2,8 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +13,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import controller.ModelAndView;
+import dto.RestaurantDTO;
 import dto.StoryDTO;
 import service.StoryService;
 import service.StoryServiceImpl;
@@ -50,12 +53,13 @@ public class StoryController implements Controller {
 	}
 	
 	/**
-	 * �뒪�넗由� �벑濡�
-	 * */
+	 * 레코드 삽입
+	 */
 	public ModelAndView insert(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-	       String saveDir=request.getServletContext().getRealPath("/storySave");
-			int maxSize = 1024*1024*100; 
+	        String saveDir=request.getServletContext().getRealPath("/img/storySave") + "/" + request.getParameter("storyTitle");
+			
+	       int maxSize = 1024*1024*100; 
 			String encoding="UTF-8";
 			
 			File folder = new File(saveDir);
@@ -71,17 +75,24 @@ public class StoryController implements Controller {
 			
 			String storyTitlePhoto =  m.getParameter("storyTitlePhoto");
 			String storyTitle =  m.getParameter("storyTitle");
-			
-			String storyPhoto =  m.getParameter("storyPhoto0");
-			String restaurantTitle =  m.getParameter("restaurantTitle0");
-			String storyPhotoContent = m.getParameter("storyphotoContent0");
-			
+			String storyPhoto =  m.getParameter("storyPhoto");
+			String restaurantTitle =  m.getParameter("restaurantTitle");
+			String storyPhotoContent = m.getParameter("storyphotoContent");
 			String password =  m.getParameter("password");
 			
-			
-//			StoryDTO storyDTO = new StoryDTO(0, 0, storyTitle, password);
-//			
-//			elecService.insert(electronics);
+			//업로드한 맛집이름 디렉토리에 있는 이미지 이름 모두 가져오기
+	        List<String> storyImgList = new ArrayList<String>();
+	        File dir = new File(saveDir);
+	        if(dir.isDirectory()) {
+	        	 File files [] = dir.listFiles();
+	        	 for(int i = 0; i < files.length; i++) {
+	        		 String fileName = files[i].toString();
+	        		 storyImgList.add(fileName.substring(fileName.lastIndexOf("/")+1));
+	        	 }
+	        }
+	        
+//	        StoryDTO storyDTO = new StoryDTO(storyTitle, story, restaurantAddr, restaurantRoadAddr, gu, dong, restaurantLongitude, restaurantLatitude, hashTagName, menuList, imgList);
+//	        adminRestaurantService.insert(restaurantDTO, categoryDetailsName);
 			
 			return new ModelAndView("front", true);
 	}

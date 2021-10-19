@@ -49,7 +49,8 @@
 <div class="col-md-4" id="div1">
       <div class="position-sticky" style="top: 2rem;">
         <div class="p-4 mb-3 bg-light rounded">
-          <img src = "img/삼겹살.jpeg" width="50%"></img>
+          <img src = "img/삼겹살.jpeg" width="47%" style="float:left; margin-right:10px"></img>
+          <img src = "img/삼겹살.jpeg" width="47%"></img>
         </div>
 
         <div class="p-4" style="margin-left:100px">

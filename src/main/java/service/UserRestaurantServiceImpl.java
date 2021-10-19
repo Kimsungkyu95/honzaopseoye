@@ -23,7 +23,7 @@ public class UserRestaurantServiceImpl implements UserRestaurantService {
 		
 		//댓글정보 가져오기 
 		restaurantDTO.setReviewList(urDao.selectReviewByModelNum(restaurantNo));
-		//restaurantDTO.setReviewList(urDao.selectReviewByModelNum(restaurantNo));
+		
 		
 		return restaurantDTO;
 	}
