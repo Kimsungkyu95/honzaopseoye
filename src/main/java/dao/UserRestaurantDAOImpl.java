@@ -12,6 +12,7 @@ import dto.CategoryDTO;
 import dto.CategoryDetailsDTO;
 import dto.RestaurantDTO;
 import dto.RestaurantImgDTO;
+import dto.ReviewDTO;
 import util.DbUtil;
 
 public class UserRestaurantDAOImpl implements UserRestaurantDAO {
@@ -88,12 +89,35 @@ public class UserRestaurantDAOImpl implements UserRestaurantDAO {
 			ps.setInt(1, Integer.parseInt(restaurantNo));
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				restaurantDTO =new RestaurantDTO();
+				restaurantDTO =new RestaurantDTO(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),
+						rs.getString(7),rs.getString(8),rs.getString(9),rs.getDouble(10),rs.getDouble(11),rs.getString(12),rs.getInt(13));
 			}
 		} finally {
 			DbUtil.dbClose(rs, ps, con);
 		}
 		return restaurantDTO;
+	}
+
+	@Override
+	public List<ReviewDTO> selectReviewByModelNum(String restaurantNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<ReviewDTO> reviewList = new ArrayList<ReviewDTO>();
+		String sql="select * from review where restaurant_no=?";
+		try {
+			con = DbUtil.getConnection();
+			ps =  con.prepareStatement(sql);
+			ps.setInt(1, Integer.parseInt(restaurantNo));
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				ReviewDTO review = new ReviewDTO(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),rs.getString(6));
+				reviewList.add(review);
+			}
+		}finally {
+			DbUtil.dbClose(rs, ps, con);
+		}
+		return reviewList;
 	}
 
 }

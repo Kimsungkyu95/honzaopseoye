@@ -20,6 +20,11 @@ public class UserRestaurantServiceImpl implements UserRestaurantService {
 	@Override
 	public RestaurantDTO selectByRestaurantNo(String restaurantNo) throws SQLException {
 		RestaurantDTO restaurantDTO = urDao.selectByRestaurantNo(restaurantNo);
+		
+		//댓글정보 가져오기 
+		restaurantDTO.setReviewList(urDao.selectReviewByModelNum(restaurantNo));
+		//restaurantDTO.setReviewList(urDao.selectReviewByModelNum(restaurantNo));
+		
 		return restaurantDTO;
 	}
 

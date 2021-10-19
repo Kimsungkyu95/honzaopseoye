@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +53,7 @@
         </div>
 
         <div class="p-4" style="margin-left:100px">
-          <h4 class="fst-italic">맛집이름</h4>
+          <h4 class="fst-italic">${restaurant.restaurantName}</h4>
 		
           <table class="list-unstyled mb-0">
           	<tbody>
@@ -68,7 +70,7 @@
 	            <tr>
 	            	<td>레벨</td>
 	            	<td>:</td>
-	            	<td>LV3</td>
+	            	<td>LV ${restaurant.restaurantLevel}</td>
 	            </tr>
             </tbody>
             
@@ -86,17 +88,17 @@
             <tr>
             	<td>주소</td>
             	<td>:</td>
-            	<td>경기도 성남시 분당구</td>
+            	<td>${restaurant.restaurantAddr}/ ${restaurant.restaurantRoadAddr}</td>
             </tr>
             <tr>
             	<td>전화번호</td>
             	<td>:</td>
-            	<td>010-1234-1234</td>
+            	<td>${restaurant.restaurantPhone}</td>
             </tr>
             <tr>
             	<td>음식종류</td>
             	<td>:</td>
-            	<td>육류/고기</td>
+            	<td></td>
             </tr>
             <tr>
             	<td>가격대</td>
@@ -166,7 +168,7 @@
     </div>
       
       
-      <script type="text/javascript">
+<script type="text/javascript">
 var context = document
 	.getElementById('myChart')
 	.getContext('2d');
@@ -217,56 +219,34 @@ var myChart = new Chart(context, {
 		}
 	}
 });
-</script>
-      
-          
- </div>  
- </div>
+	</script>
+  </div>  
+</div>
+ 
     <div class="col-md-8" id="div2">
-      <h3 class="pb-4 mb-4 fst-italic border-bottom">
-        리뷰
-      </h3>
-
-      <article class="blog-post">
-        <h2 class="blog-post-title">Sample Review</h2>
-        <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p>
-        <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, lists, tables, images, code, and more are all supported as expected.</p>
-        <hr>
-        <h2 class="blog-post-title">Sample Review</h2>
-        <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p>
-        <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, lists, tables, images, code, and more are all supported as expected.</p>
-        <hr>
-        <h2 class="blog-post-title">Sample Review</h2>
-        <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p>
-        <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, lists, tables, images, code, and more are all supported as expected.</p>
-        <hr>
-        <h2 class="blog-post-title">Sample Review</h2>
-        <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p>
-        <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, lists, tables, images, code, and more are all supported as expected.</p>
-        <hr>
-        <h2 class="blog-post-title">Sample Review</h2>
-        <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p>
-        <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, lists, tables, images, code, and more are all supported as expected.</p>
-        <hr>
-        <h2 class="blog-post-title">Sample Review</h2>
-        <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p>
-        <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, lists, tables, images, code, and more are all supported as expected.</p>
-        <hr>
-        <h2 class="blog-post-title">Sample Review</h2>
-        <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p>
-        <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, lists, tables, images, code, and more are all supported as expected.</p>
-        <hr>
-        <h2 class="blog-post-title">Sample Review</h2>
-        <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p>
-        <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, lists, tables, images, code, and more are all supported as expected.</p>
-        <hr>
-        <h2 class="blog-post-title">Sample Review</h2>
-        <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p>
-        <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, lists, tables, images, code, and more are all supported as expected.</p>
-        <hr>
-      </article>
-</div>
-</div>
+		      <h2 class="pb-4 mb-4 fst-italic border-bottom">
+		        리뷰 
+		      </h2>
+			<c:choose>
+		 		<c:when test="${empty restaurant.reviewList}">
+					<h5>댓글정보가 없습니다</h5>
+				</c:when>
+			<c:otherwise>
+				<c:forEach items="${restaurant.reviewList}" var="review"> 
+			     <article class="blog-post">
+			        <h4 class="blog-post-title">리뷰제목 / ${review.reviewScore}</h4>
+			        <p class="blog-post-meta">${review.reviewRegdate} / 아이디 존재유무?</p>
+			        <p>${review.reviewContent}</p>
+			        <hr> 
+			      </article>
+				</c:forEach>
+			</c:otherwise>
+		      
+		 </c:choose> 
+		 
+ 	</div>
+ 	
+</div><!-- 큰틀 끝 -->
 <div style="margin-top:10px">
 <jsp:include page="common/footer.jsp"/>
 </div>

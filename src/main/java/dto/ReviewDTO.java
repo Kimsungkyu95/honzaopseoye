@@ -19,15 +19,9 @@ public class ReviewDTO {
 		this.reviewRegdate = reviewRegdate;
 	}
 
-	
-
 	public ReviewDTO(int reviewNo, int memberNo,
 			int restaurantNo, int reviewScore, String reviewContent, String reviewRegdate) {
-		super();
-		this.reviewNo = reviewNo;
-		this.memberNo = memberNo;
-		this.restaurantNo = restaurantNo;
-		this.reviewScore = reviewScore;
+		this(reviewNo,reviewScore,reviewContent,reviewRegdate);
 		this.reviewContent = reviewContent;
 		this.reviewRegdate = reviewRegdate;
 	}

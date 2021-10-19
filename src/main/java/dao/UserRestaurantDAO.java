@@ -6,6 +6,8 @@ import java.util.List;
 import dto.CategoryDTO;
 import dto.CategoryDetailsDTO;
 import dto.RestaurantDTO;
+import dto.ReviewDTO;
+
 
 public interface UserRestaurantDAO {
 	
@@ -18,6 +20,8 @@ public interface UserRestaurantDAO {
 	 * 맛집상세 
 	 * */
 	RestaurantDTO selectByRestaurantNo(String restaurantNo) throws SQLException;
+	
+	List<ReviewDTO> selectReviewByModelNum(String restaurantNo) throws SQLException;
 	
 	
 }
