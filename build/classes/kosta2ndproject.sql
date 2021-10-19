@@ -302,6 +302,7 @@ select c.category_no, c.category_name, cd.category_details_no, cd.category_detai
 select * from restaurant natural join menu;
 select * from restaurant join restaurant_img on restaurant.restaurant_no = restaurant_img.restaurant_no;
 
+select min_exp from levelup_exp where member_level=3;
 
 --------------------------------------------------------------------------------
 --커밋 
