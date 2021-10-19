@@ -20,6 +20,8 @@ public class RestaurantDTO {
 	private List<String> hashTagName;
 	private List<MenuDTO> menuList;
 	private List<String> imgList;
+	private String categoryName;
+	private String categoryDetailsName;
 	
 	public RestaurantDTO() {}
 	
@@ -96,6 +98,31 @@ public class RestaurantDTO {
 		this.reviewList = reviewList;
 		this.menuList = menuList;
 	}
+
+	public RestaurantDTO(int restaurantNo, int categoryDetailsNo, int restaurantLevel, String restaurantName,
+			String restaurantPhone, String restaurantAddr, String restaurantRoadAddr, String gu, String dong,
+			double restaurantLongitude, double restaurantLatitude, String restaurantRegDate, int restaurantVisited,
+			String categoryName, String categoryDetailsName) {
+		this(restaurantNo,categoryDetailsNo,restaurantLevel,restaurantName,restaurantPhone,restaurantAddr,restaurantRoadAddr,
+				gu,dong,restaurantLongitude,restaurantLatitude,restaurantRegDate,restaurantVisited);
+		this.categoryName = categoryName;
+		this.categoryDetailsName = categoryDetailsName;
+	}
+	
+	public RestaurantDTO(int restaurantNo, int categoryDetailsNo, int restaurantLevel, String restaurantName,
+			String restaurantPhone, String restaurantAddr, String restaurantRoadAddr, String gu, String dong,
+			double restaurantLongitude, double restaurantLatitude, String restaurantRegDate, int restaurantVisited,
+			List<ReviewDTO> reviewList, List<MenuDTO> menuList,
+			String categoryName, String categoryDetailsName) {
+		this(restaurantNo,categoryDetailsNo,restaurantLevel,restaurantName,restaurantPhone,restaurantAddr,restaurantRoadAddr,
+				gu,dong,restaurantLongitude,restaurantLatitude,restaurantRegDate,restaurantVisited);
+		this.reviewList = reviewList;
+		this.menuList = menuList;
+		this.categoryName = categoryName;
+		this.categoryDetailsName = categoryDetailsName;
+	}
+	
+	
 
 	public int getRestaurantNo() {
 		return restaurantNo;
@@ -241,6 +268,24 @@ public class RestaurantDTO {
 	public void setRestaurantLatitude(double restaurantLatitude) {
 		this.restaurantLatitude = restaurantLatitude;
 	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	public String getCategoryDetailsName() {
+		return categoryDetailsName;
+	}
+
+	public void setCategoryDetailsName(String categoryDetailsName) {
+		this.categoryDetailsName = categoryDetailsName;
+	}
+	
+	
 	
 	
 	

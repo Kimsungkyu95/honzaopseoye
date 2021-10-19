@@ -145,4 +145,6 @@ public class UserRestaurantDAOImpl implements UserRestaurantDAO {
 		return menuList;
 	}
 
+	
+
 }

@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +20,6 @@ import service.UserRestaurantServiceImpl;
 public class UserRestaurantController implements Controller {
 	
 	private UserRestaurantService urService = new UserRestaurantServiceImpl();
-
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -29,13 +30,17 @@ public class UserRestaurantController implements Controller {
 	 * */
 	public ModelAndView selectCategory(HttpServletRequest request, HttpServletResponse response)
 			throws Exception{
-		
+		String category = request.getParameter("category");
 		String categoryDetail = request.getParameter("categoryDetail"); //meat, sushi...
 		List<RestaurantDTO>restaurantList = new ArrayList<RestaurantDTO>();
+		
+		RestaurantDTO restaurant = new RestaurantDTO();
 		
 		restaurantList= urService.selectCategory(categoryDetail);
 		
 		request.setAttribute("list", restaurantList); //뷰에서 ${requestScope.list} 
+		
+		
 		
 		ModelAndView mv = new ModelAndView("userCategory/categoryByRestaurant.jsp");
 		
@@ -53,5 +58,6 @@ public class UserRestaurantController implements Controller {
 		
 		return new ModelAndView("restaurant.jsp");
 	}
+	
 
 }

@@ -122,13 +122,7 @@
 	 <!--맛집카테고리별 식당 div -->
 <div id="list">
 <table>
-	<tr>
-		<td>1</td>
-		<td>2</td>
-		<td>3</td>
-		<td>4</td>
-		
-	</tr><!--  30 /4 =>8 행 일때는 2개열만  -->
+	<!--  30 /4 =>8 행 일때는 2개열만  -->
     <c:choose>
 		    <c:when test="${empty requestScope.list}">
 			   <tr>
@@ -146,8 +140,8 @@
 		 </c:if>
 					<td>
 						<a href="${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo=${restaurant.restaurantNo}">
-							  <%-- <img src="img/restaurantImage/${param.category}/${param.categoryDetail}/캡처1.PNG"/>  --%>
-							  <img src="img/스테이크.jpeg" />
+							  <img src="img/restaurantImage/${param.category}/${param.categoryDetail}/${restaurant.restaurantName}/${restaurant.restaurantName}0.jpg"/>
+							  <!-- <img src="img/스테이크.jpeg" /> -->
 						  </a><br>
 					   		이름 : <a href="${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo=${restaurant.restaurantNo}">
 					   					${restaurant.restaurantName}

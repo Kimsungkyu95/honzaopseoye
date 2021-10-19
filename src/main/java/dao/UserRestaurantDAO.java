@@ -31,5 +31,7 @@ public interface UserRestaurantDAO {
 	 * 맛집에 따른 메뉴리스트
 	 * */
 	List<MenuDTO> selectMenuByRestaurantNo(String restaurantNo) throws SQLException;
+
+	
 	
 }
