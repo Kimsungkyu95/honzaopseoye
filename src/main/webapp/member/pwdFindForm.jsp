@@ -61,8 +61,12 @@ $(function() {
 					print="해당 아이디와 이메일이 일치하는 회원정보를 찾을 수 없습니다.";
 					$("#id").focus();
 				}
+				
+				if(result!=="failed"){
+					$("#loginButton").show();
+					
+				}
 			
-				$("#loginButton").show();
 				$("#result").text(print);
 			
 				$("#invalid-feedback").html("");

@@ -21,6 +21,7 @@ public class UserRestaurantServiceImpl implements UserRestaurantService {
 	public RestaurantDTO selectByRestaurantNo(String restaurantNo) throws SQLException {
 		RestaurantDTO restaurantDTO = urDao.selectByRestaurantNo(restaurantNo);
 		
+		
 		//댓글정보 가져오기 
 		restaurantDTO.setReviewList(urDao.selectReviewByRestaurantNo(restaurantNo));
 		

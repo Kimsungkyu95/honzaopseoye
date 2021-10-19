@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +20,6 @@ import service.UserRestaurantServiceImpl;
 public class UserRestaurantController implements Controller {
 	
 	private UserRestaurantService urService = new UserRestaurantServiceImpl();
-
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -29,11 +30,24 @@ public class UserRestaurantController implements Controller {
 	 * */
 	public ModelAndView selectCategory(HttpServletRequest request, HttpServletResponse response)
 			throws Exception{
+		String category = request.getParameter("category");
+		String categoryDetail = request.getParameter("categoryDetail"); 
 		
-		String categoryDetail = request.getParameter("categoryDetail"); //meat, sushi...
 		List<RestaurantDTO>restaurantList = new ArrayList<RestaurantDTO>();
 		
+		RestaurantDTO restaurant = new RestaurantDTO();
 		restaurantList= urService.selectCategory(categoryDetail);
+		
+		for(RestaurantDTO restaurantDTO : restaurantList) {
+			List<String>imgList=new ArrayList<String>();
+			String restaurantName = restaurantDTO.getRestaurantName();
+			File file = new File(request.getServletContext().getRealPath("/img/restaurantImage/"+category+"/"+categoryDetail+"/"+restaurantName));
+			File files [] = file.listFiles();
+			for(int i = 0; i < files.length; i++) {
+	       		 String fileName = files[i].toString();
+	       		 imgList.add(fileName.substring(fileName.lastIndexOf("\\")+1));
+	       	 	}
+		}
 		
 		request.setAttribute("list", restaurantList); //뷰에서 ${requestScope.list} 
 		
@@ -53,5 +67,6 @@ public class UserRestaurantController implements Controller {
 		
 		return new ModelAndView("restaurant.jsp");
 	}
+	
 
 }

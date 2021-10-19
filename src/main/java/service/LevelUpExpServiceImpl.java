@@ -42,7 +42,6 @@ public class LevelUpExpServiceImpl implements LevelUpExpService {
 			throw new SQLException("레벨에 해당하는 남은 경험치를 불러올 수 없습니다.");
 		}
 		
-		
 		return remainingExp;
 	}
 	

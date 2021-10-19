@@ -8,5 +8,4 @@ public interface LevelUpExpDAO {
 	int selectMinExpByMemberLevel(int memberLevel) throws SQLException;
 	int selectMemberLevelByExp(int exp) throws SQLException;
 	int remainingExp(int memberLevel) throws SQLException;
-	int selectMinExpByLevel(int memberExp) throws SQLException;
 }
