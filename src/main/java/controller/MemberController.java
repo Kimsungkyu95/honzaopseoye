@@ -127,7 +127,7 @@ public class MemberController implements Controller {
 		service.updateByNo(member);
 		
 		
-		return new ModelAndView("myPage/myPageAccount.jsp");
+		return new ModelAndView("/myPage/myPageAccount.jsp");
 		
 	}
 	
@@ -145,7 +145,7 @@ public class MemberController implements Controller {
 		
 		service.updateExpByNo(member);
 
-		return new ModelAndView("myPage/myPageLevel.jsp");
+		return new ModelAndView("/myPage/myPageLevel.jsp");
 	}
 	public ModelAndView updateImageByNo(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -163,7 +163,7 @@ public class MemberController implements Controller {
 		
 		MemberDTO dbmember = service.selectMemberByNo(memberNo);	
 		request.setAttribute("member", dbmember);
-		return new ModelAndView("myPage/myPageLevel.jsp");
+		return new ModelAndView("/myPage/myPageLevel.jsp");
 	}
 	
 	public ModelAndView updatePwdByNo(HttpServletRequest request, HttpServletResponse response)
@@ -183,7 +183,7 @@ public class MemberController implements Controller {
 		
 		MemberDTO dbmember = service.selectMemberByNo(memberNo);
 		request.setAttribute("memberNo", memberNo);
-		return new ModelAndView("myPage/myPagePassword.jsp");
+		return new ModelAndView("/myPage/myPagePassword.jsp");
 	}
 	
 	public ModelAndView deleteByNo(HttpServletRequest request, HttpServletResponse response)
@@ -193,7 +193,7 @@ public class MemberController implements Controller {
 		
 		service.deleteByNo(memberNo);
 		
-		return new ModelAndView("adminUser/adminMemberList.jsp");	
+		return new ModelAndView("/adminUser/adminMemberList.jsp");	
 	}
 	
 	public ModelAndView selectMemberList(HttpServletRequest request, HttpServletResponse response)
@@ -202,7 +202,7 @@ public class MemberController implements Controller {
 		ArrayList<MemberDTO> list = service.selectMemberList();
 		request.setAttribute("list", list);
 		
-		return new ModelAndView("adminUser/adminMemberList.jsp");	
+		return new ModelAndView("/adminUser/adminMemberList.jsp");	
 	}
 	
 	public ModelAndView selectMemberByNo(HttpServletRequest request, HttpServletResponse response)
@@ -212,7 +212,7 @@ public class MemberController implements Controller {
 		MemberDTO member = service.selectMemberByNo(memberNo);
 		
 		request.setAttribute("member", member);
-		return new ModelAndView("adminUser/adminMemberDetail.jsp");	
+		return new ModelAndView("/adminUser/adminMemberDetail.jsp");	
 	}
 	
 	public ModelAndView updateMemberDetail(HttpServletRequest request, HttpServletResponse response)
@@ -231,7 +231,7 @@ public class MemberController implements Controller {
 		MemberDTO member = new MemberDTO(memberNo, memberID, memberPwd, memberName, memberEmail,memberPhone, memberBirth, memberExp, profileImage);
 		service.updateMemberDetail(member);
 		
-		return new ModelAndView("adminUser/amdinMemberDetail.jsp");
+		return new ModelAndView("/adminUser/amdinMemberDetail.jsp");
 			
 	}
 	
