@@ -25,7 +25,10 @@ public class LevelUpExpDAOImpl implements LevelUpExpDAO {
 	}
 
 
-
+	/**
+	 * 해당 레벨의 최소 경험이를 알려주는 메소드
+	 * @return 해당 레벨의 최소 경험치. -1이면 오류.
+	 * */
 	@Override
 	public int selectMinExpByMemberLevel(int memberLevel) throws SQLException {
 		int minExp=-1;
@@ -119,7 +122,7 @@ public class LevelUpExpDAOImpl implements LevelUpExpDAO {
 		}
 		
 		//다음 레벨의 최소 레벨
-		int minExpforNextLevel=this.selectMinExpByLevel(nextLevel);
+		int minExpforNextLevel=this.selectMinExpByMemberLevel(nextLevel);
 		
 		//남은 exp = 다음레벨의 최소레벨 - 현재 exp
 		remainingExp = minExpforNextLevel - memberExp;
@@ -140,40 +143,6 @@ public class LevelUpExpDAOImpl implements LevelUpExpDAO {
 			nextLevel=currentLevel+1;
 		}
 		return nextLevel;
-	}
-	
-	/**
-	 * 해당 레벨의 최소 경험이를 알려주는 메소드
-	 * @return 해당 레벨의 최소 경험치. -1이면 오류.
-	 * */
-	public int selectMinExpByLevel(int memberLevel) throws SQLException {
-		int minExp=-1;
-		String sql = proFile.getProperty("levelUp.selectMinExpByMemberLevel");
-		
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		
-		try {
-			con=DbUtil.getConnection();
-			ps=con.prepareStatement(sql);
-			
-			ps.setInt(1, memberLevel);
-			
-			rs = ps.executeQuery();
-			
-			if(rs.next()) {
-
-				minExp = rs.getInt(1);
-				
-			}
-			
-		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
-			e.printStackTrace();
-		}finally {
-			DbUtil.dbClose(rs, ps, con);
-		}
-		return minExp;
 	}
 	
 	
