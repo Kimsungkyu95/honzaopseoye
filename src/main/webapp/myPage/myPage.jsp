@@ -60,7 +60,7 @@
 			수정화면에서 프로필 사진을 변경하세요.        
         </p>
         <!-- <button type="button" onclick="location.href='myPageImage.jsp'" class="btn btn-secondary btn-lg">수정</button> -->
-        <a class="nav-link" href="${pageContext.request.contextPath}/front?key=member&methodName=selectMemberList">MyPage</a>
+        
       </div>
     </div>
   </div>
@@ -111,6 +111,8 @@
       </div>
     </div>
   </div>
+  
+  <a class="nav-link" href="${pageContext.request.contextPath}/front?key=member&methodName=selectMemberList">유저관리자페이지</a>
   
 
  

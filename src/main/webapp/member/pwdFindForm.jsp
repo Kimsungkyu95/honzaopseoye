@@ -64,7 +64,6 @@ $(function() {
 				
 				if(result!=="failed"){
 					$("#loginButton").show();
-					
 				}
 			
 				$("#result").text(print);

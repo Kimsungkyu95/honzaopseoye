@@ -22,7 +22,6 @@ public class UserRestaurantServiceImpl implements UserRestaurantService {
 		RestaurantDTO restaurantDTO = urDao.selectByRestaurantNo(restaurantNo);
 		
 		
-		
 		//댓글정보 가져오기 
 		restaurantDTO.setReviewList(urDao.selectReviewByRestaurantNo(restaurantNo));
 		

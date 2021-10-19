@@ -20,7 +20,11 @@
     <style>
     	h1{text-align:center;}
     </style>
-    
+    <script type="text/javascript">
+    	//레벨 판단, 다음레벨까지 점수, 비율
+    	var exp = ${memberExp};
+    	conole.log(exp);
+    </script>    
   </head>
   <body>
     <jsp:include page="../common/header.jsp"/>

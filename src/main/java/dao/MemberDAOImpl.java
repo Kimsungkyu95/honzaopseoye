@@ -431,7 +431,7 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public MemberDTO selectMemberByNoForAdmin(int no) throws SQLException {
 		MemberDTO returnValue = null;	
-		String sql = proFile.getProperty("member.selectMemberByNo");
+		String sql = proFile.getProperty("member.selectMemberByNoForAdmin");
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -446,9 +446,6 @@ public class MemberDAOImpl implements MemberDAO {
 			
 			if(rs.next()) {
 
-				String loginId = rs.getString(1);
-				String loginName = rs.getString(2);
-				
 				int memberNo = rs.getInt(1);
 				String memberID = rs.getString(2);
 				String memberPwd = rs.getString(3);

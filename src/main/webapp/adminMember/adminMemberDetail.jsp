@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+\${pageContext.request.contextPath} = ${pageContext.request.contextPath} <br>
+\${path} : ${path}
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -20,7 +25,7 @@
   <body>
   <jsp:include page="../common/header.jsp"/>
 
-    <h1>님 회원관리</h1>
+    <h1><a>${memberDto.memberName}</a>님 회원관리</h1>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
@@ -39,50 +44,49 @@
 		  <tbody>
 		    <tr>
 		      <th scope="row">회원번호</th>
-		      <td>memberNo</td>
+		      <td>${memberDto.memberNo}</td>
 		    </tr>
 		    <tr>
 		      <th scope="row">아이디</th>
-		      <td colspan="2"><input type="text" name="id" value=memberName /></td>
+		      <td colspan="2"><input type="text" name="id" value=${memberDto.memberID} /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">비밀번호</th>
-		      <td colspan="2"><input type="text" name="id" value=memberPwd /></td>
+		      <td colspan="2"><input type="text" name="pwd" value=${memberDto.memberPwd} /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">이름</th>
-		      <td colspan="2"><input type="text" name="id" value=memberName /></td>
+		      <td colspan="2"><input type="text" name="name" value=${memberDto.memberName} /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">이메일</th>
-		      <td colspan="2"><input type="text" name="id" value=memberEmail /></td>
+		      <td colspan="2"><input type="text" name="email" value=${memberDto.memberEmail} /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">전화번호</th>
-		      <td colspan="2"><input type="text" name="id" value=memberPhone /></td>
+		      <td colspan="2"><input type="text" name="phone" value=${memberDto.memberPhone} /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">생년월일</th>
-		      <td colspan="2"><input type="text" name="id" value=memberBirth /></td>
+		      <td colspan="2"><input type="text" name="birth" value=${memberDto.memberBirth} /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">가입일</th>
-		      <td colspan="2">memberJoinDate</td>
+		      <td colspan="2"><%-- ${memberDto.joinDate} --%></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">경험치</th>
-		      <td colspan="2"><input type="text" name="id" value=memberExp /></td>
+		      <td colspan="2"><input type="text" name="id" value=${memberDto.memberExp} /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">프로필이미지</th>
-		      <td colspan="2">profileImage</td>
+		      <td colspan="2">${memberDto.profileImage}</td>
 		    </tr>
 		  </tbody>
 		</table>
 		
 		<button type="submit" class="btn btn-secondary btn-lg">수정하기</button>
 		<button type="reset" class="btn btn-secondary btn-lg">취소</button>
-		<button type="button" onclick="location.href='adminMemberList.jsp'" class="btn btn-secondary btn-lg">회원관리리스트</button>
 		
 	</div>
 

@@ -186,13 +186,14 @@ public class MemberController implements Controller {
 		return new ModelAndView("adminMember/adminMemberList.jsp", false);	
 	}
 	
-	public ModelAndView selectMemberByNo(HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView selectMemberByNoForAdmin(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
+		System.out.println(memberNo);
 		MemberDTO member = service.selectMemberByNoForAdmin(memberNo);
 		
-		request.setAttribute("member", member);
+		request.setAttribute("memberDto", member);
 		return new ModelAndView("/adminMember/adminMemberDetail.jsp", false);	
 	}
 	

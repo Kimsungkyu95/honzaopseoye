@@ -94,7 +94,7 @@ $(function() {
 			return;
 		}
 		
-		console.log("confirm");
+		//console.log("confirm");
 		
 		$("#registForm").submit();
 		
@@ -110,7 +110,6 @@ $(function() {
 		}else{
 			$("#pwdConfirmInvalid").html("비밀번호가 일치합니다.");
 			pwdConfirm=true;
-			
 		}
 		
 	})
@@ -119,7 +118,6 @@ $(function() {
 		if($(this).val()==""){
 			return;
 		}
-		
 		//-----------------비동기화통신-----------------------------------
 		$.ajax({
 			url: "../memberIdCheck", 	// ../ 상위로 한칸 올라가서.. 서블릿 
@@ -182,7 +180,6 @@ $(function() {
 		}else{
 			$("#emailCheck").text("@를 포함하는 올바른 이메일 형식을 사용해주세요.");
 		}
-		
 	})
 	
 });
