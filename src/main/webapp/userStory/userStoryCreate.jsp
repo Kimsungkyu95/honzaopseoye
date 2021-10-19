@@ -26,7 +26,7 @@
 		let index = 1;
 		
 		$("[value=추가]").click(function() {
-			let f = "<hr style='color: red; height: 5px;'><div class='shadow-lg'><input type='file' name='file"+ index++ +"' multiple><input type='button' value='삭제'><input type='text' name='restaurantTitle"+ index++ +"' class='form-control mt-4 mb-2'	placeholder='맛집 이름을 입력해주세요.' required><textarea class='form-control' rows='5' name='photoContent"+ index++ +"' placeholder='사진에 대한 설명을 입력해주세요.''></textarea></div><p><p>";
+			let f = "<hr style='color: red; height: 5px;'><div class='shadow-lg'><input type='file' name='storyPhoto"+ index++ +"' multiple><input type='button' value='삭제'><input type='text' name='restaurantTitle"+ index++ +"' class='form-control mt-4 mb-2'	placeholder='맛집 이름을 입력해주세요.' required><textarea class='form-control' rows='5' name='storyPhotoContent"+ index++ +"' placeholder='사진에 대한 설명을 입력해주세요.''></textarea></div><p><p>";
 						
 			$("#photoAdd").append(f);
 		});
@@ -49,17 +49,17 @@
 		<form action="writerAction" method="post">
 			<input type="hidden" name="bdGroup"> <input type="hidden"
 				name="bdOrder"> <input type="hidden" name="bdIndent">
-			<input type="file" name="file"> 대표 이미지를 선택해주세요. <input
-				type="text" name="bd	Title" class="form-control mt-4 mb-2"
+			<input type="file" name="storyTitlePhoto"> 대표 이미지를 선택해주세요. <input
+				type="text" name="storyTitle" class="form-control mt-4 mb-2"
 				placeholder="제목을 입력해주세요." required>
 			<p><br><hr style="height: 5px;"><p><br>
 			
 			<div class="form-group">
 				<div id="photoAdd" class="shadow-lg">
-				<input type="file" name="file0" multiple><input type="button" value="삭제">
+				<input type="file" name="storyPhoto0" multiple><input type="button" value="삭제">
 				<input type="text" name="restaurantTitle0" class="form-control mt-4 mb-2"
 				placeholder="맛집 이름을 입력해주세요." required>
-					<textarea class="form-control" rows="5" name="photoContent0"
+					<textarea class="form-control" rows="5" name="storyphotoContent0"
 						placeholder="사진에 대한 설명을 입력해주세요."></textarea>
 					<p>
 					<p>

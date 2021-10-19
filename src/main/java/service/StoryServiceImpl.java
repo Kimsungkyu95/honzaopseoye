@@ -7,39 +7,63 @@ import dao.StoryDAO;
 import dao.StoryDAOImpl;
 import dto.StoryDTO;
 import dto.StoryDetailsDTO;
+import dto.StoryImageDTO;
 
 public class StoryServiceImpl implements StoryService {
 	
 	private StoryDAO storyDAO = new StoryDAOImpl();
 
 	@Override
-	public List<StoryDTO> select() throws SQLException {		
-		return null;
-	}
-	
-	@Override
-	public StoryDetailsDTO selectBy() throws SQLException {	
+	public List<StoryDTO> selectAll() throws SQLException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void insert(StoryDTO storyDTO) throws SQLException {
-		
+	public StoryDTO selectByStoryNo(String storyNo, boolean flag) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insertStory(StoryDTO storyDTO) throws SQLException {
+		 if(storyDAO.insertStory(storyDTO) == 0 )
+			  throw new SQLException("등록되지 않았습니다.");
+	}
+
+	@Override
+	public void insertStoryDetails(StoryDetailsDTO storyDetailsDTO) throws SQLException {
+		if(storyDAO.insertStoryDetails(storyDetailsDTO) == 0 )
+			  throw new SQLException("등록되지 않았습니다.");
+	}
+
+	@Override
+	public void insertStoryImg(StoryImageDTO storyImageDTO) throws SQLException {
+		if(storyDAO.insertStoryImg(storyImageDTO) == 0 )
+			  throw new SQLException("등록되지 않았습니다.");
+	}
+
+	@Override
+	public void updateStory(StoryDTO storyDTO) throws SQLException {
 		
 	}
 
 	@Override
-	public void update(StoryDTO storyDTO) throws SQLException {
-		
+	public void updateStoryDetails(StoryDetailsDTO storyDetailsDTO) throws SQLException {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void delete(StoryDTO storyDTO) throws SQLException {
-		
+	public void updateStoryImg(StoryImageDTO storyImageDTO) throws SQLException {
+		// TODO Auto-generated method stub
 		
 	}
 
-	
+	@Override
+	public void delete(String storyNo, String password, String path) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

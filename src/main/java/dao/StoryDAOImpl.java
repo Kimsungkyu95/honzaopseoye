@@ -26,38 +26,6 @@ public class StoryDAOImpl implements StoryDAO {
 			e.printStackTrace();
 		  }
 	   }
-	
-	@Override
-	public List<StoryDTO> selectAll() throws SQLException {
-//		Connection con=null;
-//		PreparedStatement ps=null;
-//		ResultSet rs=null;
-//		
-//		List<StoryDTO> storyList = new ArrayList<StoryDTO>();
-//		String sql = proFile.getProperty("userStory.select");
-//		
-//		try {
-//			con = DbUtil.getConnection();
-//			ps = con.prepareStatement(sql);
-//			rs = ps.executeQuery();
-//			while(rs.next()) {
-//				StoryDTO story = new StoryDTO(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getInt(5));
-//				
-//				storyList.add(story);
-//			}
-//		}finally {
-//			DbUtil.dbClose(rs, ps, con);
-//		}
-//		
-//		return storyList;
-		return null;
-	}
-	
-	@Override
-	public int increamentByReadnum(int storyNo) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public StoryDTO selectByStoryNo(String storyNo) throws SQLException {
@@ -176,7 +144,7 @@ public class StoryDAOImpl implements StoryDAO {
 		PreparedStatement ps=null;
 		int result=0;
 		String sql = proFile.getProperty("userStoryDetails.update");
-//		userStoryDetails.update=update story_details set story_content=? where story_details_no=? and password=?
+//		userStoryDetails.update=update story_details set story_content=? where story_details_no=? 
 		
 		try {
 			con = DbUtil.getConnection();
@@ -199,7 +167,7 @@ public class StoryDAOImpl implements StoryDAO {
 		PreparedStatement ps=null;
 		int result=0;
 		String sql = proFile.getProperty("userStoryImg.update");
-//		userStoryImg.update=update story_img set story_img=? where story_img_no=? and password=?
+//		userStoryImg.update=update story_img set story_img=? where story_img_no=?
 		
 		try {
 			con = DbUtil.getConnection();
@@ -229,6 +197,7 @@ public class StoryDAOImpl implements StoryDAO {
 			ps = con.prepareStatement(sql);
 			
 			ps.setString(1, storyNo);
+			ps.setString(2, password);
 			
 			result = ps.executeUpdate();
 		}finally {
@@ -236,5 +205,33 @@ public class StoryDAOImpl implements StoryDAO {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public int increamentByStoryVisited(int storyNo) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		int result=0;
+		String sql = proFile.getProperty("userStory.updateStoryVisited");
+//		userStory.updateStoryVisited=update story set story_visited=story_visited+1 where story_no=?
+		
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, storyNo);
+			
+			result = ps.executeUpdate();
+		}finally {
+			DbUtil.dbClose(ps, con);
+		}
+		
+		return result;
+	}
+
+	@Override
+	public List<StoryDTO> selectAll() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

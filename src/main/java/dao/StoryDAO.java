@@ -27,9 +27,9 @@ public interface StoryDAO {
 	  
 	  /**
 	   * 조회수 증가
-	   * update story set readnum = readnum + 1 where story_no=?
+	   * update story set story_visited = story_visited + 1 where story_no=?
 	   * */
-	  int increamentByReadnum(int storyNo) throws SQLException;
+	  int increamentByStoryVisited(int storyNo) throws SQLException;
 	  
 	  /**
 	   * 스토리 레코드 삽입
