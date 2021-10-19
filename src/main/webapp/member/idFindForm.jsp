@@ -30,6 +30,7 @@ $(function() {
 	var form = window.document.idFindForm;
 	
 	$("#idFindResult").hide();
+	$("#loginButton").hide();
 	
 	$("#idFindButton").click(function() {
 		
@@ -51,18 +52,23 @@ $(function() {
 				let print = "회원님의 아이디는 " + result + " 입니다.";
 				
 				if(result=="failed"){
-					//console.log("true");
-					$("#loginButton").hide();
+					//console.log("failed");
 					print="해당 이메일에 해당하는 회원정보를 찾을 수 없습니다.";
 					$("#email").focus();
+
+					$("#loginButton").hide();
+					$("#result").text(print);
+					$("#idFindResult").show();
 				}
-			
-				$("#loginButton").show();
-				$("#result").text(print);
-			
-				$("#invalid-feedback").html("");
-				$("#idFindResult").show();
-							
+
+				if(result!=="failed"){
+					$("#loginButton").show();
+					$("#result").text(print);
+				
+					$("#invalid-feedback").html("");
+					$("#idFindResult").show();
+					
+				}		
 			},
 			error: function(error) { //실패했을 때 함수	
 				console.log("Something went wrong."); 	
