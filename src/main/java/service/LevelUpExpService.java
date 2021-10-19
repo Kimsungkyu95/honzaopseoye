@@ -10,6 +10,6 @@ public interface LevelUpExpService {
 	
 	int selectMemberLevelByExp(int exp) throws SQLException;
 	
-	int remainingExp(int memberLevel) throws SQLException;
+	int remainingExp(int memberExp) throws SQLException;
 
 }
