@@ -48,13 +48,12 @@
 			    <tr>
 			      <td>${memberDto.memberNo}</td>
 			      <td>
-			      	<a href="${path}/front?key=member&methodName=selectMemberByNo?memberNo=${memberDto.memberNo}">
+			      	<a href="${pageContext.request.contextPath}/front?key=member&methodName=selectMemberByNoForAdmin&memberNo=${memberDto.memberNo}">
 			      		${memberDto.memberID}
 			      	</a>
 			      </td>
 			      <td>${memberDto.memberName}</td>
 			      <td>${memberDto.memberExp}</td>
-			      <td input="button" value="삭제" class="" onclick="deleteFn(${memberDto.memberNo})"></td>
 			      <td><a class="" href="${pageContext.request.contextPath}/front?key=member&methodName=deleteByNo&memberNo=${memberDto.memberNo}">삭제</a></td>
 			    </tr>
 			  </tbody>

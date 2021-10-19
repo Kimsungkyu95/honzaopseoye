@@ -39,7 +39,7 @@
 		  <tbody>
 		    <tr>
 		      <th scope="row">아이디</th>
-		      <td>${memberDto.memberID }</td>
+		      <td>${memberDto.memberID}</td>
 		    </tr>
 		    <tr>
 		      <th scope="row">이름</th>
@@ -51,18 +51,18 @@
 		    </tr>
 		    <tr>
 		      <th scope="row">전화번호</th>
-		      <td><input type="text" name="id" value=${memberDto.memberPhone } /></td>
+		      <td><input type="text" name="id" value=${memberDto.memberPhone} /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">생년월일</th>
-		      <td><input type="text" name="id" value=${memberDto.memberBirth } /></td>
+		      <td><input type="text" name="id" value=${memberDto.memberBirth} /></td>
 		    </tr>
 		  </tbody>
 		</table>
     	
     	<button type="submit" class="btn btn-secondary btn-lg">수정하기</button>
 		<button type="reset" class="btn btn-secondary btn-lg">취소</button>
-		<button type="button" class="btn btn-secondary btn-lg" onclick="location.href='myPage.jsp'">마이페이지</button>
+		<button type="button" class="btn btn-secondary btn-lg" onclick="location.href='../myPage.jsp'">마이페이지</button>
 
 	
     </div>
