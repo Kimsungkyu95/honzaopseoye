@@ -10,6 +10,7 @@ import java.util.Properties;
 
 import dto.CategoryDTO;
 import dto.CategoryDetailsDTO;
+import dto.MenuDTO;
 import dto.RestaurantDTO;
 import dto.RestaurantImgDTO;
 import dto.ReviewDTO;
@@ -41,7 +42,7 @@ public class UserRestaurantDAOImpl implements UserRestaurantDAO {
 			ps =  con.prepareStatement(sql);
 			ps.setInt(1, this.selectRestaurant(categoryDetail));
 			rs = ps.executeQuery();
-			if(rs.next()) {
+			while(rs.next()) {
 				RestaurantDTO restaurantDTO = new RestaurantDTO(rs.getInt(1), rs.getInt(2), rs.getString(3));
 				restaurantList.add(restaurantDTO);	
 			}
@@ -97,9 +98,10 @@ public class UserRestaurantDAOImpl implements UserRestaurantDAO {
 		}
 		return restaurantDTO;
 	}
-
+	
+	//맛집 번호에 따른 리뷰 리스트 가져오기 
 	@Override
-	public List<ReviewDTO> selectReviewByModelNum(String restaurantNo) throws SQLException {
+	public List<ReviewDTO> selectReviewByRestaurantNo(String restaurantNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -118,6 +120,29 @@ public class UserRestaurantDAOImpl implements UserRestaurantDAO {
 			DbUtil.dbClose(rs, ps, con);
 		}
 		return reviewList;
+	}
+	
+	//맛집 번호에 따른 메뉴 리스트 가져오기 
+	@Override
+	public List<MenuDTO> selectMenuByRestaurantNo(String restaurantNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<MenuDTO> menuList = new ArrayList<MenuDTO>();
+		String sql="select menu_name, menu_price from menu where restaurant_no=?";
+		try {
+			con = DbUtil.getConnection();
+			ps =  con.prepareStatement(sql);
+			ps.setInt(1, Integer.parseInt(restaurantNo));
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				MenuDTO menu = new MenuDTO(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getInt(4));
+				menuList.add(menu);
+			}
+		} finally {
+			
+		}
+		return menuList;
 	}
 
 }

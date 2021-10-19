@@ -20,7 +20,7 @@
 </style>
 <script src="js/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5ca07a49c944c9276cbfe517db8d17c"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5ca07a49c944c9276cbfe517db8d17c&libraries=services"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
 <script type="text/javascript"></script>
 </head>
@@ -89,7 +89,7 @@
             <tr>
             	<td>주소</td>
             	<td>:</td>
-            	<td>${restaurant.restaurantAddr}/ ${restaurant.restaurantRoadAddr}</td>
+            	<td>${restaurant.restaurantAddr} / ${restaurant.restaurantRoadAddr}</td>
             </tr>
             <tr>
             	<td>전화번호</td>
@@ -132,29 +132,46 @@
          <h4>맛집 위치</h4>
           <div id="map"> 
 			<script type="text/javascript" >
-			
-				var container = document.getElementById('map'); // 지도를 표시할 div 
-				var options = {
-					center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-					level: 3 // 지도의 확대 레벨
-				};
-			
-				var map = new kakao.maps.Map(container, options); // 지도를 생성합니다
-				
-				// 마커가 표시될 위치입니다 
-				var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
-			
-				// 마커를 생성합니다
-				var marker = new kakao.maps.Marker({
-			   	 position: markerPosition
-				});
-		
-				// 마커가 지도 위에 표시되도록 설정합니다
-				marker.setMap(map);
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = {
+		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };  
+
+		// 지도를 생성합니다    
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch('${restaurant.restaurantAddr}', function(result, status) {
+
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+
+		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+
+		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new kakao.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">${restaurant.restaurantName}</div>'
+		        });
+		        infowindow.open(map, marker);
+
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords);
+		    } 
+		});    
 			</script>
 		</div>
 		
-        </div>
+       </div>
       </div>
       <!-- 별점 차트 -->
       <div class="col-md-6">
@@ -230,7 +247,7 @@ var myChart = new Chart(context, {
 		      </h2>
 			<c:choose>
 		 		<c:when test="${empty restaurant.reviewList}">
-					<h5>댓글정보가 없습니다</h5>
+					<h5>리뷰정보가 없습니다</h5>
 				</c:when>
 			<c:otherwise>
 				<c:forEach items="${restaurant.reviewList}" var="review"> 

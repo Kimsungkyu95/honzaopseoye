@@ -68,11 +68,11 @@
 		<!-- 카테고리 div -->
 		<h4><a href="${path}/userCategory/categoryByRestaurant.jsp">카테고리별 검색</a></h4>
 	    <div class="p-4 mb-4 bg-light border rounded-3" style="height:300px">
-	      <!-- <div class="container-fluid py-5"> -->
-	        <span> <img class ="mouseOver" src = "img/한식.jpeg" style="width:32%; height:100%; margin-right:5px"></span>
-	        <span> <img class ="mouseOver" src = "img/디저트.png" style="width:32%; height:100%; margin-right:5px"></span>
-	        <span> <img class ="mouseOver" src = "img/스테이크.jpeg" style="width:32%; height:100%"></span>
-	      <!-- </div> -->
+	     
+	        <span><img class ="mouseOver" src = "img/한식.jpeg" style="width:32%; height:100%; margin-right:5px"></span>
+	        <span><img class ="mouseOver" src = "img/디저트.png" style="width:32%; height:100%; margin-right:5px"></span>
+	        <span><img class ="mouseOver" src = "img/스테이크.jpeg" style="width:32%; height:100%"></span>
+	      
 	    </div>
 	 
 		<!-- 추천맛집 div -->
@@ -95,7 +95,8 @@
 	      </div>
 	      
 	    </div>
-	    <!-- 메인맛집부분 div끝  -->
+	   </div> <!-- 메인맛집부분 div끝  -->
+	   
 	</main>
 	
 		<!-- select로 위치 찾기 -->
@@ -140,7 +141,6 @@
 			</script>
 		</div>
 		
-	
 		
 
 	

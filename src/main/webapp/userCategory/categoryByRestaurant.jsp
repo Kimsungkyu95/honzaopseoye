@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -29,7 +29,7 @@
    span{font-size:13px}
 </style>
 
-<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script type="text/javascript">
 	
@@ -120,66 +120,49 @@
     <!--결과 뿌려주는곳  -->
     
 	 <!--맛집카테고리별 식당 div -->
-      <div id="list">
-	    <table>
-	     <c:choose>
-			    <c:when test="${empty requestScope.list}">
-			    
-				   <tr>
-			        <td>
-			            <!-- 카테고리 선택 안했을시  -->
-			           
-						  <img src="img/restaurantImage/dessert/dessert/캡처1.PNG"/>
-					  </a>
-				   		
-			        </td>
-			      </tr>
-			    </c:when>
-			    
-			<c:otherwise>
-			<c:forEach items="${requestScope.list}" var="restaurant"> 
-			<tr>
-				<td>
-			   		<a href="${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo=${restaurant.restaurantNo}">
-						  <img src="img/restaurantImage/${param.category}/${param.categoryDetail}/캡처1.PNG"/>
-					  </a><br>
-				   		이름 : <a href="${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo=${restaurant.restaurantNo}">
-				   					${restaurant.restaurantName}
-				   					<%-- ${restaurant.restaurantNo} --%>
-				   				</a><br>
-				   		레벨 : ${restaurant.restaurantLevel}
-			    </td>
-				<td>
-					<img src="img/초밥1.jpeg" />
-					<br>맛집이름, 별점<br>대략위치-대표메뉴
-				</td>
-				<td>
-					<img src="img/회.jpeg"/>
-					<br>맛집이름, 별점<br>대략위치-대표메뉴
-				</td>
-				<td>
-					<img src="img/삼겹살.jpeg"/>
-					<br>맛집이름, 별점<br>대략위치-대표메뉴
-				</td>
-			</tr>
-		    <tr>
-				<td>
-					<img src="img/삼겹살.jpeg"/><br>설명1<br>설명2
-				</td>
-				<td>
-					<img src="img/회.jpeg" /><br>설명1<br>설명2
-				</td>
-				<td>
-					<img src="img/초밥2.jpg"/><br>설명1<br>설명2
-				</td>
-				<td>
-					<img src="img/삼겹살.jpeg"/><br>설명1<br>설명2
-				</td>
-			</tr>
-				  </c:forEach> 
-				</c:otherwise>
-			</c:choose>
-		 </table>
+<div id="list">
+<table>
+	<tr>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+		<td>4</td>
+		
+	</tr><!--  30 /4 =>8 행 일때는 2개열만  -->
+    <c:choose>
+		    <c:when test="${empty requestScope.list}">
+			   <tr>
+		        <td colspan="5">
+		            <p align="center"><b><span style="font-size:9pt;">등록된 상품이 없습니다.</span></b></p>
+		        </td>
+		    </tr>
+		    </c:when>
+    <c:otherwise>
+       <c:set var="i" value="0"/>
+       <c:set var="j" value="4"/>
+		<c:forEach items="${requestScope.list}" var="restaurant" varStatus="state">
+		 <c:if test="${i % j == 0}">
+		 <tr>
+		 </c:if>
+					<td>
+						<a href="${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo=${restaurant.restaurantNo}">
+							  <%-- <img src="img/restaurantImage/${param.category}/${param.categoryDetail}/캡처1.PNG"/>  --%>
+							  <img src="img/스테이크.jpeg" />
+						  </a><br>
+					   		이름 : <a href="${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo=${restaurant.restaurantNo}">
+					   					${restaurant.restaurantName}
+					   				</a><br>
+					   		레벨 : ${restaurant.restaurantLevel}
+				   	</td>
+			 <c:if test="${i%j==j-1}">
+			 	</tr>
+			 </c:if>
+			 <c:set var="i" value="${i+1}"/>   
+	   	 </c:forEach>
+	</c:otherwise>
+	
+	</c:choose>
+</table> 
  	</div>	
 </div>
 

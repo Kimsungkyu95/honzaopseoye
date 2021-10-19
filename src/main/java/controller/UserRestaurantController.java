@@ -29,9 +29,9 @@ public class UserRestaurantController implements Controller {
 	 * */
 	public ModelAndView selectCategory(HttpServletRequest request, HttpServletResponse response)
 			throws Exception{
-		List<RestaurantDTO>restaurantList = new ArrayList<RestaurantDTO>();
 		
 		String categoryDetail = request.getParameter("categoryDetail"); //meat, sushi...
+		List<RestaurantDTO>restaurantList = new ArrayList<RestaurantDTO>();
 		
 		restaurantList= urService.selectCategory(categoryDetail);
 		
