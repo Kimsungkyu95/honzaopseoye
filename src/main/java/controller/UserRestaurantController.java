@@ -37,7 +37,7 @@ public class UserRestaurantController implements Controller {
 		
 		request.setAttribute("list", restaurantList); //뷰에서 ${requestScope.list} 
 		
-		ModelAndView mv = new ModelAndView("categoryByRestaurant.jsp");
+		ModelAndView mv = new ModelAndView("userCategory/categoryByRestaurant.jsp");
 		
 		return mv;
 	}

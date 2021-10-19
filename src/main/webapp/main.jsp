@@ -66,13 +66,12 @@
 	  <div class="container py-5" style="float:left" id="frame">
 	  
 		<!-- 카테고리 div -->
-		<h4><a href="${path}/categoryByRestaurant.jsp">카테고리별 검색</a></h4>
-	    <div class="p-5 mb-4 bg-light border rounded-3" style="height:300px">
+		<h4><a href="${path}/userCategory/categoryByRestaurant.jsp">카테고리별 검색</a></h4>
+	    <div class="p-4 mb-4 bg-light border rounded-3" style="height:300px">
 	      <!-- <div class="container-fluid py-5"> -->
-	        <span>이미지1</span>
-	        <span>이미지2</span>
-	        <span>이미지3</span>
-	        <span>이미지4</span>
+	        <span> <img class ="mouseOver" src = "img/한식.jpeg" style="width:32%; height:100%; margin-right:5px"></span>
+	        <span> <img class ="mouseOver" src = "img/디저트.png" style="width:32%; height:100%; margin-right:5px"></span>
+	        <span> <img class ="mouseOver" src = "img/스테이크.jpeg" style="width:32%; height:100%"></span>
 	      <!-- </div> -->
 	    </div>
 	 
