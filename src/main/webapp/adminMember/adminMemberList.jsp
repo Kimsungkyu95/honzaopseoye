@@ -6,6 +6,12 @@
 \${pageContext.request.contextPath} = ${pageContext.request.contextPath} <br>
 \${path} : ${path}
 
+<script type="text/javascript">
+	function deleteFn(num){
+		location.href="/adminMember/member"
+	}
+</script>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -40,23 +46,26 @@
 		      <th scope="col">이름</th>
 		      <th scope="col">가입일</th>
 		      <th scope="col">경험치</th>
+		      <th scope="col">삭제</th>
 		    </tr>
 		  </thead>
-		  
-		  
-		  
-		  <tbody>
-		    <tr>
-		      <th scope="row">memberNo</th>
-		      <!-- id를 가져고 이동 -->
-		      <td><a href="adminMemberDetail.jsp">memberId</td>
-		      <td>memberName</td>
-		      <td>memberJoinDate</td>
-		      <td>memberExp</td>
-		    </tr>
-		  </tbody>
-		  
-		  
+			
+		  <c:forEach items="${requestScope.list}" var="memberDto">
+		  	<tbody>
+			    <tr>
+			      <td>${memberDto.memberNo}</td>
+			      <td>
+			      	<a href="${path}/front?key=member&methodName=selectMemberByNo&memberNo=${memberDto.memberID}">
+			      		${memberDto.memberID}
+			      	</a>
+			      </td>
+			      <td>${memberName}</td>
+			      <td>${memberJoinDate}</td>
+			      <td>${memberExp}</td>
+			      <td input="button" value="삭제" class="" onclick="deleteFn(${memberDto.memberNo})"></td>
+			    </tr>
+			  </tbody>
+		  </c:forEach>
 		  
 		</table>
 	</div>

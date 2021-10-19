@@ -115,7 +115,7 @@ public class MemberDTO {
 		this.memberPhone = memberPhone;
 		this.memberBirth = memberBirth;
 	}	
-	
+
 	public int getMemberNo() {
 		return memberNo;
 	}
