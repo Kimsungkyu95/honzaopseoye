@@ -18,9 +18,9 @@ public interface MemberService {
 	
 	String selectPwdByIdEmail(String id, String email) throws SQLException;
 
-	void updateByNo(MemberDTO member) throws SQLException;
+	MemberDTO selectMemberByID(String id) throws SQLException;
 	
-	void updateExpByNo(MemberDTO member) throws SQLException;
+	void updateByNo(MemberDTO member) throws SQLException;
 	
 	void updateImageByNo(MemberDTO member) throws SQLException;
 	
@@ -30,7 +30,9 @@ public interface MemberService {
 	
 	ArrayList<MemberDTO> selectMemberList() throws SQLException;
 	
-	MemberDTO selectMemberByNo(int no) throws SQLException;
+	MemberDTO selectMemberByNoForAdmin(int no) throws SQLException;
 	
 	void updateMemberDetail(MemberDTO member)throws SQLException;
+	
+	int selectExpById(String membeID)throws SQLException;
 }

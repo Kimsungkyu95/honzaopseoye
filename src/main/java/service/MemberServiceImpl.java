@@ -86,16 +86,6 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void updateExpByNo(MemberDTO member) throws SQLException {
-		int result = dao.updateExpByNo(member);
-		
-		if(result == 0) {
-			throw new SQLException("해당 번호의 회원정보가 존재하지 않습니다.");
-		}
-		
-	}
-
-	@Override
 	public void updateImageByNo(MemberDTO member) throws SQLException {
 		int result = dao.updateImageByNo(member);
 		
@@ -130,8 +120,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberDTO selectMemberByNo(int no) throws SQLException {
-		MemberDTO member = dao.selectMemberByNo(no);
+	public MemberDTO selectMemberByNoForAdmin(int no) throws SQLException {
+		MemberDTO member = dao.selectMemberByNoForAdmin(no);
 		
 		return member;
 	}
@@ -143,6 +133,22 @@ public class MemberServiceImpl implements MemberService {
 		if(result == 0) {
 			throw new SQLException("회원정보 업데이트에 실패했습니다.");
 		}
+	}
+
+	@Override
+	public MemberDTO selectMemberByID(String id) throws SQLException {
+		MemberDTO member = dao.selectMemberByID(id);
+		return member;
+	}
+
+	@Override
+	public int selectExpById(String membeID) throws SQLException {
+		int memberExp = dao.selectExpById(membeID);
+		
+		if(memberExp < 0) {
+			throw new SQLException("error");
+		}		
+		return memberExp;
 	}
 
 }

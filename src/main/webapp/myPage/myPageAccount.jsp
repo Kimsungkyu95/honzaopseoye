@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+\${pageContext.request.contextPath} = ${pageContext.request.contextPath} <br>
+\${path} : ${path}
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -28,29 +33,29 @@
 		  <thead>
 		    <tr>
 		      <th scope="col">#</th>
-		      <th scope="col">정보</th>
+		      <th scope="col"></th>
 		    </tr>
 		  </thead>
 		  <tbody>
 		    <tr>
 		      <th scope="row">아이디</th>
-		      <td><input type="text" name="id" value=memberId /></td>
+		      <td>${memberDto.memberID }</td>
 		    </tr>
 		    <tr>
 		      <th scope="row">이름</th>
-		      <td><input type="text" name="id" value=memberName /></td>
+		      <td><input type="text" name="id" value=${memberDto.memberName} /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">이메일</th>
-		      <td><input type="text" name="id" value=memberEmail /></td>
+		      <td><input type="text" name="id" value=${memberDto.memberEmail} /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">전화번호</th>
-		      <td><input type="text" name="id" value=memberPhone /></td>
+		      <td><input type="text" name="id" value=${memberDto.memberPhone } /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">생년월일</th>
-		      <td><input type="text" name="id" value=memberBirth/></td>
+		      <td><input type="text" name="id" value=${memberDto.memberBirth } /></td>
 		    </tr>
 		  </tbody>
 		</table>

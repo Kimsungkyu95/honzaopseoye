@@ -231,7 +231,7 @@ public class MemberDAOImpl implements MemberDAO {
 	public int updateByNo(MemberDTO member) throws SQLException {
 		int returnValue = 0;
 		
-		String sql = proFile.getProperty("updateByNo");
+		String sql = proFile.getProperty("member.updateByNo");
 		
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -265,39 +265,10 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public int updateExpByNo(MemberDTO member) throws SQLException {
-		int returnValue = 0;
-		
-		String sql = proFile.getProperty("updateExpByNo");
-		
-		Connection con = null;
-		PreparedStatement ps = null;
-		
-		int memberExp = member.getMemberExp();
-		int memberNo = member.getMemberNo();
-
-		try {
-			con=DbUtil.getConnection();
-			ps=con.prepareStatement(sql);
-			
-			ps.setInt(1, memberExp);
-			ps.setInt(2, memberNo);
-			
-			returnValue = ps.executeUpdate();
-			
-		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
-			e.printStackTrace();
-		}finally {
-			DbUtil.dbClose(ps, con);
-		}
-		return returnValue;
-	}
-
-	@Override
 	public int updateImageByNo(MemberDTO member) throws SQLException {
 		int returnValue = 0;
 		
-		String sql = proFile.getProperty("updateImageByNo");
+		String sql = proFile.getProperty("member.updateImageByNo");
 		
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -326,7 +297,7 @@ public class MemberDAOImpl implements MemberDAO {
 	public int updatePwdByNo(MemberDTO member) throws SQLException {
 		int returnValue = 0;
 		
-		String sql = proFile.getProperty("updatePwdByNo");
+		String sql = proFile.getProperty("member.updatePwdByNo");
 		
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -355,7 +326,7 @@ public class MemberDAOImpl implements MemberDAO {
 	public int deleteByNo(int no) throws SQLException {
 		int returnValue = 0;
 		
-		String sql = proFile.getProperty("deleteByNo");
+		String sql = proFile.getProperty("member.deleteByNo");
 		//delete from member where num=?
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -381,8 +352,9 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public ArrayList<MemberDTO> selectMemberList() throws SQLException {
 		
-		String sql = proFile.getProperty("selectMemberList");
-		//select*from member
+		String sql = proFile.getProperty("member.selectMemberList");
+//member.selectMemberList=select member_no, member_id, member_name, member_join_date member_exp from member
+
 		
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -457,10 +429,9 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public MemberDTO selectMemberByNo(int no) throws SQLException {
+	public MemberDTO selectMemberByNoForAdmin(int no) throws SQLException {
 		MemberDTO returnValue = null;	
-		String sql = proFile.getProperty("");
-		
+		String sql = proFile.getProperty("member.selectMemberByNo");
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -505,7 +476,7 @@ public class MemberDAOImpl implements MemberDAO {
 	public int updateMemberDetail(MemberDTO member) throws SQLException {
 		int returnValue = 0;
 		
-		String sql = proFile.getProperty("");
+		String sql = proFile.getProperty("member.updateMemberDetail");
 		
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -545,7 +516,75 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 		return returnValue;
 	}
-	
+
+	/**
+	 * myPageAccount - 계정정보 확인(아이디-수정X, 이름, 이메일, 전화번호, 생년월일)
+	 */
+	@Override
+	public MemberDTO selectMemberByID(String id) throws SQLException {
+		MemberDTO returnValue = null;	
+		String sql = proFile.getProperty("member.selectMemberByID");
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con=DbUtil.getConnection();
+			ps=con.prepareStatement(sql);
+			
+			ps.setString(1, id);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+
+				String memberID = rs.getString(1);
+				String memberName = rs.getString(2);
+				String memberEmail = rs.getString(3);
+				String memberPhone = rs.getString(4);
+				String memberBirth = rs.getString(5);
+
+				returnValue = new MemberDTO(memberID, memberName, memberEmail, memberPhone, memberBirth);				
+			}
+		
+		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			e.printStackTrace();
+		}finally {
+			DbUtil.dbClose(rs, ps, con);
+		}
+		return returnValue;
+	}
+
+	@Override
+	public int selectExpById(String id) {
+		int returnValue=-1;	
+		String sql = proFile.getProperty("member.selectExpById");
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con=DbUtil.getConnection();
+			ps=con.prepareStatement(sql);
+			
+			ps.setString(1, id);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				int memberExp=rs.getInt(1);
+
+				returnValue = memberExp;			
+			}
+		
+		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			e.printStackTrace();
+		}finally {
+			DbUtil.dbClose(rs, ps, con);
+		}
+		return returnValue;
+	}
+
 	
 
 }
