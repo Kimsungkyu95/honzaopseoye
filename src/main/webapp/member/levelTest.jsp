@@ -38,8 +38,7 @@ $(function() {
 	$("#Q4").hide();
 	$("#Q5").hide();
 	$("#Q6").hide();
-	$("#Q7").hide();
-	
+	$("#Q7").hide();	
 	
 	//Q1-1
 	$("#Q1-1_Yes").click(function() {
