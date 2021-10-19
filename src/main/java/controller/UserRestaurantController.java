@@ -48,13 +48,14 @@ public class UserRestaurantController implements Controller {
 				if(files.length>=1) {
 					for(int i = 0; i < 1; i++) {
 			       		 String fileName = files[i].toString();
-			       		 imgList.add(fileName);
+//			     		System.out.println(fileName.substring(fileName.lastIndexOf("\\")+1));
+			       		 imgList.add("img/restaurantImage"+"/" + category+"/"+categoryDetail+"/"+restaurantName+"/"+fileName.substring(fileName.lastIndexOf("/")+1));
 			       	 }
 				}else {
-					imgList.add("../img/삼겹살.jpeg");
+					imgList.add("img/삼겹살.jpeg");
 				}
 			}else {
-				imgList.add("../img/삼겹살.jpeg");
+				imgList.add("img/삼겹살.jpeg");
 			}
 			
 			restaurantDTO.setImgList(imgList);
@@ -72,12 +73,15 @@ public class UserRestaurantController implements Controller {
 	 * */
 	public ModelAndView selectByRestaurantNo(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		
+		
+		
 		String restaurantNo = request.getParameter("restaurantNo");
 		RestaurantDTO restaurantDTO = urService.selectByRestaurantNo(restaurantNo);
 		request.setAttribute("restaurant",restaurantDTO);
 		
 		return new ModelAndView("restaurant.jsp");
 	}
-	
+
 
 }

@@ -28,6 +28,8 @@ public class UserRestaurantServiceImpl implements UserRestaurantService {
 		//메뉴정보 가져오기 
 		restaurantDTO.setMenuList(urDao.selectMenuByRestaurantNo(restaurantNo));
 		
+		
+		
 		return restaurantDTO;
 	}
 
