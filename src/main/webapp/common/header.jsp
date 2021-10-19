@@ -37,6 +37,7 @@ pageEncoding="UTF-8"%>
 					<li class="nav-item">
 						<a class="nav-link" href="${pageContext.request.contextPath}/member/loginForm.jsp">LogIn</a>
 					</li>
+					
 				 </c:if>
 				 <!-- 로그아웃 -->
 				<c:if test="${not empty loginId}">
@@ -47,11 +48,12 @@ pageEncoding="UTF-8"%>
 					<li class="nav-item">
 						<a class="nav-link" href="${pageContext.request.contextPath}/front?key=member&methodName=logout">LogOut</a>
 					</li>
+					<!-- 위시리스트 -->
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/myPage/myPageWishList.jsp">WishList</a>
+					</li>
 				 </c:if>
-				<!-- 위시리스트 -->
-				<li class="nav-item">
-					<a class="nav-link" href="${pageContext.request.contextPath}/myPage/myPageWishList.jsp">WishList</a>
-				</li>
+				
 				<!-- 스토리 -->
 				<li class="nav-item">
 					<a class="nav-link" href="${pageContext.request.contextPath}/userStory/userStoryList.jsp">Story</a>

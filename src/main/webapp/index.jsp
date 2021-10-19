@@ -86,7 +86,7 @@ p{color: black;}
   <div class="container col-xxl-8 px-4 py-5">
     <div class="row flex-lg-row-reverse align-items-center g-5 py-5 rounded-3 border shadow-lg">
       <div class="col-10 col-sm-8 col-lg-6">
-        <img src="${pageContext.request.contextPath}/img/레벨테스트스샷(임시).PNG" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+        <img src="${pageContext.request.contextPath}/img/레벨테스트 결과.PNG" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
       </div>
       <div class="col-lg-6">
         <h1 class="display-5 fw-bold lh-1 mb-3">혼밥하고 레벨업하자!</h1>

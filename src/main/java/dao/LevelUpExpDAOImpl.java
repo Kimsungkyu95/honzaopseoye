@@ -104,14 +104,25 @@ public class LevelUpExpDAOImpl implements LevelUpExpDAO {
 	 * @return 다음 레벨까지 남은 경험치. 리턴값이 -1이면 뭔가 문제가 생김. 0이면 현재 만렙이라는 뜻.
 	 * */
 	@Override
-	public int remainingExp(int memberLevel) throws SQLException {
+	public int remainingExp(int memberExp) throws SQLException {
 		int remainingExp = -1;
 		
-		int nextLevel = this.nextLevel(memberLevel);
+		//현재 레벨
+		int currentLevel = this.selectMemberLevelByExp(memberExp);
 		
-		if(nextLevel==memberLevel) {
-			
+		//다음 레벨
+		int nextLevel = this.nextLevel(currentLevel);
+		
+		if(nextLevel == currentLevel) { //만약에 다음레벨이 현재레벨이랑 동일하면..
+			//만렙이니까 0 리턴.
+			return 0;
 		}
+		
+		//다음 레벨의 최소 레벨
+		int minExpforNextLevel=this.selectMinExpByLevel(nextLevel);
+		
+		//남은 exp = 다음레벨의 최소레벨 - 현재 exp
+		remainingExp = minExpforNextLevel - memberExp;
 		
 		return remainingExp;
 	}
@@ -137,7 +148,7 @@ public class LevelUpExpDAOImpl implements LevelUpExpDAO {
 	 * */
 	public int selectMinExpByLevel(int memberLevel) throws SQLException {
 		int minExp=-1;
-		String sql = proFile.getProperty("levelUp.selectMemberLevelByExp");
+		String sql = proFile.getProperty("levelUp.selectMinExpByMemberLevel");
 		
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -156,7 +167,6 @@ public class LevelUpExpDAOImpl implements LevelUpExpDAO {
 				minExp = rs.getInt(1);
 				
 			}
-			
 			
 		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
 			e.printStackTrace();

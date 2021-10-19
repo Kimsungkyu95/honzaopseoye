@@ -33,10 +33,10 @@ public class LevelUpExpServiceImpl implements LevelUpExpService {
 	}
 
 	@Override
-	public int remainingExp(int memberLevel) throws SQLException {
+	public int remainingExp(int memberExp) throws SQLException {
 		int remainingExp = -1;
 		
-		remainingExp=dao.remainingExp(memberLevel);
+		remainingExp=dao.remainingExp(memberExp);
 		
 		if(remainingExp==-1) {
 			throw new SQLException("레벨에 해당하는 남은 경험치를 불러올 수 없습니다.");
