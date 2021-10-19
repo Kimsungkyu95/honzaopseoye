@@ -9,7 +9,7 @@ public interface RecommendDAO {
 	
     List<RecommendDTO> recByScore();
 	
-	List<RecommendDTO> recByLevel(int levelNo) throws SQLException;
+	List<RecommendDTO> recByLevel(int levelNo);
 	
 	List<RecommendDTO> recByVisited() throws SQLException;
 	

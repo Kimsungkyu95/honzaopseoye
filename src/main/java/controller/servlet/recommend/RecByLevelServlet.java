@@ -13,21 +13,20 @@ import javax.servlet.http.HttpServletResponse;
 import dao.RecommendDAO;
 import dao.RecommendDAOImpl;
 import dto.RecommendDTO;
-import net.sf.json.JSONArray;
 
-@WebServlet("/recByScore")
-public class RecByScoreServlet extends HttpServlet {
+@WebServlet("/recByLevel")
+public class RecByLevelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
+		String levelNo=request.getParameter("level");
 		
 		RecommendDAO dao = new RecommendDAOImpl();
-		List<RecommendDTO> list = dao.recByScore();
-		JSONArray arr = JSONArray.fromObject(list);
+		List<RecommendDTO> result = dao.recByLevel(Integer.parseInt(levelNo));
 		
 		PrintWriter out = response.getWriter();
-		out.print(arr);
-	}
+		out.print(result);
 
+     }
+	
 }
