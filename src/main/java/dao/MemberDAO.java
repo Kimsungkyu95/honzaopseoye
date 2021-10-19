@@ -17,9 +17,9 @@ public interface MemberDAO {
 
 	String selectIdByEmail(String email) throws SQLException;
 	
-	int updateByNo(MemberDTO member) throws SQLException;
+	MemberDTO selectMemberByID(String id)throws SQLException;
 	
-	int updateExpByNo(MemberDTO member) throws SQLException;
+	int updateByNo(MemberDTO member) throws SQLException;
 	
 	int updateImageByNo(MemberDTO member) throws SQLException;
 	
@@ -27,11 +27,13 @@ public interface MemberDAO {
 	
 	int deleteByNo(int no) throws SQLException;
 	
-	MemberDTO selectMemberByNo(int no) throws SQLException;
+	MemberDTO selectMemberByNoForAdmin(int no) throws SQLException;
 	
 	int updateMemberDetail(MemberDTO member)throws SQLException;
 	
 	ArrayList<MemberDTO> selectMemberList() throws SQLException;
 	
 	String selectPwdByIdEmail(String id, String email) throws SQLException;
+
+	int selectExpById(String id);
 }

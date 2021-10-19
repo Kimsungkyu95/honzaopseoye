@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+\${pageContext.request.contextPath} = ${pageContext.request.contextPath} <br>
+\${path} : ${path}
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -42,7 +47,7 @@
 		  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
 		</div>
     	
-    	<h3>현재 경험치 : 650Exp</h3>
+    	<h3>현재 경험치 : <p>${memberExp}</p></h3>
     	<h3>다음 레벨까지 남은 경험치 : 350Exp</h3>
     	<br>
     	<button type="button" class="btn btn-secondary btn-lg">레벨낮추기</button>

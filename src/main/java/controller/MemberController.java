@@ -131,22 +131,6 @@ public class MemberController implements Controller {
 		
 	}
 	
-	public ModelAndView updateExpByNo(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		String url = "error/error.jsp";
-		String errorMsg = "Something Went Wrong.";
-		
-		int memberExp = Integer.parseInt(request.getParameter("memberExp"));
-		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
-		
-		MemberDTO member = new MemberDTO();
-		member.setMemberExp(memberExp);
-		member.setMemberNo(memberNo);
-		
-		service.updateExpByNo(member);
-
-		return new ModelAndView("/myPage/myPageLevel.jsp");
-	}
 	public ModelAndView updateImageByNo(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String url = "error/error.jsp";
@@ -161,9 +145,7 @@ public class MemberController implements Controller {
 		
 		service.updateImageByNo(member);
 		
-		MemberDTO dbmember = service.selectMemberByNo(memberNo);	
-		request.setAttribute("member", dbmember);
-		return new ModelAndView("/myPage/myPageLevel.jsp");
+		return new ModelAndView("/myPage/myPageLevel.jsp", false);
 	}
 	
 	public ModelAndView updatePwdByNo(HttpServletRequest request, HttpServletResponse response)
@@ -181,9 +163,8 @@ public class MemberController implements Controller {
 
 		service.updatePwdByNo(member);
 		
-		MemberDTO dbmember = service.selectMemberByNo(memberNo);
-		request.setAttribute("memberNo", memberNo);
-		return new ModelAndView("/myPage/myPagePassword.jsp");
+
+		return new ModelAndView("/myPage/myPagePassword.jsp", false);
 	}
 	
 	public ModelAndView deleteByNo(HttpServletRequest request, HttpServletResponse response)
@@ -193,7 +174,7 @@ public class MemberController implements Controller {
 		
 		service.deleteByNo(memberNo);
 		
-		return new ModelAndView("/adminUser/adminMemberList.jsp");	
+		return new ModelAndView("/adminMember/adminMemberList.jsp");	
 	}
 	
 	public ModelAndView selectMemberList(HttpServletRequest request, HttpServletResponse response)
@@ -202,17 +183,17 @@ public class MemberController implements Controller {
 		ArrayList<MemberDTO> list = service.selectMemberList();
 		request.setAttribute("list", list);
 		
-		return new ModelAndView("/adminUser/adminMemberList.jsp");	
+		return new ModelAndView("adminMember/adminMemberList.jsp", false);	
 	}
 	
 	public ModelAndView selectMemberByNo(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
-		MemberDTO member = service.selectMemberByNo(memberNo);
+		MemberDTO member = service.selectMemberByNoForAdmin(memberNo);
 		
 		request.setAttribute("member", member);
-		return new ModelAndView("/adminUser/adminMemberDetail.jsp");	
+		return new ModelAndView("/adminMember/adminMemberDetail.jsp", false);	
 	}
 	
 	public ModelAndView updateMemberDetail(HttpServletRequest request, HttpServletResponse response)
@@ -231,8 +212,32 @@ public class MemberController implements Controller {
 		MemberDTO member = new MemberDTO(memberNo, memberID, memberPwd, memberName, memberEmail,memberPhone, memberBirth, memberExp, profileImage);
 		service.updateMemberDetail(member);
 		
-		return new ModelAndView("/adminUser/amdinMemberDetail.jsp");
+		return new ModelAndView("/adminMember/amdinMemberDetail.jsp");
 			
 	}
 	
+	public ModelAndView selectMemberByID(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		
+		String memberID = request.getParameter("memberID");
+		
+		MemberDTO member = service.selectMemberByID(memberID);
+		request.setAttribute("memberDto", member);
+		return new ModelAndView("/myPage/myPageAccount.jsp", false);
+		
+
+	}
+	
+	/**
+	 * myPage - 경험치 selectExpById
+	 */
+	public ModelAndView selectExpById(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		String memberID = request.getParameter("memberID");
+		
+		int memberExp = service.selectExpById(memberID);
+		request.setAttribute("memberExp", memberExp);
+		
+		return new ModelAndView("/myPage/myPageLevel.jsp", false);
+	}
 }
