@@ -31,16 +31,25 @@ public class UserRestaurantController implements Controller {
 	public ModelAndView selectCategory(HttpServletRequest request, HttpServletResponse response)
 			throws Exception{
 		String category = request.getParameter("category");
-		String categoryDetail = request.getParameter("categoryDetail"); //meat, sushi...
+		String categoryDetail = request.getParameter("categoryDetail"); 
+		
 		List<RestaurantDTO>restaurantList = new ArrayList<RestaurantDTO>();
 		
 		RestaurantDTO restaurant = new RestaurantDTO();
-		
 		restaurantList= urService.selectCategory(categoryDetail);
 		
+		for(RestaurantDTO restaurantDTO : restaurantList) {
+			List<String>imgList=new ArrayList<String>();
+			String restaurantName = restaurantDTO.getRestaurantName();
+			File file = new File(request.getServletContext().getRealPath("/img/restaurantImage/"+category+"/"+categoryDetail+"/"+restaurantName));
+			File files [] = file.listFiles();
+			for(int i = 0; i < files.length; i++) {
+	       		 String fileName = files[i].toString();
+	       		 imgList.add(fileName.substring(fileName.lastIndexOf("\\")+1));
+	       	 	}
+		}
+		
 		request.setAttribute("list", restaurantList); //뷰에서 ${requestScope.list} 
-		
-		
 		
 		ModelAndView mv = new ModelAndView("userCategory/categoryByRestaurant.jsp");
 		
