@@ -140,7 +140,7 @@ public class UserRestaurantDAOImpl implements UserRestaurantDAO {
 				menuList.add(menu);
 			}
 		} finally {
-			
+			DbUtil.dbClose(rs, ps, con);
 		}
 		return menuList;
 	}

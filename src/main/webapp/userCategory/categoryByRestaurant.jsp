@@ -140,8 +140,8 @@
 		 </c:if>
 					<td>
 						<a href="${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo=${restaurant.restaurantNo}">
-							  <img src="img/restaurantImage/${param.category}/${param.categoryDetail}/${restaurant.restaurantName}/${restaurant.restaurantName}0.jpg"/>
-							  <!-- <img src="img/스테이크.jpeg" /> -->
+							<%--  <img src="${restaurant.imgList[0]}"/>  --%>
+							  <img src="${path}/img/스테이크.jpeg" />  
 						  </a><br>
 					   		이름 : <a href="${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo=${restaurant.restaurantNo}">
 					   					${restaurant.restaurantName}
