@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import dto.LevelUpExpDTO;
 import dto.MemberDTO;
 import dto.RestaurantDTO;
+import dto.ReviewContent;
 
 public interface MemberService {
 	MemberDTO login(MemberDTO member) throws SQLException ;
@@ -40,5 +41,5 @@ public interface MemberService {
 	
 	String MemberSelectPwdById(String id) throws SQLException;
 	
-	ArrayList<MemberDTO> selectReviewList(String memberID) throws SQLException;
+	ArrayList<ReviewContent> selectReviewList(String memberID) throws SQLException;
 }

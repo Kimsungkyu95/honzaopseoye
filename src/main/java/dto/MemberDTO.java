@@ -14,9 +14,6 @@ public class MemberDTO {
 	private int memberExp;
 	private String profileImage;
 	
-	private RestaurantDTO restaurant;
-	private ReviewDTO review;
-	
 	private List<ReviewDTO> reviewList;
 	private List<StoryDTO> storyList;
 	
@@ -141,11 +138,6 @@ public class MemberDTO {
 		this.memberBirth = memberBirth;
 	}
 	
-	public MemberDTO(RestaurantDTO restaurant, ReviewDTO review) {
-		this.restaurant=restaurant;
-		this.review=review;
-	}
-
 	public int getMemberNo() {
 		return memberNo;
 	}
@@ -241,8 +233,5 @@ public class MemberDTO {
 	public void setStoryList(List<StoryDTO> storyList) {
 		this.storyList = storyList;
 	}
-	
-	
-
 	
 }

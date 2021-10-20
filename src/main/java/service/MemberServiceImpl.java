@@ -8,6 +8,7 @@ import dao.MemberDAOImpl;
 import dto.LevelUpExpDTO;
 import dto.MemberDTO;
 import dto.RestaurantDTO;
+import dto.ReviewContent;
 
 public class MemberServiceImpl implements MemberService {
 	
@@ -162,8 +163,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public ArrayList<MemberDTO> selectReviewList(String memberID) throws SQLException {
-		ArrayList<MemberDTO> list = dao.selectReviewList(memberID);
+	public ArrayList<ReviewContent> selectReviewList(String memberID) throws SQLException {
+		ArrayList<ReviewContent> list = dao.selectReviewList(memberID);
 		
 		return list;
 	}

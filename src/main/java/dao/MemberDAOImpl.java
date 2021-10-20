@@ -13,6 +13,7 @@ import org.apache.catalina.valves.RemoteIpValve;
 import dto.LevelUpExpDTO;
 import dto.MemberDTO;
 import dto.RestaurantDTO;
+import dto.ReviewContent;
 import dto.ReviewDTO;
 import util.DbUtil;
 
@@ -616,14 +617,14 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public ArrayList<MemberDTO> selectReviewList(String id) throws SQLException {
+	public ArrayList<ReviewContent> selectReviewList(String id) throws SQLException {
 		String sql = proFile.getProperty("member.selectReviewList");
 		
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
-		ArrayList<MemberDTO> list = new ArrayList<MemberDTO>();
+		ArrayList<ReviewContent> list = new ArrayList<ReviewContent>();
 		
 		try {
 			con=DbUtil.getConnection();
@@ -641,10 +642,9 @@ public class MemberDAOImpl implements MemberDAO {
 				String reviewContent=rs.getString(5);
 				String reviewRegdate=rs.getString(6);
 				
-				RestaurantDTO restaurant = new RestaurantDTO(restaurantNo, restaurantLevel, restaurantName);
-				ReviewDTO review = new ReviewDTO(reviewScore, reviewContent, reviewRegdate);
-				MemberDTO dto = new MemberDTO(restaurant, review);
-				list.add(dto);
+				ReviewContent reviceContent = new ReviewContent(restaurantNo, restaurantLevel, restaurantName, reviewScore, reviewContent, reviewRegdate);
+				
+				list.add(reviceContent);
 			}
 			
 		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
