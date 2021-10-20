@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 
@@ -29,8 +32,7 @@
 
     <script>
         $(function () {
-            //카테고리 설정            
-            
+            //카테고리 설정
             dessert = [{eng:"dessert", kor : "디저트"}];
             fastfood = [{eng:"fastfood", kor: "패스트푸드"}];
             pizza = [{eng:"pizza", kor: "피자"}]
@@ -42,18 +44,26 @@
             western = [{eng:"italian", kor : "이탈리안"}, {eng : "worldfood", kor : "세계음식"}]
             buffet = [{eng:"buffet", kor:"뷔페"}]
             bar = [{eng:"bar", kor:"술집"}]
-
-            $('#first-category').change(function () {
-                let str = `<option selected value="0">-상세카테고리선택-</option>`;
-                if ($(this).val() != 0) {
-                    let secondList = new Function("return " + $(this).val())();
-                    console.log(secondList);
+			
+            //second-category 변경
+            function setSecondCategory(){
+            	let str = `<option selected value="0">-상세카테고리선택-</option>`;
+                if ($('#first-category').val() != 0) {
+                    let secondList = new Function("return " + $('#first-category').val())();
                     for (item of secondList) {
-                        str += `<option value=${item.eng}>${item.kor}</option>`;
+                        str += `<option value=` + item.eng + `>`+ item.kor +`</option>`;
                     }
                 }
-                $('#second-category').empty().html(str);
-            })
+                $('#second-category').empty().html(str);    	
+            }
+            
+            //first-category 넣기
+            $('#first-category').val("${requestScope.restaurantDTO.categoryName}");
+            setSecondCategory()
+            
+            
+            //first카테고리 change 일어날때
+            $('#first-category').change(setSecondCategory)
 
             //경,위도 api
             function getCoordinate(jibunAddress) {
@@ -121,8 +131,7 @@
             
             
             //해시태그 추가
-            $('#hashTagAppendBtn').click(function(){
-            	
+            $('#hashTagAppendBtn').click(function(){   	
             	$('#hashTag').clone().insertBefore('#hashTagAppendBtn');
             })
             
@@ -150,20 +159,19 @@
             })
             //메뉴 삭제
             $('#menuRemoveBtn').click(function(){
-                console.log($('.menu-box'));
                 if($('.menu-box').length == 1){
                     return;
                 }
                 $(this).prev().prev().remove();
             })
 
-            $("#restaurantInsert").submit(function(){
+            $("#restaurantUpdate").submit(function(){
 
             	let firstCategory = $("#first-category").val();
             	let secondCategory = $("#second-category").val();
             	let restaurantName = $("#restaurant-name").val();
             	
-            	document.restaurantInsert.action  = "../front?key=adminRestaurant&methodName=insert&firstCategory="+firstCategory+"&secondCategory="+secondCategory+"&restaurantName="+restaurantName;
+            	document.restaurantUpdate.action  = "${path}/front?key=adminRestaurant&methodName=update&firstCategory="+firstCategory+"&secondCategory="+secondCategory+"&restaurantName="+restaurantName;
             })
             
         })//ready
@@ -202,11 +210,12 @@
 
     <!-- form -->
     <div class="container p-5" id="form-container">
-        <form class="shadow-lg p-5" id="restaurantInsert"  name="restaurantInsert" method="post" enctype="multipart/form-data">
-            <h2>맛집 등록</h2>
+        <form class="shadow-lg p-5" id="restaurantUpdate"  name="restaurantUpdate" method="post" enctype="multipart/form-data">
+            <h2>맛집 상세정보 / 수정</h2>
+            <input type="hidden" name="restaurantNo" value="${restaurantDTO.restaurantNo}">
             <div class="mb-3 mt-4">
                 <label class="form-label">맛집 이름</label>
-                <input type="text" class="form-control" name="restaurantName" id="restaurant-name">
+                <input type="text" class="form-control" name="restaurantName" id="restaurant-name" value="${restaurantDTO.restaurantName}">
             </div>
             <div class="mb-3">
                 <label class="form-label">카테고리</label>
@@ -237,11 +246,11 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">레벨</label>
-                <input type="number" class="form-control" min="1" max="7" value="1" name="level">
+                <input type="number" class="form-control" min="1" max="7" value="${restaurantDTO.restaurantLevel}" name="level">
             </div>
             <div class="mb-3">
                 <label class="form-label">전화번호</label>
-                <input type="text" class="form-control" placeholder="000-0000-0000" name="phone">
+                <input type="text" class="form-control" placeholder="000-0000-0000" name="phone" value="${restaurantDTO.restaurantPhone}"> 
             </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">주소</label>
@@ -255,20 +264,20 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <input type="text" class="form-control" id="sample4_roadAddress" placeholder="도로명주소" name="roadAddress">
+                        <input type="text" class="form-control" id="sample4_roadAddress" placeholder="도로명주소" name="roadAddress" value="${restaurantDTO.restaurantRoadAddr}">
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control" id="sample4_jibunAddress" placeholder="지번주소" name="jibunAddress">
+                        <input type="text" class="form-control" id="sample4_jibunAddress" placeholder="지번주소" name="jibunAddress" value="${restaurantDTO.restaurantAddr}">
                     </div>
                 </div>
             </div>
             <div class="mb-3">
                 <label class="form-label">경도</label>
-                <input type="text" class="form-control" id="longitude" name="longitude">
+                <input type="text" class="form-control" id="longitude" name="longitude" value="${restaurantDTO.restaurantLongitude}">
             </div>
             <div class="mb-3">
                 <label class="form-label">위도</label>
-                <input type="text" class="form-control" id="latitude" name="latitude">
+                <input type="text" class="form-control" id="latitude" name="latitude" value="${restaurantDTO.restaurantLatitude}">
             </div>
             <div class="mb-3">
                 <label class="form-label">맛집 사진 업로드</label>
@@ -276,31 +285,69 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">#해시태그</label>
-                <select class="form-select mb-3" id="hashTag" name="hashTag">
-                            <option selected value="0">-해시태그 선택-</option>
-                            <option value="1">-test-</option>
-                </select>               
+
+               	<c:choose>
+               		<c:when test="${empty restaurantDTO.hashTagName}">
+                		<select class="form-select mb-3" id="hashTag" name="hashTag">
+		                    <option selected value="0">-해시태그 선택-</option>
+                			<c:forEach items="${hashTagList}" var="hashTag">
+                				<option value="${hashTag}">${hashTag}</option>
+                			</c:forEach>		                            
+		                </select>
+               		</c:when>
+               		<c:otherwise>
+               			<c:forEach items="${restaurantDTO.hashTagName}" var="restaurantTag">
+               				<select class="form-select mb-3" id="hashTag" name="hashTag">
+			                    <option selected value="0">-해시태그 선택-</option>
+	                			<c:forEach items="${hashTagList}" var="hashTag">
+	                				<option value="${hashTag}" <c:if test="${restaurantTag == hashTag}">selected</c:if> >${hashTag}</option> <!-- 추가할때마다 selected 되어있음 -->
+	                			</c:forEach>		                            
+		                	</select>
+               			</c:forEach>
+               		</c:otherwise>
+               	</c:choose>
+               
+
                 <button type="button" class="btn btn-sm btn-primary" id="hashTagAppendBtn">추가</button>
                 <button type="button" class="btn btn-sm btn-danger" id="hashTagRemoveBtn">빼기</button>
             </div>
             <div class="mb-3" >
                 <label class="form-label">메뉴 추가</label>
-                <div class="row menu-box">
-                    <div class="col">
-                        <div class="form-text">메뉴이름</div>
-                        <input type="text" class="form-control" name="menuName">
-                    </div>
-                    <div class="col">
-                        <div class="form-text">가격</div>
-                        <input type="text" class="form-control" name="menuPrice">
-                    </div>
-                </div>
+                <c:choose>
+                	<c:when test="${empty restaurantDTO.menuList}">
+		                <div class="row menu-box">
+		                    <div class="col">
+		                        <div class="form-text">메뉴이름</div>
+		                        <input type="text" class="form-control" name="menuName">
+		                    </div>
+		                    <div class="col">
+		                        <div class="form-text">가격</div>
+		                        <input type="text" class="form-control" name="menuPrice">
+		                    </div>
+		                </div> 		
+                	</c:when>
+                	<c:otherwise>
+                		<c:forEach items="${restaurantDTO.menuList}" var="menuDTO">
+                			<div class="row menu-box">
+			                    <div class="col">
+			                        <div class="form-text">메뉴이름</div>
+			                        <input type="text" class="form-control" name="menuName" value="${menuDTO.menuName}">
+			                    </div>
+			                    <div class="col">
+			                        <div class="form-text">가격</div>
+			                        <input type="text" class="form-control" name="menuPrice" value="${menuDTO.menuPrice}">
+			                    </div>
+		                	</div>
+                		</c:forEach>
+                	</c:otherwise>
+                	
+                </c:choose>
                 <button type="button" class="btn btn-sm btn-primary mt-3" id="menuAppendBtn">추가</button>
                 <button type="button" class="btn btn-sm btn-danger mt-3" id="menuRemoveBtn">빼기</button>
             </div>
             <div class="bottom-btn">
-                <button type="submit" class="btn btn-primary">등록</button>
-                <button type="button" class="btn btn-secondary">취소</button>
+                <button type="submit" class="btn btn-primary">수정</button>
+                <button type="button" class="btn btn-secondary" onclick="history.back()">취소</button>
             </div>
         </form>
 

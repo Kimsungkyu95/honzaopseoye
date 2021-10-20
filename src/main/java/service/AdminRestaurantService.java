@@ -12,7 +12,30 @@ public interface AdminRestaurantService {
 	void insert(RestaurantDTO restaurantDTO, String categoryDetailsName) throws SQLException;
 	
 	/**
+	 * 맛집 delete
+	 * */
+	void delete(int restaurantNo) throws SQLException;
+
+	/**
+	 * 맛집 update
+	 * */
+	void update(RestaurantDTO restaurantDTO, String categoryDetailsName) throws SQLException;
+	
+	/**
 	 * 맛집 리스트 페이징 select
 	 * */
 	List<RestaurantDTO> pagingSelect(int pageNo, String selectKey, String selectValue) throws SQLException;
+	
+	/**
+	 * 맛집 번호로 상세검색
+	 * */
+	RestaurantDTO selectByRestaurantNo(int restaurantNo) throws SQLException;
+	
+	/**
+	 * 해시태그 리스트 받아오기
+	 * */
+	List<String> selectAllHashTag() throws SQLException;
+	
+
+	
 }
