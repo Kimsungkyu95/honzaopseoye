@@ -16,6 +16,8 @@
     
 	<style>
     	h1{text-align:center;}
+    	h2{text-align:center;}
+    	h5{text-align:right;}
     </style>
    	
    	<script type="text/javascript">
@@ -31,18 +33,21 @@
 	 	<c:forEach items="${requestScope.list}" var="dto">
 	 		<div class="card w-100">
 			  <div class="card-body">
-			    <h5 class="card-title">${dto.restaurantNo} &#60;${dto.restaurantName}&#62;</h5>
-			    <a>레스토랑 레벨 : ${dto.restaurantLevel}</a>
-			    <p class="card-text">내가 준 별점 : ${dto.reviewScore}</p>
-			    <a>${dto.reviewRegdate}</a>
-			    <p class="card-text">${dto.reviewContent}</p>
+			    <h2 class="card-title"><%-- ${dto.restaurantNo} --%> &#60;${dto.restaurantName}&#62;</h2>
+			    <h5>내가 준 별점 : ${dto.reviewScore} 레스토랑 레벨 : ${dto.restaurantLevel}</h5>
+			    <h3 class="card-text">${dto.reviewContent}</h3>
+			    <h5>${dto.reviewRegdate}</h5>
+			    <div class="col text-center">
 			    <a href="#" class="btn btn-primary">상세보기</a>
+			    </div>
 			  </div>
 			</div>
 	 	</c:forEach>
     </div>
-
-
+    
+	<div class="col text-center">
+		<button type="button" class="btn btn-secondary btn-lg" onclick="location.href='${path}/myPage/myPage.jsp'">마이페이지</button>
+	</div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
     <footer class="pt-3 mt-4 text-muted border-top" style="clear:both">

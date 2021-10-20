@@ -19,6 +19,7 @@
     
     <style>
     	h1{text-align:center;}
+    	h3{text-align:center;}
     </style>   
   </head>
   <body>
@@ -45,13 +46,17 @@
     	<div class="progress">
 		  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: ${levelExp.minExp / levelExp.maxExp * 100}%"></div>
 		</div>
-    	
+    	<br>
+    	<br>
     	<h3>현재 레벨 : <a>${levelExp.memberLevel}</a></h3>
     	<%-- <p>현재경험치 : ${levelExp.minExp}</p>
     	<p>레벨 최대경험치 : ${levelExp.maxExp }</p> --%>
     	<h3>다음 레벨까지 남은 경험치 : <a>${levelExp.maxExp - levelExp.minExp}Exp</a></h3>
     	<br>
-    	<button type="button" class="btn btn-secondary btn-lg">뒤로가기</button>
+    	<br>
+    	<div class="col text-center">
+		<button type="button" class="btn btn-secondary btn-lg" onclick="location.href='${path}/myPage/myPage.jsp'">마이페이지</button>
+		</div>
     </div>
     
     

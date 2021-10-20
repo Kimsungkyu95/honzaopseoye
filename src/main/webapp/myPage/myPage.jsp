@@ -90,7 +90,10 @@ $(function() {
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">나의 레벨</h5>
-        <p class="card-text">현재 나의경험치와 레벨을 확인하세요</p>
+        <p class="card-text">
+        	현재 나의경험치와 레벨을 확인하세요<br>
+    		다음 레벨까지의 남음 경험치를 확인해보세요.			
+        </p>
         <a class="nav-link" href="${pageContext.request.contextPath}/front?key=member&methodName=selectExpById&memberID=${loginId}">확인하기</a>
       </div>
     </div>

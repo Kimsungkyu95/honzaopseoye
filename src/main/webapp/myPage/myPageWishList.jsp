@@ -22,7 +22,7 @@
 
 	<h1 class="p-3 mb-2 bg-light text-dark">나의 위시리스트</h1>
 	<div class="p-5 mb-4 bg-light border rounded-3">
-		<div class="card" style="width:80%;">
+		<div class="card" style="width:100%;">
 		  <div class="card-body">
 		  	
 		  	<!-- 사진 -->
@@ -40,8 +40,10 @@
 		    <a href="#" class="card-link">길찾기</a>
 		  </div>
 		</div>
-	
-	
+		<br>
+	<div class="col text-center">
+	<button type="button" class="btn btn-secondary btn-lg" onclick="location.href='${path}/myPage/myPage.jsp'">마이페이지</button>
+	</div>
 	</div>
 	
     <footer class="pt-3 mt-4 text-muted border-top" style="clear:both">
