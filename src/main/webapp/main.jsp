@@ -25,22 +25,30 @@
 			$(this).css("opacity", "1");
 		});
 	})
-	/* let songpa=["풍납동","거여동","마천동","방이동","오륜동","오금동","송파동","석촌동","삼전동","가락동",	"문정동","장지동","위례동",	"잠실동"];
-	let gangnam=["압구정동","청담동","삼성동","논현동"];
-  	let seocho=["서초동","반포동","잠원동"];
-  	let yongsan=["용산동","이태원동","한남동","보광동"];
-  	let jongno=["익선동","후암동","청운동","팔운동","낙원동"];
-  	function findLocation(th, fr){
+	
+	let 송파구 = ["풍납동","거여동","마천동","방이동","오륜동"	,"오금동","송파동","석촌동","삼전동","가락동"	,"문정동","장지동","잠실동"];
+	function findLocation(th, fr){
 	  	while(fr.dong.length>1){
-		  		fr.dong.options[1] = null;
-		  	}
-		  	
-		  	let arr = new Function('return ' + th.value)();
-		  	
-			for(i=0; i<arr.length; i++){
-				fr.dong.options[fr.dong.length] = new Option(arr[i], arr[i]);
-			} */
-  	}
+	  		fr.dong.options[1] = null;
+	  	}
+	  	let arr = new Function('return ' + th.value)();
+		for(i=0; i<arr.length; i++){
+			fr.dong.options[fr.dong.length] = new Option(arr[i], arr[i]);
+		}
+	}
+	/* 
+	function searchKeyword(fr) {
+		if(fr.gu.value=="0"){
+			alert("구를 선택 하세요.")
+			return;
+		}
+		else if(fr.dong.value=="0"){
+			alert("동을 선택 하세요.")
+			return;
+		} */
+		
+		/* fr.submit(); */
+	
 </script>
 
 <style>
@@ -60,6 +68,7 @@
 </style>
 </head>
 <body>
+
  <jsp:include page="common/header.jsp"/>
  	
 	<main >
@@ -102,40 +111,33 @@
 	
 		<!-- select로 위치 찾기 -->
 		<div class="text-center" id="divSelect">
-			  <form name="f"  style="margin-left:4px" action="mainMap/mainMap.jsp" method="get">
-			  <select id ="gu" name="gu" onChange = "findLocation(this, form)">
-			       <option value="0">--지역구 선택 --</option>
-			       <option value="송파구">송파구</option>
-				   <option value="강남구">강남구</option>
-				   <option value="서초구">서초구</option>
-				   <option value="용산구">용산구</option>
-				   <option value="종로구">종로구</option>
-   			  </select>
-			  <select id="food" name="food">
-       			   <option value="0">--음식종류--</option>
-       			   <option value="디저트">디저트</option>
-       			   <option value="패스트푸드">패스트푸드</option>
-       			   <option value="피자">피자</option>
-       			   <option value="치킨">치킨</option>
-       			   <option value="분식">분식</option>
-       			   <option value="한식">한식</option>
-       			   <option value="일식">일식</option>
-       			   <option value="중식">중식</option>
-       			   <option value="양식">양식</option>
-       			   <option value="뷔페">뷔페</option>
-       			  <option value="술집">술집</option>
-   			  </select>
-   			  </form>
-   			 <button class="btn btn-outline-success" id="btn" type="submit" style="height:40px; margin-left:4px">찾기</button>
+			  <form name="f"  style="margin-left:4px" method="post" action="${path}/front">
+				  	<input type="hidden" name="key" value="userRestaurant">
+				    <input type="hidden" name="methodName" value="selectByGu">
+				  <select name="gu" onChange = "findLocation(this, form)">
+				       <option value="0">--지역구 선택 --</option>
+				       <option value="송파구">송파구</option>
+					   <option value="강남구">강남구</option>
+					   <option value="서초구">서초구</option>
+					   <option value="용산구">용산구</option>
+					   <option value="종로구">종로구</option>
+	   			  </select>
+				  <select name="dong">
+	       			   <option value="0">--동 선택--</option>
+	   			  </select>
+	   			  <span>
+	   			 	 <button class="btn btn-outline-success"  type="submit" style="height:40px; margin-left:4px">찾기</button>
+	   			 </span>
+   			 </form>
 		</div>
 	
 		<!-- 지도를  생성할 div 영역  -->
 		<script type="text/javascript">
 			$(function(){
 				$("#btn").click(function() {
-					let params = {gu : $("#gu").val(), food:$("#food").val()};
-					$("#map").load("mainMap/mainMap.jsp",params);
-				});
+					//let params = {gu : $("#gu").val(), food:$("#food").val()};
+					$("#map").load("mainMap/multiMarker.jsp");
+				}); 
 			});
 		</script>
  		<div id="map">
@@ -143,7 +145,7 @@
 			 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			 		    mapOption = { 
 			 		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-			 		        level: 5 // 지도의 확대 레벨 
+			 		        level: 6 // 지도의 확대 레벨 
 			 		    }; 
 			
 			 		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다

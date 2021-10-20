@@ -106,6 +106,19 @@ public class UserRestaurantController implements Controller {
 		
 		return new ModelAndView("restaurant.jsp");
 	}
+	
+	public ModelAndView selectByGu(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String gu = request.getParameter("gu");
+		String dong = request.getParameter("dong");
+		//System.out.println(gu+","+dong);
+		List<RestaurantDTO> reList = new ArrayList<RestaurantDTO>();
+
+		reList= urService.selectByGu(gu,dong);
+		
+		request.setAttribute("list", reList);
+		
+		return new ModelAndView("mainMap/multiMarker.jsp");
+	}
 
 
 }

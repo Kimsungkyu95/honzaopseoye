@@ -37,6 +37,11 @@ public interface UserRestaurantDAO {
 	 * @throws SQLException 
 	 * */
 	String selectCategoryDetailName(String restaurantNo) throws SQLException;
+	
+	/**
+	 * 구랑 동에 따라 좌표 가져오기 
+	 * */
+	List<RestaurantDTO> selectByGu(String gu, String dong) throws SQLException;
 
 	
 	
