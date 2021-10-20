@@ -189,6 +189,31 @@ public class UserRestaurantDAOImpl implements UserRestaurantDAO {
 		}
 		return detailName;
 	}
+
+	@Override
+	public List<RestaurantDTO> selectByGu(String gu, String dong) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql="select longitude, latitude, restaurant_name from restaurant where gu= ? and dong = ?";
+		List<RestaurantDTO>restaurantList = new ArrayList<RestaurantDTO>();
+		try {
+			con = DbUtil.getConnection();
+			ps =  con.prepareStatement(sql);
+			ps.setString(1, gu);
+			ps.setString(2, dong);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				RestaurantDTO restaurantDTO = new RestaurantDTO(rs.getString(1),rs.getDouble(2), rs.getDouble(3));
+				restaurantList.add(restaurantDTO);	
+			}
+			
+		} finally {
+			DbUtil.dbClose(rs, ps, con);
+		}
+		
+		return restaurantList;
+	}
 	
 
 }

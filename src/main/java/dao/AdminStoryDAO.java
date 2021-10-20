@@ -9,4 +9,8 @@ public interface AdminStoryDAO {
 	  List<AdminStoryDTO> selectAll();
 
 	  int deleteByStoryNo(int storyNo);
+	  
+	  AdminStoryDTO selectByStoryTitle();
+	  
+	  AdminStoryDTO selectByMemberNo();
 }

@@ -22,7 +22,28 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5ca07a49c944c9276cbfe517db8d17c&libraries=services"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
-<script type="text/javascript"></script>
+<script type="text/javascript">
+	let json = {dessert:"디저트", fastfood:"패스트푸드", pizza:"피자", chicken:"치킨",
+						snack:"분식", meat:"고기", soup:"국밥", nuddle:"국수" , coldnuddle:"냉면", hanjeongsik:"한정식", 
+						porkcutlet:"돈까스", lamen :"일본라멘", sushi: "초밥", sashimi:"회", chinese:"중화요리",
+						italian:"이탈리안", worldfood:"세계음식", buffef:"뷔페",bar:"술집"
+					}
+    function inputCategory(categoryDetailsName) {
+		var keys = Object.keys(json);  //키를 가져온다.
+    	for (var i=0; i<keys.length; i++) {
+        	var str ='';
+        	var key = keys[i];
+        	if(key==categoryDetailsName){
+        		document.getElementById('category').innerHTML = json[key];
+        	}
+        	
+        }
+    	  
+
+    	}
+    
+</script>
+
 </head>
 <body>
 
@@ -100,7 +121,9 @@
             	<td>음식종류</td>
             	<td>:</td>
             	<td>
-            			${restaurant.categoryDetailsName}
+            		<div id="category">
+            			<script>inputCategory('${restaurant.categoryDetailsName}')</script>
+            		</div>
             	</td>
             </tr>
             <tr>
