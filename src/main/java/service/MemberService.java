@@ -36,4 +36,6 @@ public interface MemberService {
 	void updateMemberDetail(MemberDTO member)throws SQLException;
 	
 	LevelUpExpDTO selectExpById(String membeID)throws SQLException;
+	
+	String MemberSelectPwdById(String id) throws SQLException;
 }

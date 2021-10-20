@@ -151,6 +151,7 @@ public class MemberController implements Controller {
 	
 	public ModelAndView updatePwdByNo(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		System.out.println("updatePwdByNo");
 		
 		String url = "error/error.jsp";
 		String errorMsg = "Something Went Wrong.";
@@ -165,7 +166,7 @@ public class MemberController implements Controller {
 		service.updatePwdByNo(member);
 		
 
-		return new ModelAndView("/myPage/myPagePassword.jsp", false);
+		return new ModelAndView("/myPage/myPage.jsp");
 	}
 	
 	public ModelAndView deleteByNo(HttpServletRequest request, HttpServletResponse response)

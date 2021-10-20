@@ -149,4 +149,17 @@ public class MemberServiceImpl implements MemberService {
 		return levelExp;
 	}
 
+	@Override
+	public String MemberSelectPwdById(String id) throws SQLException {
+		String pwd = null;
+		
+		if(pwd==null) {
+			throw new SQLException("회원정보에 해당하는 비밀번호를 찾을 수 없습니다.");
+		}
+		
+		return pwd;
+	}
+	
+	
+
 }

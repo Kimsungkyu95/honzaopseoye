@@ -297,6 +297,8 @@ select * from restaurant join restaurant_img on restaurant.restaurant_no = resta
 
 select min_exp from levelup_exp where member_level=3;
 
+select member_pwd from member where member_no=1;
+
 --------------------------------------------------------------------------------
 --커밋 
 commit;
