@@ -185,6 +185,12 @@ public class MemberServiceImpl implements MemberService {
 		//System.out.println("service: " +profileImage );
 		return profileImage;
 	}
+
+	@Override
+	public void updateProfileImageById(String memberId, String profileImage) throws SQLException {
+		dao.updupdateProfileImageById(memberId, profileImage);
+		
+	}
 	
 	
 
