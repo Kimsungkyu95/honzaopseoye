@@ -8,9 +8,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import org.apache.catalina.valves.RemoteIpValve;
+
 import dto.LevelUpExpDTO;
 import dto.MemberDTO;
 import dto.RestaurantDTO;
+import dto.ReviewDTO;
 import util.DbUtil;
 
 public class MemberDAOImpl implements MemberDAO {
@@ -613,14 +616,14 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public ArrayList<RestaurantDTO> selectReviewList(String id) throws SQLException {
+	public ArrayList<MemberDTO> selectReviewList(String id) throws SQLException {
 		String sql = proFile.getProperty("member.selectReviewList");
 		
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
-		ArrayList<RestaurantDTO> list = new ArrayList<RestaurantDTO>();
+		ArrayList<MemberDTO> list = new ArrayList<MemberDTO>();
 		
 		try {
 			con=DbUtil.getConnection();
@@ -631,11 +634,16 @@ public class MemberDAOImpl implements MemberDAO {
 			while(rs.next()) {
 				
 				int restaurantNo=rs.getInt(1);
-				String restaurantName=rs.getString(2);
+				int restaurantLevel=rs.getInt(2);
+				String restaurantName=rs.getString(3);
 				
+				int reviewScore=rs.getInt(4);
+				String reviewContent=rs.getString(5);
+				String reviewRegdate=rs.getString(6);
 				
-				
-				RestaurantDTO dto = new RestaurantDTO();
+				RestaurantDTO restaurant = new RestaurantDTO(restaurantNo, restaurantLevel, restaurantName);
+				ReviewDTO review = new ReviewDTO(reviewScore, reviewContent, reviewRegdate);
+				MemberDTO dto = new MemberDTO(restaurant, review);
 				list.add(dto);
 			}
 			

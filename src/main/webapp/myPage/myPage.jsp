@@ -94,7 +94,7 @@
         	<br>
         	조회, 수정, 삭제가 가능합니다.
         </p>
-        <button type="button" onclick="location.href='myPageReviewList.jsp'" class="btn btn-secondary btn-lg">REVIEW</button>
+        <a class="nav-link" href="${pageContext.request.contextPath}/front?key=member&methodName=selectReviewList&memberID=park">리뷰보기</a>
       </div>
     </div>
   </div>

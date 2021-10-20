@@ -14,6 +14,9 @@ public class MemberDTO {
 	private int memberExp;
 	private String profileImage;
 	
+	private RestaurantDTO restaurant;
+	private ReviewDTO review;
+	
 	private List<ReviewDTO> reviewList;
 	private List<StoryDTO> storyList;
 	
@@ -136,6 +139,11 @@ public class MemberDTO {
 		this.memberEmail = memberEmail;
 		this.memberPhone = memberPhone;
 		this.memberBirth = memberBirth;
+	}
+	
+	public MemberDTO(RestaurantDTO restaurant, ReviewDTO review) {
+		this.restaurant=restaurant;
+		this.review=review;
 	}
 
 	public int getMemberNo() {

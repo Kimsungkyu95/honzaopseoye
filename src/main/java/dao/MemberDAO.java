@@ -41,5 +41,5 @@ public interface MemberDAO {
 	
 	String selectPwdById(String id) throws SQLException;
 	
-	ArrayList<RestaurantDTO> selectReviewList(String id) throws SQLException;
+	ArrayList<MemberDTO> selectReviewList(String id) throws SQLException;
 }

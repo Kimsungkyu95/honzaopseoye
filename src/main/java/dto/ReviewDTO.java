@@ -25,6 +25,12 @@ public class ReviewDTO {
 		this.reviewContent = reviewContent;
 		this.reviewRegdate = reviewRegdate;
 	}
+	
+	public ReviewDTO(int reviewScore, String reviewContent, String reviewRegdate) {
+		this.reviewScore=reviewScore;
+		this.reviewContent=reviewContent;
+		this.reviewRegdate=reviewRegdate;
+	}
 
 	public int getReviewNo() {
 		return reviewNo;

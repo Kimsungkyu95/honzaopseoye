@@ -162,8 +162,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public ArrayList<RestaurantDTO> selectReviewList(String memberID) throws SQLException {
-		ArrayList<RestaurantDTO> list = dao.selectReviewList(memberID);
+	public ArrayList<MemberDTO> selectReviewList(String memberID) throws SQLException {
+		ArrayList<MemberDTO> list = dao.selectReviewList(memberID);
 		
 		return list;
 	}

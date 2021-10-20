@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -37,9 +38,8 @@
     				<th scope="row">
     					<div class="card" style="width:100%;">
 						  <div class="card-body">
-						    <h2 class="card-title">지아니스나폴리</h2>
+						    <h2 class="card-title"></h2>
 						    <h4>양식 > 파스타 Lv.1 2021.10.11</h4>
-						    
 						    
 						    <!-- 별점 -->
 						    
@@ -75,6 +75,21 @@
     		</tbody>
     	</table>
     	
+    	
+    	<c:forEach items="${requestScope.list}" var="memberDto">
+    		<tbody>
+    			<tr>
+    				<td>${memberDto}	
+    			</tr>
+    		</tbody>
+    	</c:forEach>
+    	
+    	
+    	<c:forEach items="${requestScope.list}" var="memberDto">
+    		<c:forEach items="${list}" var="dto">
+    			
+    		</c:forEach>
+    	</c:forEach>
     	
     	 
     </div>
