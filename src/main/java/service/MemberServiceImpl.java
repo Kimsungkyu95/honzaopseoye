@@ -97,8 +97,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void updatePwdByNo(MemberDTO member) throws SQLException {
-		int result = dao.updatePwdByNo(member);
+	public void updatePwdById(MemberDTO member) throws SQLException {
+		int result = dao.updatePwdById(member);
 		
 		if(result == 0) {
 			throw new SQLException("해당 번호의 회원정보가 존재하지 않습니다.");

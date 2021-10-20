@@ -25,7 +25,7 @@ public interface MemberDAO {
 	
 	int updateImageByNo(MemberDTO member) throws SQLException;
 	
-	int updatePwdByNo(MemberDTO member)throws SQLException;
+	int updatePwdById(MemberDTO member)throws SQLException;
 	
 	int deleteByNo(int no) throws SQLException;
 	

@@ -26,7 +26,7 @@ public interface MemberService {
 	
 	void updateImageByNo(MemberDTO member) throws SQLException;
 	
-	void updatePwdByNo(MemberDTO member)throws SQLException;
+	void updatePwdById(MemberDTO member)throws SQLException;
 	
 	void deleteByNo(int no) throws SQLException;
 	
