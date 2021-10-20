@@ -161,7 +161,7 @@
             	<c:forEach items="${requestScope.restaurantList}" var="restaurantDTO" varStatus="status">       	
 	                <tr>
 	                    <th scope="row">${restaurantDTO.restaurantNo}</th>
-	                    <td><a href="맛집 수정하는 페이지로~~~" class="restaurantName">${restaurantDTO.restaurantName}</a></td>
+	                    <td><a href="${path}/front?key=adminRestaurant&methodName=selectByRestaurantNo&restaurantNo=${restaurantDTO.restaurantNo}" class="restaurantName">${restaurantDTO.restaurantName}</a></td>
 	                    <td class="categoryName">${restaurantDTO.categoryName}</td>
 	                    <td class="categoryDetailsName">${restaurantDTO.categoryDetailsName}</td>
 	                    <td>${restaurantDTO.restaurantAddr}</td> 

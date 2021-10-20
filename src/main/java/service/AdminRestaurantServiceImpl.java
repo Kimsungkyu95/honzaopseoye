@@ -49,6 +49,27 @@ public class AdminRestaurantServiceImpl implements AdminRestaurantService {
 		}
 		return restaurantDTO;
 	}
+
+	@Override
+	public List<String> selectAllHashTag() throws SQLException {
+		List<String> hashTagList = adminRestaurantDAO.selectAllHashTag();
+		return hashTagList;
+	}
+
+	@Override
+	public void update(RestaurantDTO restaurantDTO, String categoryDetailsName) throws SQLException {
+		int categoryDetailsNo = adminRestaurantDAO.selectCategoryDetailsNo(categoryDetailsName);
+		if(categoryDetailsNo == 0) {
+			throw new SQLException("존재하지 않는 카테고리입니다.");
+		}
+		
+		restaurantDTO.setCategoryDetailsNo(categoryDetailsNo);
+		int result = adminRestaurantDAO.update(restaurantDTO);
+		if(result == 0) {
+			throw new SQLException("맛집 수정에 실패했습니다");
+		}
+		
+	}
 	
 	
 
