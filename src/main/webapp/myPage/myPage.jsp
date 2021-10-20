@@ -91,7 +91,7 @@ $(function() {
       <div class="card-body">
         <h5 class="card-title">나의 레벨</h5>
         <p class="card-text">현재 나의경험치와 레벨을 확인하세요</p>
-        <a class="nav-link" href="${pageContext.request.contextPath}/front?key=member&methodName=selectExpById&memberID=park">확인하기</a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/front?key=member&methodName=selectExpById&memberID=${loginId}">확인하기</a>
       </div>
     </div>
   </div>
@@ -104,7 +104,7 @@ $(function() {
         	<br>
         	조회, 수정, 삭제가 가능합니다.
         </p>
-        <a class="nav-link" href="${pageContext.request.contextPath}/front?key=member&methodName=selectReviewList&memberID=park">리뷰보기</a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/front?key=member&methodName=selectReviewList&memberID=${loginId}">리뷰보기</a>
       </div>
     </div>
   </div>
