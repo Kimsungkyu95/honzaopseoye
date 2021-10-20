@@ -13,20 +13,26 @@ import javax.servlet.http.HttpServletResponse;
 import dao.RecommendDAO;
 import dao.RecommendDAOImpl;
 import dto.RecommendDTO;
+import net.sf.json.JSONArray;
 
 @WebServlet("/recByTag")
 public class RecByTagServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
 		String tagNo=request.getParameter("tag");
 		
 		RecommendDAO dao = new RecommendDAOImpl();
-		List<RecommendDTO> list = dao.recByLevel(Integer.parseInt(tagNo));
+		List<RecommendDTO> list = dao.recByTag(Integer.parseInt(tagNo));
+        
+		JSONArray arr = JSONArray.fromObject(list);
 		
 		PrintWriter out = response.getWriter();
-		out.print(list);
+		out.print(arr);
 	}
+	
 
 }

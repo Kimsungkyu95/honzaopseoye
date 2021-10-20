@@ -25,9 +25,7 @@
     <![endif]-->
     
 <style type="text/css">
-	#buttons{align-content: center}
 	a{text-decoration:none;color:gray;}
-	p{align-content:center}
 	span{font-size:9pt}
 	
 </style>
@@ -56,6 +54,7 @@ $(function(){
 
    				
                    $("#tbody").html(str); 
+                   $('input[type=button]').css("text-align", "center");
    			
    				
                    
@@ -103,10 +102,10 @@ $(function(){
         <a href="${path}/main.jsp" style="float:right;margin-right:200px;text-decoration:none;color:gray;font-style:italic;">메인으로</a>
         </h2>
 </div>
-
+<hr>
 <form>
 <div class="table-responsive" id="listTable">
-        <table class="table table-hover" style="margin-left: auto; margin-right: auto;">
+        <table class="table table-hover" style="margin-left: auto; margin-right: auto; width:800px">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -124,6 +123,7 @@ $(function(){
 </table>
 </div>
 </form>
+<hr>
 <div align=center>
 	<div id="buttons" style="float:center; margin-right:100px">
 	         <input type="text" value="" id="search">

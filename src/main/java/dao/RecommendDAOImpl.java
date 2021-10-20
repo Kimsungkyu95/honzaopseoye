@@ -29,14 +29,14 @@ public class RecommendDAOImpl implements RecommendDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<RecommendDTO> list = new ArrayList<RecommendDTO>();
-		String sql = "select restaurant_img, restaurant_name, review_score, gu from restaurant join restaurant_img using(restaurant_no) join review using(restaurant_no) where REVIEW_SCORE>1 and restaurant_img like '%0%'";
+		String sql = "select restaurant_img, restaurant_name, review_score, gu, category_name, category_details_name from restaurant join restaurant_img using(restaurant_no) join review using(restaurant_no) join category_details join category using(category_no) using(category_details_no) where REVIEW_SCORE>0 and restaurant_img like '%0%'";
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				list.add(new RecommendDTO(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4)));
+				list.add(new RecommendDTO(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6)));
 		    }
 		} catch (SQLException e) {
 			   e.printStackTrace();
@@ -52,7 +52,7 @@ public class RecommendDAOImpl implements RecommendDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<RecommendDTO> list = new ArrayList<RecommendDTO>();
-		String sql = "";
+		String sql = "select restaurant_img, restaurant_name, review_score, gu, category_name, category_details_name from restaurant join restaurant_img using(restaurant_no) join review using(restaurant_no) join category_details join category using(category_no) using(category_details_no) NATURAL JOIN LEVELGIVE_EXP where restaurant_img like '%0%' AND RESTAURANT_LEVEL=?";
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
@@ -60,7 +60,7 @@ public class RecommendDAOImpl implements RecommendDAO {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				list.add(new RecommendDTO(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5)));
+				list.add(new RecommendDTO(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),rs.getString(6)));
 		    }
 		} catch (SQLException e) {
 			   e.printStackTrace();
@@ -76,14 +76,14 @@ public class RecommendDAOImpl implements RecommendDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<RecommendDTO> list = new ArrayList<RecommendDTO>();
-		String sql = "";
+		String sql = "select restaurant_img, restaurant_name, review_score, gu, category_name, category_details_name from restaurant join restaurant_img using(restaurant_no) join review using(restaurant_no) join category_details join category using(category_no) using(category_details_no) where restaurant_img like '%0%' order by RESTAURANT_VISITED desc";
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				list.add(new RecommendDTO(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5)));
+				list.add(new RecommendDTO(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),rs.getString(6)));
 		    }
 		} catch (SQLException e) {
 			   e.printStackTrace();
@@ -99,15 +99,15 @@ public class RecommendDAOImpl implements RecommendDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<RecommendDTO> list = new ArrayList<RecommendDTO>();
-		String sql = "";
+		String sql = "select restaurant_img, restaurant_name, review_score, gu, category_name, category_details_name, hashtag_name from restaurant join restaurant_img using(restaurant_no) join review using(restaurant_no) join category_details join category using(category_no) using(category_details_no) join hashtag_relation using(restaurant_no) natural join hashtag where restaurant_img like '%0%' AND hashtag_no=?";
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, tagNo+1);
+			ps.setInt(1, (tagNo+1));
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				list.add(new RecommendDTO(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5)));
+				list.add(new RecommendDTO(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),rs.getString(6)));
 		    }
 		} catch (SQLException e) {
 			   e.printStackTrace();

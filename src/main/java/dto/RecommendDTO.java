@@ -6,6 +6,8 @@ public class RecommendDTO {
 	private int reviewScore;
 	private String gu;
 	private String menuName;
+	private String categoryName;
+	private String categoryDetailsName;
 	
 	public RecommendDTO() {}
 	public RecommendDTO(String restaurantImg, String restaurantName, int reviewScore, String gu,
@@ -16,6 +18,16 @@ public class RecommendDTO {
 		this.reviewScore = reviewScore;
 		this.gu = gu;
 		this.menuName = menuName;
+	}
+	public RecommendDTO(String restaurantImg, String restaurantName, int reviewScore, String gu,
+			String categoryName, String categoryDetailsName) {
+	
+		this.restaurantImg = restaurantImg;
+		this.restaurantName = restaurantName;
+		this.reviewScore = reviewScore;
+		this.gu = gu;
+		this.categoryName = categoryName;
+		this.categoryDetailsName = categoryDetailsName;
 	}
 	public RecommendDTO(String restaurantImg, String restaurantName, int reviewScore, String gu) {
 	
@@ -47,6 +59,18 @@ public class RecommendDTO {
 	}
 	public void setGu(String Gu) {
 		this.gu = gu;
+	}
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+	public String getCategoryDetailsName() {
+		return categoryDetailsName;
+	}
+	public void setCategoryDetailsName(String categoryDetailsName) {
+		this.categoryDetailsName = categoryDetailsName;
 	}
 	public String getMenuName() {
 		return menuName;
