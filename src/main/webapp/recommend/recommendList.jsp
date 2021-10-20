@@ -4,7 +4,10 @@
     <jsp:include page="../common/header.jsp"/>
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
+  <head >
+<!--
+profile="http://www.w3.org/2005/10/profile"
+<link rel="icon" type="image/png" href="http://example.com/myicon.png">  -->  
     <!-- jQuery추가 -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
@@ -24,8 +27,8 @@
     <![endif]-->
     
     <style type="text/css">
-  table{background-color:#E6E1FF; border:1px solid #C6BBEF; border-radius:5px;}
-  tr td{border:20px solid white; padding-bottom:20px; width:25%;}
+  table{background-color:#E6E1FF; border:1px solid #C6BBEF;}
+  tr td{border:20px solid white; padding-bottom:20px; width:25%}
   img {
 	    object-fit: cover;
 		width: 100%;
@@ -73,6 +76,7 @@
 			  str+="<h5>&nbsp;&nbsp;&nbsp;"+myLevel+"</h5>"
 		      $("#display1").html(str);
 			  $("#display2").html(levelBar);
+			  $("#table").empty();
 			  
 			  //해당 레벨을 클릭했을때 아래 레벨에 해당하는 추천목록 띄우기  
 			  $("button").click(function(){
@@ -82,7 +86,21 @@
 						dataType: "json", //서버가 응답해주는 데이터의 type(text, html, xml, json)
 						data: {level:$(this).val()}, //서버에게 보낼 parameter정보
 						success: function(result){
-							alert(result);
+							let str="";
+							str="<tr><table>";
+		                    $.each(result, function(index, item){
+								if(index%4==0){
+									str+="</tr><tr>";
+								}
+		                    	str+="<td><a href='#'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+" &nbsp;&nbsp;&nbsp;<img src='${path}/img/award.svg' style='width:15px; height:auto'> "+item.reviewScore+".0<br>"+item.gu+"-"+item.menuName+"</td>";              
+		                    
+		                    });
+							str+="</tr></table>";
+							
+		                    //테이블에 정보넣기
+		    				$("#table").html(str); 
+		    				$("td").css("background-color","#E6E1FF")
+		    				$("td").css("border","20px solid white").css("padding-bottom", "20px").css("width", "25%");
 		                    
 						}, //성공했을때 callback함수(되돌아와서 해야될 기능들)
 						error: function(err){ 
@@ -107,6 +125,7 @@
 			  
 			  $("#display1").html(str);
 			  $("#display3").html(tagList);
+			  $("#table").empty();
 			  
 			//해당 태그를 클릭했을때 태그에 해당하는 추천목록 아래에 띄우기
 		
@@ -118,7 +137,21 @@
 						dataType: "json", //서버가 응답해주는 데이터의 type(text, html, xml, json)
 						data: {tag:$(this).val()}, //서버에게 보낼 parameter정보
 						success: function(result){
-							alert(result);
+							let str="";
+							str="<tr><table>";
+		                    $.each(result, function(index, item){
+								if(index%4==0){
+									str+="</tr><tr>";
+								}
+		                    	str+="<td><a href='#'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+" &nbsp;&nbsp;&nbsp;<img src='${path}/img/award.svg' style='width:15px; height:auto'> "+item.reviewScore+".0<br>"+item.gu+"-"+item.menuName+"</td>";              
+		                    
+		                    });
+							str+="</tr></table>";
+							
+		                    //테이블에 정보넣기
+		    				$("#table").html(str); 
+		    				$("td").css("background-color","#E6E1FF")
+		    				$("td").css("border","20px solid white").css("padding-bottom", "20px").css("width", "25%");
 		                    
 						}, //성공했을때 callback함수(되돌아와서 해야될 기능들)
 						error: function(err){ 
@@ -142,7 +175,21 @@
 						type: "post", //method방식(get,post,put,delete)
 						dataType: "json", //서버가 응답해주는 데이터의 type(text, html, xml, json)
 						success: function(result){
-							alert(result);
+							let str="";
+							str="<tr><table>";
+		                    $.each(result, function(index, item){
+								if(index%4==0){
+									str+="</tr><tr>";
+								}
+		                    	str+="<td><a href='#'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+", "+item.reviewScore+".0<br>"+item.gu+"-"+item.menuName+"</td>";              
+		                    
+		                    });
+							str+="</tr></table>";
+							
+		                    //테이블에 정보넣기
+		    				$("#table").html(str); 
+		    				$("td").css("background-color","#E6E1FF")
+		    				$("td").css("border","20px solid white").css("padding-bottom", "20px").css("width", "25%");
 		                    
 						}, //성공했을때 callback함수(되돌아와서 해야될 기능들)
 						error: function(err){ 
@@ -151,6 +198,8 @@
 		            });
 			      
 			  }
+			  recByScore();
+			  
 		  }
 	 });//change끝
  			  
@@ -165,17 +214,18 @@
 					let str="";
 					str="<tr><table>";
                     $.each(result, function(index, item){
-                    	//alert(item.menuName);
-						if((index+1)%4==0){
+						if(index%4==0){
 							str+="</tr><tr>";
 						}
-                    	str+="<td><a href='#'>"+item.restaurantImg+"</a><br>"+item.restaurantName+", "+item.reviewScore+"<br>"+item.gu+"-"+item.menuName+"</td>";              
+                    	str+="<td><a href='#'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+" &nbsp;&nbsp;&nbsp;<img src='${path}/img/award.svg' style='width:15px; height:auto'> "+item.reviewScore+".0<br>"+item.gu+"-"+item.menuName+"</td>";              
                     
                     });
 					str+="</tr></table>";
 					
                     //테이블에 정보넣기
     				$("#table").html(str); 
+    				$("td").css("background-color","#E6E1FF")
+    				$("td").css("border","20px solid white").css("padding-bottom", "20px").css("width", "25%");
 
                     
 				}, //성공했을때 callback함수(되돌아와서 해야될 기능들)

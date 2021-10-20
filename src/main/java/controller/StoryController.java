@@ -134,7 +134,4 @@ public class StoryController implements Controller {
     	
 		return new ModelAndView(request.getServletContext().getContextPath() + "/userStory/userStoryList.jsp", true);
 	}
-	
-
-
 }

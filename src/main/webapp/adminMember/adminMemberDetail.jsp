@@ -69,11 +69,11 @@
 		    </tr>
 		    <tr>
 		      <th scope="row">가입일</th>
-		      <td colspan="2"><%-- ${memberDto.joinDate} --%></td>
+		      <td colspan="2"><input type="text" name="joinDate" value=${memberDto.memberJoinDate}/></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">경험치</th>
-		      <td colspan="2"><input type="text" name="id" value=${memberDto.memberExp} /></td>
+		      <td colspan="2"><input type="text" name="exp" value=${memberDto.memberExp} /></td>
 		    </tr>
 		    <tr>
 		      <th scope="row">프로필이미지</th>
