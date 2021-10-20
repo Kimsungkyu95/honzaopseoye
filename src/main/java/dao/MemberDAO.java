@@ -46,5 +46,7 @@ public interface MemberDAO {
 	ArrayList<ReviewContent> selectReviewList(String id) throws SQLException;
 
 	String selectProfileImageById (String id) throws SQLException;
+	
+	int updupdateProfileImageById(String memberId, String profileImage) throws SQLException;
 
 }

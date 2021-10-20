@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import dto.LevelUpExpDTO;
 import dto.MemberDTO;
 import dto.RestaurantDTO;
@@ -271,4 +274,24 @@ public class MemberController implements Controller {
 		
 		return new ModelAndView("/myPage/myPageImage.jsp", false);
 	}
+	
+	public ModelAndView updateProfileImageById(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		String saveDir = request.getServletContext().getRealPath("/img/profileImages");
+		int maxSize = 1024*1024*100; //100mb
+		String encoding = "UTF-8";
+		
+		MultipartRequest m = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
+		
+		String id = m.getParameter("memberId");
+		String profileImage = m.getFilesystemName("file");
+		System.out.println("controller id: " + id);
+		System.out.println("controller profileImage: " + profileImage);
+		
+		service.updateProfileImageById(id, profileImage);
+		
+		//request.setAttribute("memberID", id);		
+		return new ModelAndView(request.getServletContext().getContextPath()+"/front?key=member&methodName=selectProfileImageById&memberID="+id , true);
+	}
+	
 }
