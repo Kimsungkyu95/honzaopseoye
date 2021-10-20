@@ -1,25 +1,16 @@
 package dao;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
 import dto.StoryDTO;
-import dto.StoryImgDTO;
 
-public interface StoryDAO {
-	  List<StoryDTO> selectAll();
-	  
+public interface UserStoryDAO { 
 	  /**
-	   * 스토리 검색
+	   * 스토리 전체 검색
 	   */
-	  StoryDTO selectByStoryNo(String storyNo) throws SQLException;
+	  List<StoryDTO> selectAll() throws SQLException;;
 	   
-	  /**
-	   * 스토리 이미지 검색
-	   */
-	  StoryImgDTO selectByStoryImgNo(String storyImgNo) throws SQLException;
-	  
 	  /**
 	   * 조회수 증가
 	   * update story set story_visited = story_visited + 1 where story_no=?
@@ -40,8 +31,4 @@ public interface StoryDAO {
 	   * 스토리 삭제
 	   */
 	  int deleteStory(String storyNo, String password) throws SQLException;
-	  /**
-	   * 스토리번호로 삭제
-	   * */
-	  int deleteByStoryNo(int storyNo);
 }

@@ -3,14 +3,14 @@ package service;
 import java.sql.SQLException;
 import java.util.List;
 
-import dao.StoryDAO;
-import dao.StoryDAOImpl;
+import dao.UserStoryDAO;
+import dao.UserStoryDAOImpl;
 import dto.StoryDTO;
 import dto.StoryImgDTO;
 
-public class StoryServiceImpl implements StoryService {
+public class UserStoryServiceImpl implements UserStoryService {
 	
-	private StoryDAO storyDAO = new StoryDAOImpl();
+	private UserStoryDAO storyDAO = new UserStoryDAOImpl();
 
 	@Override
 	public List<StoryDTO> selectAll() throws SQLException {
