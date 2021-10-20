@@ -114,10 +114,9 @@ public class StoryController implements Controller {
 		
 //		userStoryService.updateStory(storyDTO);
 		
-		//������ �Ϸ�Ǹ� �󼼺����������� �̵��Ѵ�.
-//		Electronics dbElec = elecService.selectByModelnum(modelNum, false);
+//		StoryDTO dbStory = userStoryService.selectByStoryNo(storyNo, false);
 		
-//    	request.setAttribute("elec", dbElec);
+//    	request.setAttribute("story", dbStory);
     	return new ModelAndView(request.getServletContext().getContextPath() + "/userStory/userStoryList.jsp", true);
 	}
 	

@@ -19,7 +19,7 @@ public class UserStoryServiceImpl implements UserStoryService {
 
 	@Override
 	public StoryDTO selectByStoryNo(int storyNo, boolean flag) throws SQLException {
-		if(!flag) {
+		if(flag) {
 			if(storyDAO.increamentByStoryVisited(storyNo) == 0) {
 				throw new SQLException("조회수 증가에 문제가 생겨 조회할 수 없습니다.");
 			}
@@ -41,12 +41,19 @@ public class UserStoryServiceImpl implements UserStoryService {
 
 	@Override
 	public void updateStory(StoryDTO storyDTO) throws SQLException {
+		// 비밀번호 일치여부 판단
+		StoryDTO dbStory = storyDAO.selectByStoryNo(storyDTO.getStoryNo());
+		if(!dbStory.getStoryPassword().equals(storyDTO.getStoryPassword())) {
+			throw new SQLException("비밀번호가 틀리므로 삭제할 수 없습니다.");
+		}
 		
+		if(storyDAO.updateStory(storyDTO) == 0) {
+			throw new SQLException("스토리가 수정되지 않았습니다.");
+		}
 	}
 
 	@Override
 	public void updateStoryImg(StoryImgDTO storyImageDTO) throws SQLException {
-		// TODO Auto-generated method stub
 		
 	}
 
