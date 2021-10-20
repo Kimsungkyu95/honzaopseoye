@@ -32,6 +32,12 @@ public interface UserRestaurantDAO {
 	 * */
 	List<MenuDTO> selectMenuByRestaurantNo(String restaurantNo) throws SQLException;
 
+	/**
+	 * 카테고리이름 가져오기 
+	 * @throws SQLException 
+	 * */
+	String selectCategoryDetailName(String restaurantNo) throws SQLException;
+
 	
 	
 }

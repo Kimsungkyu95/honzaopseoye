@@ -49,8 +49,8 @@
 <div class="col-md-4" id="div1">
       <div class="position-sticky" style="top: 2rem;">
         <div class="p-4 mb-3 bg-light rounded">
-          <img src = "img/restaurantImage/.jpeg" width="47%" style="float:left; margin-right:10px"></img>
-          <img src = "img/삼겹살.jpeg" width="47%"></img>
+          <img src="${restaurant.imgList[0]}" width="47%" style="float:left; margin-right:10px"/> 
+          <img src="${restaurant.imgList[1]}" width="47%"/> </img>
         </div>
 
         <div class="p-4" style="margin-left:100px">
@@ -99,22 +99,14 @@
             <tr>
             	<td>음식종류</td>
             	<td>:</td>
-            	<td><%=request.getAttribute("${param.category}") %></td>
+            	<td>
+            			${restaurant.categoryDetailsName}
+            	</td>
             </tr>
             <tr>
             	<td>가격대</td>
             	<td>:</td>
             	<td>2만~3만원대</td>
-            </tr>
-            <tr>
-            	<td>주차</td>
-            	<td>:</td>
-            	<td>3대</td>
-            </tr>
-            <tr>
-            	<td>영업시간</td>
-            	<td>:</td>
-            	<td>10:00~22:00</td>
             </tr>
             <tr>
             	<td>메뉴</td>
