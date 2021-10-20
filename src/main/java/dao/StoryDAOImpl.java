@@ -144,7 +144,7 @@ public class StoryDAOImpl implements StoryDAO {
 	}
 	
 	@Override
-	public int delete(String storyNo, String password) throws SQLException {
+	public int deleteStory(String storyNo, String password) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		int result=0;

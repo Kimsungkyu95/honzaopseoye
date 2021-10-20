@@ -27,7 +27,7 @@ public class StoryController implements Controller {
 	}
 	
 	/**
-	 * �뒪�넗由� �쟾泥닿��깋
+	 * 전체검색
 	 * */
 	public ModelAndView select(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -35,7 +35,7 @@ public class StoryController implements Controller {
 	}
 	
 	/**
-	 * �긽�꽭蹂닿린 寃��깋
+	 * 키워드로 검색
 	 * */
 	public ModelAndView selectBy(HttpServletRequest request, HttpServletResponse response) 
 			throws Exception {
@@ -43,7 +43,7 @@ public class StoryController implements Controller {
 	}
 	
 	/**
-	 * �닔�젙�븯湲� �뤌�쑝濡� 媛�湲�
+	 * 폼 업데이트
 	 * */
 	public ModelAndView updateForm(HttpServletRequest request, HttpServletResponse response) 
 			throws Exception {
@@ -93,7 +93,7 @@ public class StoryController implements Controller {
 	}
 	
 	/**
-	 * �뒪�넗由� �닔�젙
+	 * 레코드 수정
 	 * */
 	public ModelAndView update(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -101,10 +101,19 @@ public class StoryController implements Controller {
 	}
 	
 	/**
-	 * �뒪�넗由� �궘�젣
+	 * 레코드 삭제
 	 * */
 	public ModelAndView delete(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+//		String modelNum = request.getParameter("modelNum");
+//		String password =  request.getParameter("password");
+//    	
+//		String saveDir=request.getServletContext().getRealPath("/save");
+//		
+//    	elecService.delete(modelNum, password , saveDir);
+//    	
+//    	return new ModelAndView("front", true);
+		
 		return null;
 	}
 	

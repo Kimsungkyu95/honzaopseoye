@@ -29,7 +29,7 @@
 
 	<jsp:include page="../common/header.jsp" />
 	<main>
-		<form action="#" method="post" id="storyForm">
+		<form action="#" method="post" id="storyForm" enctype="multipart/form-data">
 			<input type="hidden" name="bdGroup"> <input type="hidden"
 				name="bdOrder"> <input type="hidden" name="bdIndent">
 			<input type="file" name="storyTitlePhoto"> 대표 이미지를 선택해주세요. <input

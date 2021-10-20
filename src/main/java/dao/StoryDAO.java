@@ -39,7 +39,7 @@ public interface StoryDAO {
 	  /**
 	   * 스토리 삭제
 	   */
-	  int delete(String storyNo, String password) throws SQLException;
+	  int deleteStory(String storyNo, String password) throws SQLException;
 	  /**
 	   * 스토리번호로 삭제
 	   * */
