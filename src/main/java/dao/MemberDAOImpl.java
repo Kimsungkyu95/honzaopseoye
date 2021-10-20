@@ -685,6 +685,34 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 		//System.out.println("dao : " +profileImage );
 		return profileImage;
+	}
+
+	@Override
+	public int updupdateProfileImageById(String memberId, String profileImage) throws SQLException {
+int returnValue = 0;
+		
+		String sql = proFile.getProperty("member.updateImageById");
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+				
+		try {
+			con=DbUtil.getConnection();
+			ps=con.prepareStatement(sql);
+			
+			ps.setString(1, profileImage);
+			ps.setString(2, memberId);
+			
+			returnValue = ps.executeUpdate();
+			
+		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			e.printStackTrace();
+		}finally {
+			DbUtil.dbClose(ps, con);
+		}
+		return returnValue;
 	}	
+	
+	
 
 }

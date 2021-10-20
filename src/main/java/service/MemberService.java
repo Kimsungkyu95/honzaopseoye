@@ -45,5 +45,7 @@ public interface MemberService {
 	ArrayList<ReviewContent> selectReviewList(String memberID) throws SQLException;
 
 	String selectProfileImageById(String id) throws SQLException;
+	
+	void updateProfileImageById(String memberId, String profileImage) throws SQLException;
 
 }
