@@ -19,7 +19,7 @@ import net.sf.json.JSONArray;
 public class RecByScoreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		
 		RecommendDAO dao = new RecommendDAOImpl();

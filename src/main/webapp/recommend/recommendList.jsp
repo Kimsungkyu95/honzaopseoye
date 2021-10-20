@@ -45,7 +45,7 @@ profile="http://www.w3.org/2005/10/profile"
 		  
 		  let param=$(this).val();
 		  let str="<br><h4>&nbsp;&nbsp;";
-		  let comment="&nbsp;&nbsp;조회수가 높은 리스트입니다";
+		  let comment="&nbsp;&nbsp;조회수가 높은 추천 맛집입니다";
 		  str+=param+"</h4>";
 		  let myLevel="현재 나의 레벨은";
 		  let tagList="&nbsp;&nbsp;&nbsp;";
@@ -82,7 +82,7 @@ profile="http://www.w3.org/2005/10/profile"
 			  $("button").click(function(){
 				  $.ajax({
 						url: "../recByLevel", //back단의 서버요청주소
-						type: "post", //method방식(get,post,put,delete)
+						type: "get", //method방식(get,post,put,delete)
 						dataType: "json", //서버가 응답해주는 데이터의 type(text, html, xml, json)
 						data: {level:$(this).val()}, //서버에게 보낼 parameter정보
 						success: function(result){
@@ -92,7 +92,7 @@ profile="http://www.w3.org/2005/10/profile"
 								if(index%4==0){
 									str+="</tr><tr>";
 								}
-		                    	str+="<td><a href='#'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+" &nbsp;&nbsp;&nbsp;<img src='${path}/img/award.svg' style='width:15px; height:auto'> "+item.reviewScore+".0<br>"+item.gu+"-"+item.menuName+"</td>";              
+		                    	str+="<td><a href='${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo="+item.restaurantNo+"'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+" &nbsp;&nbsp;&nbsp;<img src='${path}/img/star.svg' style='width:15px; height:auto'> "+item.reviewScore+".0<br>"+item.gu+"-대표메뉴1"+item.menuName+"</td>";              
 		                    
 		                    });
 							str+="</tr></table>";
@@ -133,7 +133,7 @@ profile="http://www.w3.org/2005/10/profile"
 		     $("button").click(function(){
 				 $.ajax({
 						url: "../recByTag", //back단의 서버요청주소
-						type: "post", //method방식(get,post,put,delete)
+						type: "get", //method방식(get,post,put,delete)
 						dataType: "json", //서버가 응답해주는 데이터의 type(text, html, xml, json)
 						data: {tag:$(this).val()}, //서버에게 보낼 parameter정보
 						success: function(result){
@@ -143,7 +143,7 @@ profile="http://www.w3.org/2005/10/profile"
 								if(index%4==0){
 									str+="</tr><tr>";
 								}
-		                    	str+="<td><a href='#'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+" &nbsp;&nbsp;&nbsp;<img src='${path}/img/award.svg' style='width:15px; height:auto'> "+item.reviewScore+".0<br>"+item.gu+"-"+item.menuName+"</td>";              
+		                    	str+="<td><a href='${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo="+item.restaurantNo+"'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+" &nbsp;&nbsp;&nbsp;<img src='${path}/img/star.svg' style='width:15px; height:auto'> "+item.reviewScore+".0<br>"+item.gu+"-대표메뉴1"+item.menuName+"</td>";              
 		                    
 		                    });
 							str+="</tr></table>";
@@ -172,7 +172,7 @@ profile="http://www.w3.org/2005/10/profile"
 			      
 			      $.ajax({
 						url: "../recByVisited", 
-						type: "post", //method방식(get,post,put,delete)
+						type: "get", //method방식(get,post,put,delete)
 						dataType: "json", //서버가 응답해주는 데이터의 type(text, html, xml, json)
 						success: function(result){
 							let str="";
@@ -181,7 +181,7 @@ profile="http://www.w3.org/2005/10/profile"
 								if(index%4==0){
 									str+="</tr><tr>";
 								}
-		                    	str+="<td><a href='#'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+", "+item.reviewScore+".0<br>"+item.gu+"-"+item.menuName+"</td>";              
+		                    	str+="<td><a href='${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo="+item.restaurantNo+"'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+" &nbsp;&nbsp;&nbsp;<img src='${path}/img/star.svg' style='width:15px; height:auto'>"+item.reviewScore+".0<br>"+item.gu+"-대표메뉴1"+item.menuName+"</td>";              
 		                    
 		                    });
 							str+="</tr></table>";
@@ -207,7 +207,7 @@ profile="http://www.w3.org/2005/10/profile"
 	  function recByScore(){
 		  $.ajax({
 				url: "../recByScore",
-				type: "post", //(get,post,put,delete)
+				type: "get", //(get,post,put,delete)
 				dataType: "json", //서버가 응답해주는 데이터의 type(text, html, xml, json)
 				success: function(result){
 					//alert(result);
@@ -217,7 +217,7 @@ profile="http://www.w3.org/2005/10/profile"
 						if(index%4==0){
 							str+="</tr><tr>";
 						}
-                    	str+="<td><a href='#'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+" &nbsp;&nbsp;&nbsp;<img src='${path}/img/award.svg' style='width:15px; height:auto'> "+item.reviewScore+".0<br>"+item.gu+"-"+item.menuName+"</td>";              
+                    	str+="<td><a href='${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo="+item.restaurantNo+"'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+" &nbsp;&nbsp;&nbsp;<img src='${path}/img/star.svg' style='width:15px; height:auto'> "+item.reviewScore+".0<br>"+item.gu+"-대표메뉴1"+item.menuName+"</td>";              
                     
                     });
 					str+="</tr></table>";

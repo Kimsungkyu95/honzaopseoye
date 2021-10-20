@@ -38,4 +38,10 @@ public class UserRestaurantServiceImpl implements UserRestaurantService {
 		return restaurantDTO;
 	}
 
+	@Override
+	public List<RestaurantDTO> selectByGu(String gu, String dong) throws SQLException{
+		
+		return urDao.selectByGu(gu, dong);
+	}
+
 }

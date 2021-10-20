@@ -12,7 +12,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
-    <title>관리자 스토리 목록</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Hello, world!</title>
 
     <!-- 부트스트랩 -->
     <!--<link href="css/bootstrap.min.css" rel="stylesheet">  --> 
@@ -25,8 +27,23 @@
     <![endif]-->
     
 <style type="text/css">
-	a{text-decoration:none;color:gray;}
-	span{font-size:9pt}
+        th, td {
+           text-align: center;
+           vertical-align: middle;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+        }
+        
+        table a {
+        	text-decoration: none;
+        }
+        
+        .active {
+        	pointer-events: none; 
+        }
+
 	
 </style>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -97,15 +114,57 @@ $(function(){
 
   </head>
   <body>
- <br>
-<div><h2><b style="font-style:italic; margin:30px;">스토리 목록</b>
-        <a href="${path}/main.jsp" style="float:right;margin-right:200px;text-decoration:none;color:gray;font-style:italic;">메인으로</a>
-        </h2>
-</div>
-<hr>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand text-dark" href="#">Admin Page</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#">고객관리</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#">맛집관리</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#">리뷰관리</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#">차트분석</a>
+                    </li>
+                </ul>
+                <span class="navbar-text">
+                    <a class="nav-link text-dark" href="#">로그아웃</a>
+                </span>
+            </div>
+        </div>
+    </nav>  
+    
+     <div class="container mt-5 shadow-lg">
+        <form class="row g-3 rounded p-2" action="${path}/front?key=story&methodName=selectAll" method="post">
+            <div class="col-auto">  
+                <select class="form-select col-auto" aria-label="Default select example" name="selectKey">
+                    <option value="storyTitle" selectd>스토리제목</option>
+                    <option value="memberNo">회원번호</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <input type="text" class="form-control" placeholder="검색어를 입력하세요" name="selectValue">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">검색</button>
+            </div>
+        </form>
+    </div>
+
 <form>
-<div class="table-responsive" id="listTable">
-        <table class="table table-hover" style="margin-left: auto; margin-right: auto; width:800px">
+
+    <div class="container bg-light pt-4 pb-3 px-5 mt-4 rounded shadow-lg" id="listTable">
+        <h2>스토리 목록</h2>
+        <table class="table">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -123,13 +182,8 @@ $(function(){
 </table>
 </div>
 </form>
-<hr>
-<div align=center>
-	<div id="buttons" style="float:center; margin-right:100px">
-	         <input type="text" value="" id="search">
-	         <input type="button" value="검색">
-	<span style="font-size:9pt;">&lt;<a href="${path}/front">메인으로 돌아가기</a>&gt;</span></div>
-</div>
+
+
 
 
 

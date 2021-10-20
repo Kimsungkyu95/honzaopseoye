@@ -97,7 +97,7 @@ public class RestaurantDTO {
 				gu,dong,restaurantLongitude,restaurantLatitude,restaurantRegDate,restaurantVisited);
 		this.reviewList = reviewList;
 		this.menuList = menuList;
-	}
+	}	
 
 	public RestaurantDTO(int restaurantNo, int categoryDetailsNo, int restaurantLevel, String restaurantName,
 			String restaurantPhone, String restaurantAddr, String restaurantRoadAddr, String gu, String dong,
@@ -108,7 +108,14 @@ public class RestaurantDTO {
 		this.categoryName = categoryName;
 		this.categoryDetailsName = categoryDetailsName;
 	}
-	
+	//맛집 좌표와 이름 
+	public RestaurantDTO(String restaurantName, double restaurantLongitude, double restaurantLatitude) {
+		super();
+		this.restaurantName = restaurantName;
+		this.restaurantLongitude = restaurantLongitude;
+		this.restaurantLatitude = restaurantLatitude;
+	}
+
 	public RestaurantDTO(int restaurantNo, int categoryDetailsNo, int restaurantLevel, String restaurantName,
 			String restaurantPhone, String restaurantAddr, String restaurantRoadAddr, String gu, String dong,
 			double restaurantLongitude, double restaurantLatitude, String restaurantRegDate, int restaurantVisited,
@@ -268,7 +275,7 @@ public class RestaurantDTO {
 	public void setRestaurantLatitude(double restaurantLatitude) {
 		this.restaurantLatitude = restaurantLatitude;
 	}
-
+	
 	public String getCategoryName() {
 		return categoryName;
 	}
