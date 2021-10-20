@@ -33,15 +33,14 @@ public class MemberEmailCheck extends HttpServlet {
 		try {
 			String email = service.emailCheck(searchEmail);
 			
+			//System.out.println("output email : " + email);
+			//System.out.println("----servlet----");
+			
 			if(searchEmail.equals(email)) {
 				out.print("중복되는 이메일이 존재합니다.");
 			}else {
 				out.print("사용가능한 이메일 입니다.");
 			}
-			
-
-			//System.out.println("output email : " + email);
-			//System.out.println("----servlet----");
 			
 		} catch (Exception e) {
 			// TODO: handle exception

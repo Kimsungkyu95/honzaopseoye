@@ -535,14 +535,14 @@ public class MemberDAOImpl implements MemberDAO {
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
+				int memberNo = rs.getInt(1);
+				String memberID = rs.getString(2);
+				String memberName = rs.getString(3);
+				String memberEmail = rs.getString(4);
+				String memberPhone = rs.getString(5);
+				String memberBirth = rs.getString(6);
 
-				String memberID = rs.getString(1);
-				String memberName = rs.getString(2);
-				String memberEmail = rs.getString(3);
-				String memberPhone = rs.getString(4);
-				String memberBirth = rs.getString(5);
-
-				returnValue = new MemberDTO(memberID, memberName, memberEmail, memberPhone, memberBirth);				
+				returnValue = new MemberDTO(memberNo, memberID, memberName, memberEmail, memberPhone, memberBirth);				
 			}
 		
 		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
