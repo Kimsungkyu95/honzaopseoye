@@ -18,55 +18,83 @@
     <title>adminMemberList</title>
     
     <style>
-    	h1{text-align:center;}
+    	th, td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+        }
     </style>
   </head>
   <body>
-  <jsp:include page="../common/header.jsp"/>
+  	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand text-dark" href="#">Admin Page</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#">고객관리</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#">맛집관리</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#">리뷰관리</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#">차트분석</a>
+                    </li>
+                </ul>
+                <span class="navbar-text">
+                    <a class="nav-link text-dark" href="#">로그아웃</a>
+                </span>
+            </div>
+        </div>
+    </nav>
 
-    <h1>회원관리</h1>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-
-
-	<div class="h-100 p-5 bg-light border rounded-3">
-		<table class="table">
-		  <thead>
-		    <tr>
-		      <th scope="col">회원번호</th>
-		      <th scope="col">아이디</th>
-		      <th scope="col">이름</th>
-		      <th scope="col">경험치</th>
-		      <th scope="col">삭제</th>
-		    </tr>
-		  </thead>
-			
-		  <c:forEach items="${requestScope.list}" var="memberDto">
-		  	<tbody>
-			    <tr>
-			      <td>${memberDto.memberNo}</td>
-			      <td>
-			      	<a href="${pageContext.request.contextPath}/front?key=member&methodName=selectMemberByNoForAdmin&memberNo=${memberDto.memberNo}">
-			      		${memberDto.memberID}
-			      	</a>
-			      </td>
-			      <td>${memberDto.memberName}</td>
-			      <td>${memberDto.memberExp}</td>
-			      <td><a class="" href="${pageContext.request.contextPath}/front?key=member&methodName=deleteByNo&memberNo=${memberDto.memberNo}">삭제</a></td>
+	<div class="container bg-light pt-4 pb-3 px-5 mt-4 rounded shadow-lg">
+        <h2>회원 목록</h2>
+        <table class="table">
+            <thead>
+                <tr>
+			      <th scope="col">회원번호</th>
+			      <th scope="col">아이디</th>
+			      <th scope="col">이름</th>
+			      <th scope="col">경험치</th>
+			      <th scope="col">삭제</th>
 			    </tr>
-			  </tbody>
-		  </c:forEach>
-		  
-		</table>
-	</div>
-
-	<footer class="pt-3 mt-4 text-muted border-top">
-	</footer>
-	 </div>
-	</main>
-	<hr>
-	<jsp:include page="../common/footer.jsp"/>
+            </thead>
+            <tbody>
+                <c:forEach items="${requestScope.list}" var="memberDto">
+			  		<tbody>
+					    <tr>
+					      <td>${memberDto.memberNo}</td>
+					      <td><a href="${pageContext.request.contextPath}/front?key=member&methodName=selectMemberByNoForAdmin&memberNo=${memberDto.memberNo}">${memberDto.memberID}</a></td>
+					      <td>${memberDto.memberName}</td>
+					      <td>${memberDto.memberExp}</td>
+					      <td><a class="" href="${pageContext.request.contextPath}/front?key=member&methodName=deleteByNo&memberNo=${memberDto.memberNo}">삭제</a></td>
+					    </tr>
+				  	</tbody>
+			 	</c:forEach>
+            </tbody>
+        </table>
+    </div>
+    <nav aria-label="Page navigation example" class="mt-4">
+        <ul class="pagination" style="justify-content: center;">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
 </body>
 </html>
