@@ -22,7 +22,64 @@
 <script type="text/javascript">
 $(function() {
 	let pi = "${profileImage}";
-	console.log("pi:"+ pi);
+	let id = "${id}"
+	console.log("id:"+ id);
+	
+	$("#fileActual").on('change', function() {
+		let file = $(this).val();
+		 ext = file.split('.').pop().toLowerCase(); //확장자
+         //배열에 추출한 확장자가 존재하는지 체크
+         if($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+             $(this).val(""); //폼 초기화
+             window.alert('이미지 파일이 아닙니다! (gif, png, jpg, jpeg 만 업로드 가능)');
+         }else{
+        	 //console.log("SEND IT");
+        	 //let profileImage = document.getElementById("profileImage");
+        	 
+        	 file = $('#fileActual').prop("files")[0];
+             blobURL = window.URL.createObjectURL(file);
+             $('#profileImage').attr('src', blobURL);
+         }
+	})
+	
+	$("#deleteImgBtn").click(function() {
+		$("#profileImage").attr('src', "${path}/img/profileImages/${profileImage}");
+	})
+	
+	$("#sendIt").click(function() {
+		//-----------------비동기화통신-----------------------------------
+		/*
+		$.ajax({
+			url: "${path}/memberEmailCheck", 	// ../ 상위로 한칸 올라가서.. 서블릿 
+											//이게 폴더 밑에 있으니까 루트로 갈려면 한칸 올라가야됨.
+			type: "post",				//메소드 방식(get, post, put, delete)
+			dataType: "text",			//서버가 응답해주는 데이터의 타입(text-생략시 기본-, html, xml, json)
+			data: {email: $(this).val() }, //서버에 보낼 때 파라메터
+			success: function(result) { //성공하면 callback 함수	
+				//console.log(result);
+				$("#emailInvalid").text(result);
+				if(result === "중복되는 이메일이 존재합니다."){
+					//console.log(typedEmail);
+					//console.log(email);
+					if(typedEmail != email){
+						//console.log("not same");
+						$("#emailCheck").text(result);
+						emailDuple=true;							
+					}
+					//console.log("same");
+				}else{
+					emailDuple=false;
+					//console.log("emailDuple=false");
+				}
+							
+			},
+			error: function(error) { //실패했을 때 함수	
+				console.log(error); 	
+			}
+		});
+		*/
+		//-----------------비동기화통신-----------------------------------
+	})
 	
 })
 
@@ -41,9 +98,9 @@ $(function() {
     
     	<div class="">
     		<h2>프로필 수정</h2>
-    		대표 프로필을 수정할 수 있습니다.</p>
+    		<p>대표 프로필을 수정할 수 있습니다.</p>
     	</div>
-    	<table border="0" class="table table-bordered">
+    	<table class="table table-bordered">
     		<colgroup>
     			<col style="width:22%">
     			<col>
@@ -57,7 +114,7 @@ $(function() {
     			</c:if>
     			<c:if test="${not empty profileImage}">
     				<th scope="row">
-    					<div class=""><img alt="profile image" src="${path}/img/profileImages/${profileImage}" style="height: 225px"></div>
+    					<div class=""><img alt="profile image" id="profileImage" src="${path}/img/profileImages/${profileImage}" style="height: 225px"></div>
     				</th>
     			</c:if>
     				<td>
@@ -66,9 +123,12 @@ $(function() {
     					</div>
     					<div class="">
     						<form method="post"  action="UpLoad" enctype="multipart/form-data">
-							  파일첨부:<input type="file"  name="file"/><p>
+    						<input type="hidden" name="memberId" value="${id}">
+							  파일첨부:<input type="file"  name="file" id="fileActual"/><p>
+							  <!-- 
 							  <input type="submit" class="btn btn-outline-warning" value="사진변경"/>
-							  <button type="button" class="btn btn-outline-info">삭제</button>
+							   -->
+							  <button type="reset" class="btn btn-outline-info" id="deleteImgBtn">삭제</button>
 							</form>
 							
     					</div>
@@ -78,7 +138,7 @@ $(function() {
     		</tbody>
     	</table>
     	
-    	<button type="button" class="btn btn-secondary btn-lg">적용</button> 
+    	<button type="button" class="btn btn-secondary btn-lg" id="sendIt">적용</button> 
 	    <button type="button" class="btn btn-secondary btn-lg">취소</button>   
     </div>
 	

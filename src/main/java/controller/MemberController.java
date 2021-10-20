@@ -263,7 +263,7 @@ public class MemberController implements Controller {
 	 * */
 	public ModelAndView selectProfileImageById(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String id = request.getParameter("memberID");
-		System.out.println("controller id : " + id);
+		//System.out.println("controller id : " + id);
 		
 		String profileImage = service.selectProfileImageById(id);
 		request.setAttribute("id", id);
