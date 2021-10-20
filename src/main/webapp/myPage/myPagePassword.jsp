@@ -26,10 +26,21 @@ $(function() {
 	
 	let loginId = "${loginId}";
 	
+	let oldPwd="";
+	let newPwd = "";
+	let newPwdConfirm ="";
+	
+	let oldPwdActual="";
+	
+	let newEqualsOld=false;
+	let newEqualsConfirm=false;
+	
+	let oldConfirm=false;
+	
 	$("#originalPwd").keyup(function() {
-		let key = $(this).val();
+		oldPwd = $(this).val();
 		
-		if(key==""){
+		if(oldPwd==""){
 			return;
 		}
 		
@@ -41,13 +52,17 @@ $(function() {
 			dataType: "text",			//서버가 응답해주는 데이터의 타입(text-생략시 기본-, html, xml, json)
 			data: {id: loginId }, //서버에 보낼 때 파라메터
 			success: function(result) { //성공하면 callback 함수	
-				console.log("result : " + result);
-				$("#emailInvalid").text(result);
-				if(result == key){
-					
-					console.log("same");
+				//console.log("result : " + result);
+				oldPwdActual=result;
+				
+				if(result == oldPwd){
+					//console.log("same");
+					oldConfirm=true;
+					$("#invailidMsg").text("");
 				}else{
-					console.log("not same");
+					//console.log("not same");
+					$("#invailidMsg").text("기존의 비밀번호를 확인해주세요.");
+					oldConfirm=false;
 				}
 							
 			},
@@ -56,6 +71,109 @@ $(function() {
 			}
 		});
 		//-----------------비동기화통신-----------------------------------
+	})
+	
+	$("#newPwd").keyup(function() {
+		if(oldPwdActual==""){
+			$("#invailidMsg").text("기존 비밀번호를 먼저 입력해주세요.");
+			$(this).val("");
+			$("#originalPwd").focus();
+			return;
+			
+		}else{
+			newPwd = $(this).val();
+			if(newPwd==""){
+				$("#invailidMsg").text("새로운 비밀번호를 확인해주세요.");
+				return;
+			}else if(oldPwdActual == newPwd){
+				$("#invailidMsg").text("이전 비밀번호와 다른 비밀번호를 입력해주세요.");
+				newEqualsOld=true;
+				return;
+			}else{
+				$("#invailidMsg").text("");
+				newEqualsOld=false;
+				return;			
+			}
+		}
+		
+		
+	})
+	
+	$("#newPwdConfirm").keyup(function() {
+		if(oldPwdActual==""){
+			$("#invailidMsg").text("기존 비밀번호를 먼저 입력해주세요.");
+			$(this).val("");
+			$("#originalPwd").focus();
+			return;
+			
+		}else{
+			newPwdConfirm = $(this).val();
+			if(newPwdConfirm==""){
+				return;
+			}
+			
+			if(newPwd == newPwdConfirm){
+				$("#invailidMsg").text("입력하신 새 비밀번호가 일치합니다.");
+				newEqualsConfirm=true;
+			}else{
+				$("#invailidMsg").text("입력하신 새 비밀번호가 일치하지 않습니다.");
+				newEqualsConfirm=false;
+			}
+		}
+	})
+	
+	$("#resetBtn").click(function() {
+		$("#originalPwd").val("");
+		$("#newPwd").val("");
+		$("#newPwdConfirm").val("");
+		
+		$("#invailidMsg").text("");
+		
+		oldPwd="";
+		newPwd = "";
+		newPwdConfirm ="";
+	})
+	
+	$("#sendIt").click(function() {
+		if(oldPwd==""){
+			$("#invailidMsg").text("이전 비밀번호를 입력해주세요.");
+			$("#originalPwd").focus();
+			return;
+		}
+		
+		if(newPwd==""){
+			$("#invailidMsg").text("새 비밀번호를 입력해주세요.");
+			$("#newPwd").focus();
+			return;
+		}
+
+		if(newPwdConfirm==""){
+			$("#invailidMsg").text("새 비밀번호를 확인해주세요.");
+			$("#newPwdConfirm").focus();
+			return;
+		}
+		
+		if(!newEqualsConfirm){
+			$("#invailidMsg").text("입력하신 새 비밀번호가 일치하지 않습니다.");
+			$("#newPwdConfirm").focus();
+			return;
+		}
+		
+		if(newEqualsOld){
+			$("#invailidMsg").text("이전 비밀번호와 다른 비밀번호를 입력해주세요.");
+			$("#newPwd").focus();
+			return;
+		}
+		
+		if(!oldConfirm){
+			$("#invailidMsg").text("기존의 비밀번호를 확인해주세요.");
+			$("#originalPwd").focus();
+			return;
+		}
+		
+		//console.log("SEND IT");
+		$("#pwdUpdateForm").submit();
+		
 	})
 	
 })
@@ -67,9 +185,9 @@ $(function() {
 	<h1 class="p-3 mb-2 bg-light text-dark">비밀번호 변경</h1>
 	<div class="p-5 mb-4 bg-light border rounded-3">
 		
-		<form>
+		<form method="post" action="${pageContext.request.contextPath}/front?key=member&methodName=updatePwdByNo" id="pwdUpdateForm">
 		    <h1 class="h3 mb-3 fw-normal">현재비밀번호와 새로운 비밀번호를 입력해주세요.</h1>
-			
+			<input type="hidden" name="memberNo" value="${loginId}">
 			<p class="centerContainer" >
 			안전한 비밀번호로 내정보를 보호하세요
 			다른 사이트/아이디에서 사용한 적 없는 비밀번호
@@ -78,23 +196,24 @@ $(function() {
 			</p>
 			
 		    <div class="form-floating">
-		      <input type="password" class="form-control" id="originalPwd" >
+		      <input type="password" class="form-control" id="originalPwd" name="originalPwd">
 		      <label for="floatingInput">현재 비밀번호</label>
 		    </div>
 		    <div class="form-floating">
-		      <input type="password" class="form-control" id="newPwd" placeholder="Password">
+		      <input type="password" class="form-control" id="newPwd" name="newPwd"  placeholder="Password">
 		      <label for="floatingPassword">새 비밀번호</label>
 		    </div>
 		    <div class="form-floating">
-		      <input type="password" class="form-control" id="newPwdConfirm" placeholder="Password">
+		      <input type="password" class="form-control" id="newPwdConfirm" name="newPwdConfirm" placeholder="Password">
 		      <label for="floatingPassword">새 비밀번호 확인</label>
 		    </div>
-		    
+		    <p>
+		    <div class="text-muted" id="invailidMsg"></div>
 		    <p>
 	
 		    <div class="d-grid gap-2">
-			  <button class="btn btn-primary" type="button">확인</button>
-			  <button class="btn btn-primary" type="button">취소</button>
+			  <button class="btn btn-primary" type="button" id="sendIt">확인</button>
+			  <button class="btn btn-primary" type="button" id="resetBtn">취소</button>
 			</div>
 			<!--  
 		    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
