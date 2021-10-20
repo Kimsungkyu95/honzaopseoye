@@ -6,7 +6,7 @@ import java.util.List;
 import dto.StoryDTO;
 import dto.StoryImgDTO;
 
-public interface StoryService {
+public interface UserStoryService {
 	
      List<StoryDTO> selectAll() throws SQLException;
      

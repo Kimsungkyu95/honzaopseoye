@@ -12,13 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import controller.ModelAndView;
 import dto.StoryDTO;
-import service.StoryService;
-import service.StoryServiceImpl;
+import service.UserStoryService;
+import service.UserStoryServiceImpl;
 
 public class StoryController implements Controller {
-	private StoryService storyService = new StoryServiceImpl();
+	private UserStoryService userStoryService = new UserStoryServiceImpl();
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -87,7 +86,7 @@ public class StoryController implements Controller {
 	        }
 	        
 	        StoryDTO storyDTO = new StoryDTO(storyTitle, restaurantName, storyContent, password, storyImgList);
-	        storyService.insertStory(storyDTO);
+	        userStoryService.insertStory(storyDTO);
 			
 			return new ModelAndView(request.getServletContext().getContextPath() + "/userStory/userStoryList.jsp", true);
 	}

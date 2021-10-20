@@ -15,7 +15,7 @@
 
 
 <style type="text/css">
-	
+	button a { text-decoration:none } 
 </style>
 <script type="text/javascript">
 
@@ -42,13 +42,16 @@
     <div class="container">
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        
         <div class="col">
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">스토리 제목</text></svg>
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+            	<title>Placeholder</title>
+            	<rect width="100%" height="100%" fill="#55595c"></rect></svg>
 
             <div class="card-body">
-            <h3>글쓴이</h3>
-              <p class="card-text">간단한 스토리 소개 내용</p>
+            <h3>스토리 제목</h3>
+              <p class="card-text">글쓴이</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">
@@ -60,32 +63,21 @@
             </div>
           </div>
         </div>
-        <div class="col">
+        
+		<div class="col">
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">스토리 제목</text></svg>
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+            	<title>Placeholder</title>
+            	<rect width="100%" height="100%" fill="#55595c"></rect></svg>
 
             <div class="card-body">
-            <h3>글쓴이</h3>
-              <p class="card-text">간단한 스토리 소개 내용</p>
+            <h3>스토리 제목</h3>
+              <p class="card-text">글쓴이</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">스토리 보러 »</button>
-                </div>
-                <small class="text-muted">조회수</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">스토리 제목</text></svg>
-
-            <div class="card-body">
-            <h3>글쓴이</h3>
-              <p class="card-text">간단한 스토리 소개 내용</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">스토리 보러 »</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">
+                  <a href="${pageContext.request.contextPath}/userStory/userStoryDetails.jsp" style="color: gray;">
+                  스토리 보러 »</a></button>
                 </div>
                 <small class="text-muted">조회수</small>
               </div>
@@ -95,14 +87,18 @@
         
         <div class="col">
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">스토리 제목</text></svg>
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+            	<title>Placeholder</title>
+            	<rect width="100%" height="100%" fill="#55595c"></rect></svg>
 
             <div class="card-body">
-            <h3>글쓴이</h3>
-              <p class="card-text">간단한 스토리 소개 내용</p>
+            <h3>스토리 제목</h3>
+              <p class="card-text">글쓴이</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">스토리 보러 »</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">
+                  <a href="${pageContext.request.contextPath}/userStory/userStoryDetails.jsp" style="color: gray;">
+                  스토리 보러 »</a></button>
                 </div>
                 <small class="text-muted">조회수</small>
               </div>
@@ -112,14 +108,18 @@
         
         <div class="col">
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">스토리 제목</text></svg>
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+            	<title>Placeholder</title>
+            	<rect width="100%" height="100%" fill="#55595c"></rect></svg>
 
             <div class="card-body">
-            <h3>글쓴이</h3>
-              <p class="card-text">간단한 스토리 소개 내용</p>
+            <h3>스토리 제목</h3>
+              <p class="card-text">글쓴이</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">스토리 보러 »</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">
+                  <a href="${pageContext.request.contextPath}/userStory/userStoryDetails.jsp" style="color: gray;">
+                  스토리 보러 »</a></button>
                 </div>
                 <small class="text-muted">조회수</small>
               </div>
@@ -129,14 +129,18 @@
         
         <div class="col">
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">스토리 제목</text></svg>
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+            	<title>Placeholder</title>
+            	<rect width="100%" height="100%" fill="#55595c"></rect></svg>
 
             <div class="card-body">
-            <h3>글쓴이</h3>
-              <p class="card-text">간단한 스토리 소개 내용</p>
+            <h3>스토리 제목</h3>
+              <p class="card-text">글쓴이</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">스토리 보러 »</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">
+                  <a href="${pageContext.request.contextPath}/userStory/userStoryDetails.jsp" style="color: gray;">
+                  스토리 보러 »</a></button>
                 </div>
                 <small class="text-muted">조회수</small>
               </div>
@@ -146,14 +150,18 @@
         
         <div class="col">
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">스토리 제목</text></svg>
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+            	<title>Placeholder</title>
+            	<rect width="100%" height="100%" fill="#55595c"></rect></svg>
 
             <div class="card-body">
-            <h3>글쓴이</h3>
-              <p class="card-text">간단한 스토리 소개 내용</p>
+            <h3>스토리 제목</h3>
+              <p class="card-text">글쓴이</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">스토리 보러 »</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">
+                  <a href="${pageContext.request.contextPath}/userStory/userStoryDetails.jsp" style="color: gray;">
+                  스토리 보러 »</a></button>
                 </div>
                 <small class="text-muted">조회수</small>
               </div>
@@ -163,14 +171,18 @@
         
         <div class="col">
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">스토리 제목</text></svg>
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+            	<title>Placeholder</title>
+            	<rect width="100%" height="100%" fill="#55595c"></rect></svg>
 
             <div class="card-body">
-            <h3>글쓴이</h3>
-              <p class="card-text">간단한 스토리 소개 내용</p>
+            <h3>스토리 제목</h3>
+              <p class="card-text">글쓴이</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">스토리 보러 »</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">
+                  <a href="${pageContext.request.contextPath}/userStory/userStoryDetails.jsp" style="color: gray;">
+                  스토리 보러 »</a></button>
                 </div>
                 <small class="text-muted">조회수</small>
               </div>
@@ -180,20 +192,25 @@
         
         <div class="col">
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">스토리 제목</text></svg>
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+            	<title>Placeholder</title>
+            	<rect width="100%" height="100%" fill="#55595c"></rect></svg>
 
             <div class="card-body">
-            <h3>글쓴이</h3>
-              <p class="card-text">간단한 스토리 소개 내용</p>
+            <h3>스토리 제목</h3>
+              <p class="card-text">글쓴이</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">스토리 보러 »</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">
+                  <a href="${pageContext.request.contextPath}/userStory/userStoryDetails.jsp" style="color: gray;">
+                  스토리 보러 »</a></button>
                 </div>
                 <small class="text-muted">조회수</small>
               </div>
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   </div>
