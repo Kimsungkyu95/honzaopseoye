@@ -52,7 +52,8 @@
 	a:link, a:visited{color:black; text-decoration:none; padding-left:2px}
 	.col-md-6{height:300px; position: relative;}
 	.col-md-6 .text{position:absolute; top:200px; left:185px}
-	.text{color:white}
+	.text{color:white; padding: 5px 10px; text-align: center; top: 50%;
+	left: 50%; transform: translate( -30%, -70% );}
 	
 	select{height:40px}
 	
@@ -79,19 +80,19 @@
 	    <div class="row align-items-md-stretch">
 	      <div class="col-md-6" preserveAspectRatio="xMidYMid slice">
 	      <h4><a href="${path}/recommend/recommendList.jsp">추천 맛집 목록</a></h4>
-	              <img class ="mouseOver" src = "img/삼겹살.jpeg" style="width:100%; height:100%">
+	              <img class ="mouseOver" src = "img/삼겹살.jpeg" style="width:99%; height:100%">
 	      		  <div class="text">
-      					<h4>썸네일</h4>
+      					<a href="${path}/recommend/recommendList.jsp"><h4 style="color:white">추천맛집</h4></a>
     			  </div>
 	      </div>
 	      
 	      <!-- 맛집스토리 div -->
 	      <div class="col-md-6">
 	      <h4><a href="${path}/userStory/userStoryList.jsp">맛집 스토리 목록</a></h4>
-	          <img class ="mouseOver" src = "img/회.jpeg" style="width:100%; height:100%">
-	          <div class="text">
-      					<h4>썸네일</h4>
-    			  </div>
+	          <img class ="mouseOver" src = "img/회.jpeg" style="width:99%; height:100%">
+	          <div class="text" style="margin:0px">
+      				<a href="${path}/userStory/userStoryList.jsp"><h4 style="color:white">맛집 스토리</h4></a>
+    		 </div>
 	      </div>
 	      
 	    </div>

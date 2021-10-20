@@ -145,6 +145,50 @@ public class UserRestaurantDAOImpl implements UserRestaurantDAO {
 		return menuList;
 	}
 
+	@Override
+	public String selectCategoryDetailName(String restaurantNo) throws SQLException{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String categoryDetailName="";
+		String sql="select category_details_no from restaurant where restaurant_no = ?";
+		try {
+			con = DbUtil.getConnection();
+			ps =  con.prepareStatement(sql);
+			ps.setInt(1, Integer.parseInt(restaurantNo));
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				int result = rs.getInt(1);
+				categoryDetailName = this.selectCategoryDetailNameByNo(result);
+			}
+			
+		} finally {
+			DbUtil.dbClose(rs, ps, con);
+		}
+		
+		return categoryDetailName;
+	}
+	
+	public String selectCategoryDetailNameByNo(int categoryDetailNo) throws SQLException{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql="select category_details_name from category_details where category_details_no = ?";
+		String detailName="";
+		try {
+			con = DbUtil.getConnection();
+			ps =  con.prepareStatement(sql);
+			ps.setInt(1, categoryDetailNo);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				detailName = rs.getString(1);
+			}
+			
+		} finally {
+			DbUtil.dbClose(rs, ps, con);
+		}
+		return detailName;
+	}
 	
 
 }

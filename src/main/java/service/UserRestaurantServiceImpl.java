@@ -14,6 +14,9 @@ public class UserRestaurantServiceImpl implements UserRestaurantService {
 
 	@Override
 	public List<RestaurantDTO> selectCategory(String categoryDetail) throws SQLException {
+		if(categoryDetail.equals(null)) {
+			throw new SQLException("존재하지 않는 카테고리입니다.");
+		}
 		return urDao.selectCategory(categoryDetail);
 	}
 
@@ -21,6 +24,8 @@ public class UserRestaurantServiceImpl implements UserRestaurantService {
 	public RestaurantDTO selectByRestaurantNo(String restaurantNo) throws SQLException {
 		RestaurantDTO restaurantDTO = urDao.selectByRestaurantNo(restaurantNo);
 		
+		//음식종류 가져오기 
+		restaurantDTO.setCategoryDetailsName(urDao.selectCategoryDetailName(restaurantNo));
 		
 		//댓글정보 가져오기 
 		restaurantDTO.setReviewList(urDao.selectReviewByRestaurantNo(restaurantNo));

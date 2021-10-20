@@ -20,6 +20,8 @@ import service.UserRestaurantServiceImpl;
 public class UserRestaurantController implements Controller {
 	
 	private UserRestaurantService urService = new UserRestaurantServiceImpl();
+	String category;
+	String categoryDetail;
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -30,8 +32,8 @@ public class UserRestaurantController implements Controller {
 	 * */
 	public ModelAndView selectCategory(HttpServletRequest request, HttpServletResponse response)
 			throws Exception{
-		String category = request.getParameter("category");
-		String categoryDetail = request.getParameter("categoryDetail"); 
+		category = request.getParameter("category");
+		categoryDetail = request.getParameter("categoryDetail"); 
 		
 		List<RestaurantDTO>restaurantList = new ArrayList<RestaurantDTO>();
 		
@@ -57,7 +59,6 @@ public class UserRestaurantController implements Controller {
 			}else {
 				imgList.add("img/삼겹살.jpeg");
 			}
-			
 			restaurantDTO.setImgList(imgList);
 		}
 		
@@ -74,10 +75,33 @@ public class UserRestaurantController implements Controller {
 	public ModelAndView selectByRestaurantNo(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
-		
+		//System.out.println(category);
+		//System.out.println(categoryDetail);
 		
 		String restaurantNo = request.getParameter("restaurantNo");
 		RestaurantDTO restaurantDTO = urService.selectByRestaurantNo(restaurantNo);
+		String restaurantName = restaurantDTO.getRestaurantName();
+		//System.out.println(restaurantDTO.getRestaurantName());
+		List<String>imgList=new ArrayList<String>();
+		
+		File file = new File(request.getServletContext().getRealPath("/img/restaurantImage")+"/" + category+"/"+categoryDetail+"/"+restaurantName);
+		
+		if(file.exists()) {
+			File files [] = file.listFiles();
+			if(files.length>=1) {
+				for(int i = 0; i < 2; i++) {
+		       		 String fileName = files[i].toString();
+//		     		System.out.println(fileName.substring(fileName.lastIndexOf("\\")+1));
+		       		 imgList.add("img/restaurantImage"+"/" + category+"/"+categoryDetail+"/"+restaurantName+"/"+fileName.substring(fileName.lastIndexOf("/")+1));
+		       	 }
+			}else {
+				imgList.add("img/삼겹살.jpeg");
+			}
+		}else {
+			imgList.add("img/삼겹살.jpeg");
+		}
+		restaurantDTO.setImgList(imgList);
+		
 		request.setAttribute("restaurant",restaurantDTO);
 		
 		return new ModelAndView("restaurant.jsp");
