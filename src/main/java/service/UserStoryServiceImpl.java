@@ -14,13 +14,22 @@ public class UserStoryServiceImpl implements UserStoryService {
 
 	@Override
 	public List<StoryDTO> selectAll() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return storyDAO.selectAll();
 	}
 
 	@Override
-	public StoryDTO selectByStoryNo(String storyNo, boolean flag) throws SQLException {
-		// TODO Auto-generated method stub
+	public StoryDTO selectByStoryNo(int storyNo, boolean flag) throws SQLException {
+		if(!flag) {
+			if(storyDAO.increamentByStoryVisited(storyNo) == 0) {
+				throw new SQLException("조회수 증가에 문제가 생겨 조회할 수 없습니다.");
+			}
+			
+			StoryDTO storyDTO = storyDAO.selectByStoryNo(storyNo);
+			if(storyDTO == null) {
+				throw new SQLException(storyNo + " 제품을 조회할 수 없습니다.");
+			}
+		}
+		
 		return null;
 	}
 
@@ -28,11 +37,6 @@ public class UserStoryServiceImpl implements UserStoryService {
 	public void insertStory(StoryDTO storyDTO) throws SQLException {
 		if(storyDAO.insertStory(storyDTO) == 0 )
 			  throw new SQLException("스토리가 등록되지 않았습니다.");
-	}
-
-	@Override
-	public void insertStoryImg(StoryImgDTO storyImgDTO) throws SQLException {
-		
 	}
 
 	@Override
@@ -47,9 +51,18 @@ public class UserStoryServiceImpl implements UserStoryService {
 	}
 
 	@Override
-	public void delete(String storyNo, String password, String path) throws SQLException {
-		// TODO Auto-generated method stub
+	public void delete(int storyNo, String password, String path) throws SQLException {
+		// 비밀번호 일치여부를 판단
+		StoryDTO dbStory = storyDAO.selectByStoryNo(storyNo);
+		if(!dbStory.getStoryPassword().equals(password)) {
+			throw new SQLException("비밀번호가 틀리므로 삭제할 수 없습니다.");
+		}
 		
-	}
+		if(storyDAO.deleteStory(storyNo, password) == 0) {
+			throw new SQLException("스토리가 삭제되지 않았습니다.");
+		}
+		
+		// 삭제 완료되면 폴더에 자료 삭제
 
+	}
 }

@@ -28,17 +28,26 @@ public class StoryController implements Controller {
 	/**
 	 * 전체검색
 	 * */
-	public ModelAndView select(HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView selectAll(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		return null;
+		List<StoryDTO> storyList = userStoryService.selectAll();
+		
+		request.setAttribute("list", storyList); // 뷰에서 ${requestScope.list}
+		
+		return new ModelAndView(request.getServletContext().getContextPath() + "/userStory/userStoryList.jsp");
 	}
 	
 	/**
 	 * 키워드로 검색
 	 * */
-	public ModelAndView selectBy(HttpServletRequest request, HttpServletResponse response) 
+	public ModelAndView selectByStoryNo(HttpServletRequest request, HttpServletResponse response) 
 			throws Exception {
-		return null;
+		String storyNo =  request.getParameter("modelNum");
+    	StoryDTO storyDTO = userStoryService.selectByStoryNo(Integer.parseInt(storyNo), true);
+    	
+    	request.setAttribute("story", storyDTO);
+    	
+    	return new ModelAndView(request.getServletContext().getContextPath() + "/userStory/userStoryList.jsp");
 	}
 	
 	/**
@@ -96,7 +105,20 @@ public class StoryController implements Controller {
 	 * */
 	public ModelAndView update(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		return null;
+		String storyTitle = request.getParameter("storyTitle");
+		String restaurantName = request.getParameter("restaurantName");
+		String storyContent = request.getParameter("storyContent");
+		String password = request.getParameter("password");
+        
+//		StoryDTO storyDTO = new StoryDTO(storyTitle, restaurantName, storyContent, password, storyImgList);
+		
+//		userStoryService.updateStory(storyDTO);
+		
+		//������ �Ϸ�Ǹ� �󼼺����������� �̵��Ѵ�.
+//		Electronics dbElec = elecService.selectByModelnum(modelNum, false);
+		
+//    	request.setAttribute("elec", dbElec);
+    	return new ModelAndView(request.getServletContext().getContextPath() + "/userStory/userStoryList.jsp", true);
 	}
 	
 	/**
@@ -104,16 +126,14 @@ public class StoryController implements Controller {
 	 * */
 	public ModelAndView delete(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-//		String modelNum = request.getParameter("modelNum");
-//		String password =  request.getParameter("password");
-//    	
-//		String saveDir=request.getServletContext().getRealPath("/save");
-//		
-//    	elecService.delete(modelNum, password , saveDir);
-//    	
-//    	return new ModelAndView("front", true);
+		String storyNo = request.getParameter("storyNo");
+		String password =  request.getParameter("password");
+    	
+		String saveDir = request.getServletContext().getRealPath("/img/storySave") + "/" + request.getParameter("storyTitle");
 		
-		return null;
+		userStoryService.delete(Integer.parseInt(storyNo), password, saveDir);
+    	
+		return new ModelAndView(request.getServletContext().getContextPath() + "/userStory/userStoryList.jsp", true);
 	}
 	
 

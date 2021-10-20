@@ -9,7 +9,12 @@ public interface UserStoryDAO {
 	  /**
 	   * 스토리 전체 검색
 	   */
-	  List<StoryDTO> selectAll() throws SQLException;;
+	  List<StoryDTO> selectAll() throws SQLException;
+	  
+	  /**
+	   * 스토리 번호로 검색
+	   */
+	  StoryDTO selectByStoryNo(int storyNo) throws SQLException;
 	   
 	  /**
 	   * 조회수 증가
@@ -30,5 +35,5 @@ public interface UserStoryDAO {
 	  /**
 	   * 스토리 삭제
 	   */
-	  int deleteStory(String storyNo, String password) throws SQLException;
+	  int deleteStory(int storyNo, String password) throws SQLException;
 }
