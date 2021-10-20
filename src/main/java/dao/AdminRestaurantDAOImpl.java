@@ -423,6 +423,7 @@ public class AdminRestaurantDAOImpl implements AdminRestaurantDAO {
 
 	@Override
 	public int update(RestaurantDTO restaurantDTO) throws SQLException {
+		System.out.println("restaurantNo=" +restaurantDTO.getRestaurantNo());
 		Connection conn = null;
 		PreparedStatement ps = null;
 		int result = 0;
@@ -598,6 +599,7 @@ public class AdminRestaurantDAOImpl implements AdminRestaurantDAO {
 		String sql = proFile.getProperty("adminRestaurant.insertHashTagRelationByRestaurantNo");
 		
 		try {
+			System.out.println(hashTagNo + ", " + restaurantNo);
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, hashTagNo);
 			ps.setInt(2, restaurantNo);

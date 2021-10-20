@@ -206,7 +206,7 @@
 	            
 	            </c:if>
 	        </ul>
-	        <button class="btn btn-secondary registerBtn" onclick="location.href='${path}/adminRestaurant/registerRestaurant.html'">맛집 등록</button>
+	        <button class="btn btn-secondary registerBtn" onclick="location.href='${path}/front?key=adminRestaurant&methodName=goRegisterPage'">맛집 등록</button>
 	    </nav>    
     </div>
     <!-- Optional JavaScript; choose one of the two! -->

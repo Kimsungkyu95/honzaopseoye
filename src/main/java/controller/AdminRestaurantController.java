@@ -33,6 +33,9 @@ public class AdminRestaurantController implements Controller {
 		return null;
 	}
 	
+	/**
+	 * 맛집 insert
+	 * */
 	public ModelAndView insert(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException{
 		
 		int maxSize = 1024*1024*100; //100M
@@ -120,7 +123,7 @@ public class AdminRestaurantController implements Controller {
 		//맛집 정보 받아오기
 		RestaurantDTO restaurantDTO = adminRestaurantService.selectByRestaurantNo(restaurantNo);
 		
-		//해시태그 세트 받아오기
+		//해시태그 전체 테이블 데이터 받아오기
 		List<String> hashTagList = adminRestaurantService.selectAllHashTag();
 		
 		//request에 담아서 update.jsp로 이동
@@ -238,11 +241,39 @@ public class AdminRestaurantController implements Controller {
         		 imgList.add(fileName.substring(fileName.lastIndexOf("\\")+1));
         	 }
         }
-        RestaurantDTO restaurantDTO = new RestaurantDTO(restaurantNo, restaurantLevel, restaurantName, restaurantPhone, restaurantAddr, restaurantRoadAddr, gu, dong, restaurantLongitude, restaurantLatitude, hashTagName, menuList, imgList);
+        RestaurantDTO restaurantDTO = new RestaurantDTO();
+        restaurantDTO.setRestaurantNo(restaurantNo);
+        restaurantDTO.setRestaurantLevel(restaurantLevel);
+        restaurantDTO.setRestaurantName(restaurantName);
+        restaurantDTO.setRestaurantPhone(restaurantPhone);
+        restaurantDTO.setRestaurantAddr(restaurantAddr);
+        restaurantDTO.setRestaurantRoadAddr(restaurantRoadAddr);
+        restaurantDTO.setCategoryDetailsName(categoryDetailsName);
+        restaurantDTO.setGu(gu);
+        restaurantDTO.setDong(dong);
+        restaurantDTO.setRestaurantLongitude(restaurantLongitude);
+        restaurantDTO.setRestaurantLatitude(restaurantLatitude);
+        restaurantDTO.setHashTagName(hashTagName);
+        restaurantDTO.setMenuList(menuList);
+        restaurantDTO.setImgList(imgList);
         adminRestaurantService.update(restaurantDTO, categoryDetailsName);
         
-        ModelAndView mv = new ModelAndView("front/key=adminRestaurant&methodName=pagingSelect", true);
+        ModelAndView mv = new ModelAndView("front?key=adminRestaurant&methodName=pagingSelect", true);
 		return mv;
 	}
+	
+	/**
+	 * register 페이지 띄우기
+	 * */
+	public ModelAndView goRegisterPage(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, SQLException {
+				
+		List<String> hashTagList = adminRestaurantService.selectAllHashTag();
+		request.setAttribute("hashTagList", hashTagList);
+		
+		ModelAndView mv = new ModelAndView("adminRestaurant/registerRestaurant.jsp");
+		return mv;
+	}
+	
 
 }

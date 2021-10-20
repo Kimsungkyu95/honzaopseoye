@@ -58,6 +58,7 @@ public class AdminRestaurantServiceImpl implements AdminRestaurantService {
 
 	@Override
 	public void update(RestaurantDTO restaurantDTO, String categoryDetailsName) throws SQLException {
+		System.out.println("restaurantNo=" +restaurantDTO.getRestaurantNo());
 		int categoryDetailsNo = adminRestaurantDAO.selectCategoryDetailsNo(categoryDetailsName);
 		if(categoryDetailsNo == 0) {
 			throw new SQLException("존재하지 않는 카테고리입니다.");
