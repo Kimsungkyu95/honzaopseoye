@@ -42,4 +42,6 @@ public interface MemberDAO {
 	String selectPwdById(String id) throws SQLException;
 	
 	ArrayList<MemberDTO> selectReviewList(String id) throws SQLException;
+	
+	String selectProfileImageById (String id) throws SQLException;
 }
