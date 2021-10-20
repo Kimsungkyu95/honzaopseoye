@@ -570,6 +570,7 @@ public class MemberDAOImpl implements MemberDAO {
 			
 			ps.setString(1, id);
 			ps.setString(2, id);
+			ps.setString(3, id);
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
