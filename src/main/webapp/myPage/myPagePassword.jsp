@@ -24,36 +24,30 @@
 <script type="text/javascript">
 $(function() {
 	
-	let id = "${loginId}";
-	console.log(id);
+	let loginId = "${loginId}";
 	
 	$("#originalPwd").keyup(function() {
-		if($(this).val()==""){
+		let key = $(this).val();
+		
+		if(key==""){
 			return;
 		}
 		
 		//-----------------비동기화통신-----------------------------------
 		$.ajax({
-			url: "${path}/memberEmailCheck", 	// ../ 상위로 한칸 올라가서.. 서블릿 
+			url: "${path}/memberSelectPwdById", 	// ../ 상위로 한칸 올라가서.. 서블릿 
 											//이게 폴더 밑에 있으니까 루트로 갈려면 한칸 올라가야됨.
 			type: "post",				//메소드 방식(get, post, put, delete)
 			dataType: "text",			//서버가 응답해주는 데이터의 타입(text-생략시 기본-, html, xml, json)
-			data: {email: $(this).val() }, //서버에 보낼 때 파라메터
+			data: {id: loginId }, //서버에 보낼 때 파라메터
 			success: function(result) { //성공하면 callback 함수	
-				//console.log(result);
+				console.log("result : " + result);
 				$("#emailInvalid").text(result);
-				if(result === "중복되는 이메일이 존재합니다."){
-					//console.log(typedEmail);
-					//console.log(email);
-					if(typedEmail != email){
-						//console.log("not same");
-						$("#emailCheck").text(result);
-						emailDuple=true;							
-					}
-					//console.log("same");
+				if(result == key){
+					
+					console.log("same");
 				}else{
-					emailDuple=false;
-					//console.log("emailDuple=false");
+					console.log("not same");
 				}
 							
 			},

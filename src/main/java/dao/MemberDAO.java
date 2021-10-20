@@ -37,4 +37,6 @@ public interface MemberDAO {
 	String selectPwdByIdEmail(String id, String email) throws SQLException;
 
 	LevelUpExpDTO selectExpById(String id);
+	
+	String selectPwdById(String id) throws SQLException;
 }

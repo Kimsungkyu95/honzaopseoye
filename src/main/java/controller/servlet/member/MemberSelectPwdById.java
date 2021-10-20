@@ -26,6 +26,9 @@ public class MemberSelectPwdById extends HttpServlet {
 		
 		String id = request.getParameter("id");
 		try{
+			String pwd = service.MemberSelectPwdById(id);
+			
+			out.print(pwd);
 						
 		}catch (Exception e) {
 			// TODO: handle exception

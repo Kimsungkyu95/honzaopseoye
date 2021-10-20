@@ -151,7 +151,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public String MemberSelectPwdById(String id) throws SQLException {
-		String pwd = null;
+		String pwd = dao.selectPwdById(id);
 		
 		if(pwd==null) {
 			throw new SQLException("회원정보에 해당하는 비밀번호를 찾을 수 없습니다.");
