@@ -185,9 +185,9 @@ $(function() {
 	<h1 class="p-3 mb-2 bg-light text-dark">비밀번호 변경</h1>
 	<div class="p-5 mb-4 bg-light border rounded-3">
 		
-		<form method="post" action="${pageContext.request.contextPath}/front?key=member&methodName=updatePwdByNo" id="pwdUpdateForm">
+		<form method="post" action="${pageContext.request.contextPath}/front?key=member&methodName=updatePwdById" id="pwdUpdateForm">
 		    <h1 class="h3 mb-3 fw-normal">현재비밀번호와 새로운 비밀번호를 입력해주세요.</h1>
-			<input type="hidden" name="memberNo" value="${loginId}">
+			<input type="hidden" name="memberId" value="${loginId}">
 			<p class="centerContainer" >
 			안전한 비밀번호로 내정보를 보호하세요
 			다른 사이트/아이디에서 사용한 적 없는 비밀번호

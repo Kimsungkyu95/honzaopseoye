@@ -150,21 +150,21 @@ public class MemberController implements Controller {
 		return new ModelAndView("/myPage/myPageLevel.jsp", false);
 	}
 	
-	public ModelAndView updatePwdByNo(HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView updatePwdById(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		System.out.println("updatePwdByNo");
 		
 		String url = "error/error.jsp";
 		String errorMsg = "Something Went Wrong.";
 		
-		String profileImage = request.getParameter("memberPwd");
-		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
+		String newPwd = request.getParameter("newPwd");
+		String memberId = request.getParameter("memberId");
 		
 		MemberDTO member = new MemberDTO();
-		member.setProfileImage(profileImage);
-		member.setMemberNo(memberNo);
+		member.setMemberPwd(newPwd);
+		member.setMemberID(memberId);
 
-		service.updatePwdByNo(member);
+		service.updatePwdById(member);
 		
 
 		return new ModelAndView("/myPage/myPage.jsp");

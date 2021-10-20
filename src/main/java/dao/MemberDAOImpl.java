@@ -296,23 +296,23 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public int updatePwdByNo(MemberDTO member) throws SQLException {
+	public int updatePwdById(MemberDTO member) throws SQLException {
 		int returnValue = 0;
 		
-		String sql = proFile.getProperty("member.updatePwdByNo");
+		String sql = proFile.getProperty("member.updatePwdById");
 		
 		Connection con = null;
 		PreparedStatement ps = null;
 		
 		String memberPwd = member.getMemberPwd();
-		int memberNo = member.getMemberNo();
+		String memberId = member.getMemberID();
 		
 		try {
 			con=DbUtil.getConnection();
 			ps=con.prepareStatement(sql);
 			
 			ps.setString(1, memberPwd);
-			ps.setInt(2, memberNo);
+			ps.setString(2, memberId);
 			
 			returnValue = ps.executeUpdate();
 			
