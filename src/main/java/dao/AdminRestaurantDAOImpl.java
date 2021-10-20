@@ -10,6 +10,7 @@ import java.util.Properties;
 
 import dto.MenuDTO;
 import dto.RestaurantDTO;
+import paging.PageCnt;
 import util.DbUtil;
 
 public class AdminRestaurantDAOImpl implements AdminRestaurantDAO {
@@ -241,18 +242,36 @@ public class AdminRestaurantDAOImpl implements AdminRestaurantDAO {
 		}
 		
 		try {
-			conn = DbUtil.getConnection();
-			ps = conn.prepareStatement(sql);		
+			//전체 게시물 수 구하기
 			int totalCount = getTotalCount(selectKey, selectValue);
 			
+			//총 페이지 수 구하기
+			PageCnt pageCnt = new PageCnt();
+			pageCnt.setPageCnt((int)Math.ceil((double)totalCount/PageCnt.pagesize));
+			PageCnt.setPageNo(pageNo);
+			
+			conn = DbUtil.getConnection();
+			ps = conn.prepareStatement(sql);	
+			ps.setString(1, selectValue);
+			ps.setInt(2, PageCnt.getPagesize() * pageNo);
+			ps.setInt(3, PageCnt.getPagesize() * (pageNo - 1) + 1);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				RestaurantDTO restaurantDTO = new RestaurantDTO();
+				restaurantDTO.setRestaurantNo(rs.getInt(1));
+				restaurantDTO.setRestaurantName(rs.getString(2));
+				restaurantDTO.setCategoryName(rs.getString(3));
+				restaurantDTO.setCategoryDetailsName(rs.getString(4));
+				restaurantDTO.setRestaurantAddr(rs.getString(5));
+				restaurantDTO.setRestaurantRegDate(rs.getString(6));
+				restaurantDTO.setRestaurantVisited(7);
+				
+				restaurantList.add(restaurantDTO);
+			}		
 			
 		}finally {
 			DbUtil.dbClose(rs, ps, conn);
-		}
-		
-		
-		
-		
+		}			
 		
 		return restaurantList;
 	}

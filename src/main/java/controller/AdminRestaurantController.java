@@ -105,7 +105,8 @@ public class AdminRestaurantController implements Controller {
         RestaurantDTO restaurantDTO = new RestaurantDTO(0, restaurantLevel, restaurantName, restaurantPhone, restaurantAddr, restaurantRoadAddr, gu, dong, restaurantLongitude, restaurantLatitude, hashTagName, menuList, imgList);
         adminRestaurantService.insert(restaurantDTO, categoryDetailsName);
         
-		return null;
+		ModelAndView mv = new ModelAndView("adminRestaurant/adminRestaurantList.jsp", true); //경로를 front?key=adminRestaurant&methodName=pagingSelect로 바꿔야하나?
+		return mv;
 
 	}
 	
@@ -129,10 +130,12 @@ public class AdminRestaurantController implements Controller {
 		List<RestaurantDTO> restaurantList = adminRestaurantService.pagingSelect(Integer.parseInt(pageNo), selectKey, selectValue);
 		
 		request.setAttribute("pageNo", pageNo);
+		request.setAttribute("selectKey", selectKey);
+		request.setAttribute("selectValue", selectValue);
 		request.setAttribute("restaurantList", restaurantList);
 		
-		
-		return null;
+		ModelAndView mv = new ModelAndView("adminRestaurant/adminRestaurantList.jsp");	
+		return mv;
 	}
 
 }

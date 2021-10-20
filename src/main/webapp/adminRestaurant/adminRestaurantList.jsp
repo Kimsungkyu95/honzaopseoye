@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 
@@ -21,8 +23,47 @@
             display: flex;
             justify-content: center;
         }
+        
+        table a {
+        	text-decoration: none;
+        }
+        
+        .active {
+        	pointer-events: none; 
+        }
 
     </style>
+    <script src="${path}/js/jquery-3.6.0.min.js"></script>
+    <script>
+    	$(function(){
+    		//form value 고정
+    		$('select[name=selectKey]').val('${requestScope.selectKey}');
+    		$('input[name=selectValue]').val('${requestScope.selectValue}');
+    		
+    		//삭제버튼클릭시
+    		$('.deleteBtn').click(function(){
+    			console.log($(this).val());
+    			if(confirm("레스토랑의 리뷰, 메뉴도 함께 사라집니다. 정말로 삭제하시겠습니까?")){
+	    			$.ajax({
+	                    url: "${path}/front?key=adminRestaurant&methodName=delete", //서버요청주소
+	                    type: "post", //method방식(get, post, put, delete)
+	                    dataType: "text", //서버가 응답해주는 데이터의 type(text, html, xml, json)
+	                    data: { restaurantNo: $(this).val() }, //서버에게 보낼 parameter정보
+	                    success: function (result) {
+	                        alert(result);
+	                    }, //성공했을 때 callback함수
+	                    error: function (err) {
+	                        alert(err + "발생했어요.");
+	                    } //실패했을 때 callback함수
+	                }); //ajax 끝				
+    			}
+    		})
+    		
+    		//현재페이지 atag 눌리지 않게
+    		$('.disable').removeAttr("href");
+    		
+    	}) //jquery 끝
+    </script>
 </head>
 
 <body>
@@ -56,18 +97,16 @@
     </nav>
 
     <div class="container mt-5 shadow-lg">
-        <form class="row g-3 rounded p-2">
+        <form class="row g-3 rounded p-2" action="${path}/front?key=adminRestaurant&methodName=pagingSelect" method="post">
             <div class="col-auto">  
-                <select class="form-select col-auto" aria-label="Default select example">
-                    <option selected>검색옵션</option>
-                    <option value="1">맛집이름</option>
-                    <option value="2">주소</option>
-                    <option value="2">카테고리</option>
+                <select class="form-select col-auto" aria-label="Default select example" name="selectKey">
+                    <option value="restaurantName" selectd>맛집이름</option>
+                    <option value="restaurantAddr">주소</option>
+                    <option value="categoryName">카테고리</option>
                 </select>
             </div>
             <div class="col-auto">
-                <label for="inputPassword2" class="visually-hidden">Password</label>
-                <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+                <input type="text" class="form-control" placeholder="검색어를 입력하세요" name="selectValue">
             </div>
             <div class="col-auto">
                 <button type="submit" class="btn btn-primary mb-3">검색</button>
@@ -82,7 +121,6 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">맛집이름</th>
-                    <th scope="col">전화번호</th>
                     <th scope="col">카테고리</th>
                     <th scope="col">상세카테고리</th>
                     <th scope="col">주소</th>
@@ -92,84 +130,57 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>602디저트</td>
-                    <td>02-419-1511</td>
-                    <td>일식</td>
-                    <td>돈까스</td>                    
-                    <td>서울 강남구 일원동 677-11</td>
-                    <td>2021-10-15</td>
-                    <td>5</td>
-                    <td>
-                        <button type="button" class="btn btn-primary btn-sm">삭제</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>요리하는남자</td>
-                    <td>02-419-1511</td>
-                    <td>한식</td>
-                    <td>냉면</td>
-                    <td>서울 송파구 잠실동 180-9</td>
-                    <td>2021-10-12</td>
-                    <td>3</td>
-                    <td>
-                        <button type="button" class="btn btn-primary btn-sm">삭제</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>602디저트</td>
-                    <td></td>
-                    <td>일식</td>
-                    <td>돈까스</td>
-                    <td>서울 강남구 일원동 677-11</td>
-                    <td>2021-10-15</td>
-                    <td>5</td>
-                    <td>
-                        <button type="button" class="btn btn-primary btn-sm">삭제</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>요리하는남자</td>
-                    <td>02-419-1511</td>
-                    <td>한식</td>
-                    <td>냉면</td>
-                    <td>서울 송파구 잠실동 180-9</td>
-                    <td>2021-10-12</td>
-                    <td>3</td>
-                    <td>
-                        <button type="button" class="btn btn-primary btn-sm">삭제</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">5</th>
-                    <td>602디저트</td>
-                    <td></td>
-                    <td>한식</td>
-                    <td>냉면</td>
-                    <td>서울 강남구 일원동 677-11</td>
-                    <td>2021-10-15</td>
-                    <td>5</td>
-                    <td>
-                        <button type="button" class="btn btn-primary btn-sm">삭제</button>
-                    </td>
-                </tr>
-
+            	<c:choose>
+	            	<c:when test="${empty requestScope.restaurantList}">
+	            	<tr><td colspan="8">검색된 맛집이 없습니다</td></tr>
+	            	</c:when>
+            	
+            	<c:otherwise>  
+            	<c:forEach items="${requestScope.restaurantList}" var="restaurantDTO" varStatus="status">       	
+	                <tr>
+	                    <th scope="row">${restaurantDTO.restaurantNo}</th>
+	                    <td><a href="맛집 수정하는 페이지로~~~">${restaurantDTO.restaurantName}</a></td>
+	                    <td>${restaurantDTO.categoryName}</td>
+	                    <td>${restaurantDTO.categoryDetailsName}</td>
+	                    <td>${restaurantDTO.restaurantAddr}</td> 
+	                    <fmt:parseDate value="${restaurantDTO.restaurantRegDate}" var="parseDateValue" pattern="yyyy-MM-dd HH:mm:ss"/>                   
+	                    <td><fmt:formatDate value="${parseDateValue}" pattern="yyyy-MM-dd"/></td>
+	                    <td>${restaurantDTO.restaurantVisited}</td>
+	                    <td>
+	                        <button type="button" class="btn btn-primary btn-sm deleteBtn" value="${restaurantDTO.restaurantNo}">삭제</button>
+	                    </td>
+	                </tr>
+            	</c:forEach>      	
+            	</c:otherwise>
+            	</c:choose>
             </tbody>
         </table>
     </div>
+    
+    <!-- 페이징 처리 -->
+    <jsp:useBean class="paging.PageCnt" id="p"/>
+    <c:set var="doneLoop" value="false"/>
+	<c:set var="temp" value="${(pageNo-1) % p.blockcount}"/> <!-- (1-1)%2   0, (2-1)%2    1 , (3-1)%2  0 -->
+	<c:set var="startPage" value="${pageNo - temp}"/> <!--   1- 0 -->
+    
     <nav aria-label="Page navigation example" class="mt-4">
         <ul class="pagination" style="justify-content: center;">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        
+        	<c:if test="${(startPage-p.blockcount) > 0}">
+	            <li class="page-item"><a class="page-link" href="${path}/front?key=adminRestaurant&methodName=pagingSelect&pageNo=${startPage-1}&selectKey=${requestScope.selectKey}&selectValue=${requestScope.selectValue}">Previous</a></li>    	
+        	</c:if>
+        	<c:forEach var="i" begin="${startPage}" end="${startPage + p.blockcount - 1}">
+	            <c:if test="${i > p.pageCnt}">
+	            	<c:set var="doneLoop" value="true"/>
+	            </c:if>
+	            <c:if test="${not doneLoop}">
+		            <li class="page-item ${i == pageNo ? 'active' : ''}"><a class="page-link" href="${path}/front?key=adminRestaurant&methodName=pagingSelect&pageNo=${i}&selectKey=${requestScope.selectKey}&selectValue=${requestScope.selectValue}">${i}</a></li>	            
+	            </c:if> 	
+        	</c:forEach>
+            <c:if test="${(startPage+p.blockcount) <= p.pageCnt}">
+	            <li class="page-item"><a class="page-link" href="${path}/front?key=adminRestaurant&methodName=pagingSelect&pageNo=${startPage+p.blockcount}&selectKey=${requestScope.selectKey}&selectValue=${requestScope.selectValue}">Next</a></li>
+            
+            </c:if>
         </ul>
     </nav>
     <!-- Optional JavaScript; choose one of the two! -->
