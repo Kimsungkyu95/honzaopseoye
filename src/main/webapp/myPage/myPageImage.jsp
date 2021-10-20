@@ -52,6 +52,7 @@ $(function() {
 		let fileName = form.fileActual;
 		console.log("fileName : "+fileName); */
 		
+		$("#imgForm").submit();
 	})
 	
 })
@@ -70,7 +71,7 @@ $(function() {
     <div class="p-5 mb-4 bg-light border rounded-3">
     
     	<div class="">
-    		<h2>프로필 수정</h2>
+    		<h2>프로필 사진</h2>
     		<p>대표 프로필을 수정할 수 있습니다.</p>
     	</div>
     	<table class="table table-bordered">
@@ -82,9 +83,9 @@ $(function() {
     			<tr>
     			<c:if test="${empty profileImage}">
     				<th scope="row">
-    					<div class="">프로필 사진</div>
+    					<div class=""><img alt="profile image" id="profileImage" src="${path}/img/profileImages/humanicon.png" style="height: 225px"></div>
     				</th>
-    			</c:if>
+    			</c:if> 	
     			<c:if test="${not empty profileImage}">
     				<th scope="row">
     					<div class=""><img alt="profile image" id="profileImage" src="${path}/img/profileImages/${profileImage}" style="height: 225px"></div>
@@ -95,9 +96,9 @@ $(function() {
     						<img id="img" src="${path}/img/profileImages/humanicon.png" width="100" height="100">
     					</div>
     					<div class="">
-    						<form method="post"  action="UpLoad" enctype="multipart/form-data" id="imgForm">
+    						<form method="post"  action="${path}/front?key=member&methodName=updateProfileImageById" enctype="multipart/form-data" id="imgForm">
     						<input type="hidden" name="memberId" value="${id}">
-							  파일첨부:<input type="file"  name="file" id="fileActual"/><p>
+							  파일첨부:<input type="file"  name="file" id="fileActual"><p>
 							  <!-- 
 							  <input type="submit" class="btn btn-outline-warning" value="사진변경"/>
 							   -->
