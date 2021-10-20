@@ -13,8 +13,8 @@
 
 <title>main</title>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5ca07a49c944c9276cbfe517db8d17c"></script>
-<script src="js/jquery-3.6.0.min.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5ca07a49c944c9276cbfe517db8d17c&libraries=services"></script>
+<script  src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script type="text/javascript">
 	$(function(){
@@ -25,7 +25,7 @@
 			$(this).css("opacity", "1");
 		});
 	})
-	
+	/* let songpa=["풍납동","거여동","마천동","방이동","오륜동","오금동","송파동","석촌동","삼전동","가락동",	"문정동","장지동","위례동",	"잠실동"];
 	let gangnam=["압구정동","청담동","삼성동","논현동"];
   	let seocho=["서초동","반포동","잠원동"];
   	let yongsan=["용산동","이태원동","한남동","보광동"];
@@ -39,7 +39,7 @@
 		  	
 			for(i=0; i<arr.length; i++){
 				fr.dong.options[fr.dong.length] = new Option(arr[i], arr[i]);
-			}
+			} */
   	}
 </script>
 
@@ -102,44 +102,45 @@
 	
 		<!-- select로 위치 찾기 -->
 		<div class="text-center" id="divSelect">
-			  <h5 style="margin-top:10px">서울특별시 </h4>
-			  <form name="f"  style="margin-left:4px">
-			  <select name="gu" onChange = "findLocation(this, form)">
+			  <form name="f"  style="margin-left:4px" action="mainMap/mainMap.jsp" method="get">
+			  <select id ="gu" name="gu" onChange = "findLocation(this, form)">
 			       <option value="0">--지역구 선택 --</option>
-				   <option value="gangnam">강남구</option>
-				   <option value="seocho">서초구</option>
-				   <option value="yongsan">용산구</option>
-				   <option value="jongno">종로구</option>
+			       <option value="송파구">송파구</option>
+				   <option value="강남구">강남구</option>
+				   <option value="서초구">서초구</option>
+				   <option value="용산구">용산구</option>
+				   <option value="종로구">종로구</option>
    			  </select>
-			  <select name="dong">
-       			   <option value="0">--선택--</option>
+			  <select id="food" name="food">
+       			   <option value="0">--음식종류--</option>
+       			   <option value="디저트">디저트</option>
+       			   <option value="패스트푸드">패스트푸드</option>
+       			   <option value="피자">피자</option>
+       			   <option value="치킨">치킨</option>
+       			   <option value="분식">분식</option>
+       			   <option value="한식">한식</option>
+       			   <option value="일식">일식</option>
+       			   <option value="중식">중식</option>
+       			   <option value="양식">양식</option>
+       			   <option value="뷔페">뷔페</option>
+       			  <option value="술집">술집</option>
    			  </select>
    			  </form>
-   			  <button class="btn btn-outline-success" type="submit" style="height:40px; margin-left:4px">찾기</button>
+   			 <button class="btn btn-outline-success" id="btn" type="submit" style="height:40px; margin-left:4px">찾기</button>
 		</div>
 	
 		<!-- 지도를  생성할 div 영역  -->
-		<div id="map"> 
-			<script type="text/javascript" >
-				var container = document.getElementById('map'); // 지도를 표시할 div 
-				var options = {
-					center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-					level: 3 // 지도의 확대 레벨
-				};
-			
-				var map = new kakao.maps.Map(container, options); // 지도를 생성합니다
-				
-				// 마커가 표시될 위치입니다 
-				var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
-			
-				// 마커를 생성합니다
-				var marker = new kakao.maps.Marker({
-			   	 position: markerPosition
+		<script type="text/javascript">
+			$(function(){
+				$("#btn").click(function() {
+					let params = {gu : $("#gu").val(), food:$("#food").val()};
+					$("#map").load("mainMap/mainMap.jsp",params);
 				});
-		
-				// 마커가 지도 위에 표시되도록 설정합니다
-				marker.setMap(map);
-			</script>
+			});
+		</script>
+ 		<div id="map">
+ 		
+ 		
 		</div>
 		
 		
