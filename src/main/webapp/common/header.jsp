@@ -60,7 +60,7 @@ pageEncoding="UTF-8"%>
 				</li>
 				<!-- 현재위치? -->
 				<li class="nav-item">
-					<a class="nav-link" href="#">
+					<a class="nav-link" href="${path}/main.jsp">
 					<!-- 위치 아이콘 -->
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
 						<path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481
