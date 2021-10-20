@@ -24,14 +24,32 @@ public class AdminRestaurantServiceImpl implements AdminRestaurantService {
 		if(result == 0) {
 			throw new SQLException("맛집 등록에 실패했습니다");
 		}
-		
-
 	}
+	
 	@Override
 	public List<RestaurantDTO> pagingSelect(int pageNo, String selectKey, String selectValue) throws SQLException {
 		List<RestaurantDTO> restaurantList = adminRestaurantDAO.pagingSelect(pageNo, selectKey, selectValue);
 		
 		return restaurantList;
 	}
+	
+	@Override
+	public void delete(int restaurantNo) throws SQLException {
+		int result = adminRestaurantDAO.delete(restaurantNo);
+		if(result == 0) {
+			throw new SQLException("맛집 삭제에 실패했습니다");
+		}	
+	}
+
+	@Override
+	public RestaurantDTO selectByRestaurantNo(int restaurantNo) throws SQLException {
+		RestaurantDTO restaurantDTO = adminRestaurantDAO.selectByRestaurantNo(restaurantNo);
+		if(restaurantDTO == null) {
+			throw new SQLException("맛집 정보를 가져올 수 없습니다.");
+		}
+		return restaurantDTO;
+	}
+	
+	
 
 }

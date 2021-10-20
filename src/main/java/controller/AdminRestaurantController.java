@@ -105,11 +105,27 @@ public class AdminRestaurantController implements Controller {
         RestaurantDTO restaurantDTO = new RestaurantDTO(0, restaurantLevel, restaurantName, restaurantPhone, restaurantAddr, restaurantRoadAddr, gu, dong, restaurantLongitude, restaurantLatitude, hashTagName, menuList, imgList);
         adminRestaurantService.insert(restaurantDTO, categoryDetailsName);
         
-		ModelAndView mv = new ModelAndView("adminRestaurant/adminRestaurantList.jsp", true); //경로를 front?key=adminRestaurant&methodName=pagingSelect로 바꿔야하나?
+		ModelAndView mv = new ModelAndView("front?key=adminRestaurant&methodName=pagingSelect", true);
 		return mv;
 
 	}
 	
+	/**
+	 * 맛집 상세정보 검색 & 수정페이지
+	 * */
+	public ModelAndView selectByRestaurantNo(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, SQLException {
+	
+		int restaurantNo = Integer.parseInt(request.getParameter("restaurantNo"));
+		
+		//맛집 정보 받아오기
+		RestaurantDTO restaurantDTO = adminRestaurantService.selectByRestaurantNo(restaurantNo);
+		
+		//해시태그 세트 받아오기
+		
+		//request에 담아서 update.jsp로 이동
+		return null;
+	}
 	
 	public ModelAndView pagingSelect(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException {

@@ -264,7 +264,8 @@ public class AdminRestaurantDAOImpl implements AdminRestaurantDAO {
 				restaurantDTO.setCategoryDetailsName(rs.getString(4));
 				restaurantDTO.setRestaurantAddr(rs.getString(5));
 				restaurantDTO.setRestaurantRegDate(rs.getString(6));
-				restaurantDTO.setRestaurantVisited(7);
+				restaurantDTO.setRestaurantLevel(rs.getInt(7));
+				restaurantDTO.setRestaurantVisited(rs.getInt(8));
 				
 				restaurantList.add(restaurantDTO);
 			}		
@@ -276,4 +277,28 @@ public class AdminRestaurantDAOImpl implements AdminRestaurantDAO {
 		return restaurantList;
 	}
 
+	@Override
+	public int delete(int restaurantNo) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		int result = 0;
+		String sql = proFile.getProperty("adminRestaurant.delete");	
+		try {
+			conn = DbUtil.getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, restaurantNo);
+			result = ps.executeUpdate();
+		}finally {
+			DbUtil.dbClose(ps, conn);
+		}
+		return result;
+	}
+
+	@Override
+	public RestaurantDTO selectByRestaurantNo(int restaurantNo) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 }

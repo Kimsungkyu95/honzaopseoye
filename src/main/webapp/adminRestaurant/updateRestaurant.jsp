@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
 
@@ -29,8 +31,7 @@
 
     <script>
         $(function () {
-            //카테고리 설정            
-            
+            //카테고리 설정
             dessert = [{eng:"dessert", kor : "디저트"}];
             fastfood = [{eng:"fastfood", kor: "패스트푸드"}];
             pizza = [{eng:"pizza", kor: "피자"}]
@@ -121,8 +122,7 @@
             
             
             //해시태그 추가
-            $('#hashTagAppendBtn').click(function(){
-            	
+            $('#hashTagAppendBtn').click(function(){   	
             	$('#hashTag').clone().insertBefore('#hashTagAppendBtn');
             })
             

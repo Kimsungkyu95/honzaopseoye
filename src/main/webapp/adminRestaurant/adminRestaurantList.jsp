@@ -31,6 +31,15 @@
         .active {
         	pointer-events: none; 
         }
+        
+        .pagenation {
+        	position:relative;
+        }
+        .registerBtn {
+        	position: absolute;
+        	top: 0px;
+        	right: 0px;
+        }
 
     </style>
     <script src="${path}/js/jquery-3.6.0.min.js"></script>
@@ -43,14 +52,24 @@
     		//삭제버튼클릭시
     		$('.deleteBtn').click(function(){
     			console.log($(this).val());
-    			if(confirm("레스토랑의 리뷰, 메뉴도 함께 사라집니다. 정말로 삭제하시겠습니까?")){
+    			let restaurantNo = $(this).val();
+    			let restaurantName = $(this).closest('tr').find('.restaurantName').text();
+    			let categoryName = $(this).closest('tr').find('.categoryName').text();
+    			let categoryDetailsName = $(this).closest('tr').find('.categoryDetailsName').text();
+    			if(confirm("맛집의 리뷰, 메뉴, 사진도 함께 사라집니다. 정말로 삭제하시겠습니까?")){
 	    			$.ajax({
-	                    url: "${path}/front?key=adminRestaurant&methodName=delete", //서버요청주소
+	                    url: "${path}/deleteRestaurantServlet", //서버요청주소
 	                    type: "post", //method방식(get, post, put, delete)
 	                    dataType: "text", //서버가 응답해주는 데이터의 type(text, html, xml, json)
-	                    data: { restaurantNo: $(this).val() }, //서버에게 보낼 parameter정보
+	                    data: { restaurantNo: restaurantNo,
+	                    		restaurantName: restaurantName,
+	                    		categoryName: categoryName,
+	                    		categoryDetailsName: categoryDetailsName
+	                    }, //서버에게 보낼 parameter정보
 	                    success: function (result) {
 	                        alert(result);
+	                        location.reload();
+	                       	
 	                    }, //성공했을 때 callback함수
 	                    error: function (err) {
 	                        alert(err + "발생했어요.");
@@ -97,10 +116,12 @@
     </nav>
 
     <div class="container mt-5 shadow-lg">
-        <form class="row g-3 rounded p-2" action="${path}/front?key=adminRestaurant&methodName=pagingSelect" method="post">
+        <form class="row g-3 rounded p-2" action="${path}/front" method="get" >
+            <input type="hidden" name="key" value="adminRestaurant">
+            <input type="hidden" name="methodName" value="pagingSelect">     
             <div class="col-auto">  
                 <select class="form-select col-auto" aria-label="Default select example" name="selectKey">
-                    <option value="restaurantName" selectd>맛집이름</option>
+                    <option value="restaurantName" selected>맛집이름</option>
                     <option value="restaurantAddr">주소</option>
                     <option value="categoryName">카테고리</option>
                 </select>
@@ -125,6 +146,7 @@
                     <th scope="col">상세카테고리</th>
                     <th scope="col">주소</th>
                     <th scope="col">등록일</th>
+                    <th scope="col">레벨</th>
                     <th scope="col">조회수</th>
                     <th scope="col">삭제</th>
                 </tr>
@@ -139,12 +161,13 @@
             	<c:forEach items="${requestScope.restaurantList}" var="restaurantDTO" varStatus="status">       	
 	                <tr>
 	                    <th scope="row">${restaurantDTO.restaurantNo}</th>
-	                    <td><a href="맛집 수정하는 페이지로~~~">${restaurantDTO.restaurantName}</a></td>
-	                    <td>${restaurantDTO.categoryName}</td>
-	                    <td>${restaurantDTO.categoryDetailsName}</td>
+	                    <td><a href="맛집 수정하는 페이지로~~~" class="restaurantName">${restaurantDTO.restaurantName}</a></td>
+	                    <td class="categoryName">${restaurantDTO.categoryName}</td>
+	                    <td class="categoryDetailsName">${restaurantDTO.categoryDetailsName}</td>
 	                    <td>${restaurantDTO.restaurantAddr}</td> 
 	                    <fmt:parseDate value="${restaurantDTO.restaurantRegDate}" var="parseDateValue" pattern="yyyy-MM-dd HH:mm:ss"/>                   
 	                    <td><fmt:formatDate value="${parseDateValue}" pattern="yyyy-MM-dd"/></td>
+	                    <td>${restaurantDTO.restaurantLevel}</td>
 	                    <td>${restaurantDTO.restaurantVisited}</td>
 	                    <td>
 	                        <button type="button" class="btn btn-primary btn-sm deleteBtn" value="${restaurantDTO.restaurantNo}">삭제</button>
@@ -163,26 +186,29 @@
 	<c:set var="temp" value="${(pageNo-1) % p.blockcount}"/> <!-- (1-1)%2   0, (2-1)%2    1 , (3-1)%2  0 -->
 	<c:set var="startPage" value="${pageNo - temp}"/> <!--   1- 0 -->
     
-    <nav aria-label="Page navigation example" class="mt-4">
-        <ul class="pagination" style="justify-content: center;">
-        
-        	<c:if test="${(startPage-p.blockcount) > 0}">
-	            <li class="page-item"><a class="page-link" href="${path}/front?key=adminRestaurant&methodName=pagingSelect&pageNo=${startPage-1}&selectKey=${requestScope.selectKey}&selectValue=${requestScope.selectValue}">Previous</a></li>    	
-        	</c:if>
-        	<c:forEach var="i" begin="${startPage}" end="${startPage + p.blockcount - 1}">
-	            <c:if test="${i > p.pageCnt}">
-	            	<c:set var="doneLoop" value="true"/>
+    <div class="container">
+	    <nav aria-label="Page navigation example" class="mt-4 pagenation">
+	        <ul class="pagination" style="justify-content: center;">
+	        
+	        	<c:if test="${(startPage-p.blockcount) > 0}">
+		            <li class="page-item"><a class="page-link" href="${path}/front?key=adminRestaurant&methodName=pagingSelect&pageNo=${startPage-1}&selectKey=${requestScope.selectKey}&selectValue=${requestScope.selectValue}">Previous</a></li>    	
+	        	</c:if>
+	        	<c:forEach var="i" begin="${startPage}" end="${startPage + p.blockcount - 1}">
+		            <c:if test="${i > p.pageCnt}">
+		            	<c:set var="doneLoop" value="true"/>
+		            </c:if>
+		            <c:if test="${not doneLoop}">
+			            <li class="page-item ${i == pageNo ? 'active' : ''}"><a class="page-link" href="${path}/front?key=adminRestaurant&methodName=pagingSelect&pageNo=${i}&selectKey=${requestScope.selectKey}&selectValue=${requestScope.selectValue}">${i}</a></li>	            
+		            </c:if> 	
+	        	</c:forEach>
+	            <c:if test="${(startPage+p.blockcount) <= p.pageCnt}">
+		            <li class="page-item"><a class="page-link" href="${path}/front?key=adminRestaurant&methodName=pagingSelect&pageNo=${startPage+p.blockcount}&selectKey=${requestScope.selectKey}&selectValue=${requestScope.selectValue}">Next</a></li>
+	            
 	            </c:if>
-	            <c:if test="${not doneLoop}">
-		            <li class="page-item ${i == pageNo ? 'active' : ''}"><a class="page-link" href="${path}/front?key=adminRestaurant&methodName=pagingSelect&pageNo=${i}&selectKey=${requestScope.selectKey}&selectValue=${requestScope.selectValue}">${i}</a></li>	            
-	            </c:if> 	
-        	</c:forEach>
-            <c:if test="${(startPage+p.blockcount) <= p.pageCnt}">
-	            <li class="page-item"><a class="page-link" href="${path}/front?key=adminRestaurant&methodName=pagingSelect&pageNo=${startPage+p.blockcount}&selectKey=${requestScope.selectKey}&selectValue=${requestScope.selectValue}">Next</a></li>
-            
-            </c:if>
-        </ul>
-    </nav>
+	        </ul>
+	        <button class="btn btn-secondary registerBtn" onclick="location.href='${path}/adminRestaurant/registerRestaurant.html'">맛집 등록</button>
+	    </nav>    
+    </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
