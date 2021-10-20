@@ -50,6 +50,21 @@ public class MemberDTO {
 		this.memberExp = memberExp;
 	}
 	
+	public MemberDTO(int memberNo, String memberID, String memberPwd, String memberName, String memberEmail,
+			String memberPhone, String memberBirth, String memberJoinDate, int memberExp, String profileImage) {
+		super();
+		this.memberNo = memberNo;
+		this.memberID = memberID;
+		this.memberPwd = memberPwd;
+		this.memberName = memberName;
+		this.memberEmail = memberEmail;
+		this.memberPhone = memberPhone;
+		this.memberBirth = memberBirth;
+		this.memberJoinDate = memberJoinDate;
+		this.memberExp = memberExp;
+		this.profileImage = profileImage;
+	}
+
 	public MemberDTO(String memberID, String memberPwd, String memberName, String memberEmail, String memberPhone, String memberBirth,
 			String profileImage) {
 		super();
@@ -87,19 +102,7 @@ public class MemberDTO {
 		this.memberName = memberName;
 	}
 
-	public MemberDTO(int memberNo, String memberID, String memberPwd, String memberName, String memberEmail, String memberPhone, String memberBirth, String joinDate, int membeExp, String profileImage) {
-		this.memberNo = memberNo;
-		this.memberID = memberID;
-		this.memberPwd = memberPwd;
-		this.memberName = memberName;
-		this.memberEmail = memberEmail;
-		this.memberPhone = memberPhone;
-		this.memberBirth = memberBirth;
-		this.memberExp = memberExp;
-		this.profileImage = profileImage;
-	}
-	
-	public MemberDTO(int memberNo, String memberID, String memberPwd, String memberName, String memberEmail, String memberPhone, String memberBirth, int membeExp, String profileImage) {
+	public MemberDTO(int memberNo, String memberID, String memberPwd, String memberName, String memberEmail, String memberPhone, String memberBirth, int memberExp, String profileImage) {
 		this.memberNo = memberNo;
 		this.memberID = memberID;
 		this.memberPwd = memberPwd;
