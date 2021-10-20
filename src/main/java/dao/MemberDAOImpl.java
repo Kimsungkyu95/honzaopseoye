@@ -10,6 +10,7 @@ import java.util.Properties;
 
 import dto.LevelUpExpDTO;
 import dto.MemberDTO;
+import dto.RestaurantDTO;
 import util.DbUtil;
 
 public class MemberDAOImpl implements MemberDAO {
@@ -354,8 +355,6 @@ public class MemberDAOImpl implements MemberDAO {
 	public ArrayList<MemberDTO> selectMemberList() throws SQLException {
 		
 		String sql = proFile.getProperty("member.selectMemberList");
-//member.selectMemberList=select member_no, member_id, member_name, member_join_date member_exp from member
-
 		
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -611,6 +610,42 @@ public class MemberDAOImpl implements MemberDAO {
 			DbUtil.dbClose(rs, ps, con);
 		}
 		return pwd;
+	}
+
+	@Override
+	public ArrayList<RestaurantDTO> selectReviewList(String id) throws SQLException {
+		String sql = proFile.getProperty("member.selectReviewList");
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		ArrayList<RestaurantDTO> list = new ArrayList<RestaurantDTO>();
+		
+		try {
+			con=DbUtil.getConnection();
+			ps=con.prepareStatement(sql);
+			ps.setString(1, id);
+			rs=ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				int restaurantNo=rs.getInt(1);
+				String restaurantName=rs.getString(2);
+				
+				
+				
+				RestaurantDTO dto = new RestaurantDTO();
+				list.add(dto);
+			}
+			
+		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			e.printStackTrace();
+		}finally {
+			DbUtil.dbClose(ps, con);
+		}
+		
+		return list;
 	}
 
 	

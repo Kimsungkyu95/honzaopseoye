@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import dto.LevelUpExpDTO;
 import dto.MemberDTO;
+import dto.RestaurantDTO;
 
 public interface MemberDAO {
 	
@@ -39,4 +40,6 @@ public interface MemberDAO {
 	LevelUpExpDTO selectExpById(String id);
 	
 	String selectPwdById(String id) throws SQLException;
+	
+	ArrayList<RestaurantDTO> selectReviewList(String id) throws SQLException;
 }

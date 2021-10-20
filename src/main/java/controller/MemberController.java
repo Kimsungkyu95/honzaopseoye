@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import dto.LevelUpExpDTO;
 import dto.MemberDTO;
+import dto.RestaurantDTO;
 import service.LevelUpExpService;
 import service.LevelUpExpServiceImpl;
 import service.MemberService;
@@ -242,5 +243,17 @@ public class MemberController implements Controller {
 		request.setAttribute("levelExp", levelExp);
 		
 		return new ModelAndView("/myPage/myPageLevel.jsp", false);
+	}
+	
+	/**
+	 * myPage - reviewList selectReviewList
+	 */
+	public ModelAndView selectReviewList(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String memberID = request.getParameter("memberID");
+		
+		ArrayList<RestaurantDTO> list = service.selectReviewList(memberID);
+		request.setAttribute("list", list);
+		
+		return new ModelAndView("/myPage/myPageReviewList.jsp", false);
 	}
 }
