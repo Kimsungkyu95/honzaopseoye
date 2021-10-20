@@ -664,6 +664,7 @@ public class MemberDAOImpl implements MemberDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
+		System.out.println("dao id : " + id);
 		try {
 			con=DbUtil.getConnection();
 			ps=con.prepareStatement(sql);
@@ -672,7 +673,7 @@ public class MemberDAOImpl implements MemberDAO {
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				
+				System.out.println("dao: has next");
 				profileImage=rs.getString(1);		
 			}
 		
@@ -681,6 +682,7 @@ public class MemberDAOImpl implements MemberDAO {
 		}finally {
 			DbUtil.dbClose(rs, ps, con);
 		}
+		System.out.println("dao : " +profileImage );
 		return profileImage;
 	}	
 

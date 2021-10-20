@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -19,7 +21,8 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function() {
-	//console.log("test");
+	let pi = "${profileImage}";
+	console.log("pi:"+ pi);
 	
 })
 
@@ -47,9 +50,16 @@ $(function() {
     		</colgroup>
     		<tbody>
     			<tr>
+    			<c:if test="${empty profileImage}">
     				<th scope="row">
     					<div class="">프로필 사진</div>
     				</th>
+    			</c:if>
+    			<c:if test="${not empty profileImage}">
+    				<th scope="row">
+    					<div class=""><img alt="profile image" src="${path}/img/profileImages/${profileImage}" style="height: 225px"></div>
+    				</th>
+    			</c:if>
     				<td>
     					<div class="">
     						<img id="img" src="${path}/img/profileImages/humanicon.png" width="100" height="100">
