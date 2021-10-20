@@ -257,4 +257,18 @@ public class MemberController implements Controller {
 		
 		return new ModelAndView("/myPage/myPageReviewList.jsp", false);
 	}
+	
+	/**
+	 * myPage - 프사변경 selectProfileImageById
+	 * */
+	public ModelAndView selectProfileImageById(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String id = request.getParameter("memberID");
+		System.out.println("controller id : " + id);
+		
+		String profileImage = service.selectProfileImageById(id);
+		request.setAttribute("id", id);
+		request.setAttribute("profileImage", profileImage);
+		
+		return new ModelAndView("/myPage/myPageImage.jsp", false);
+	}
 }

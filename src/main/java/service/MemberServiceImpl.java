@@ -168,6 +168,23 @@ public class MemberServiceImpl implements MemberService {
 		
 		return list;
 	}
+
+	/**
+	 * 아이디 입력해서 이미지 파일 이름 가져다주는 메소드
+	 * @return: 이미지 이름. 이미지가 없으면 failed 리턴.
+	 * */
+	@Override
+	public String selectProfileImageById(String id) throws SQLException {
+		String profileImage = dao.selectProfileImageById(id);
+		System.out.println("service id : " + id) ;
+		
+		if(profileImage==null) {
+			//profileImage="failed";
+		}
+		
+		System.out.println("service: " +profileImage );
+		return profileImage;
+	}
 	
 	
 

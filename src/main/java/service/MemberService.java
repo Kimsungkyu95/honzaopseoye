@@ -41,5 +41,9 @@ public interface MemberService {
 	
 	String MemberSelectPwdById(String id) throws SQLException;
 	
+
 	ArrayList<ReviewContent> selectReviewList(String memberID) throws SQLException;
+
+	String selectProfileImageById(String id) throws SQLException;
+
 }
