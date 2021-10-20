@@ -176,13 +176,13 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public String selectProfileImageById(String id) throws SQLException {
 		String profileImage = dao.selectProfileImageById(id);
-		System.out.println("service id : " + id) ;
+		//System.out.println("service id : " + id) ;
 		
 		if(profileImage==null) {
 			//profileImage="failed";
 		}
 		
-		System.out.println("service: " +profileImage );
+		//System.out.println("service: " +profileImage );
 		return profileImage;
 	}
 	
