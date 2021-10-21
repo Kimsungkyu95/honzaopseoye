@@ -129,7 +129,7 @@ public class UserRestaurantDAOImpl implements UserRestaurantDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<MenuDTO> menuList = new ArrayList<MenuDTO>();
-		String sql="select menu_name, menu_price from menu where restaurant_no=?";
+		String sql="select * from menu where restaurant_no=?";
 		try {
 			con = DbUtil.getConnection();
 			ps =  con.prepareStatement(sql);

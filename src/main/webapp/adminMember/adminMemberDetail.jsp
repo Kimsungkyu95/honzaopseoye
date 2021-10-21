@@ -2,6 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<!-- 관리자인지 체크해서 아니면 error페이지로 이동 -->
+<%
+	String user = (String)session.getAttribute("loginId");
+	if(user == null || !user.equals("admin")) {
+	//에러페이지로 이동
+		request.setAttribute("errorMsg", "관리자만 접근할 수 있는 페이지 입니다.");
+		request.getRequestDispatcher("../error/error.jsp").forward(request, response);
+	}
+%>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -232,6 +242,11 @@
 			
 		})
 	})
+	
+	function goBack(){
+		window.history.back();
+	}
+	
 	</script>
     
     
@@ -299,7 +314,7 @@
 		<div class="col text-center">
 			<button type="button" class="btn btn-secondary btn-lg" id="updateActual">수정하기</button>
 			<button type="button" id="resetForm" class="btn btn-secondary btn-lg">취소</button>
-			<button type="button" class="btn btn-secondary btn-lg" onclick="location.href='${path}/myPage/myPage.jsp'">마이페이지</button>
+			<button type="button" value="뒤로가기" class="btn btn-secondary btn-lg" onclick="goBack();">뒤로가기</button>
 		</div>
 	</div>
 

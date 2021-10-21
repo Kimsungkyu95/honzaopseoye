@@ -144,8 +144,6 @@
                 </div> -->
             </div>
         </div>
-    <a class="nav-link"
-        href="${pageContext.request.contextPath}/front?key=member&methodName=selectMemberList">유저관리자페이지</a>
     </div>
 
 

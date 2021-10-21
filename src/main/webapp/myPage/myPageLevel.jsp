@@ -43,10 +43,6 @@
     	<div class="progress">
 		  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: ${(levelExp.memberExp-levelExp.minExp) / (levelExp.maxExp-levelExp.minExp) * 100}%"></div>
 		</div>
-		<a>${levelExp.memberExp}</a>
-		<a>${levelExp.memberLevel}</a>
-		<a>${levelExp.minExp}</a>
-		<a>${levelExp.maxExp}</a>
     	<br>
     	<br>
     	<h3>현재 레벨 : <a>${levelExp.memberLevel}</a></h3>
