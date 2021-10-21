@@ -5,7 +5,16 @@ import java.util.List;
 public class StoryDTO {
 	private int storyNo;
 	private int memberNo;
+	private String memberName;
 	private String storyTitle;
+	public String getMemberName() {
+		return memberName;
+	}
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+
 	private String restaurantName;
 	private String storyContent;
 	private String storyRegdate;
