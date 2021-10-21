@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import dto.RestaurantDTO;
 import dto.StoryDTO;
 import service.UserStoryService;
 import service.UserStoryServiceImpl;
@@ -183,11 +182,6 @@ public class StoryController implements Controller {
 
 		userStoryService.updateStory(storyDTO);
 		
-
-//		StoryDTO dbStory = userStoryService.selectByStoryNo(storyNo, false);
-
-//    	request.setAttribute("story", dbStory);
-		
 		return new ModelAndView("front?key=userStory&methodName=selectAll", true);
 	}
 	
@@ -216,7 +210,7 @@ public class StoryController implements Controller {
 		
 		String storyNo = m.getParameter("storyNo");
 		String password =  m.getParameter("password");
-    	
+    	System.out.println("controller: " + password);
 		userStoryService.delete(Integer.parseInt(storyNo), password, saveDir);
     	
 		return new ModelAndView("front?key=userStory&methodName=selectAll", true);
