@@ -42,11 +42,11 @@ public interface MemberDAO {
 	
 	String selectPwdById(String id) throws SQLException;
 	
-
 	ArrayList<ReviewContent> selectReviewList(String id) throws SQLException;
 
 	String selectProfileImageById (String id) throws SQLException;
 	
 	int updupdateProfileImageById(String memberId, String profileImage) throws SQLException;
 
+	int updateByNoForAdmin(MemberDTO member)throws SQLException;
 }

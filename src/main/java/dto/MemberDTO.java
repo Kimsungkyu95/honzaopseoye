@@ -37,6 +37,20 @@ public class MemberDTO {
 		this.storyList = storyList;
 	}
 
+	public MemberDTO(int memberNo, String memberID, String memberPwd, String memberName, String memberEmail,
+			String memberPhone, String memberBirth, String memberJoinDate, int memberExp) {
+		super();
+		this.memberNo = memberNo;
+		this.memberID = memberID;
+		this.memberPwd = memberPwd;
+		this.memberName = memberName;
+		this.memberEmail = memberEmail;
+		this.memberPhone = memberPhone;
+		this.memberBirth = memberBirth;
+		this.memberJoinDate = memberJoinDate;
+		this.memberExp = memberExp;
+	}
+
 	public MemberDTO(int memberNo, String memberID, String memberPwd, String memberName, String memberEmail, String memberPhone,
 			String memberBirth, int memberExp) {
 		super();

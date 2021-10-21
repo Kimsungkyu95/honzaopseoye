@@ -711,6 +711,51 @@ int returnValue = 0;
 			DbUtil.dbClose(ps, con);
 		}
 		return returnValue;
+	}
+
+	@Override
+	public int updateByNoForAdmin(MemberDTO member) throws SQLException {
+		int returnValue = 0;
+		
+		String sql = proFile.getProperty("member.updateByNoForAdmin");
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		String memberID = member.getMemberID();
+		String memberPwd = member.getMemberPwd();
+		String memberName = member.getMemberName();
+		String memberEmail = member.getMemberEmail();
+		String memberPhone = member.getMemberPhone();
+		String memberBirth = member.getMemberBirth();
+		String memberJoinDate = member.getMemberJoinDate();
+		int memberExp = member.getMemberExp();
+		int memberNo = member.getMemberNo();
+		
+		try {
+			con=DbUtil.getConnection();
+			ps=con.prepareStatement(sql);
+			
+			
+			ps.setString(1, memberID);
+			ps.setString(2, memberPwd);
+			ps.setString(3, memberName);
+			ps.setString(4, memberEmail);
+			ps.setString(5, memberPhone);
+			ps.setString(6, memberBirth);
+			ps.setString(7, memberJoinDate);
+			ps.setInt(8, memberExp);
+			ps.setInt(9, memberNo);
+
+			
+			returnValue = ps.executeUpdate();
+			
+		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			e.printStackTrace();
+		}finally {
+			DbUtil.dbClose(ps, con);
+		}
+		return returnValue;
 	}	
 	
 	

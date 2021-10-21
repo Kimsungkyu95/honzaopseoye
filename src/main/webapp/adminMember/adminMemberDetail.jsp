@@ -269,6 +269,7 @@
 	<div class="container bg-light pt-4 pb-3 px-5 mt-4 rounded shadow-lg">
 		<h1><a>${memberDto.memberName}</a>님 회원관리</h1>
 		<form method="post" action="${pageContext.request.contextPath}/front?key=member&methodName=updateByNoForAdmin" id="updateForm">
+		<input type="hidden" name="memberNo" value="${memberDto.memberNo}">
 			<table class="table">
 			  <thead>
 			    <tr>
