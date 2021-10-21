@@ -45,7 +45,7 @@
 	
 </style>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="${path}/js/jquery-3.6.0.min.js"></script>
+
 <script>
 $(function(){
 
@@ -81,7 +81,7 @@ $(function(){
 			});
 	   }
 	
-	selectAll();
+
 	
 	$(document).on("click", "[value='삭제']", function(){
 		 //alert($(this).attr("id"));
@@ -105,6 +105,45 @@ $(function(){
 				});//ajax의 끝
 		 }
 	 });
+	
+	$("button").click(function(){
+		//alert($(".form-control").val());
+		//alert($(".form-select").val());
+		
+		 $.ajax({
+				url: "../selectByOption",
+				type: "post", 
+				dataType: "json",
+				data: {value:$(".form-control").val(), option:$(".form-select").val()},
+				success: function(result){
+					let str="";
+                $.each(result, function(index, item){
+                	str+="<tr>";
+                	str+="<td><b>"+item.storyNo+"</td>";
+                	str+="<td>"+item.memberNo+"</td>";
+                	str+="<td>"+item.storyTitle+"</td>";
+                	str+="<td>"+item.storyRegdate+"</td>";
+                	str+="<td>"+item.storyVisited+"</td>";
+                	str+="<td><input type='button' id='"+item.storyNo+"' value='삭제'></td>"; 
+                	str+="</tr>";
+                });
+
+                
+                $("#tbody").html(str); 
+            
+					
+					
+				},
+				error: function(err){ 
+					alert(err);
+					selectAll();
+				}
+			});//ajax의 끝
+		 
+		
+	 });
+	
+	selectAll();
 	
 });
 </script>    
@@ -143,12 +182,9 @@ $(function(){
 
     
      <div class="container mt-5 shadow-lg">
-        <form class="row g-3 rounded p-2" action="${path}/front" method="get">
-            <input type="hidden" name="key" value="adminStory">
-            <input type="hidden" name="methodName" value="selectByOption"> 
+        <form class="row g-3 rounded p-2">
             <div class="col-auto">  
                 <select class="form-select col-auto" aria-label="Default select example" name="selectKey">
-                
                     <option value="selectByStoryTitle" selected>스토리제목</option>
                     <option value="selectByMemberNo">회원번호</option>
                 </select>
@@ -157,7 +193,7 @@ $(function(){
                 <input type="text" class="form-control" placeholder="검색어를 입력하세요" name="selectValue">
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-3">검색</button>
+                <button type="button" class="btn btn-primary mb-3">검색</button>
             </div>
         </form>
     </div>
@@ -182,6 +218,7 @@ $(function(){
   </tbody>
 </table>
 </div>
+
 </form>
 
 
