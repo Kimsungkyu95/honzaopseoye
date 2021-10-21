@@ -314,7 +314,7 @@ public class MemberController implements Controller {
 		MemberDTO member = new MemberDTO(memberNo, memberID, memberPwd, memberName, memberEmail, memberPhone, memberBirth, memberJoinDate, memberExp);
 		service.updateByNoForAdmin(member);
 			
-		return new ModelAndView("/myPage/myPage.jsp");
+		return new ModelAndView(request.getServletContext().getContextPath()+"/front?key=member&methodName=selectMemberList" , true);
 	}
 	
 }

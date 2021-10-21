@@ -38,7 +38,7 @@
 			    <h3 class="card-text">${dto.reviewContent}</h3>
 			    <h5>${dto.reviewRegdate}</h5>
 			    <div class="col text-center">
-			    <a href="#" class="btn btn-primary">상세보기</a>
+			    <a href="${pageContext.request.contextPath}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo=${dto.restaurantNo}" class="btn btn-primary">상세보기</a>
 			    </div>
 			  </div>
 			</div>
