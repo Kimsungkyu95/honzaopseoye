@@ -1,3 +1,4 @@
+<%@page import="dto.MenuDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="dto.ReviewDTO"%>
 <%@page import="dto.RestaurantDTO"%>
@@ -152,7 +153,11 @@
             <tr>
             	<td>메뉴</td>
             	<td>:</td>
-            	<td>냉면,된장찌개</td>
+            	<td>
+            		<c:forEach items="${restaurant.menuList}" var="menu" varStatus="state">
+            			${menu.menuName} /
+            		</c:forEach>
+            	</td>
             </tr>
              </tbody>
           </table>
