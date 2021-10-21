@@ -118,6 +118,7 @@ public class StoryController implements Controller {
 			
 			MultipartRequest m = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
 			
+			String loginId = (String)request.getSession().getAttribute("loginId");
 			String storyTitle =  m.getParameter("storyTitle");
 			String restaurantName =  m.getParameter("restaurantName");
 			String storyContent = m.getParameter("storyContent");
@@ -134,7 +135,7 @@ public class StoryController implements Controller {
 	        	 }
 	        }
 	        
-	        StoryDTO storyDTO = new StoryDTO(storyTitle, restaurantName, storyContent, password, storyImgList);
+	        StoryDTO storyDTO = new StoryDTO(loginId, storyTitle, restaurantName, storyContent, password, storyImgList);
 	        userStoryService.insertStory(storyDTO);
 			
 			return new ModelAndView("front?key=userStory&methodName=selectAll", true);
@@ -179,7 +180,7 @@ public class StoryController implements Controller {
         }
 		
 		StoryDTO storyDTO = new StoryDTO(storyNo, storyTitle, restaurantName, storyContent, password, storyImgList);
-
+		
 		userStoryService.updateStory(storyDTO);
 		
 		return new ModelAndView("front?key=userStory&methodName=selectAll", true);
@@ -210,7 +211,7 @@ public class StoryController implements Controller {
 		
 		String storyNo = m.getParameter("storyNo");
 		String password =  m.getParameter("password");
-    	System.out.println("controller: " + password);
+		
 		userStoryService.delete(Integer.parseInt(storyNo), password, saveDir);
     	
 		return new ModelAndView("front?key=userStory&methodName=selectAll", true);

@@ -27,14 +27,16 @@ $(function() {
 	
 	$("#updateForm").click(function() {
 		let storyNo = $('[name=storyNo]').val();
+		let storyTitle=$('[name=storyTitle]').val();
 		
 		//$("[name=storyNo]").val().submit(); // 전송
-		document.getElementById('storyForm').action = '../front?key=userStory&methodName=update&storyNo=' + storyNo;
+		document.getElementById('storyForm').action = '../front?key=userStory&methodName=update&storyNo=' + storyNo+'&storyTitle='+storyTitle;
 		document.getElementById('storyForm').submit();
 	});
 	
 	$("#deleteForm").click(function() {
 		let storyNo = $('[name=storyNo]').val();
+		
 		
 		//$("[name=storyNo]").val().submit(); // 전송
 		document.getElementById('storyForm').action = '../front?key=userStory&methodName=delete&storyNo=' + storyNo;

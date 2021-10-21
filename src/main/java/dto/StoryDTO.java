@@ -68,7 +68,16 @@ public class StoryDTO {
 		this.storyImgList = storyImgList;
 	}
 	
-	
+	public StoryDTO(String memberId, String storyTitle, String restaurantName, String storyContent,
+			String storyPassword, List<String> storyImgList) {
+		super();
+		this.memberId = memberId;
+		this.storyTitle = storyTitle;
+		this.restaurantName = restaurantName;
+		this.storyContent = storyContent;
+		this.storyPassword = storyPassword;
+		this.storyImgList = storyImgList;
+	}
 
 	public StoryDTO(int storyNo, int memberNo, String memberName, String storyTitle, String restaurantName,
 			String storyContent, String storyRegdate, int storyVisited, String storyPassword) {

@@ -105,7 +105,9 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 			con.setAutoCommit(false);
 			ps = con.prepareStatement(sql);
 			
-			ps.setInt(1, 1);
+			MemberDAOImpl mdi = new MemberDAOImpl();
+			int memberNo = mdi.selectMemberId(storyDTO.getMemberId());
+			ps.setInt(1, memberNo);
 			ps.setString(2, storyDTO.getStoryTitle());
 			ps.setString(3, storyDTO.getRestaurantName());
 			ps.setString(4, storyDTO.getStoryContent());
