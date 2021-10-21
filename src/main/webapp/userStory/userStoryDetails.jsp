@@ -27,17 +27,16 @@
 <div class="col-md-4">
       <div class="position-sticky" style="top: 2rem;">
         <div class="p-4 mb-3 bg-light rounded">
-        <img src="../img/초밥2.jpg" style="max-width:100%; height:auto; border-radius: 10%;display : block ; margin : auto;">
+        <img src="${path}/img/storySave/${story.storyTitle}/${story.storyImgList[0]}" style="max-width:100%; height:auto; border-radius: 10%;display : block ; margin : auto;">
           <br><p><h4 class="fst-italic" style="text-align: center;">${story.storyTitle }</h4>
           
         </div>
 
         <div class="p-4">
-          <img src="../img/humanicon.png" style="width: 80px; height: 80px; border-radius: 70%; vertical-align: bottom;">
 			<br><p><br>
 			<span><b><i>Editor. ${story.memberName }</i></b></span>
 			<p><br>
-			${story.storyRegdate } | <img src="../img/eyeicon.png" style="width: 20px; height: 20px;">
+			${story.storyRegdate } | <img src="${path }/img/eyeicon.png" style="width: 20px; height: 20px;">
 			<span>${story.storyVisited }</span><p>
 			<p><hr>
 			<button type="submit" class="btn btn-secondary mb-3"><a href="${path}/userStory/userStoryUpdate.jsp?storyNo=${story.storyNo}"  style="color: white;">수정</a></button>
@@ -51,11 +50,12 @@
       
         <h2 class="blog-post-title"><b>${story.restaurantName }</b></h2>
         <c:forEach items="${requestScope.storyImgList }"  var="img">
-        	<img src="${path}/img/storySave/${story.storyTitle}/${img}">
+        <p><p>
+        	<img src="${path}/img/storySave/${story.storyTitle}/${img}" style="width:700px; height:500px;">
         </c:forEach>
         
         <div style="width: 600px">
-        <p><br>${story.storyContent }</p>
+        <p><h5><br>${story.storyContent }</h5></p>
         </div>
         <hr>
       </article>
