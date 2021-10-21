@@ -41,14 +41,16 @@
     	
     	<!-- 게이지바 -->
     	<div class="progress">
-		  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: ${levelExp.minExp / levelExp.maxExp * 100}%"></div>
+		  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: ${(levelExp.memberExp-levelExp.minExp) / (levelExp.maxExp-levelExp.minExp) * 100}%"></div>
 		</div>
+		<a>${levelExp.memberExp}</a>
+		<a>${levelExp.memberLevel}</a>
+		<a>${levelExp.minExp}</a>
+		<a>${levelExp.maxExp}</a>
     	<br>
     	<br>
     	<h3>현재 레벨 : <a>${levelExp.memberLevel}</a></h3>
-    	<%-- <p>현재경험치 : ${levelExp.minExp}</p>
-    	<p>레벨 최대경험치 : ${levelExp.maxExp }</p> --%>
-    	<h3>다음 레벨까지 남은 경험치 : <a>${levelExp.maxExp - levelExp.minExp}Exp</a></h3>
+    	<h3>다음 레벨까지 남은 경험치 : <a>${levelExp.maxExp - levelExp.memberExp}Exp</a></h3>
     	<br>
     	<br>
     	<div class="col text-center">
