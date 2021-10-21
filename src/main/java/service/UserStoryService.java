@@ -27,8 +27,6 @@ public interface UserStoryService {
 	  */
 	 void updateStory(StoryDTO storyDTO) throws SQLException;
 	 
-	 void updateStoryImg(StoryImgDTO storyImageDTO) throws SQLException;
-	 
 	 /**
 	  * 스토리 레코드 삭제
 	  */

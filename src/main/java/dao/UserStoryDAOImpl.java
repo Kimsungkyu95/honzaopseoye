@@ -177,7 +177,7 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 		return result;
 	}
 
-	public int updateStoryImg(List<String> storyImgList, Connection con) throws SQLException {
+	public int updateStoryImg(List<String> storyImgList, Connection con, int storyNo) throws SQLException {
 		PreparedStatement ps=null;
 		int result=0;
 		String sql = proFile.getProperty("userStoryImg.update");
@@ -188,10 +188,8 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 			
 			for(String storyImg: storyImgList) {
 				ps.setString(1, storyImg);
+				ps.setInt(2, storyNo);
 				
-//				ps.setString(1, storyImageDTO.getStoryImg());
-//				ps.setInt(2, storyImageDTO.getStoryImgNo());
-			
 				result = ps.executeUpdate();
 				
 				if(result == 0) {

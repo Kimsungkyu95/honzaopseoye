@@ -1,6 +1,6 @@
 package dto;
 
-public class ReviewContent {
+public class ReviewContentDTO {
 	private int restaurantNo;
 	private int restaurantLevel;
 	private String restaurantName;
@@ -9,7 +9,7 @@ public class ReviewContent {
 	private String reviewContent;
 	private String reviewRegdate;
 	
-	public ReviewContent(int restaurantNo, int restaurantLevel, String restaurantName, int reviewScore,
+	public ReviewContentDTO(int restaurantNo, int restaurantLevel, String restaurantName, int reviewScore,
 			String reviewContent, String reviewRegdate) {
 		this.restaurantNo = restaurantNo;
 		this.restaurantLevel = restaurantLevel;
