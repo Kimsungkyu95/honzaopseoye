@@ -31,7 +31,7 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 		
 		List<StoryDTO> storyList = new ArrayList<StoryDTO>();
 		String sql = proFile.getProperty("userStory.select");
-//		userStory.select=select * from story order by story_regdate desc
+//		userStory.select=select story_no,story_title,member_name,story_visited from story natural join member order by story_regdate desc
 		
 		try {
 			con = DbUtil.getConnection();
@@ -39,7 +39,11 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 			rs=ps.executeQuery();
 			
 			while(rs.next()) { 
-				StoryDTO story = new StoryDTO(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8));
+				StoryDTO story = new StoryDTO();
+				story.setStoryNo(rs.getInt(1));
+				story.setStoryTitle(rs.getString(2));
+				story.setMemberName(rs.getString(3));
+				story.setStoryVisited(rs.getInt(4));
 				
 				storyList.add(story);
 			}
