@@ -28,10 +28,10 @@ public class DeleteRestaurantServlet extends HttpServlet {
 		String categoryName = request.getParameter("categoryName");
 		String categoryDetailsName = request.getParameter("categoryDetailsName");
 		
-		System.out.println(restaurantNo);
-		System.out.println(restaurantName);
-		System.out.println(categoryName);
-		System.out.println(categoryDetailsName);
+//		System.out.println(restaurantNo);
+//		System.out.println(restaurantName);
+//		System.out.println(categoryName);
+//		System.out.println(categoryDetailsName);
 		
 		
 		AdminRestaurantService adminRestaurantService = new AdminRestaurantServiceImpl();

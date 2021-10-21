@@ -52,7 +52,7 @@
                     let secondList = new Function("return " + $(this).val())();
                     console.log(secondList);
                     for (item of secondList) {
-                        str += `<option value=${item.eng}>${item.kor}</option>`;
+                        str += str += `<option value=` + item.eng + `>`+ item.kor +`</option>`;
                     }
                 }
                 $('#second-category').empty().html(str);
@@ -166,7 +166,7 @@
             	let secondCategory = $("#second-category").val();
             	let restaurantName = $("#restaurant-name").val();
             	
-            	document.restaurantInsert.action  = "../front?key=adminRestaurant&methodName=insert&firstCategory="+firstCategory+"&secondCategory="+secondCategory+"&restaurantName="+restaurantName;
+            	document.restaurantInsert.action  = "${path}/front?key=adminRestaurant&methodName=insert&firstCategory="+firstCategory+"&secondCategory="+secondCategory+"&restaurantName="+restaurantName;
             })
             
         })//ready
