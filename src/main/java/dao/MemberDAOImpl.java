@@ -573,11 +573,13 @@ public class MemberDAOImpl implements MemberDAO {
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
+				
+				int minExp=rs.getInt(1);
 				int maxExp=rs.getInt(2);
 				int memberLevel=rs.getInt(3);
-				int minExp=rs.getInt(4);
+				int memberExp=rs.getInt(4);
 	
-				returnValue = new LevelUpExpDTO(memberLevel, minExp, maxExp);			
+				returnValue = new LevelUpExpDTO(memberExp, memberLevel, minExp, maxExp);			
 			}
 		
 		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
