@@ -131,7 +131,7 @@ public class StoryController implements Controller {
 	        	 File files [] = dir.listFiles();
 	        	 for(int i = 0; i < files.length; i++) {
 	        		 String fileName = files[i].toString();
-	        		 storyImgList.add(fileName.substring(fileName.lastIndexOf("\\")+1));
+	        		 storyImgList.add(fileName.substring(fileName.lastIndexOf("/")+1));
 	        	 }
 	        }
 	        
