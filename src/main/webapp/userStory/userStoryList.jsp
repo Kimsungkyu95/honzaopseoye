@@ -70,7 +70,7 @@
         		등록된 스토리가 없습니다. 
         	</c:when>
         	<c:otherwise>
-        		<c:forEach items="${requestScope.list }" var="story">
+        		<c:forEach items="${requestScope.list }" var="story" varStatus="state">
 								<div class="col">
 									<div class="card shadow-sm">
 										<svg class="bd-placeholder-img card-img-top" width="100%"

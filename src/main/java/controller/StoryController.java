@@ -54,7 +54,7 @@ public class StoryController implements Controller {
 			storyDTO.setStoryImgList(storyImgList);
 		}
 		
-		request.setAttribute("list", storyList); // 뷰에서 ${requestScope.list}
+		request.setAttribute("list", storyList); // ${requestScope.list}
 		
 		return new ModelAndView(request.getServletContext().getContextPath() + "/userStory/userStoryList.jsp");
 	}

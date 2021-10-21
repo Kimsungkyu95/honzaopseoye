@@ -48,7 +48,7 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 		}finally {
 			DbUtil.dbClose(rs, ps, con);
 		}
-		
+		System.out.println(storyList);
 		return storyList;
 	}
 
