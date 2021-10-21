@@ -64,13 +64,18 @@
 	left: 50%; transform: translate( -30%, -70% );}
 	
 	select{height:40px}
+	section{
+		display: flex;
+		justify-content : center;
+	}
 	
 </style>
 </head>
 <body>
 
  <jsp:include page="common/header.jsp"/>
- 	
+	
+	<section>
 	<main >
  	  <!--메인 맛집 부분 div -->
 	  <div class="container py-5" style="float:left" id="frame">
@@ -108,7 +113,7 @@
 	   </div> <!-- 메인맛집부분 div끝  -->
 	   
 	</main>
-	
+	<div>
 		<!-- select로 위치 찾기 -->
 		<div class="text-center" id="divSelect">
 			  <form name="f"  style="margin-left:4px" method="get" action="${path}/front">
@@ -141,9 +146,6 @@
 					현재위치
 					</a>
 		</div>
-	
-		
-
 		<div id="map" style="width:450px; height:450px;">
 				<script>
 				var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
@@ -187,6 +189,9 @@
 				}
 				</script>
 		</div>
+	</div>
+	</section>
+
  		
 		
 	<footer class="pt-3 mt-4 text-muted border-top" style="clear:both">

@@ -65,16 +65,20 @@
                         str += `<option value=` + item.eng + `>`+ item.kor +`</option>`;
                     }
                 }
+                
+                
                 $('#second-category').empty().html(str);    	
+                
             }
             
             //first-category 넣기
             $('#first-category').val("${requestScope.restaurantDTO.categoryName}");
             setSecondCategory()
+            $("#second-category").val("${requestScope.restaurantDTO.categoryDetailsName}");
             
             
             //first카테고리 change 일어날때
-            $('#first-category').change(setSecondCategory)
+            $('#first-category').change(setSecondCategory);
 
             //경,위도 api
             function getCoordinate(jibunAddress) {
