@@ -126,8 +126,6 @@ public class AdminStoryDAOImpl implements AdminStoryDAO{
 			DbUtil.dbClose(rs, ps, conn);
 		}			
 		
-		System.out.println(list);
-		
 		return list;
 
 	}

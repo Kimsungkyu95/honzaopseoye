@@ -24,8 +24,9 @@ public class AdminStoryByOptionServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		String err ="검색어에 해당되는 스토리 정보가 없습니다.";
 		
-		String selectKey = request.getParameter("option");
 		String selectValue = request.getParameter("value");
+		String selectKey = request.getParameter("option");
+		
 		
 		AdminStoryDAO dao = new AdminStoryDAOImpl();
 		List<AdminStoryDTO> list = dao.selectByOption(selectKey, selectValue);
@@ -37,8 +38,6 @@ public class AdminStoryByOptionServlet extends HttpServlet {
         }
         
 		JSONArray arr = JSONArray.fromObject(list);
-		
-		
 		out.print(arr);
 	}
 
