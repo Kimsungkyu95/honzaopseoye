@@ -30,16 +30,18 @@ public class InsertReviewServlet extends HttpServlet {
 		String reviewContent = request.getParameter("reviewContent");
 		int reviewScore = Integer.parseInt(request.getParameter("reviewScore"));
 		
+		
 		ReviewDTO reviewDTO = new ReviewDTO();
 		reviewDTO.setRestaurantNo(restaurantNo);
 		reviewDTO.setReviewContent(reviewContent);
 		reviewDTO.setReviewScore(reviewScore);
 		PrintWriter out = response.getWriter();
-
+		
 		try {
 			memberService.insertReview(loginId, reviewDTO);
 			out.print("리뷰쓰기를 완료했습니다.");
 		}catch (Exception e) {
+			e.printStackTrace();
 			out.print("리뷰를 쓰지 못했습니다.");
 		}
 		

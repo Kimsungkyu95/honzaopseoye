@@ -91,7 +91,7 @@ public class AdminStoryDAOImpl implements AdminStoryDAO{
 				rs = ps.executeQuery();
 				break;
 			default :
-				sql = "select story_no,member_no,story_title,story_regdate,story_visited from story where story_title like '%?%'";
+				sql = "select story_no,member_no,story_title,story_regdate,story_visited from story where story_title like '%'||?||'%'";
 				conn = DbUtil.getConnection();
 				ps = conn.prepareStatement(sql);	
 				ps.setString(1, selectValue);

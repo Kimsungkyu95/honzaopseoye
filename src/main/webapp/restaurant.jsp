@@ -1,3 +1,4 @@
+<%@page import="dto.MenuDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="dto.ReviewDTO"%>
 <%@page import="dto.RestaurantDTO"%>
@@ -152,7 +153,11 @@
             <tr>
             	<td>메뉴</td>
             	<td>:</td>
-            	<td>냉면,된장찌개</td>
+            	<td>
+            		<c:forEach items="${restaurant.menuList}" var="menu" varStatus="state">
+            			${menu.menuName} /
+            		</c:forEach>
+            	</td>
             </tr>
              </tbody>
           </table>
@@ -206,7 +211,6 @@
 		
        </div>
       </div>
-      <!-- 별점 차트 -->
       <div class="col-md-6">
         <div class="h-100 p-5 bg-light border rounded-3">
           <h4>리뷰쓰기</h4>
