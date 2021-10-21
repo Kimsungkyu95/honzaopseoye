@@ -56,7 +56,7 @@ public class StoryController implements Controller {
 		
 		request.setAttribute("list", storyList); // ${requestScope.list}
 		
-		return new ModelAndView(request.getServletContext().getContextPath() + "/userStory/userStoryList.jsp");
+		return new ModelAndView("userStory/userStoryList.jsp");
 	}
 	
 	/**
