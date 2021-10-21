@@ -821,11 +821,16 @@ int returnValue = 0;
 		int result = 0;
 		try {
 			con = DbUtil.getConnection();
-			ps = con.prepareStatement("");
+			ps = con.prepareStatement("insert into review values(review_seq.nextval, ?, ?, ?, ?, sysdate)");
+			ps.setInt(1, memberNo);
+			ps.setInt(2, reviewDTO.getRestaurantNo());
+			ps.setInt(3, reviewDTO.getReviewScore());
+			ps.setString(4, reviewDTO.getReviewContent());
+			
+			result = ps.executeUpdate();
 		}finally {
 			DbUtil.dbClose(ps, con);
 		}
-				
 				
 		return result;
 		

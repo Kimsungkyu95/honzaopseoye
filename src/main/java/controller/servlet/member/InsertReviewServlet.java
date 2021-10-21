@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dto.ReviewDTO;
+import service.MemberService;
+import service.MemberServiceImpl;
 
 /**
  * Servlet implementation class InsertReviewServlet
@@ -21,6 +23,8 @@ public class InsertReviewServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		
+		MemberService memberService = new MemberServiceImpl();
+		
 		String loginId = (String)request.getSession().getAttribute("loginId");
 		int restaurantNo = Integer.parseInt(request.getParameter("restaurantNo"));
 		String reviewContent = request.getParameter("reviewContent");
@@ -30,9 +34,14 @@ public class InsertReviewServlet extends HttpServlet {
 		reviewDTO.setRestaurantNo(restaurantNo);
 		reviewDTO.setReviewContent(reviewContent);
 		reviewDTO.setReviewScore(reviewScore);
-		
-		
 		PrintWriter out = response.getWriter();
+
+		try {
+			memberService.insertReview(loginId, reviewDTO);
+			out.print("리뷰쓰기를 완료했습니다.");
+		}catch (Exception e) {
+			out.print("리뷰를 쓰지 못했습니다.");
+		}
 		
 	}
 

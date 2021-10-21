@@ -54,7 +54,7 @@
                 type: "post", //method방식(get, post, put, delete)
                 dataType: "text", //서버가 응답해주는 데이터의 type(text, html, xml, json)
                 data: { restaurantNo: "${restaurant.restaurantNo}",
-                	reviewContent: $('#reviewTextArea').text(),
+                	reviewContent: $('#reviewTextArea').val(),
                 	reviewScore: $('#reviewScore').val()
                 }, //서버에게 보낼 parameter정보
                 success: function (result) {
