@@ -13,7 +13,7 @@ import org.apache.catalina.valves.RemoteIpValve;
 import dto.LevelUpExpDTO;
 import dto.MemberDTO;
 import dto.RestaurantDTO;
-import dto.ReviewContent;
+import dto.ReviewContentDTO;
 import dto.ReviewDTO;
 import util.DbUtil;
 
@@ -618,14 +618,14 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public ArrayList<ReviewContent> selectReviewList(String id) throws SQLException {
+	public ArrayList<ReviewContentDTO> selectReviewList(String id) throws SQLException {
 		String sql = proFile.getProperty("member.selectReviewList");
 		
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
-		ArrayList<ReviewContent> list = new ArrayList<ReviewContent>();
+		ArrayList<ReviewContentDTO> list = new ArrayList<ReviewContentDTO>();
 		
 		try {
 			con=DbUtil.getConnection();
@@ -643,7 +643,7 @@ public class MemberDAOImpl implements MemberDAO {
 				String reviewContent=rs.getString(5);
 				String reviewRegdate=rs.getString(6);
 				
-				ReviewContent reviceContent = new ReviewContent(restaurantNo, restaurantLevel, restaurantName, reviewScore, reviewContent, reviewRegdate);
+				ReviewContentDTO reviceContent = new ReviewContentDTO(restaurantNo, restaurantLevel, restaurantName, reviewScore, reviewContent, reviewRegdate);
 				
 				list.add(reviceContent);
 			}
