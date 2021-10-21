@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="dto.ReviewDTO"%>
+<%@page import="dto.RestaurantDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -17,6 +20,7 @@
 	td{padding:3px}
 	#map{width:200px; height:300px; align:center;}
 	.a{color:black; text-decoration:none; font-size:18px}
+	#locationTitle{margin-left:100px}
 </style>
 <script src="js/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -69,7 +73,7 @@
 
 <div class="col-md-4" id="div1">
       <div class="position-sticky" style="top: 2rem;">
-        <div class="p-4 mb-3 bg-light rounded">
+        <div class="p-4 mb-3 rounded">
           <img src="${restaurant.imgList[0]}" width="47%" style="float:left; margin-right:10px"/> 
           <img src="${restaurant.imgList[1]}" width="47%"/> </img>
         </div>
@@ -83,18 +87,24 @@
 	            	<td>별점</td>
 	            	<td>:</td>
 	            	<td>
-		            	<c:forEach items="${restaurant.reviewList}" var="review" varStatus="state">
-		            		 ${review.reviewScore}
-		            	</c:forEach> 
+		            	<%
+		            		RestaurantDTO restaurantDTO =  (RestaurantDTO)request.getAttribute("restaurant");
+		            		List<ReviewDTO> reviewList = restaurantDTO.getReviewList();
+		            		int sum = 0;
+		            		for(int i=0; i<reviewList.size(); i++){
+		            			sum += reviewList.get(i).getReviewScore();
+		            		}
+		            		double avg=0.0;
+		            		avg = (double)sum/reviewList.size();
+		            	%>
+		            	<%=avg %>
 	            	</td>
 	            </tr>
 	            <tr>
-	            	<td>리뷰</td>
+	            	<td>리뷰개수</td>
 	            	<td>:</td>
 	            	<td>
-	            		<c:forEach items="${restaurant.reviewList}" var="review" varStatus="status">
-	            			<c:out value = "${status.end}"/>
-	            		</c:forEach> --%>
+	            		<%=reviewList.size() %>
 	            	</td>
 	            </tr>
 	            <tr>
@@ -103,8 +113,6 @@
 	            	<td>LV ${restaurant.restaurantLevel}</td>
 	            </tr>
             </tbody>
-            
-           
            
           </table>
         </div>
@@ -148,7 +156,7 @@
           </table>
          </div>
      <!-- 맛집 지도 -->
-     <div class="row align-items-md-stretch">
+    <div class="row align-items-md-stretch">
      
       <div class="col-md-6">
          <div class="h-100 p-5 bg-light border rounded-3">
@@ -199,68 +207,16 @@
       <!-- 별점 차트 -->
       <div class="col-md-6">
         <div class="h-100 p-5 bg-light border rounded-3">
-          <h4>별점 차트</h4>
+          <h4>리뷰쓰기</h4>
           <div style="width:300px; height:300px;">
-			<!-- 차트가 그려질 부분 -->
-			<canvas id ="myChart"></canvas>
+			
+			
 		 </div>
         </div>
       </div>
     </div>
       
-      
-<script type="text/javascript">
-var context = document
-	.getElementById('myChart')
-	.getContext('2d');
-var myChart = new Chart(context, {
-	type : 'bar', //차트의 형태
-	data : {//차크에 들어갈 데이터
-		labels : [
-			'1', '2', '3', '4', '5'
-		],
-		datasets : [
-			{ //데이터
-				label : 'test1', //차트 제목
-				fill :false, //line형태일 때, 선 안쪽을 채우는지 안채우는지 
-				data : [
-					21,19,25,20,23,26,25 //x축 label에 대응되는 데이터 값
-				],
-				backgroundColor : [
-					//색상
-					'rgba(255, 99, 132, 0.2)',
-					'rgba(54, 162, 235, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(75, 192, 192, 0.2)',
-					'rgba(153, 102, 255, 0.2)',
-					'rgba(255, 159, 64, 0.2)'
-				],
-				borderColor : [
-					//경계선 색상
-					'rgba(255, 99, 132, 1)',
-					'rgba(54, 162, 235, 1)',
-					'rgba(255, 206, 86, 1)',
-					'rgba(75, 192, 192, 1)',
-					'rgba(153, 102, 255, 1)',
-					'rgba(255, 159, 64, 1)'
-				],
-				borderWidth : 1 //경계선 굵기
-			}
-		]
-	},
-	option : {
-		scales : {
-			yAxes : [
-				{
-					ticks : {
-						beginAtZero :true
-					}
-				}
-			]
-		}
-	}
-});
-	</script>
+    
   </div>  
 </div>
  
@@ -275,8 +231,8 @@ var myChart = new Chart(context, {
 			<c:otherwise>
 				<c:forEach items="${restaurant.reviewList}" var="review"> 
 			     <article class="blog-post">
-			        <h4 class="blog-post-title">리뷰제목 / ${review.reviewScore}</h4>
-			        <p class="blog-post-meta">${review.reviewRegdate} / 아이디 존재유무?</p>
+			        <h4 class="blog-post-title">별점 : ${review.reviewScore}</h4>
+			        <p class="blog-post-meta">${review.reviewRegdate} / 익명</p>
 			        <p>${review.reviewContent}</p>
 			        <hr> 
 			      </article>
