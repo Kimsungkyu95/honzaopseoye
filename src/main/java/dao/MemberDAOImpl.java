@@ -756,6 +756,40 @@ int returnValue = 0;
 			DbUtil.dbClose(ps, con);
 		}
 		return returnValue;
+	}
+
+	@Override
+	public RestaurantDTO wishListSelect(int no) throws SQLException {
+		String sql = proFile.getProperty("member.wishListSelect");
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		RestaurantDTO returnValue = null;
+		
+		try {
+			con=DbUtil.getConnection();
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, no);
+			rs=ps.executeQuery();
+			
+			if(rs.next()) {
+				int restaurantNo=rs.getInt(1);
+				int restaurantLevel=rs.getInt(2);
+				String restaurantName=rs.getString(3);
+				String restaurantAddr=rs.getString(4);
+				String restaurantImg=rs.getString(5);
+				
+				returnValue=new RestaurantDTO(restaurantNo, restaurantLevel, restaurantName, restaurantAddr, restaurantImg);
+			}
+			
+		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			e.printStackTrace();
+		}finally {
+			DbUtil.dbClose(ps, con);
+		}
+		return returnValue;
 	}	
 	
 	

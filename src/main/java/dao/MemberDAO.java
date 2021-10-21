@@ -49,4 +49,6 @@ public interface MemberDAO {
 	int updupdateProfileImageById(String memberId, String profileImage) throws SQLException;
 
 	int updateByNoForAdmin(MemberDTO member)throws SQLException;
+
+	RestaurantDTO wishListSelect(int no)throws SQLException;
 }

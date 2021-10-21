@@ -196,6 +196,12 @@ public class MemberServiceImpl implements MemberService {
 	public void updateByNoForAdmin(MemberDTO member) throws SQLException {
 		dao.updateByNoForAdmin(member);
 	}
+
+	@Override
+	public RestaurantDTO wishListSelect(int restaurantNo) throws SQLException {
+		RestaurantDTO dto = dao.wishListSelect(restaurantNo);
+		return dto;
+	}
 	
 	
 

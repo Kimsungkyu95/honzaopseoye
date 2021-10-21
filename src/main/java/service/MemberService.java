@@ -49,4 +49,5 @@ public interface MemberService {
 	
 	void updateByNoForAdmin(MemberDTO member)throws SQLException;
 
+	RestaurantDTO wishListSelect(int restaurantNo)throws SQLException;
 }

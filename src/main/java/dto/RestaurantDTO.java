@@ -22,6 +22,7 @@ public class RestaurantDTO {
 	private List<String> imgList;
 	private String categoryName;
 	private String categoryDetailsName;
+	private String img;
 	
 	public RestaurantDTO() {}
 	
@@ -130,6 +131,16 @@ public class RestaurantDTO {
 	}
 	
 	
+
+	public RestaurantDTO(int restaurantNo, int restaurantLevel, String restaurantName, String restaurantAddr,
+			String img) {
+		super();
+		this.restaurantNo = restaurantNo;
+		this.restaurantLevel = restaurantLevel;
+		this.restaurantName = restaurantName;
+		this.restaurantAddr = restaurantAddr;
+		this.img = img;
+	}
 
 	public int getRestaurantNo() {
 		return restaurantNo;
@@ -290,6 +301,14 @@ public class RestaurantDTO {
 
 	public void setCategoryDetailsName(String categoryDetailsName) {
 		this.categoryDetailsName = categoryDetailsName;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 	
 	
