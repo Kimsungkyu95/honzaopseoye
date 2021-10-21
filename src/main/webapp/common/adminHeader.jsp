@@ -23,13 +23,16 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">고객관리</a>
+                        <a class="nav-link text-dark" href="${path}/front?key=member&methodName=selectMemberList">고객관리</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">맛집관리</a>
+                        <a class="nav-link text-dark" href="${path}/front?key=adminRestaurant&methodName=pagingSelect">맛집관리</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">리뷰관리</a>
+                        <a class="nav-link text-dark" href="${path}/front?key=adminMember&methodName=pagingSelectReview">리뷰관리</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="${path}/front?key=adminStory&methodName=selectByOption">스토리관리</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="#">차트분석</a>
