@@ -6,11 +6,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-
+	a:hover{
+		filter: brightness(50%);
+	}
 </style>
-<script>
-
-</script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -32,14 +31,14 @@
                         <a class="nav-link text-dark" href="${path}/front?key=adminMember&methodName=pagingSelectReview">리뷰관리</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="${path}/front?key=adminStory&methodName=selectByOption">스토리관리</a>
+                        <a class="nav-link text-dark" href="${path}/adminStory/adminStoryList.jsp">스토리관리</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">차트분석</a>
+                        <a class="nav-link text-dark" href="${path}/main.jsp">메인으로</a>
                     </li>
                 </ul>
                 <span class="navbar-text">
-                    <a class="nav-link text-dark" href="#">로그아웃</a>
+                    <a class="nav-link text-dark" href="${path}/front?key=member&methodName=logout">로그아웃</a>
                 </span>
             </div>
         </div>

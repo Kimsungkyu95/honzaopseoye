@@ -25,7 +25,6 @@ public class AdminStorySelectAllServet extends HttpServlet {
 		
 		AdminStoryDAO dao = new AdminStoryDAOImpl();
 		List<AdminStoryDTO> list = dao.selectAll();
-		//System.out.println(list);
 		
 		JSONArray arr = JSONArray.fromObject(list);
 		

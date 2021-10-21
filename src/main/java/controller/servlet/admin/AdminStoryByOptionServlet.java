@@ -28,23 +28,20 @@ public class AdminStoryByOptionServlet extends HttpServlet {
 		String selectValue = request.getParameter("value");
 		String selectKey = request.getParameter("option");
 		
-		try {
-			AdminStoryDAO dao = new AdminStoryDAOImpl();
-			List<AdminStoryDTO> list = dao.selectByOption(selectKey, selectValue);
-			
-			System.out.println(list);
-			
-			PrintWriter out = response.getWriter();
-			
-	        if(list == null) {
-	        	out.print(err);
-	        }
-	        
-			JSONArray arr = JSONArray.fromObject(list);
-			out.print(arr);
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
+		AdminStoryDAO dao = new AdminStoryDAOImpl();
+		List<AdminStoryDTO> list = dao.selectByOption(selectKey, selectValue);
+		
+		System.out.println(list);
+		
+		PrintWriter out = response.getWriter();
+		
+        if(list == null) {
+        	out.print(err);
+        }
+        
+		JSONArray arr = JSONArray.fromObject(list);
+		out.print(arr);
+		
 	}
 
 }

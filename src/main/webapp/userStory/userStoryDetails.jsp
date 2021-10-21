@@ -39,7 +39,9 @@
 			${story.storyRegdate } | <img src="${path }/img/eyeicon.png" style="width: 20px; height: 20px;">
 			<span>${story.storyVisited }</span><p>
 			<p><hr>
-			<button type="submit" class="btn btn-secondary mb-3"><a href="${path}/userStory/userStoryUpdate.jsp?storyNo=${story.storyNo}"  style="color: white;">수정</a></button>
+			<button type="submit" class="btn btn-secondary mb-3">
+				<a href="${path}/userStory/userStoryUpdate.jsp?storyNo=${story.storyNo}"  style="color: white;">
+				수정</a></button>
         </div>
       </div>
     </div>
