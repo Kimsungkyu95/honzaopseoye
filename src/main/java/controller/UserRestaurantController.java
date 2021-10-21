@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.RecommendCategoryDAO;
 import dto.CategoryDTO;
 import dto.CategoryDetailsDTO;
 import dto.RestaurantDTO;
@@ -84,21 +85,30 @@ public class UserRestaurantController implements Controller {
 		//System.out.println(restaurantDTO.getRestaurantName());
 		List<String>imgList=new ArrayList<String>();
 		
-		File file = new File(request.getServletContext().getRealPath("/img/restaurantImage")+"/" + category+"/"+categoryDetail+"/"+restaurantName);
+		//맛집 번호로 카테고리 들고오기
+		System.out.println(restaurantNo);
+		RecommendCategoryDAO rcDAO = new RecommendCategoryDAO();
+		RestaurantDTO temp = rcDAO.selectCategoryByRestaurantNo(Integer.parseInt(restaurantNo));
 		
+		
+		File file = new File(request.getServletContext().getRealPath("/img/restaurantImage")+"/" + temp.getCategoryName()+"/"+temp.getCategoryDetailsName()+"/"+restaurantName);
+		System.out.println(file.toString());
 		if(file.exists()) {
 			File files [] = file.listFiles();
 			if(files.length>=1) {
 				for(int i = 0; i < 2; i++) {
 		       		 String fileName = files[i].toString();
 //		     		System.out.println(fileName.substring(fileName.lastIndexOf("\\")+1));
-		       		 imgList.add("img/restaurantImage"+"/" + category+"/"+categoryDetail+"/"+restaurantName+"/"+fileName.substring(fileName.lastIndexOf("\\")+1));
+		       		 imgList.add("img/restaurantImage"+"/" + temp.getCategoryName()+"/"+temp.getCategoryDetailsName()+"/"+restaurantName+"/"+fileName.substring(fileName.lastIndexOf("\\")+1));
 		       	 }
+				System.out.println("사진있음");
 			}else {
 				imgList.add("img/tray1.png");
+				System.out.println("폴더 비어있음");
 			}
 		}else {
 			imgList.add("img/tray1.png");
+			System.out.println("폴더도 없음");
 		}
 		restaurantDTO.setImgList(imgList);
 		
