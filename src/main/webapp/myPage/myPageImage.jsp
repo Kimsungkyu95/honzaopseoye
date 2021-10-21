@@ -23,7 +23,8 @@
 $(function() {
 	let pi = "${profileImage}";
 	let id = "${id}"
-	console.log("id:"+ id);
+	let tmpFileName="";
+	//console.log("id:"+ id);
 	
 	$("#fileActual").on('change', function() {
 		let file = $(this).val();
@@ -33,8 +34,10 @@ $(function() {
              $(this).val(""); //폼 초기화
              window.alert('이미지 파일이 아닙니다! (gif, png, jpg, jpeg 만 업로드 가능)');
          }else{
-        	 //console.log("SEND IT");
-        	 //let profileImage = document.getElementById("profileImage");
+        	 //var profileImage = document.getElementById("profileImage").files[0];
+        	 var profileImage = $('#fileActual')[0].files[0];
+        	 //console.log(profileImage.name);
+        	 tmpFileName=profileImage.name;
         	 
         	 file = $('#fileActual').prop("files")[0];
              blobURL = window.URL.createObjectURL(file);
@@ -54,6 +57,7 @@ $(function() {
 		
 		$("#imgForm").submit();
 	})
+	
 	
 })
 
@@ -113,7 +117,7 @@ $(function() {
     	</table>
     	
     	<button type="button" class="btn btn-secondary btn-lg" id="sendIt">적용</button> 
-	    <button type="button" class="btn btn-secondary btn-lg">취소</button>   
+	    <button type="button" class="btn btn-secondary btn-lg" onclick="location.href='${path}/myPage/myPage.jsp'">취소</button>   
     </div>
 	
 
