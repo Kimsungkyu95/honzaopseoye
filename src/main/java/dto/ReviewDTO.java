@@ -3,6 +3,9 @@ package dto;
 public class ReviewDTO {
 	private int reviewNo;
 	private int memberNo;
+	private String memberName;
+	private String restaurantName;
+
 	private int restaurantNo;
 	private int reviewScore;
 	private String reviewContent;
@@ -10,7 +13,31 @@ public class ReviewDTO {
 	
 	
 	public ReviewDTO() { }
+	public ReviewDTO(int reviewNo, int memberNo, String memberName, String restaurantName, int restaurantNo,
+			int reviewScore, String reviewContent, String reviewRegdate) {
+		super();
+		this.reviewNo = reviewNo;
+		this.memberNo = memberNo;
+		this.memberName = memberName;
+		this.restaurantName = restaurantName;
+		this.restaurantNo = restaurantNo;
+		this.reviewScore = reviewScore;
+		this.reviewContent = reviewContent;
+		this.reviewRegdate = reviewRegdate;
+	}
 
+	public String getMemberName() {
+		return memberName;
+	}
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+	public String getRestaurantName() {
+		return restaurantName;
+	}
+	public void setRestaurantName(String restaurantName) {
+		this.restaurantName = restaurantName;
+	}
 	public ReviewDTO(int reviewNo, int reviewScore, String reviewContent, String reviewRegdate) {
 		super();
 		this.reviewNo = reviewNo;
