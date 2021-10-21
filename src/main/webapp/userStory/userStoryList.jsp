@@ -43,28 +43,7 @@
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-            	<title>Placeholder</title>
-            	<rect width="100%" height="100%" fill="#55595c"></rect></svg>
-
-            <div class="card-body">
-            <h3>스토리 제목</h3>
-              <p class="card-text">글쓴이</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">
-                  <a href="${pageContext.request.contextPath}/userStory/userStoryDetails.jsp" style="color: gray;">
-                  스토리 보러 »</a></button>
-                </div>
-                <small class="text-muted">조회수</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        
+              
         <c:choose>
         	<c:when test="${empty requestScope.list}">
         		등록된 스토리가 없습니다. 
@@ -73,11 +52,11 @@
         		<c:forEach items="${requestScope.list}" var="story" varStatus="state">
 								<div class="col">
 									<div class="card shadow-sm">
-         							<img src="${path}/img/storySave/${story.storyTitle}/${story.storyImgList[0]}"/> 
+         							<img src="${path}/img/storySave/${story.storyTitle}/${story.storyImgList[0]}" style="width:100%; height:250px;"/> 
 
 										<div class="card-body">
 											<h3>${story.storyTitle}</h3>
-											<p class="card-text">${story.memberNo}</p>
+											<p class="card-text">${story.memberName}</p>
 											<div class="d-flex justify-content-between align-items-center">
 												<div class="btn-group">
 													<button type="button" class="btn btn-sm btn-outline-secondary">
@@ -85,7 +64,7 @@
 														스토리 보러 »</a>
 													</button>
 												</div>
-												<small class="text-muted">${story.storyVisited}</small>
+												<img src="${path}/img/eyeicon.png" style="width: 18px; height: 18px;">조회수: ${story.storyVisited }
 											</div>
 										</div>
 									</div>

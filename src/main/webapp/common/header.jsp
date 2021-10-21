@@ -56,7 +56,7 @@ pageEncoding="UTF-8"%>
 				
 				<!-- 스토리 -->
 				<li class="nav-item">
-					<a class="nav-link" href="${pageContext.request.contextPath}/userStory/userStoryList.jsp">Story</a>
+					<a class="nav-link" href="${path}/front?key=userStory&methodName=selectAll">Story</a>
 				</li>
 				<!-- 현재위치? -->
 				<li class="nav-item">
