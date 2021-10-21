@@ -40,7 +40,7 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 			
 			while(rs.next()) { 
 				StoryDTO story = new StoryDTO(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8));
-	
+				
 				storyList.add(story);
 			}
 		}catch(SQLException e) {
@@ -233,7 +233,7 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 		int result=0;
 		String sql = proFile.getProperty("userStory.updateStoryVisited");
 //		userStory.updateStoryVisited=update story set story_visited=story_visited+1 where story_no=?
-		
+		System.out.println(storyNo);
 		try {
 			con = DbUtil.getConnection();
 			ps = con.prepareStatement(sql);
@@ -244,7 +244,7 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 		}finally {
 			DbUtil.dbClose(ps, con);
 		}
-		
+		System.out.println(result);
 		return result;
 	}
 }

@@ -35,14 +35,14 @@ public class StoryController implements Controller {
 		
 		for(StoryDTO storyDTO : storyList) {
 			List<String> storyImgList = new ArrayList<String>();
-			File file = new File(request.getServletContext().getRealPath("/img/storySave") + "/" + request.getParameter("storyTitle"));
+			File file = new File(request.getServletContext().getRealPath("/img/storySave") + "/" + storyDTO.getStoryTitle());
 			
 			if(file.exists()) {
 				File files [] = file.listFiles();
 				if(files.length>=1) {
 					for(int i = 0; i < 1; i++) {
 			       		 String fileName = files[i].toString();
-			       		storyImgList.add("img/storySave"+"/"+fileName.substring(fileName.lastIndexOf("/")+1));
+			       		storyImgList.add(fileName.substring(fileName.lastIndexOf("\\")+1));
 			       	 }
 				}else {
 					storyImgList.add("img/삼겹살.jpeg");
@@ -65,11 +65,12 @@ public class StoryController implements Controller {
 	public ModelAndView selectByStoryNo(HttpServletRequest request, HttpServletResponse response) 
 			throws Exception {
 		String storyNo =  request.getParameter("storyNo");
+		System.out.println(storyNo);
     	StoryDTO storyDTO = userStoryService.selectByStoryNo(Integer.parseInt(storyNo), true);
     	
     	request.setAttribute("story", storyDTO);
     	
-    	return new ModelAndView(request.getServletContext().getContextPath() + "/userStory/userStoryList.jsp");
+    	return new ModelAndView("userStory/userStoryList.jsp");
 	}
 	
 	/**
@@ -119,7 +120,7 @@ public class StoryController implements Controller {
 	        StoryDTO storyDTO = new StoryDTO(storyTitle, restaurantName, storyContent, password, storyImgList);
 	        userStoryService.insertStory(storyDTO);
 			
-			return new ModelAndView(request.getServletContext().getContextPath() + "/userStory/userStoryList.jsp", true);
+			return new ModelAndView("front?key=userStory&methodName=selectAll", true);
 	}
 	
 	/**
