@@ -110,7 +110,7 @@ public class UserRestaurantController implements Controller {
 	public ModelAndView selectByGu(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String gu = request.getParameter("gu");
 		String dong = request.getParameter("dong");
-		//System.out.println(gu+","+dong);
+		System.out.println(gu+","+dong);
 		List<RestaurantDTO> reList = new ArrayList<RestaurantDTO>();
 
 		reList= urService.selectByGu(gu,dong);

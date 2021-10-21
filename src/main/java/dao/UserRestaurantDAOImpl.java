@@ -195,7 +195,7 @@ public class UserRestaurantDAOImpl implements UserRestaurantDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String sql="select longitude, latitude, restaurant_name from restaurant where gu= ? and dong = ?";
+		String sql="select restaurant_name, latitude, longitude from restaurant where gu= ? and dong = ?";
 		List<RestaurantDTO>restaurantList = new ArrayList<RestaurantDTO>();
 		try {
 			con = DbUtil.getConnection();
@@ -206,6 +206,7 @@ public class UserRestaurantDAOImpl implements UserRestaurantDAO {
 			while(rs.next()) {
 				RestaurantDTO restaurantDTO = new RestaurantDTO(rs.getString(1),rs.getDouble(2), rs.getDouble(3));
 				restaurantList.add(restaurantDTO);	
+				//System.out.println(rs.getString(1)+","+rs.getDouble(2)+","+rs.getDouble(3));
 			}
 			
 		} finally {

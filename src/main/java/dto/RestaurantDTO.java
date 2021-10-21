@@ -109,11 +109,11 @@ public class RestaurantDTO {
 		this.categoryDetailsName = categoryDetailsName;
 	}
 	//맛집 좌표와 이름 
-	public RestaurantDTO(String restaurantName, double restaurantLongitude, double restaurantLatitude) {
+	public RestaurantDTO(String restaurantName, double restaurantLatitude, double restaurantLongitude) {
 		super();
 		this.restaurantName = restaurantName;
-		this.restaurantLongitude = restaurantLongitude;
 		this.restaurantLatitude = restaurantLatitude;
+		this.restaurantLongitude = restaurantLongitude;
 	}
 
 	public RestaurantDTO(int restaurantNo, int categoryDetailsNo, int restaurantLevel, String restaurantName,
