@@ -54,10 +54,10 @@ public class UserRestaurantController implements Controller {
 			       		 imgList.add("img/restaurantImage"+"/" + category+"/"+categoryDetail+"/"+restaurantName+"/"+fileName.substring(fileName.lastIndexOf("\\")+1));
 			       	 }
 				}else {
-					imgList.add("img/삼겹살.jpeg");
+					imgList.add("img/tray1.png");
 				}
 			}else {
-				imgList.add("img/삼겹살.jpeg");
+				imgList.add("img/tray1.png");
 			}
 			restaurantDTO.setImgList(imgList);
 		}
@@ -95,10 +95,10 @@ public class UserRestaurantController implements Controller {
 		       		 imgList.add("img/restaurantImage"+"/" + category+"/"+categoryDetail+"/"+restaurantName+"/"+fileName.substring(fileName.lastIndexOf("\\")+1));
 		       	 }
 			}else {
-				imgList.add("img/삼겹살.jpeg");
+				imgList.add("img/tray1.png");
 			}
 		}else {
-			imgList.add("img/삼겹살.jpeg");
+			imgList.add("img/tray1.png");
 		}
 		restaurantDTO.setImgList(imgList);
 		
