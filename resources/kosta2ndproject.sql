@@ -118,7 +118,7 @@ story_password varchar(20) not null
 -->스토리이미지
 create table story_img(
 story_img_no number not null primary key,
-story_no number not null references story(story_no),
+story_no number not null references story(story_no) on delete cascade,
 story_img varchar2(100) not null 
 );
 

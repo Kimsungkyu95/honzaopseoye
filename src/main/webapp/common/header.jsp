@@ -63,10 +63,9 @@ pageEncoding="UTF-8"%>
 			</ul>
 			
 			<!-- 검색창 -->
-			<form class="d-flex" style="width:500px" name="search">
-				<input class="form-control me-2" type="search" placeholder="검색어를 입력하세요." aria-label="Search">
-				<button class="btn btn-outline-success" type="submit">search</button>
-			</form>
+			<c:if test="${loginId == 'admin'}">
+				<button type="button" class="btn btn-dark" onclick="location.href='${path}/front?key=member&methodName=selectMemberList'">관리자페이지로</button>	
+			</c:if>
 			
 		</div>
 	</div>
