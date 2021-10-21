@@ -26,7 +26,7 @@
  	} 
    select{border:1px solid #C6BBEF; color:#3C3B41; border-radius:3px}  
    #btn{height:27px}
-   span{font-size:13px}
+   span{font-size:15px; font-weight:bold}
    
 </style>
 
@@ -103,11 +103,6 @@
 				  <select name="categoryDetail">
 	       			   <option value="0">--카테고리 상세--</option>
 	   			  </select>
-	   			  <select name="option">
-	   			    <option value="0">--옵션 선택--</option>
-	       			   <option value="alotReview">리뷰많은순</option>
-	       			   <option value="highRank">별점높은순</option>
-	   			  </select>
 	   			  	<span>
 						<input type="button" value="검색" onclick="searchKeyword(form)"/> 
 				    </span>
@@ -171,18 +166,18 @@
 		 <tr>
 		 </c:if>
 					<td>
-						<a href="${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo=${restaurant.restaurantNo}">
+						<a href="${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo=${restaurant.restaurantNo}" id="font">
 							<img src="${restaurant.imgList[0]}"/> 
 						  </a><br>
-					   		이름 : <a href="${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo=${restaurant.restaurantNo}">
-					   					${restaurant.restaurantName}
+					   		<a href="${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo=${restaurant.restaurantNo}">
+					   					<span>${restaurant.restaurantName}</span>
 					   				</a><br>
-					   		레벨 : ${restaurant.restaurantLevel}
+					   		LV ${restaurant.restaurantLevel}
 				   	</td>
 			 <c:if test="${i%j==j-1}">
 			 	</tr>
 			 </c:if>
-			 <c:set var="i" value="${i+1}"/>   
+			<c:set var="i" value="${i+1}"/>   
 	   	 </c:forEach>
 	</c:otherwise>
 	
