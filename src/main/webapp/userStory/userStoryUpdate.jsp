@@ -23,25 +23,41 @@
 <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(function() {
-	$("#storyForm").submit(function(){
-		let storyTitle = $('[name=storyTitle]').val();
+	console.log("${storyNo}");
+	
+	$("#updateForm").click(function() {
 		let storyNo = $('[name=storyNo]').val();
 		
-		document.getElementById('storyForm').action = '../front?key=userStory&methodName=insert&storyTitle=' + storyTitle;
+		//$("[name=storyNo]").val().submit(); // 전송
 		document.getElementById('storyForm').action = '../front?key=userStory&methodName=update&storyNo=' + storyNo;
-		document.getElementById('storyForm').action = '../front?key=userStory&methodName=delete&storyNo=' + storyNo;
+		document.getElementById('storyForm').submit();
 	});
+	
+	$("#deleteForm").click(function() {
+		let storyNo = $('[name=storyNo]').val();
+		
+		//$("[name=storyNo]").val().submit(); // 전송
+		document.getElementById('storyForm').action = '../front?key=userStory&methodName=delete&storyNo=' + storyNo;
+		document.getElementById('storyForm').submit();
+	});
+	
+	$("#password").keyup(function() {
+		let str=$(this).val();
+		console.log(str);
+	})
 });
 </script>
 </head>
 <body>
 
 	<jsp:include page="../common/header.jsp" />
+	
 	<main>
-	<input type='hidden' name="storyNo" value="${story.storyNo}">
+	
 		<form action="#" method="post" id="storyForm" enctype="multipart/form-data">
+		<input type='hidden' name="storyNo" value="<%=request.getParameter("storyNo")%>">
 			<input type="text" name="storyTitle" class="form-control mt-4 mb-2"
-				placeholder="제목을 입력해주세요." value="${story.storyTitle }"required>
+				placeholder="제목을 입력해주세요." value="${story.storyTitle }" required>
 			<p><br><hr style="height: 5px; color: red;"><p><br>
 			
 			<div class="form-group">
@@ -54,10 +70,10 @@ $(function() {
 				</div>
 			</div>
 			
-			<input type=password name="password"
+			<input type="password" id="password" name="password"
 				placeholder="비밀번호를 입력해주세요." required>
-			<button type="submit" class="btn btn-secondary mb-3">수정</button>
-			<button type="submit" class="btn btn-secondary mb-3">삭제</button>
+			<button type="button" class="btn btn-secondary mb-3" id="updateForm">수정</button>
+			<button type="button" class="btn btn-secondary mb-3" id="deleteForm">삭제</button>
 		</form>
 	</main>
 	<hr>

@@ -65,8 +65,8 @@ public class StoryController implements Controller {
 	public ModelAndView selectByStoryNo(HttpServletRequest request, HttpServletResponse response) 
 			throws Exception {
 		String storyNo =  request.getParameter("storyNo");
-		System.out.println(storyNo);
     	StoryDTO storyDTO = userStoryService.selectByStoryNo(Integer.parseInt(storyNo), true);
+    	
     	//스토리 사진 가져오기
     	File file = new File(request.getServletContext().getRealPath("/img/storySave") + "\\" + storyDTO.getStoryTitle());
     	List<String> storyImgList = new ArrayList<String>();
@@ -182,12 +182,13 @@ public class StoryController implements Controller {
 		StoryDTO storyDTO = new StoryDTO(storyNo, storyTitle, restaurantName, storyContent, password, storyImgList);
 
 		userStoryService.updateStory(storyDTO);
+		
 
 //		StoryDTO dbStory = userStoryService.selectByStoryNo(storyNo, false);
 
 //    	request.setAttribute("story", dbStory);
 		
-		return new ModelAndView(request.getServletContext().getContextPath() + "/userStory/userStoryList.jsp", true);
+		return new ModelAndView("front?key=userStory&methodName=selectAll", true);
 	}
 	
 	/**
@@ -195,13 +196,29 @@ public class StoryController implements Controller {
 	 * */
 	public ModelAndView delete(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		String storyNo = request.getParameter("storyNo");
-		String password =  request.getParameter("password");
-    	
-		String saveDir = request.getServletContext().getRealPath("/img/storySave") + "/" + request.getParameter("storyTitle");
 		
+		String saveDir = request.getServletContext().getRealPath("/img/storySave") + "/" + request.getParameter("storyTitle");
+		int maxSize = 1024 * 1024 * 100;
+		String encoding = "UTF-8";
+		File folder = new File(saveDir);
+
+		if(!folder.exists()) {
+			folder.mkdir();
+		}else { //폴더 존재하는 경우
+			File [] fileList = folder.listFiles();
+			for(File file : fileList) {
+				file.delete();
+			}
+		}
+
+		MultipartRequest m = new MultipartRequest(request, saveDir, maxSize, encoding, new DefaultFileRenamePolicy());
+
+		
+		String storyNo = m.getParameter("storyNo");
+		String password =  m.getParameter("password");
+    	
 		userStoryService.delete(Integer.parseInt(storyNo), password, saveDir);
     	
-		return new ModelAndView(request.getServletContext().getContextPath() + "/userStory/userStoryList.jsp", true);
+		return new ModelAndView("front?key=userStory&methodName=selectAll", true);
 	}
 }

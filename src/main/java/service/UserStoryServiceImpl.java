@@ -21,7 +21,6 @@ public class UserStoryServiceImpl implements UserStoryService {
 	public StoryDTO selectByStoryNo(int storyNo, boolean flag) throws SQLException {
 		StoryDTO storyDTO = null;
 		if(flag) {
-			System.out.println(storyNo);
 			if(storyDAO.increamentByStoryVisited(storyNo) == 0) {
 				throw new SQLException("조회수 증가에 문제가 생겨 조회할 수 없습니다.");
 			}
@@ -59,6 +58,7 @@ public class UserStoryServiceImpl implements UserStoryService {
 		// 비밀번호 일치여부를 판단
 		StoryDTO dbStory = storyDAO.selectByStoryNo(storyNo);
 		if(!dbStory.getStoryPassword().equals(password)) {
+			System.out.println("service: " + dbStory.getStoryPassword());
 			throw new SQLException("비밀번호가 틀리므로 삭제할 수 없습니다.");
 		}
 		
