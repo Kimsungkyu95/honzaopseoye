@@ -191,6 +191,11 @@ public class MemberServiceImpl implements MemberService {
 		dao.updupdateProfileImageById(memberId, profileImage);
 		
 	}
+
+	@Override
+	public void updateByNoForAdmin(MemberDTO member) throws SQLException {
+		dao.updateByNoForAdmin(member);
+	}
 	
 	
 

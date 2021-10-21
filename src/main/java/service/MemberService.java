@@ -41,11 +41,12 @@ public interface MemberService {
 	
 	String MemberSelectPwdById(String id) throws SQLException;
 	
-
 	ArrayList<ReviewContent> selectReviewList(String memberID) throws SQLException;
 
 	String selectProfileImageById(String id) throws SQLException;
 	
 	void updateProfileImageById(String memberId, String profileImage) throws SQLException;
+	
+	void updateByNoForAdmin(MemberDTO member)throws SQLException;
 
 }

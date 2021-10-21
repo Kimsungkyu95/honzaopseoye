@@ -294,4 +294,27 @@ public class MemberController implements Controller {
 		return new ModelAndView(request.getServletContext().getContextPath()+"/front?key=member&methodName=selectProfileImageById&memberID="+id , true);
 	}
 	
+	/**
+	 * 관리자 - 상세보기 - 정보수정(id, pwd, name, email, phone, birth, exp) by no
+	 */
+	public ModelAndView updateByNoForAdmin(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String url = "error/error.jsp";
+		String errorMsg = "Something Went Wrong.";
+		
+		String memberID = request.getParameter("memberID");
+		String memberPwd = request.getParameter("memberPwd");
+		String memberName = request.getParameter("memberName");
+		String memberEmail = request.getParameter("memberEmail");
+		String memberPhone = request.getParameter("memberPhone");
+		String memberBirth = request.getParameter("memberBirth");
+		String memberJoinDate = request.getParameter("memberJoinDate");
+		int memberExp = Integer.parseInt(request.getParameter("memberExp"));
+		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
+		
+		MemberDTO member = new MemberDTO(memberNo, memberID, memberPwd, memberName, memberEmail, memberPhone, memberBirth, memberJoinDate, memberExp);
+		service.updateByNoForAdmin(member);
+			
+		return new ModelAndView("/myPage/myPage.jsp");
+	}
+	
 }
