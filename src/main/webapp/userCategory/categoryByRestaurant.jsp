@@ -128,7 +128,38 @@
 		   <c:when test="${empty requestScope.list}">
 		     	<tr>
 		     		<td>
-		     			
+		     			<img src="${path}/img/category/카테고리일식.jpeg"/>
+		     			<span>일식</span>
+		     		</td>
+		     		<td>
+		     			<img src="${path}/img/category/카테고리한식.jpeg"/>
+		     			<span>한식</span>
+		     		</td>
+		     		<td>
+		     			<img src="${path}/img/category/카테고리디저트.jpeg"/>
+		     			<span>디저트</span>
+		     		</td>
+		     		<td>
+		     			<img src="${path}/img/category/카테고리피자.jpeg"/>
+		     			<span>피자</span>
+		     		</td>
+		     	</tr>
+		     	<tr>
+		     		<td>
+		     			<img src="${path}/img/category/카테고리양식.jpeg"/>
+		     			<span>양식</span>
+		     		</td>
+		     		<td>
+		     			<img src="${path}/img/category/카테고리패스트푸드.jpeg"/>
+		     			<span>패스트푸드</span>
+		     		</td>
+		     		<td>
+		     			<img src="${path}/img/category/카테고리중식.jpeg"/>
+		     			<span>중식</span>
+		     		</td>
+		     		<td>
+		     			<img src="${path}/img/category/카테고리분식.jpeg"/>
+		     			<span>분식</span>
 		     		</td>
 		     	</tr>
 		    </c:when> 
