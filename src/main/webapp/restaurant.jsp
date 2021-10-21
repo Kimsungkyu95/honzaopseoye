@@ -211,7 +211,6 @@
 		
        </div>
       </div>
-      <!-- 별점 차트 -->
       <div class="col-md-6">
         <div class="h-100 p-5 bg-light border rounded-3">
           <h4>리뷰쓰기</h4>

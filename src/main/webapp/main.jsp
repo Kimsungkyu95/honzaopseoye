@@ -119,7 +119,7 @@
 			  <form name="f"  style="margin-left:4px" method="get" action="${path}/front">
 				  	<input type="hidden" name="key" value="userRestaurant">
 				    <input type="hidden" name="methodName" value="selectByGu">
-				  <select name="gu" onChange = "findLocation(this, form)" id="gu">
+				  <select name="gu" onChange = "findLocation(this, form)" id="gu" style="margin-left:40px">
 				       <option value="0">--지역구 선택 --</option>
 				       <option value="송파구">송파구</option>
 					   <option value="강남구">강남구</option>
