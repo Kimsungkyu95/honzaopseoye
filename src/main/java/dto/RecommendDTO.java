@@ -31,6 +31,17 @@ public class RecommendDTO {
 		this.categoryDetailsName = categoryDetailsName;
 		this.restaurantNo=restaurantNo;
 	}
+	
+	public RecommendDTO(String restaurantImg, String restaurantName, String gu,
+			String categoryName, String categoryDetailsName, int restaurantNo) {
+	
+		this.restaurantImg = restaurantImg;
+		this.restaurantName = restaurantName;
+		this.gu = gu;
+		this.categoryName = categoryName;
+		this.categoryDetailsName = categoryDetailsName;
+		this.restaurantNo=restaurantNo;
+	}
 	public RecommendDTO(String restaurantImg, String restaurantName, int reviewScore, String gu) {
 	
 		this.restaurantImg = restaurantImg;

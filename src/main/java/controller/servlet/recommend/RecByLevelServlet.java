@@ -27,6 +27,7 @@ public class RecByLevelServlet extends HttpServlet {
 		RecommendDAO dao = new RecommendDAOImpl();
 		List<RecommendDTO> list = dao.recByLevel(Integer.parseInt(levelNo));
         
+		request.setAttribute("list", list);
 		JSONArray arr = JSONArray.fromObject(list);
 		
 		PrintWriter out = response.getWriter();

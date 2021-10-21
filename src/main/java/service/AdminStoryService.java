@@ -1,20 +1,15 @@
 package service;
 
-import java.sql.SQLException;
+import java.util.List;
 
 import dto.AdminStoryDTO;
 
 public interface AdminStoryService {
 	
 	/**
-     * 스토리 제목으로 검색
+     * 검색 옵션으로 검색
      */
-    AdminStoryDTO selectByStoryTitle(인수) throws SQLException;
-    
-    /**
-     * 스토리 제목으로 검색
-     */
-    AdminStoryDTO selectByMemberNo(인수) throws SQLException;
+	List<AdminStoryDTO> selectByOption(String selectKey, String selectValue);
     
 
 }

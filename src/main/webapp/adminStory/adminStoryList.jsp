@@ -2,19 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
- 
   
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>Hello, world!</title>
+    <title>스토리 목록 - 관리자</title>
 
     <!-- 부트스트랩 -->
     <!--<link href="css/bootstrap.min.css" rel="stylesheet">  --> 
@@ -47,9 +45,10 @@
 	
 </style>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-
+<script src="${path}/js/jquery-3.6.0.min.js"></script>
 <script>
 $(function(){
+
 	 function selectAll(){
 		  $.ajax({
 				url: "../adminStorySelectAll", 
@@ -60,7 +59,7 @@ $(function(){
 					let str="";
                    $.each(result, function(index, item){
                    	str+="<tr>";
-                   	str+="<td>No."+item.storyNo+"</td>";
+                   	str+="<td><b>"+item.storyNo+"</td>";
                    	str+="<td>"+item.memberNo+"</td>";
                    	str+="<td>"+item.storyTitle+"</td>";
                    	str+="<td>"+item.storyRegdate+"</td>";
@@ -89,18 +88,17 @@ $(function(){
 		 if(confirm("정말 삭제하실래요?")){
 	
 		  $.ajax({
-					//속성 : 값 (속성의 순서를 상관없다),
-					url: "../adminStoryDelete", //back단의 서버요청주소
-					type: "post", //method방식(get,post,put,delete)
-					dataType: "text", //서버가 응답해주는 데이터의 type(text, html, xml, json)
-					data: {no:$(this).attr("id")}, //form을 한 번에 전송해주는 serialize()
+					url: "../adminStoryDelete",
+					type: "post", 
+					dataType: "text",
+					data: {no:$(this).attr("id")},
 					success: function(result){
 						if(result==0){
-							alert("실패하였습니다."); //등록, 수정일수도 있기때문에
+							alert("실패하였습니다.");
 						}else{
 							selectAll();
 						}
-					}, //성공했을때 callback함수(되돌아와서 해야될 기능들)
+					},
 					error: function(err){ 
 						alert("에러가 발생했어요.");
 					}
@@ -142,13 +140,17 @@ $(function(){
             </div>
         </div>
     </nav>  
+
     
      <div class="container mt-5 shadow-lg">
-        <form class="row g-3 rounded p-2" action="${path}/front?key=story&methodName=selectAll" method="post">
+        <form class="row g-3 rounded p-2" action="${path}/front" method="get">
+            <input type="hidden" name="key" value="adminStory">
+            <input type="hidden" name="methodName" value="selectByOption"> 
             <div class="col-auto">  
                 <select class="form-select col-auto" aria-label="Default select example" name="selectKey">
-                    <option value="storyTitle" selectd>스토리제목</option>
-                    <option value="memberNo">회원번호</option>
+                
+                    <option value="selectByStoryTitle" selected>스토리제목</option>
+                    <option value="selectByMemberNo">회원번호</option>
                 </select>
             </div>
             <div class="col-auto">
@@ -175,8 +177,7 @@ $(function(){
               <th scope="col">스토리관리</th>
             </tr>
           </thead>
-         
-          <tbody id="tbody">  
+         <tbody id="tbody">
           
   </tbody>
 </table>

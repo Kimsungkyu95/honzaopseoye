@@ -24,6 +24,8 @@ public class RecByScoreServlet extends HttpServlet {
 		
 		RecommendDAO dao = new RecommendDAOImpl();
 		List<RecommendDTO> list = dao.recByScore();
+		
+		request.setAttribute("list", list);
 		JSONArray arr = JSONArray.fromObject(list);
 		
 		PrintWriter out = response.getWriter();

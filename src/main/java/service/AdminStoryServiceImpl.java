@@ -1,23 +1,20 @@
 package service;
 
+import java.util.List;
+
 import dao.AdminStoryDAO;
 import dao.AdminStoryDAOImpl;
 import dto.AdminStoryDTO;
 
 public class AdminStoryServiceImpl implements AdminStoryService {
 	
-	private AdminStoryDAO adminStoryDAO = new AdminStoryDAOImpl();
+	private AdminStoryDAO dao = new AdminStoryDAOImpl();
 
 	@Override
-	public AdminStoryDTO selectByStoryTitle() {
-		
-		return null;
+	public List<AdminStoryDTO> selectByOption(String selectKey, String selectValue ) {
+		List<AdminStoryDTO> list = dao.selectByOption(selectKey, selectValue);
+		return list;
 	}
 
-	@Override
-	public AdminStoryDTO selectByMemberNo() {
-		
-		return null;
-	}
 
 }

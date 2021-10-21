@@ -24,6 +24,8 @@ response.setContentType("text/html;charset=UTF-8");
 		
 		RecommendDAO dao = new RecommendDAOImpl();
 		List<RecommendDTO> list = dao.recByVisited();
+		
+		request.setAttribute("list", list);
 		JSONArray arr = JSONArray.fromObject(list);
 		
 		PrintWriter out = response.getWriter();

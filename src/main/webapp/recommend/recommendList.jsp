@@ -18,7 +18,7 @@ profile="http://www.w3.org/2005/10/profile"
     <title>추천 페이지</title>
 
     <!-- 부트스트랩 -->
-    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet">  -->
     <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
     <!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
     <!--[if lt IE 9]>
@@ -67,6 +67,25 @@ profile="http://www.w3.org/2005/10/profile"
 		  levelBar+="<button type='button' value='6' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='개척하세요'>Lv.6 전사</button>";
 		  levelBar+="<button type='button' value='7' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='끝판왕'>Lv.7 전능자</button></div></div>";
 		  
+		  let json = {dessert:"디저트", fastfood:"패스트푸드", pizza:"피자", chicken:"치킨",
+					snack:"분식", meat:"고기", soup:"국밥", nuddle:"국수" , coldnuddle:"냉면", hanjeongsik:"한정식", 
+					porkcutlet:"돈까스", lamen :"일본라멘", sushi: "초밥", sashimi:"회", chinese:"중화요리",
+					italian:"이탈리안", worldfood:"세계음식", buffef:"뷔페",bar:"술집"
+				}
+			function inputCategory(categoryDetailsName) {
+				var keys = Object.keys(json);  //키를 가져온다.
+				for (var i=0; i<keys.length; i++) {
+			    	var str ='';
+			    	var key = keys[i];
+			    	if(key==categoryDetailsName){
+			    		document.getElementById('category').innerHTML = json[key];
+			    	}
+			    	
+			    }
+
+			 }
+		  
+		  
 		  $("#display2").empty();
 		  $("#display3").empty();
 		  $("#display4").empty();
@@ -92,7 +111,7 @@ profile="http://www.w3.org/2005/10/profile"
 								if(index%4==0){
 									str+="</tr><tr>";
 								}
-		                    	str+="<td><a href='${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo="+item.restaurantNo+"'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+" &nbsp;&nbsp;&nbsp;<img src='${path}/img/star.svg' style='width:15px; height:auto'> "+item.reviewScore+".0<br>"+item.gu+"-대표메뉴1"+item.menuName+"</td>";              
+		                    	str+="<td><a href='${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo="+item.restaurantNo+"'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+"<br>"+item.gu+"-"+item.categoryDetailsName+"</td>";              
 		                    
 		                    });
 							str+="</tr></table>";
@@ -143,7 +162,7 @@ profile="http://www.w3.org/2005/10/profile"
 								if(index%4==0){
 									str+="</tr><tr>";
 								}
-		                    	str+="<td><a href='${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo="+item.restaurantNo+"'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+" &nbsp;&nbsp;&nbsp;<img src='${path}/img/star.svg' style='width:15px; height:auto'> "+item.reviewScore+".0<br>"+item.gu+"-대표메뉴1"+item.menuName+"</td>";              
+		                    	str+="<td><a href='${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo="+item.restaurantNo+"'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+"<br>"+item.gu+"-"+item.categoryDetailsName+"</td>";              
 		                    
 		                    });
 							str+="</tr></table>";
@@ -181,7 +200,7 @@ profile="http://www.w3.org/2005/10/profile"
 								if(index%4==0){
 									str+="</tr><tr>";
 								}
-		                    	str+="<td><a href='${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo="+item.restaurantNo+"'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+" &nbsp;&nbsp;&nbsp;<img src='${path}/img/star.svg' style='width:15px; height:auto'>"+item.reviewScore+".0<br>"+item.gu+"-대표메뉴1"+item.menuName+"</td>";              
+		                    	str+="<td><a href='${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo="+item.restaurantNo+"'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+"<br>"+item.gu+"-"+item.categoryDetailsName+"</td>";              
 		                    
 		                    });
 							str+="</tr></table>";
@@ -217,7 +236,7 @@ profile="http://www.w3.org/2005/10/profile"
 						if(index%4==0){
 							str+="</tr><tr>";
 						}
-                    	str+="<td><a href='${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo="+item.restaurantNo+"'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+" &nbsp;&nbsp;&nbsp;<img src='${path}/img/star.svg' style='width:15px; height:auto'> "+item.reviewScore+".0<br>"+item.gu+"-대표메뉴1"+item.menuName+"</td>";              
+                    	str+="<td><a href='${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo="+item.restaurantNo+"'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+"<br>"+item.gu+"-"+item.categoryDetailsName+"</td>";              
                     
                     });
 					str+="</tr></table>";
@@ -249,8 +268,8 @@ profile="http://www.w3.org/2005/10/profile"
     
 </head>
 <body>
-
 <br>
+ <div class="container" id="frame">
 <h5>&nbsp;&nbsp;&nbsp;원하시는 추천을 해드려요! &nbsp;&nbsp;&nbsp;
 
 <select name="kind">
@@ -274,13 +293,13 @@ profile="http://www.w3.org/2005/10/profile"
 
 <p><p>
 
-<div id="display5"><h4><br>&nbsp;&nbsp;후회없는 디폴트 맛집</h4></div>
+<div id="display5"><h4><br>&nbsp;&nbsp;혼자옵서예 Pick!</h4></div>
  
 <div id="table"> 
 
 </div>
 
-
+</div>
 	
   <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

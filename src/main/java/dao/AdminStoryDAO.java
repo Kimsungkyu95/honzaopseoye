@@ -9,8 +9,13 @@ public interface AdminStoryDAO {
 	  List<AdminStoryDTO> selectAll();
 
 	  int deleteByStoryNo(int storyNo);
-	  
-	  AdminStoryDTO selectByStoryTitle();
-	  
-	  AdminStoryDTO selectByMemberNo();
+
+	  /**
+       * 검색 옵션으로 검색
+       */
+	  List<AdminStoryDTO> selectByOption(String selectKey, String selectValue);
+   
+
+	    
+
 }

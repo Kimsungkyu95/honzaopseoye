@@ -28,6 +28,7 @@ public class RecByTagServlet extends HttpServlet {
 		RecommendDAO dao = new RecommendDAOImpl();
 		List<RecommendDTO> list = dao.recByTag(Integer.parseInt(tagNo));
         
+		request.setAttribute("list", list);
 		JSONArray arr = JSONArray.fromObject(list);
 		
 		PrintWriter out = response.getWriter();
