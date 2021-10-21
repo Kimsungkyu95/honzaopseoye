@@ -82,12 +82,23 @@
 	            <tr>
 	            	<td>별점</td>
 	            	<td>:</td>
-	            	<td>4.3(별모양도 출력)</td>
+	            	<td>
+	            		<c:set var ="total" value=0/>
+		            	<c:forEach items="${restaurant.reviewList}" var="review" varStatus="state">
+		            		 <c:set var ="total" value="${total + review.reviewScore}"/>
+		            	</c:forEach>
+		            	<c:out value="${total}"/>
+	            	</td>
 	            </tr>
 	            <tr>
 	            	<td>리뷰</td>
 	            	<td>:</td>
-	            	<td>갯수</td>
+	            	<td>
+	            		<c:set var ="cnt" value=0/>
+	            		<c:forEach items="${restaurant.reviewList}" var="review" varStatus="status">
+	            			<c:out value = "${status.end}"/>
+	            		</c:forEach>
+	            	</td>
 	            </tr>
 	            <tr>
 	            	<td>레벨</td>

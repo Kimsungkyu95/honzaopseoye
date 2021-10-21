@@ -104,7 +104,7 @@
 	       			   <option value="0">--카테고리 상세--</option>
 	   			  </select>
 	   			  <select name="option">
-	       			   <option value="direction">거리순</option>
+	   			    <option value="0">--옵션 선택--</option>
 	       			   <option value="alotReview">리뷰많은순</option>
 	       			   <option value="highRank">별점높은순</option>
 	   			  </select>
