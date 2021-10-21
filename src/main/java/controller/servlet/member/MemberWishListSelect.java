@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dto.RestaurantDTO;
 import service.MemberService;
 import service.MemberServiceImpl;
 
@@ -22,11 +23,13 @@ public class MemberWishListSelect extends HttpServlet {
 			MemberService service = new MemberServiceImpl();
 			PrintWriter out = response.getWriter();
 			
+			int restaurantNo=Integer.parseInt(request.getParameter("no"));
+			
 			try {
-				
-				
+				RestaurantDTO dto=service.wishListSelect(restaurantNo);
+				out.print(dto);
 			}catch(Exception e) {
-				
+				e.printStackTrace();
 			}
 			
 		}		
