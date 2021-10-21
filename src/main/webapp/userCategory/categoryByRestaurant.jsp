@@ -128,7 +128,7 @@
 		   <c:when test="${empty requestScope.list}">
 		     	<tr>
 		     		<td>
-		     			값이없습니다. 
+		     			
 		     		</td>
 		     	</tr>
 		    </c:when> 

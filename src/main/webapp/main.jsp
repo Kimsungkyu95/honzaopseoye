@@ -97,10 +97,10 @@
 	      
 	      <!-- 맛집스토리 div -->
 	      <div class="col-md-6">
-	      <h4><a href="${path}/userStory/userStoryList.jsp">맛집 스토리 목록</a></h4>
+	      <h4><a href="${path}/front?key=userStory&methodName=selectAll">맛집 스토리 목록</a></h4>
 	          <img class ="mouseOver" src = "img/회.jpeg" style="width:99%; height:100%">
 	          <div class="text" style="margin:0px">
-      				<a href="${path}/userStory/userStoryList.jsp"><h4 style="color:white">맛집 스토리</h4></a>
+      				<a href="${path}/front?key=userStory&methodName=selectAll"><h4 style="color:white">맛집 스토리</h4></a>
     		 </div>
 	      </div>
 	      
