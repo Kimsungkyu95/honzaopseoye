@@ -31,15 +31,6 @@
         .active {
         	pointer-events: none; 
         }
-        
-        .pagenation {
-        	position:relative;
-        }
-        .registerBtn {
-        	position: absolute;
-        	top: 0px;
-        	right: 0px;
-        }
 
     </style>
     <script src="${path}/js/jquery-3.6.0.min.js"></script>
@@ -52,20 +43,13 @@
     		//삭제버튼클릭시
     		$('.deleteBtn').click(function(){
     			console.log($(this).val());
-    			let restaurantNo = $(this).val();
-    			let restaurantName = $(this).closest('tr').find('.restaurantName').text();
-    			let categoryName = $(this).closest('tr').find('.categoryName').text();
-    			let categoryDetailsName = $(this).closest('tr').find('.categoryDetailsName').text();
-    			if(confirm("맛집의 리뷰, 메뉴, 사진도 함께 사라집니다. 정말로 삭제하시겠습니까?")){
+    			let reviewNo = $(this).val();
+    			if(confirm("해당 리뷰를 정말로 삭제하시겠습니까?")){
 	    			$.ajax({
-	                    url: "${path}/deleteRestaurantServlet", //서버요청주소
+	                    url: "${path}/adminReviewDeleteServlet", //서버요청주소
 	                    type: "post", //method방식(get, post, put, delete)
 	                    dataType: "text", //서버가 응답해주는 데이터의 type(text, html, xml, json)
-	                    data: { restaurantNo: restaurantNo,
-	                    		restaurantName: restaurantName,
-	                    		categoryName: categoryName,
-	                    		categoryDetailsName: categoryDetailsName
-	                    }, //서버에게 보낼 parameter정보
+	                    data: {reviewNo: reviewNo}, //서버에게 보낼 parameter정보
 	                    success: function (result) {
 	                        alert(result);
 	                        location.reload();
@@ -83,34 +67,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand text-dark" href="#">Admin Page</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">고객관리</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">맛집관리</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">리뷰관리</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">차트분석</a>
-                    </li>
-                </ul>
-                <span class="navbar-text">
-                    <a class="nav-link text-dark" href="#">로그아웃</a>
-                </span>
-            </div>
-        </div>
-    </nav>
+    <jsp:include page="../common/adminHeader.jsp"/>
 
     <div class="container mt-5 shadow-lg">
         <form class="row g-3 rounded p-2" action="${path}/front" method="get" >
@@ -147,22 +104,22 @@
             </thead>
             <tbody>
             	<c:choose>
-	            	<c:when test="${empty requestScope.restaurantList}">
-	            	<tr><td colspan="8">검색된 맛집이 없습니다</td></tr>
+	            	<c:when test="${empty requestScope.reviewList}">
+	            	<tr><td colspan="8">검색된 리뷰가 없습니다</td></tr>
 	            	</c:when>
             	
             	<c:otherwise>  
-            	<c:forEach items="${requestScope.restaurantList}" var="restaurantDTO" varStatus="status">       	
+            	<c:forEach items="${requestScope.reviewList}" var="reviewDTO" varStatus="status">       	
 	                <tr>
-	                    <th scope="row">${restaurantDTO.restaurantNo}</th>
-	                    <td class="categoryName">${restaurantDTO.categoryName}</td>
-	                    <td class="categoryDetailsName">${restaurantDTO.categoryDetailsName}</td>
-	                    <td>${restaurantDTO.restaurantAddr}</td> 
-	                    <td>${restaurantDTO.restaurantLevel}</td>
-	                    <fmt:parseDate value="${restaurantDTO.restaurantRegDate}" var="parseDateValue" pattern="yyyy-MM-dd HH:mm:ss"/>                   
+	                    <th scope="row">${reviewDTO.reviewNo}</th>
+	                    <td>${reviewDTO.memberName}</td>
+	                    <td>${reviewDTO.restaurantName}</td>
+	                    <td>${reviewDTO.reviewScore}</td> 
+	                    <td>${reviewDTO.reviewContent}</td>
+	                    <fmt:parseDate value="${reviewDTO.reviewRegdate}" var="parseDateValue" pattern="yyyy-MM-dd HH:mm:ss"/>                   
 	                    <td><fmt:formatDate value="${parseDateValue}" pattern="yyyy-MM-dd"/></td>
 	                    <td>
-	                        <button type="button" class="btn btn-primary btn-sm deleteBtn" value="${restaurantDTO.restaurantNo}">삭제</button>
+	                        <button type="button" class="btn btn-primary btn-sm deleteBtn" value="${reviewDTO.reviewNo}">삭제</button>
 	                    </td>
 	                </tr>
             	</c:forEach>      	
@@ -183,22 +140,21 @@
 	        <ul class="pagination" style="justify-content: center;">
 	        
 	        	<c:if test="${(startPage-p.blockcount) > 0}">
-		            <li class="page-item"><a class="page-link" href="${path}/front?key=adminRestaurant&methodName=pagingSelect&pageNo=${startPage-1}&selectKey=${requestScope.selectKey}&selectValue=${requestScope.selectValue}">Previous</a></li>    	
+		            <li class="page-item"><a class="page-link" href="${path}/front?key=adminMember&methodName=pagingSelectReview&pageNo=${startPage-1}&selectKey=${requestScope.selectKey}&selectValue=${requestScope.selectValue}">Previous</a></li>    	
 	        	</c:if>
 	        	<c:forEach var="i" begin="${startPage}" end="${startPage + p.blockcount - 1}">
 		            <c:if test="${i > p.pageCnt}">
 		            	<c:set var="doneLoop" value="true"/>
 		            </c:if>
 		            <c:if test="${not doneLoop}">
-			            <li class="page-item ${i == pageNo ? 'active' : ''}"><a class="page-link" href="${path}/front?key=adminRestaurant&methodName=pagingSelect&pageNo=${i}&selectKey=${requestScope.selectKey}&selectValue=${requestScope.selectValue}">${i}</a></li>	            
+			            <li class="page-item ${i == pageNo ? 'active' : ''}"><a class="page-link" href="${path}/front?key=adminMember&methodName=pagingSelectReview&pageNo=${i}&selectKey=${requestScope.selectKey}&selectValue=${requestScope.selectValue}">${i}</a></li>	            
 		            </c:if> 	
 	        	</c:forEach>
 	            <c:if test="${(startPage+p.blockcount) <= p.pageCnt}">
-		            <li class="page-item"><a class="page-link" href="${path}/front?key=adminRestaurant&methodName=pagingSelect&pageNo=${startPage+p.blockcount}&selectKey=${requestScope.selectKey}&selectValue=${requestScope.selectValue}">Next</a></li>
+		            <li class="page-item"><a class="page-link" href="${path}/front?key=adminMember&methodName=pagingSelectReview&pageNo=${startPage+p.blockcount}&selectKey=${requestScope.selectKey}&selectValue=${requestScope.selectValue}">Next</a></li>
 	            
 	            </c:if>
 	        </ul>
-	        <button class="btn btn-secondary registerBtn" onclick="location.href='${path}/front?key=adminRestaurant&methodName=goRegisterPage'">맛집 등록</button>
 	    </nav>    
     </div>
     <!-- Optional JavaScript; choose one of the two! -->

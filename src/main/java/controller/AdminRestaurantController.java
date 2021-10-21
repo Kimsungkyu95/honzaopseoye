@@ -62,9 +62,13 @@ public class AdminRestaurantController implements Controller {
         String [] addrList = restaurantAddr.split(" ");
         String gu = null;
         String dong = null;
-        if(addrList.length > 0) {
-        	gu = addrList[1];
-        	dong = addrList[2];        	
+        try {
+	    	if(addrList.length > 0) {
+	    		gu = addrList[1];
+	    		dong = addrList[2];        	
+	    	}        	
+        }catch(Exception e) {
+        	throw new ServletException("주소가 올바르지 않습니다.");
         }
         Double restaurantLongitude = Double.parseDouble(multi.getParameter("longitude")); //null들어오는 경우?
         Double restaurantLatitude = Double.parseDouble(multi.getParameter("latitude"));
@@ -73,7 +77,7 @@ public class AdminRestaurantController implements Controller {
         String [] hashTagArr = multi.getParameterValues("hashTag");
         List<String> hashTagName = new ArrayList<String>();
         for(String hashtag : hashTagArr) {
-        	if(!hashtag.equals("")) {
+        	if(!hashtag.equals("0")) {
         		hashTagName.add(hashtag);
         		//System.out.println(hashtag);
         	}
@@ -85,7 +89,7 @@ public class AdminRestaurantController implements Controller {
         List<MenuDTO> menuList = new ArrayList<MenuDTO>();
         for(int i=0; i < menuNameArr.length; i++) {
         	if(menuNameArr[i].equals("")) {
-        		break;
+        		continue;
         	}
         	menuList.add(new MenuDTO(menuNameArr[i], Integer.parseInt(menuPriceArr[i])));
         	//System.out.println(menuNameArr[i] + ", " + menuPriceArr[i]);

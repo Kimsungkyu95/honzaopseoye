@@ -165,8 +165,60 @@
                 $(this).prev().prev().remove();
             })
 
+          //빈칸없는지 검증
+            function sumbitCheck(){
+            	console.log("123")
+            	if($('#restaurant-name').val() == ""){
+            		alert("맛집 이름을 입력해주세요.");
+            		$('#restaurant-name').focus();
+            		return false;
+            	}
+            	if($('#first-category').val() == "0"){
+            		alert("카테고리를 선택해주세요.");
+            		$('#first-category').focus();
+            		return false;
+            	}
+            	if($('#second-category').val() == "0"){
+            		alert("상세카테고리를 선택해주세요.");
+            		$('#second-category').focus();
+            		return false;
+            	}
+            	if($('#level').val() == "" || parseInt($('#level').val()) < 1 || parseInt($('#level').val()) > 7){
+            		alert("올바른 레벨값을 입력해주세요");
+            		$('#level').focus();
+            		return false;
+            	}
+            	if($('#sample4_roadAddress').val() == ""){
+            		alert("도로명 주소를 입력해주세요");
+            		$('#sample4_roadAddress').focus();
+            		return false;
+            	}
+            	if($('#sample4_jibunAddress').val() == ""){
+            		alert("주소를 입력해주세요");
+            		$('#sample4_jibunAddress').focus();
+            		return false;
+            	}
+            	if($('#longitude').val() == ""){
+            		alert("경도를 입력해주세요");
+            		$('#longitude').focus();
+            		return false;
+            	}
+            	if($('#latitude').val() == ""){
+            		alert("위도를 입력해주세요");
+            		$('#latitude').focus();
+            		return false;
+            	}   
+            	
+            	return true;
+            	
+            }
+            
             $("#restaurantUpdate").submit(function(){
-
+            	//빈칸 없는지 검증
+            	if(!sumbitCheck()){
+	            	return false;           		
+            	}
+            	
             	let firstCategory = $("#first-category").val();
             	let secondCategory = $("#second-category").val();
             	let restaurantName = $("#restaurant-name").val();
@@ -179,34 +231,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand text-dark" href="#">Admin Page</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">고객관리</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">맛집관리</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">리뷰관리</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">차트분석</a>
-                    </li>
-                </ul>
-                <span class="navbar-text">
-                    <a class="nav-link text-dark" href="#">로그아웃</a>
-                </span>
-            </div>
-        </div>
-    </nav>
+    <jsp:include page="../common/adminHeader.jsp"/>
 
     <!-- form -->
     <div class="container p-5" id="form-container">
@@ -246,11 +271,11 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">레벨</label>
-                <input type="number" class="form-control" min="1" max="7" value="${restaurantDTO.restaurantLevel}" name="level">
+                <input type="number" class="form-control" min="1" max="7" value="${restaurantDTO.restaurantLevel}" name="level" id="level">
             </div>
             <div class="mb-3">
                 <label class="form-label">전화번호</label>
-                <input type="text" class="form-control" placeholder="000-0000-0000" name="phone" value="${restaurantDTO.restaurantPhone}"> 
+                <input type="text" class="form-control" placeholder="000-0000-0000" name="phone" id="phone" value="${restaurantDTO.restaurantPhone}"> 
             </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">주소</label>
