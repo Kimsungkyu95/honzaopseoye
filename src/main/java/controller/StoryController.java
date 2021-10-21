@@ -45,10 +45,10 @@ public class StoryController implements Controller {
 			       		storyImgList.add(fileName.substring(fileName.lastIndexOf("\\")+1));
 			       	 }
 				}else {
-					storyImgList.add("img/삼겹살.jpeg");
+					storyImgList.add(request.getServletContext().getContextPath()+"img/storySave/디저트.png");
 				}
 			}else {
-				storyImgList.add("img/삼겹살.jpeg");
+				storyImgList.add(request.getServletContext().getContextPath()+"img/storySave/디저트.png");
 			}
 			
 			storyDTO.setStoryImgList(storyImgList);
@@ -78,10 +78,10 @@ public class StoryController implements Controller {
 		       		storyImgList.add(fileName.substring(fileName.lastIndexOf("\\")+1));
 		       	 }
 			}else {
-				storyImgList.add("img/삼겹살.jpeg");
+				storyImgList.add(request.getServletContext().getContextPath()+"img/storySave/디저트.png");
 			}
 		}else {
-			storyImgList.add("img/삼겹살.jpeg");
+			storyImgList.add(request.getServletContext().getContextPath()+"img/storySave/디저트.png");
 		}
     	
     	

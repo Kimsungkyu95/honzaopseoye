@@ -31,7 +31,7 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 		
 		List<StoryDTO> storyList = new ArrayList<StoryDTO>();
 		String sql = proFile.getProperty("userStory.select");
-//		userStory.select=select story_no,story_title,member_name,story_visited from story natural join member order by story_regdate desc
+//		userStory.select=select story_no,story_title,member_id,story_visited from story natural join member order by story_regdate desc
 		
 		try {
 			con = DbUtil.getConnection();
@@ -42,7 +42,7 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 				StoryDTO story = new StoryDTO();
 				story.setStoryNo(rs.getInt(1));
 				story.setStoryTitle(rs.getString(2));
-				story.setMemberName(rs.getString(3));
+				story.setMemberId(rs.getString(3));
 				story.setStoryVisited(rs.getInt(4));
 				
 				storyList.add(story);
@@ -55,11 +55,6 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 		
 		return storyList;
 	}
-
-	public StoryImgDTO selectByStoryImgNo(String storyImgNo) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	@Override
 	public StoryDTO selectByStoryNo(int storyNo) throws SQLException {
@@ -68,7 +63,7 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 		ResultSet rs=null;
 		StoryDTO storyDTO=null;
 		String sql = proFile.getProperty("userStory.selectByStoryNo");
-//		userStory.selectByStoryNo=select * from story where story_no=?
+//		select story_no,story_title,member_id,story_visited,restaurant_name,story_content,story_regdate from story natural join member where story_no=?
 		
 		try {
 			con = DbUtil.getConnection();
@@ -77,9 +72,15 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				storyDTO = new StoryDTO(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8));
+				storyDTO = new StoryDTO();
+				storyDTO.setStoryNo(rs.getInt(1));
+				storyDTO.setStoryTitle(rs.getString(2));
+				storyDTO.setMemberId(rs.getString(3));
+				storyDTO.setStoryVisited(rs.getInt(4));
+				storyDTO.setRestaurantName(rs.getString(5));
+				storyDTO.setStoryContent(rs.getString(6));
+				storyDTO.setStoryRegdate(rs.getString(7));
 			}
-			
 		}catch(Exception e){
 			e.printStackTrace();
 		}

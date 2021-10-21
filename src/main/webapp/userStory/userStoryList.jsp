@@ -17,7 +17,7 @@
 
 
 <style type="text/css">
-	button a { text-decoration:none } 
+	button a { text-decoration:none }
 </style>
 <script type="text/javascript">
 
@@ -56,15 +56,16 @@
 
 										<div class="card-body">
 											<h3>${story.storyTitle}</h3>
-											<p class="card-text">${story.memberName}</p>
-											<div class="d-flex justify-content-between align-items-center">
+											<p class="card-text">${story.memberId}</p>
+											<div class="">
 												<div class="btn-group">
 													<button type="button" class="btn btn-sm btn-outline-secondary">
 														<a href="${path}/front?key=userStory&methodName=selectByStoryNo&storyNo=${story.storyNo}" style="color: gray;"> 
 														스토리 보러 »</a>
 													</button>
 												</div>
-												<img src="${path}/img/eyeicon.png" style="width: 18px; height: 18px;">조회수: ${story.storyVisited }
+												<img src="${path}/img/eyeicon.png" style="width: 18px; height: 18px;">
+												<span>조회 수 : ${story.storyVisited }</span>
 											</div>
 										</div>
 									</div>
