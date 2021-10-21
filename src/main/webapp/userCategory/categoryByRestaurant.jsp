@@ -16,9 +16,8 @@
 <style>
 	#dropdown{margin-top:30px; margin-left:20px;}
 	#divSelect{margin-bottom:30px;}
-	a:link, a:visited{color:black; text-decoration:none; padding-left:2px;}
-	table{background-color:#E6E1FF; border:1px solid #C6BBEF; border-radius:5px;}
-	tr td{border:20px solid white; padding-bottom:20px; width:25%;}
+	a:link, a:visited{color:black; text-decoration:none;}
+	tr td{background-color:#E6E1FF;border:20px solid white; padding-bottom:20px; width:25%;}
   	img {
 	    object-fit: cover;
 		width: 100%;

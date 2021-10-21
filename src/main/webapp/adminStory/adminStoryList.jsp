@@ -141,7 +141,7 @@ $(function(){
                 	str+="<td><input type='button' id='"+item.storyNo+"' value='삭제'></td>"; 
                 	str+="</tr>";
                 });
-                str+="<div><a href='${path}/adminStory/adminStoryList.jsp'>리스트로 돌아가기</a></div>";
+                str+="<div><hr><a href='${path}/adminStory/adminStoryList.jsp'>리스트로 돌아가기</a></div>";
                 $("#tbody").html(str); 
                 
 					
