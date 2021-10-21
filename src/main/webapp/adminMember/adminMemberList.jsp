@@ -3,15 +3,32 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<!-- 관리자인지 체크해서 아니면 error페이지로 이동 -->
+<%
+	String user = (String)session.getAttribute("loginId");
+	if(user == null || !user.equals("admin")) {
+	//에러페이지로 이동
+		request.setAttribute("errorMsg", "관리자만 접근할 수 있는 페이지 입니다.");
+		request.getRequestDispatcher("../error/error.jsp").forward(request, response);
+	}
+%>
+
 <!doctype html>
 <html lang="en">
   <head>
-
+	
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	
+	<style type="text/css">
+	        table a {
+	        	text-decoration: none;
+	        }
 
+	</style>
+	
     <title>adminMemberList</title>
     
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
@@ -72,15 +89,13 @@
             </thead>
             <tbody>
                 <c:forEach items="${requestScope.list}" var="memberDto">
-			  		<tbody>
 					    <tr>
-					      <td>${memberDto.memberNo}</td>
+					      <th scope="row">${memberDto.memberNo}</th>
 					      <td><a href="${pageContext.request.contextPath}/front?key=member&methodName=selectMemberByNoForAdmin&memberNo=${memberDto.memberNo}">${memberDto.memberID}</a></td>
 					      <td>${memberDto.memberName}</td>
 					      <td>${memberDto.memberExp}</td>
 					      <td><button type="button" class="btn btn-primary btn-sm deleteBtn" value="${memberDto.memberNo}">삭제</button>
 					    </tr>
-				  	</tbody>
 			 	</c:forEach>
             </tbody>
         </table>
