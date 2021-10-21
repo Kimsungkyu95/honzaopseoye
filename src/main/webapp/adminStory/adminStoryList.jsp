@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+ 
 <!-- 관리자인지 체크해서 아니면 error페이지로 이동 -->
 <%
 	String user = (String)session.getAttribute("loginId");
@@ -11,8 +11,8 @@
 		request.setAttribute("errorMsg", "관리자만 접근할 수 있는 페이지 입니다.");
 		request.getRequestDispatcher("../error/error.jsp").forward(request, response);
 	}
-%>
-
+%> 
+ 
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -74,7 +74,7 @@ $(function(){
                    	str+="<tr>";
                    	str+="<td><b>"+item.storyNo+"</td>";
                    	str+="<td>"+item.memberNo+"</td>";
-                   	str+="<td><a href='${path}/userStory/userStoryDetails.jsp' value='"+item.storyNo+"'>"+item.storyTitle+"</a></td>";
+                   	str+="<td><a href='${path}/front?key=userStory&methodName=selectByStoryNo&storyNo="+item.storyNo+"'>"+item.storyTitle+"</a></td>";
                    	str+="<td>"+item.storyRegdate+"</td>";
                    	str+="<td>"+item.storyVisited+"</td>";
                    	str+="<td><input type='button' id='"+item.storyNo+"' value='삭제'></td>"; 
@@ -135,13 +135,13 @@ $(function(){
                 	str+="<tr>";
                 	str+="<td><b>"+item.storyNo+"</td>";
                 	str+="<td>"+item.memberNo+"</td>";
-                	str+="<td><a href='${path}/userStory/userStoryDetails.jsp' value='"+item.storyNo+"'>"+item.storyTitle+"</a></td>";
+                	str+="<td><a href='${path}/front?key=userStory&methodName=selectByStoryNo&storyNo="+item.storyNo+"'>"+item.storyTitle+"</a></td>";
                 	str+="<td>"+item.storyRegdate+"</td>";
                 	str+="<td>"+item.storyVisited+"</td>";
                 	str+="<td><input type='button' id='"+item.storyNo+"' value='삭제'></td>"; 
                 	str+="</tr>";
                 });
-                
+                str+="<div><a href='${path}/adminStory/adminStoryList.jsp'>리스트로 돌아가기</a></div>";
                 $("#tbody").html(str); 
                 
 					
@@ -215,4 +215,5 @@ $(function(){
     <!-- <script src="js/bootstrap.min.js"></script> -->
   </body>
 </html>
+    
     

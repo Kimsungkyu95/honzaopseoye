@@ -26,7 +26,7 @@ profile="http://www.w3.org/2005/10/profile"
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     
-    <style type="text/css">
+<style type="text/css">
   table{background-color:#E6E1FF; border:1px solid #C6BBEF;}
   tr td{border:20px solid white; padding-bottom:20px; width:25%}
   img {
@@ -66,25 +66,7 @@ profile="http://www.w3.org/2005/10/profile"
 		  levelBar+="<button type='button' value='5' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='먹고 싶은 혼밥 메뉴를 탐험해보세요'>Lv.5 능력자</button>";
 		  levelBar+="<button type='button' value='6' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='개척하세요'>Lv.6 전사</button>";
 		  levelBar+="<button type='button' value='7' class='btn btn-primary'data-bs-toggle='tooltip' data-bs-placement='top' title='끝판왕'>Lv.7 전능자</button></div></div>";
-		  
-		  let json = {dessert:"디저트", fastfood:"패스트푸드", pizza:"피자", chicken:"치킨",
-					snack:"분식", meat:"고기", soup:"국밥", nuddle:"국수" , coldnuddle:"냉면", hanjeongsik:"한정식", 
-					porkcutlet:"돈까스", lamen :"일본라멘", sushi: "초밥", sashimi:"회", chinese:"중화요리",
-					italian:"이탈리안", worldfood:"세계음식", buffef:"뷔페",bar:"술집"
-				}
-			function inputCategory(categoryDetailsName) {
-				var keys = Object.keys(json);  //키를 가져온다.
-				for (var i=0; i<keys.length; i++) {
-			    	var str ='';
-			    	var key = keys[i];
-			    	if(key==categoryDetailsName){
-			    		document.getElementById('category').innerHTML = json[key];
-			    	}
-			    	
-			    }
 
-			 }
-		  
 		  
 		  $("#display2").empty();
 		  $("#display3").empty();
