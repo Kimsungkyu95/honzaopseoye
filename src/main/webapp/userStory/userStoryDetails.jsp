@@ -27,9 +27,8 @@
 <div class="col-md-4">
       <div class="position-sticky" style="top: 2rem;">
 				<div class="p-4 mb-3 bg-light rounded">
-					<c:forEach items="${requestScope.storyImgList }"  var="img">
-        				<img src="${path}/img/storySave/${story.storyTitle}/${img}" style="max-width: 100%; height: auto; border-radius: 10%; display: block; margin: auto;">
-					</c:forEach>
+					
+        				<img src="${path}/img/storySave/${story.storyTitle}/${storyImgList[0]}" style="max-width: 100%; height: auto; border-radius: 10%; display: block; margin: auto;">
 						
 					<br>
 					<p>

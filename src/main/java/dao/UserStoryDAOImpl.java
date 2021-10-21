@@ -63,7 +63,7 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 		ResultSet rs=null;
 		StoryDTO storyDTO=null;
 		String sql = proFile.getProperty("userStory.selectByStoryNo");
-//		select story_no,story_title,member_id,story_visited,restaurant_name,story_content,story_regdate from story natural join member where story_no=?
+//		select story_no,story_title,member_id,story_visited,restaurant_name,story_content,story_regdate,story_password from story natural join member where story_no=?
 		
 		try {
 			con = DbUtil.getConnection();
@@ -80,6 +80,7 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 				storyDTO.setRestaurantName(rs.getString(5));
 				storyDTO.setStoryContent(rs.getString(6));
 				storyDTO.setStoryRegdate(rs.getString(7));
+				storyDTO.setStoryPassword(rs.getString(8));
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -218,7 +219,7 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 		PreparedStatement ps=null;
 		int result=0;
 		String sql = proFile.getProperty("userStory.delete");
-//		userStory.delete=delete from story where story_no=? and password=?
+//		userStory.delete=delete from story where story_no=? and story_password=?
 		
 		try {
 			con = DbUtil.getConnection();
