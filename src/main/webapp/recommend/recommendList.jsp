@@ -111,7 +111,7 @@ profile="http://www.w3.org/2005/10/profile"
 								if(index%4==0){
 									str+="</tr><tr>";
 								}
-		                    	str+="<td><a href='${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo="+item.restaurantNo+"'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+"<br>"+item.gu+"-"+item.categoryDetailsName+"</td>";              
+		                    	str+="<td><b><a href='${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo="+item.restaurantNo+"'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+"</b><br>"+item.gu+" / "+item.categoryDetailsName+"</td>";              
 		                    
 		                    });
 							str+="</tr></table>";
@@ -162,7 +162,7 @@ profile="http://www.w3.org/2005/10/profile"
 								if(index%4==0){
 									str+="</tr><tr>";
 								}
-		                    	str+="<td><a href='${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo="+item.restaurantNo+"'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+"<br>"+item.gu+"-"+item.categoryDetailsName+"</td>";              
+		                    	str+="<td><b><a href='${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo="+item.restaurantNo+"'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+"</b><br>"+item.gu+" / "+item.categoryDetailsName+"</td>";              
 		                    
 		                    });
 							str+="</tr></table>";
@@ -200,7 +200,7 @@ profile="http://www.w3.org/2005/10/profile"
 								if(index%4==0){
 									str+="</tr><tr>";
 								}
-		                    	str+="<td><a href='${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo="+item.restaurantNo+"'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+"<br>"+item.gu+"-"+item.categoryDetailsName+"</td>";              
+		                    	str+="<td><b><a href='${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo="+item.restaurantNo+"'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+"</b><br>"+item.gu+" / "+item.categoryDetailsName+"</td>";              
 		                    
 		                    });
 							str+="</tr></table>";
@@ -236,7 +236,7 @@ profile="http://www.w3.org/2005/10/profile"
 						if(index%4==0){
 							str+="</tr><tr>";
 						}
-                    	str+="<td><a href='${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo="+item.restaurantNo+"'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+"<br>"+item.gu+"-"+item.categoryDetailsName+"</td>";              
+                    	str+="<td><b><a href='${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo="+item.restaurantNo+"'><img src='${path}/img/restaurantImage/"+item.categoryName+"/"+item.categoryDetailsName+"/"+item.restaurantName+"/"+item.restaurantImg+"'></a><br>"+item.restaurantName+"</b><br>"+item.gu+" / "+item.categoryDetailsName+"</td>";              
                     
                     });
 					str+="</tr></table>";

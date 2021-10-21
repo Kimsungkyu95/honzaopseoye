@@ -11,8 +11,8 @@ public class AdminStoryServiceImpl implements AdminStoryService {
 	private AdminStoryDAO dao = new AdminStoryDAOImpl();
 
 	@Override
-	public List<AdminStoryDTO> selectByOption(String selectKey, String selectValue ) {
-		List<AdminStoryDTO> list = dao.selectByOption(selectKey, selectValue);
+	public List<AdminStoryDTO> selectPage(int pageNo, String selectKey, String selectValue) {
+		List<AdminStoryDTO> list = dao.selectPage(pageNo, selectKey, selectValue);
 		return list;
 	}
 

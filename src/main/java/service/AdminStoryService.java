@@ -7,9 +7,9 @@ import dto.AdminStoryDTO;
 public interface AdminStoryService {
 	
 	/**
-     * 검색 옵션으로 검색
+     * 관리자 스토리 페이징 처리
      */
-	List<AdminStoryDTO> selectByOption(String selectKey, String selectValue);
+	List<AdminStoryDTO> selectPage(int pageNo, String selectKey, String selectValue);
     
 
 }

@@ -106,7 +106,8 @@ $(function(){
 		 }
 	 });
 	
-	$("button").click(function(){
+	
+	$(document).on("click", ".btn", function(){
 		//alert($(".form-control").val()); 검색어 값
 		//alert($(".form-select").val()); 셀렉 값
 		
@@ -114,7 +115,10 @@ $(function(){
 				url: "../selectByOption",
 				type: "post", 
 				dataType: "json",
-				data: {value:$(".form-control").val(), option:$(".form-select").val()},
+				data: {
+					value:$(".form-control").val(), 
+					option:$(".form-select").val()
+					},
 				success: function(result){
 					let str="";
                 $.each(result, function(index, item){
@@ -133,7 +137,7 @@ $(function(){
 					
 				},
 				error: function(err){ 
-					alert(err);
+					alert("에러");
 					selectAll();
 				}
 			});//ajax의 끝
@@ -182,7 +186,7 @@ $(function(){
         <form class="row g-3 rounded p-2">
             <div class="col-auto">  
                 <select class="form-select col-auto" aria-label="Default select example" name="selectKey">
-                    <option value="selectByStoryTitle" selected>스토리제목</option>
+                    <option value="selectByStoryTitle">스토리제목</option>
                     <option value="selectByMemberNo">회원번호</option>
                 </select>
             </div>
@@ -217,6 +221,35 @@ $(function(){
 </div>
 
 </form>
+
+ <!-- 페이징 처리 -->
+    <jsp:useBean class="paging.PageCnt" id="p"/>
+    <c:set var="doneLoop" value="false"/>
+	<c:set var="temp" value="${(pageNo-1) % p.blockcount}"/> <!-- (1-1)%2   0, (2-1)%2    1 , (3-1)%2  0 -->
+	<c:set var="startPage" value="${pageNo - temp}"/> <!--   1- 0 -->
+    
+    <div class="container">
+	    <nav aria-label="Page navigation example" class="mt-4 pagenation">
+	        <ul class="pagination" style="justify-content: center;">
+	        
+	        	<c:if test="${(startPage-p.blockcount) > 0}">
+		            <li class="page-item"><a class="page-link" href="${path}/front?key=adminMember&methodName=pagingSelectReview&pageNo=${startPage-1}&selectKey=${requestScope.selectKey}&selectValue=${requestScope.selectValue}">Previous</a></li>    	
+	        	</c:if>
+	        	<c:forEach var="i" begin="${startPage}" end="${startPage + p.blockcount - 1}">
+		            <c:if test="${i > p.pageCnt}">
+		            	<c:set var="doneLoop" value="true"/>
+		            </c:if>
+		            <c:if test="${not doneLoop}">
+			            <li class="page-item ${i == pageNo ? 'active' : ''}"><a class="page-link" href="${path}/front?key=adminMember&methodName=pagingSelectReview&pageNo=${i}&selectKey=${requestScope.selectKey}&selectValue=${requestScope.selectValue}">${i}</a></li>	            
+		            </c:if> 	
+	        	</c:forEach>
+	            <c:if test="${(startPage+p.blockcount) <= p.pageCnt}">
+		            <li class="page-item"><a class="page-link" href="${path}/front?key=adminMember&methodName=pagingSelectReview&pageNo=${startPage+p.blockcount}&selectKey=${requestScope.selectKey}&selectValue=${requestScope.selectValue}">Next</a></li>
+	            
+	            </c:if>
+	        </ul>
+	    </nav>    
+    </div>
 
 
 
