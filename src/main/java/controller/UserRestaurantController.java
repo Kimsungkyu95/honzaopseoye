@@ -52,15 +52,17 @@ public class UserRestaurantController implements Controller {
 					for(int i = 0; i < 1; i++) {
 			       		 String fileName = files[i].toString();
 //			     		System.out.println(fileName.substring(fileName.lastIndexOf("\\")+1));
-			       		 imgList.add("img/restaurantImage"+"/" + category+"/"+categoryDetail+"/"+restaurantName+"/"+fileName.substring(fileName.lastIndexOf("\\")+1));
+			       		 imgList.add(fileName.substring(fileName.lastIndexOf("\\")+1));
 			       	 }
 				}else {
-					imgList.add("img/tray1.png");
+//					imgList.add("img/tray1.png");
 				}
 			}else {
-				imgList.add("img/tray1.png");
+//				imgList.add("img/tray1.png");
 			}
 			restaurantDTO.setImgList(imgList);
+			restaurantDTO.setCategoryName(category);
+			restaurantDTO.setCategoryDetailsName(categoryDetail);
 		}
 		
 		request.setAttribute("list", restaurantList); //뷰에서 ${requestScope.list} 
@@ -99,17 +101,18 @@ public class UserRestaurantController implements Controller {
 				for(int i = 0; i < 2; i++) {
 		       		 String fileName = files[i].toString();
 //		     		System.out.println(fileName.substring(fileName.lastIndexOf("\\")+1));
-		       		 imgList.add("img/restaurantImage"+"/" + temp.getCategoryName()+"/"+temp.getCategoryDetailsName()+"/"+restaurantName+"/"+fileName.substring(fileName.lastIndexOf("\\")+1));
+		       		 imgList.add(fileName.substring(fileName.lastIndexOf("\\")+1));
 		       	 }
-				System.out.println("사진있음");
+
 			}else {
-				imgList.add("img/tray1.png");
-				System.out.println("폴더 비어있음");
+//				imgList.add("img/tray1.png");
+
 			}
 		}else {
-			imgList.add("img/tray1.png");
-			System.out.println("폴더도 없음");
+//			imgList.add("img/tray1.png");
+
 		}
+		restaurantDTO.setCategoryName(temp.getCategoryName());
 		restaurantDTO.setImgList(imgList);
 		
 		request.setAttribute("restaurant",restaurantDTO);

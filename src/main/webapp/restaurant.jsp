@@ -59,7 +59,8 @@
                 	reviewScore: $('#reviewScore').val()
                 }, //서버에게 보낼 parameter정보
                 success: function (result) {
-                    alert(result);             	
+                    alert(result);   
+                    location.reload();
                 }, //성공했을 때 callback함수
                 error: function (err) {
                     alert(err + "발생했어요.");
@@ -82,8 +83,13 @@
 <div class="col-md-4" id="div1">
       <div class="position-sticky" style="top: 2rem;">
         <div class="p-4 mb-3 rounded">
-          <img src="${restaurant.imgList[0]}" width="47%" style="float:left; margin-right:10px"/> 
-          <img src="${restaurant.imgList[1]}" width="47%"/>
+        <c:if test="${!empty restaurant.imgList}">
+          <img src="${path}/img/restaurantImage/${restaurant.categoryName}/${restaurant.categoryDetailsName}/${restaurant.restaurantName}/${restaurant.imgList[0]}" width="47%" style="float:left; margin-right:10px"/> 
+          <img src="${path}/img/restaurantImage/${restaurant.categoryName}/${restaurant.categoryDetailsName}/${restaurant.restaurantName}/${restaurant.imgList[1]}" width="47%"/>
+        </c:if>
+        <c:if test="${empty restaurant.imgList}">
+        	<img src="${path}/img/tray1.png">
+        </c:if>
         </div>
 
         <div class="p-4" style="margin-left:100px">

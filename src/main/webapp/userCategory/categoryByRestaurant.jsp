@@ -166,7 +166,12 @@
 		 </c:if>
 					<td>
 						<a href="${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo=${restaurant.restaurantNo}" id="font">
-							<img src="${restaurant.imgList[0]}"/> 
+							<c:if test="${!empty restaurant.imgList}">
+								<img src="${path}/img/restaurantImage/${restaurant.categoryName}/${restaurant.categoryDetailsName}/${restaurant.restaurantName}/${restaurant.imgList[0]}"/> 
+							</c:if>
+							<c:if test="${empty restaurant.imgList}">
+								<img alt="쟁반그림" src="${path}/img/tray1.png">
+							</c:if>
 						  </a><br>
 					   		<a href="${path}/front?key=userRestaurant&methodName=selectByRestaurantNo&restaurantNo=${restaurant.restaurantNo}">
 					   					<span>${restaurant.restaurantName}</span>
@@ -184,7 +189,6 @@
 </table> 
  	</div>	
 </div>
-
 
 <!--큰 div영역 끝  -->
 
