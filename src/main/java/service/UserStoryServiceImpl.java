@@ -19,19 +19,20 @@ public class UserStoryServiceImpl implements UserStoryService {
 
 	@Override
 	public StoryDTO selectByStoryNo(int storyNo, boolean flag) throws SQLException {
+		StoryDTO storyDTO = null;
 		if(flag) {
 			System.out.println(storyNo);
 			if(storyDAO.increamentByStoryVisited(storyNo) == 0) {
 				throw new SQLException("조회수 증가에 문제가 생겨 조회할 수 없습니다.");
 			}
 			
-			StoryDTO storyDTO = storyDAO.selectByStoryNo(storyNo);
+			storyDTO = storyDAO.selectByStoryNo(storyNo);
 			if(storyDTO == null) {
 				throw new SQLException(storyNo + " 제품을 조회할 수 없습니다.");
 			}
 		}
+		return storyDTO;
 		
-		return null;
 	}
 
 	@Override

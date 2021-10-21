@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,19 +28,19 @@
       <div class="position-sticky" style="top: 2rem;">
         <div class="p-4 mb-3 bg-light rounded">
         <img src="../img/초밥2.jpg" style="max-width:100%; height:auto; border-radius: 10%;display : block ; margin : auto;">
-          <br><p><h4 class="fst-italic" style="text-align: center;">광진구 초밥 맛집 BEST 5 !!!</h4>
+          <br><p><h4 class="fst-italic" style="text-align: center;">${story.storyTitle }</h4>
           
         </div>
 
         <div class="p-4">
           <img src="../img/humanicon.png" style="width: 80px; height: 80px; border-radius: 70%; vertical-align: bottom;">
 			<br><p><br>
-			<span><b><i>Editor. 김혼자</i></b></span>
+			<span><b><i>Editor. ${story.memberName }</i></b></span>
 			<p><br>
-			2021-10-15 | <img src="../img/eyeicon.png" style="width: 20px; height: 20px;">
-			<span>조회수</span><p>
+			${story.storyRegdate } | <img src="../img/eyeicon.png" style="width: 20px; height: 20px;">
+			<span>${story.storyVisited }</span><p>
 			<p><hr>
-			<button type="submit" class="btn btn-secondary mb-3"><a href="${pageContext.request.contextPath}/userStory/userStoryUpdate.jsp" style="color: white;">수정</a></button>
+			<button type="submit" class="btn btn-secondary mb-3"><a href="${path}/userStory/userStoryUpdate.jsp?storyNo=${story.storyNo}"  style="color: white;">수정</a></button>
         </div>
       </div>
     </div>
@@ -48,27 +49,19 @@
       <article class="blog-post">
       <br>
       
-        <h2 class="blog-post-title"><b>초밥집1</b></h2>
-        <img src="../img/초밥1.jpeg">
+        <h2 class="blog-post-title"><b>${story.restaurantName }</b></h2>
+        <c:forEach items="${requestScope.storyImgList }"  var="img">
+        	<img src="${path}/img/storySave/${story.storyTitle}/${img}">
+        </c:forEach>
+        
         <div style="width: 600px">
-        <p><br>좋은 리뷰가 많아서 가봤더니 역시 서비스도 너무 좋고 스시가 커서 입안한가득 먹는기분이 너무 좋았어요  맛도 너무맛있고 숙성스시인지  엄청부드러워서 먹기편했습니다  다들 너무 친절하셨어요!! 재방문의사 ×1000000</p>
+        <p><br>${story.storyContent }</p>
         </div>
         <hr>
       </article>
       <article class="blog-post">
       <br>
-      
-        <h2 class="blog-post-title"><b>초밥집2</b></h2>
-        <img src="../img/회.jpeg">
-        <div style="width: 600px">
-        <p><br>스시만에서부터 먹어보고 참 인상적이었던 권오준 셰프님의 타쿠미 곤 첫 방문. 이날은 런치 오마카세.
-
-스시만이랑 비교했을 때 훨씬 개성 있고 인상적인 스시였다. 숙성되어 맛이 진하고 깊으면서도 이 부분을 네타도 크고 간도 강하게, 샤리도 간을 강하게 하여 본인 스시만의 개성을 남긴 부분이 인상적이었다.
-
-정말 서울 내의 그 수많은 스시야 중에서도 본인만의 강력한 무기와 차별성을 가질 수 있다는 것만으로도 방문해야할만한 이유는 충분하다.</p>
-        </div>
-        
-        <hr>
+             
       </article>
 </div>
 </div>

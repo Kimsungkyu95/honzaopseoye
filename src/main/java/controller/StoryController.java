@@ -67,10 +67,28 @@ public class StoryController implements Controller {
 		String storyNo =  request.getParameter("storyNo");
 		System.out.println(storyNo);
     	StoryDTO storyDTO = userStoryService.selectByStoryNo(Integer.parseInt(storyNo), true);
+    	//스토리 사진 가져오기
+    	File file = new File(request.getServletContext().getRealPath("/img/storySave") + "/" + storyDTO.getStoryTitle());
+    	List<String> storyImgList = new ArrayList<String>();
+    	if(file.exists()) {
+			File files [] = file.listFiles();
+			if(files.length>=1) {
+				for(int i = 0; i < files.length; i++) {
+		       		 String fileName = files[i].toString();
+		       		storyImgList.add(fileName.substring(fileName.lastIndexOf("\\")+1));
+		       	 }
+			}else {
+				storyImgList.add("img/삼겹살.jpeg");
+			}
+		}else {
+			storyImgList.add("img/삼겹살.jpeg");
+		}
+    	
     	
     	request.setAttribute("story", storyDTO);
+    	request.setAttribute("storyImgList", storyImgList);
     	
-    	return new ModelAndView("userStory/userStoryList.jsp");
+    	return new ModelAndView("userStory/userStoryDetails.jsp");
 	}
 	
 	/**

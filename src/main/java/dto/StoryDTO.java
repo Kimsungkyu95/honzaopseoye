@@ -7,14 +7,6 @@ public class StoryDTO {
 	private int memberNo;
 	private String memberName;
 	private String storyTitle;
-	public String getMemberName() {
-		return memberName;
-	}
-
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
-	}
-
 	private String restaurantName;
 	private String storyContent;
 	private String storyRegdate;
@@ -73,6 +65,22 @@ public class StoryDTO {
 		this.storyContent = storyContent;
 		this.storyPassword = storyPassword;
 		this.storyImgList = storyImgList;
+	}
+	
+	
+
+	public StoryDTO(int storyNo, int memberNo, String memberName, String storyTitle, String restaurantName,
+			String storyContent, String storyRegdate, int storyVisited, String storyPassword) {
+		super();
+		this.storyNo = storyNo;
+		this.memberNo = memberNo;
+		this.memberName = memberName;
+		this.storyTitle = storyTitle;
+		this.restaurantName = restaurantName;
+		this.storyContent = storyContent;
+		this.storyRegdate = storyRegdate;
+		this.storyVisited = storyVisited;
+		this.storyPassword = storyPassword;
 	}
 
 	public int getStoryNo() {
@@ -145,5 +153,13 @@ public class StoryDTO {
 
 	public void setStoryContent(String storyContent) {
 		this.storyContent = storyContent;
+	}
+	
+	public String getMemberName() {
+		return memberName;
+	}
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
 }
