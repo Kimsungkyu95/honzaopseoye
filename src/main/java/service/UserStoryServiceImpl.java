@@ -58,7 +58,7 @@ public class UserStoryServiceImpl implements UserStoryService {
 		// 비밀번호 일치여부를 판단
 		StoryDTO dbStory = storyDAO.selectByStoryNo(storyNo);
 		if(!dbStory.getStoryPassword().equals(password)) {
-			System.out.println("service: " + dbStory.getStoryPassword());
+			System.out.println("service : " + dbStory.getStoryPassword());
 			throw new SQLException("비밀번호가 틀리므로 삭제할 수 없습니다.");
 		}
 		
