@@ -6,6 +6,7 @@ public class StoryDTO {
 	private int storyNo;
 	private int memberNo;
 	private String memberName;
+	private String memberId;
 	private String storyTitle;
 	private String restaurantName;
 	private String storyContent;
@@ -162,4 +163,14 @@ public class StoryDTO {
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
 	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+	
+	
 }
