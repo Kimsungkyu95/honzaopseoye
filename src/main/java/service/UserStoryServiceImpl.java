@@ -53,11 +53,6 @@ public class UserStoryServiceImpl implements UserStoryService {
 	}
 
 	@Override
-	public void updateStoryImg(StoryImgDTO storyImageDTO) throws SQLException {
-		
-	}
-
-	@Override
 	public void delete(int storyNo, String password, String path) throws SQLException {
 		// 비밀번호 일치여부를 판단
 		StoryDTO dbStory = storyDAO.selectByStoryNo(storyNo);

@@ -77,17 +77,15 @@
 											height="225" xmlns="http://www.w3.org/2000/svg" role="img"
 											aria-label="Placeholder: Thumbnail"
 											preserveAspectRatio="xMidYMid slice" focusable="false">
-         		<%-- <img src="${story.imgList[0]}"/> --%> 
+         		<%-- <img src="${story.storyImgList[0]}"/> --%>
             	<rect width="100%" height="100%" fill="#55595c"></rect></svg>
 
 										<div class="card-body">
 											<h3>${story.storyTitle}</h3>
 											<p class="card-text">${story.memberNo }</p>
-											<div
-												class="d-flex justify-content-between align-items-center">
+											<div class="d-flex justify-content-between align-items-center">
 												<div class="btn-group">
-													<button type="button"
-														class="btn btn-sm btn-outline-secondary">
+													<button type="button" class="btn btn-sm btn-outline-secondary">
 														<a href="${path}/front?key=userStory&methodName=selectAll&storyNo=${story.storyNo}" style="color: gray;"> 
 														스토리 보러 »</a>
 													</button>

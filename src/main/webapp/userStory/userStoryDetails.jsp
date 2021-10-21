@@ -45,6 +45,7 @@
     <div class="col-md-8" id="div2">
       <article class="blog-post">
       <br>
+      
         <h2 class="blog-post-title"><b>초밥집1</b></h2>
         <img src="../img/초밥1.jpeg">
         <div style="width: 600px">
@@ -54,6 +55,7 @@
       </article>
       <article class="blog-post">
       <br>
+      
         <h2 class="blog-post-title"><b>초밥집2</b></h2>
         <img src="../img/회.jpeg">
         <div style="width: 600px">
@@ -63,6 +65,7 @@
 
 정말 서울 내의 그 수많은 스시야 중에서도 본인만의 강력한 무기와 차별성을 가질 수 있다는 것만으로도 방문해야할만한 이유는 충분하다.</p>
         </div>
+        
         <hr>
       </article>
 </div>
