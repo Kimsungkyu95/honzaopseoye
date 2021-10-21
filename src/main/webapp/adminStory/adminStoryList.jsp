@@ -107,8 +107,8 @@ $(function(){
 	 });
 	
 	$("button").click(function(){
-		//alert($(".form-control").val());
-		//alert($(".form-select").val());
+		//alert($(".form-control").val()); 검색어 값
+		//alert($(".form-select").val()); 셀렉 값
 		
 		 $.ajax({
 				url: "../selectByOption",
@@ -127,11 +127,9 @@ $(function(){
                 	str+="<td><input type='button' id='"+item.storyNo+"' value='삭제'></td>"; 
                 	str+="</tr>";
                 });
-
                 
                 $("#tbody").html(str); 
-            
-					
+                
 					
 				},
 				error: function(err){ 
@@ -139,7 +137,6 @@ $(function(){
 					selectAll();
 				}
 			});//ajax의 끝
-		 
 		
 	 });
 	
@@ -201,7 +198,7 @@ $(function(){
 <form>
 
     <div class="container bg-light pt-4 pb-3 px-5 mt-4 rounded shadow-lg" id="listTable">
-        <h2>스토리 목록</h2>
+        <h2>스토리 관리</h2>
         <table class="table">
           <thead>
             <tr>

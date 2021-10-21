@@ -68,14 +68,14 @@ public class StoryController implements Controller {
 		System.out.println(storyNo);
     	StoryDTO storyDTO = userStoryService.selectByStoryNo(Integer.parseInt(storyNo), true);
     	//스토리 사진 가져오기
-    	File file = new File(request.getServletContext().getRealPath("/img/storySave") + "/" + storyDTO.getStoryTitle());
+    	File file = new File(request.getServletContext().getRealPath("/img/storySave") + "\\" + storyDTO.getStoryTitle());
     	List<String> storyImgList = new ArrayList<String>();
     	if(file.exists()) {
 			File files [] = file.listFiles();
 			if(files.length>=1) {
 				for(int i = 0; i < files.length; i++) {
 		       		 String fileName = files[i].toString();
-		       		storyImgList.add(fileName.substring(fileName.lastIndexOf("\\")+1));
+		       		storyImgList.add(fileName.substring(fileName.lastIndexOf("/")+1));
 		       	 }
 			}else {
 				storyImgList.add("img/삼겹살.jpeg");
@@ -104,7 +104,7 @@ public class StoryController implements Controller {
 	 */
 	public ModelAndView insert(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-	       String saveDir=request.getServletContext().getRealPath("/img/storySave") + "/" + request.getParameter("storyTitle");
+	       String saveDir=request.getServletContext().getRealPath("/img/storySave") + "\\" + request.getParameter("storyTitle");
 	       int maxSize = 1024*1024*100; 
 			String encoding="UTF-8";
 			File folder = new File(saveDir);
