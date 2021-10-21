@@ -49,9 +49,9 @@ pageEncoding="UTF-8"%>
 						<a class="nav-link" href="${pageContext.request.contextPath}/front?key=member&methodName=logout">LogOut</a>
 					</li>
 					<!-- 위시리스트 -->
-					<li class="nav-item">
+					<%-- <li class="nav-item">
 						<a class="nav-link" href="${pageContext.request.contextPath}/myPage/myPageWishList.jsp">WishList</a>
-					</li>
+					</li> --%>
 				 </c:if>
 				
 				<!-- 스토리 -->

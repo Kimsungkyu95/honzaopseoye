@@ -121,7 +121,7 @@
                         <p class="card-text">
                             내가 작성한 리뷰들을 관리할 수 있습니다.
                             <br>
-                            조회, 수정, 삭제가 가능합니다.
+                            조회가 가능합니다.
                         </p>
                         <a class="nav-link"
                             href="${pageContext.request.contextPath}/front?key=member&methodName=selectReviewList&memberID=${loginId}">리뷰보기</a>
@@ -130,7 +130,7 @@
             </div>
             
             <div class="col">
-                <div class="card">
+                <!-- <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">위시리스트</h5>
                         <p class="card-text">
@@ -141,7 +141,7 @@
                         <button type="button" onclick="location.href='myPageWishList.jsp'"
                         class="btn btn-secondary btn-lg">WISHLIST</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     <a class="nav-link"

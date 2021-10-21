@@ -3,9 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-\${pageContext.request.contextPath} = ${pageContext.request.contextPath} <br>
-\${path} : ${path}
-
 <!doctype html>
 <html lang="en">
   <head>
