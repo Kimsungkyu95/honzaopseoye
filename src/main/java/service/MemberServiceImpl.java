@@ -9,6 +9,7 @@ import dto.LevelUpExpDTO;
 import dto.MemberDTO;
 import dto.RestaurantDTO;
 import dto.ReviewContentDTO;
+import dto.ReviewDTO;
 
 public class MemberServiceImpl implements MemberService {
 	
@@ -201,6 +202,15 @@ public class MemberServiceImpl implements MemberService {
 	public RestaurantDTO wishListSelect(int restaurantNo) throws SQLException {
 		RestaurantDTO dto = dao.wishListSelect(restaurantNo);
 		return dto;
+	}
+
+	@Override
+	public void insertReview(String loginId, ReviewDTO reviewDTO) throws SQLException {
+
+		if(dao.insertReview(loginId, reviewDTO)== 0) {
+			throw new SQLException("리뷰등록에 실패했습니다.");
+		}
+		
 	}
 	
 	

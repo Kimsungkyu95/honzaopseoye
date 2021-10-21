@@ -791,6 +791,44 @@ int returnValue = 0;
 			DbUtil.dbClose(ps, con);
 		}
 		return returnValue;
+	}
+	
+	public int selectMemberId(String loginId) throws SQLException{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement("select member_no from member where member_id = ?");
+			ps.setString(1, loginId);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+		}finally {
+			DbUtil.dbClose(rs, ps, con);
+		}
+		return result;
+	}
+	
+	@Override
+	public int insertReview(String loginId, ReviewDTO reviewDTO) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		int memberNo = selectMemberId(loginId);
+		int result = 0;
+		try {
+			con = DbUtil.getConnection();
+			ps = con.prepareStatement("");
+		}finally {
+			DbUtil.dbClose(ps, con);
+		}
+				
+				
+		return result;
+		
 	}	
 	
 	
