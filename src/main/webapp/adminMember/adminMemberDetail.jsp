@@ -232,6 +232,11 @@
 			
 		})
 	})
+	
+	function goBack(){
+		window.history.back();
+	}
+	
 	</script>
     
     
@@ -299,7 +304,7 @@
 		<div class="col text-center">
 			<button type="button" class="btn btn-secondary btn-lg" id="updateActual">수정하기</button>
 			<button type="button" id="resetForm" class="btn btn-secondary btn-lg">취소</button>
-			<button type="button" class="btn btn-secondary btn-lg" onclick="location.href='${path}/myPage/myPage.jsp'">마이페이지</button>
+			<button type="button" value="뒤로가기" class="btn btn-secondary btn-lg" onclick="goBack();">뒤로가기</button>
 		</div>
 	</div>
 
