@@ -75,7 +75,7 @@ public class StoryController implements Controller {
 			if(files.length>=1) {
 				for(int i = 0; i < files.length; i++) {
 		       		 String fileName = files[i].toString();
-		       		storyImgList.add(fileName.substring(fileName.lastIndexOf("/")+1));
+		       		storyImgList.add(fileName.substring(fileName.lastIndexOf("\\")+1));
 		       	 }
 			}else {
 				storyImgList.add("img/삼겹살.jpeg");
@@ -131,7 +131,7 @@ public class StoryController implements Controller {
 	        	 File files [] = dir.listFiles();
 	        	 for(int i = 0; i < files.length; i++) {
 	        		 String fileName = files[i].toString();
-	        		 storyImgList.add(fileName.substring(fileName.lastIndexOf("/")+1));
+	        		 storyImgList.add(fileName.substring(fileName.lastIndexOf("\\")+1));
 	        	 }
 	        }
 	        

@@ -51,7 +51,7 @@ public class UserRestaurantController implements Controller {
 					for(int i = 0; i < 1; i++) {
 			       		 String fileName = files[i].toString();
 //			     		System.out.println(fileName.substring(fileName.lastIndexOf("\\")+1));
-			       		 imgList.add("img/restaurantImage"+"/" + category+"/"+categoryDetail+"/"+restaurantName+"/"+fileName.substring(fileName.lastIndexOf("/")+1));
+			       		 imgList.add("img/restaurantImage"+"/" + category+"/"+categoryDetail+"/"+restaurantName+"/"+fileName.substring(fileName.lastIndexOf("\\")+1));
 			       	 }
 				}else {
 					imgList.add("img/삼겹살.jpeg");
@@ -92,7 +92,7 @@ public class UserRestaurantController implements Controller {
 				for(int i = 0; i < 2; i++) {
 		       		 String fileName = files[i].toString();
 //		     		System.out.println(fileName.substring(fileName.lastIndexOf("\\")+1));
-		       		 imgList.add("img/restaurantImage"+"/" + category+"/"+categoryDetail+"/"+restaurantName+"/"+fileName.substring(fileName.lastIndexOf("/")+1));
+		       		 imgList.add("img/restaurantImage"+"/" + category+"/"+categoryDetail+"/"+restaurantName+"/"+fileName.substring(fileName.lastIndexOf("\\")+1));
 		       	 }
 			}else {
 				imgList.add("img/삼겹살.jpeg");
