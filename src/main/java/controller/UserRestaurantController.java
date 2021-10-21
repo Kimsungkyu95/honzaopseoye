@@ -117,7 +117,7 @@ public class UserRestaurantController implements Controller {
 		
 		request.setAttribute("list", reList);
 		
-		return new ModelAndView("mainMap/multiMarker.jsp");
+		return new ModelAndView("main.jsp");
 	}
 
 

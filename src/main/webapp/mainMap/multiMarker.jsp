@@ -33,16 +33,14 @@ var lng = new Array();
 	lat.push("${restaurant.restaurantLatitude}");
 	lng.push("${restaurant.restaurantLongitude}");
 </c:forEach>
-/*  for ( var i = 0; i < reName.length; i++) {
+for ( var i = 0; i < reName.length; i++) {
 	 	console.log(reName[i])
 	 	console.log(lat[i])
 	 	console.log(lng[i])
-}  */
+} 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
 // 마커 이미지의 이미지 주소입니다
 var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-    
 for (var i = 0; i < reName.length; i ++) {
     
     // 마커 이미지의 이미지 크기 입니다
