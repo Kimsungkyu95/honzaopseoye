@@ -9,7 +9,6 @@ import java.util.List;
 
 import dto.AdminStoryDTO;
 import dto.RestaurantDTO;
-import dto.ReviewDTO;
 import paging.PageCnt;
 import util.DbUtil;
 
@@ -75,7 +74,7 @@ public class AdminStoryDAOImpl implements AdminStoryDAO{
 	 * 관리자 스토리 검색옵션으로 검색
 	 * */
 	@Override
-	public List<AdminStoryDTO> selectByOption(String selectKey, String selectValue) throws SQLException{
+	public List<AdminStoryDTO> selectByOption(String selectKey, String selectValue) {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -107,50 +106,6 @@ public class AdminStoryDAOImpl implements AdminStoryDAO{
 					
 					list.add(dto);
 				}	
-	
-		}finally {
-			DbUtil.dbClose(rs, ps, conn);
-		}			
-		
-		return list;
-
-	}
-
-	
-	@Override
-	public List<AdminStoryDTO> selectPage(int pageNo, String selectKey, String selectValue) {
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		List<AdminStoryDTO> list = new ArrayList<AdminStoryDTO>();
-		
-		String sql = "";
-		try {
-			//전체 게시물 수 구하기
-			int totalCount = getTotalCount(selectKey, selectValue);
-			
-			//총 페이지 수 구하기
-			PageCnt pageCnt = new PageCnt();
-			pageCnt.setPageCnt((int)Math.ceil((double)totalCount/PageCnt.pagesize));
-			PageCnt.setPageNo(pageNo);
-			
-			conn = DbUtil.getConnection();
-			ps = conn.prepareStatement(sql);	
-			ps.setString(1, selectValue);
-			ps.setInt(2, PageCnt.getPagesize() * pageNo);
-			ps.setInt(3, PageCnt.getPagesize() * (pageNo - 1) + 1);
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				AdminStoryDTO dto = new AdminStoryDTO();
-				dto.setStoryNo(rs.getInt(1));
-				dto.setMemberNo(rs.getInt(2));
-				dto.setStoryTitle(rs.getString(3));
-				dto.setStoryRegdate(rs.getString(4));
-				dto.setStoryVisited(rs.getInt(5));
-				
-				
-				list.add(reviewDTO);
-			}	
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -160,6 +115,7 @@ public class AdminStoryDAOImpl implements AdminStoryDAO{
 		return list;
 
 	}
+
 
 
 

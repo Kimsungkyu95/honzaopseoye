@@ -48,7 +48,10 @@
 
 <script>
 $(function(){
-
+	
+	selectAll();
+	
+	
 	 function selectAll(){
 		  $.ajax({
 				url: "../adminStorySelectAll", 
@@ -61,7 +64,7 @@ $(function(){
                    	str+="<tr>";
                    	str+="<td><b>"+item.storyNo+"</td>";
                    	str+="<td>"+item.memberNo+"</td>";
-                   	str+="<td>"+item.storyTitle+"</td>";
+                   	str+="<td><a href='${path}/userStory/userStoryDetails.jsp' value='"+item.storyNo+"'>"+item.storyTitle+"</a></td>";
                    	str+="<td>"+item.storyRegdate+"</td>";
                    	str+="<td>"+item.storyVisited+"</td>";
                    	str+="<td><input type='button' id='"+item.storyNo+"' value='삭제'></td>"; 
@@ -70,9 +73,7 @@ $(function(){
 
    				
                    $("#tbody").html(str); 
-                   $('input[type=button]').css("text-align", "center");
-   			
-   				
+       
                    
 				}, 
 				error: function(err){ 
@@ -84,9 +85,8 @@ $(function(){
 
 	
 	$(document).on("click", "[value='삭제']", function(){
-		 //alert($(this).attr("id"));
+		// alert($(this).attr("id"));
 		 if(confirm("정말 삭제하실래요?")){
-	
 		  $.ajax({
 					url: "../adminStoryDelete",
 					type: "post", 
@@ -125,7 +125,7 @@ $(function(){
                 	str+="<tr>";
                 	str+="<td><b>"+item.storyNo+"</td>";
                 	str+="<td>"+item.memberNo+"</td>";
-                	str+="<td>"+item.storyTitle+"</td>";
+                	str+="<td><a href='${path}/userStory/userStoryDetails.jsp' value='"+item.storyNo+"'>"+item.storyTitle+"</a></td>";
                 	str+="<td>"+item.storyRegdate+"</td>";
                 	str+="<td>"+item.storyVisited+"</td>";
                 	str+="<td><input type='button' id='"+item.storyNo+"' value='삭제'></td>"; 
@@ -144,7 +144,7 @@ $(function(){
 		
 	 });
 	
-	selectAll();
+	
 	
 });
 </script>    
@@ -152,35 +152,8 @@ $(function(){
 
   </head>
   <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand text-dark" href="#">Admin Page</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">고객관리</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">맛집관리</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">리뷰관리</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">차트분석</a>
-                    </li>
-                </ul>
-                <span class="navbar-text">
-                    <a class="nav-link text-dark" href="#">로그아웃</a>
-                </span>
-            </div>
-        </div>
-    </nav>  
-
+  <jsp:include page="../common/adminHeader.jsp"/>
+ 
     
      <div class="container mt-5 shadow-lg">
         <form class="row g-3 rounded p-2">
@@ -221,35 +194,6 @@ $(function(){
 </div>
 
 </form>
-
- <!-- 페이징 처리 -->
-    <jsp:useBean class="paging.PageCnt" id="p"/>
-    <c:set var="doneLoop" value="false"/>
-	<c:set var="temp" value="${(pageNo-1) % p.blockcount}"/> <!-- (1-1)%2   0, (2-1)%2    1 , (3-1)%2  0 -->
-	<c:set var="startPage" value="${pageNo - temp}"/> <!--   1- 0 -->
-    
-    <div class="container">
-	    <nav aria-label="Page navigation example" class="mt-4 pagenation">
-	        <ul class="pagination" style="justify-content: center;">
-	        
-	        	<c:if test="${(startPage-p.blockcount) > 0}">
-		            <li class="page-item"><a class="page-link" href="${path}/front?key=adminMember&methodName=pagingSelectReview&pageNo=${startPage-1}&selectKey=${requestScope.selectKey}&selectValue=${requestScope.selectValue}">Previous</a></li>    	
-	        	</c:if>
-	        	<c:forEach var="i" begin="${startPage}" end="${startPage + p.blockcount - 1}">
-		            <c:if test="${i > p.pageCnt}">
-		            	<c:set var="doneLoop" value="true"/>
-		            </c:if>
-		            <c:if test="${not doneLoop}">
-			            <li class="page-item ${i == pageNo ? 'active' : ''}"><a class="page-link" href="${path}/front?key=adminMember&methodName=pagingSelectReview&pageNo=${i}&selectKey=${requestScope.selectKey}&selectValue=${requestScope.selectValue}">${i}</a></li>	            
-		            </c:if> 	
-	        	</c:forEach>
-	            <c:if test="${(startPage+p.blockcount) <= p.pageCnt}">
-		            <li class="page-item"><a class="page-link" href="${path}/front?key=adminMember&methodName=pagingSelectReview&pageNo=${startPage+p.blockcount}&selectKey=${requestScope.selectKey}&selectValue=${requestScope.selectValue}">Next</a></li>
-	            
-	            </c:if>
-	        </ul>
-	    </nav>    
-    </div>
 
 
 

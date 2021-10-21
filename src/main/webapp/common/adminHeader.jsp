@@ -31,7 +31,7 @@
                         <a class="nav-link text-dark" href="${path}/front?key=adminMember&methodName=pagingSelectReview">리뷰관리</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="${path}/front?key=adminStory&methodName=selectByOption">스토리관리</a>
+                        <a class="nav-link text-dark" href="${path}/adminStory/adminStoryList.jsp">스토리관리</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="${path}/main.jsp">메인으로</a>
