@@ -111,7 +111,7 @@ public class MemberServiceImpl implements MemberService {
 		int result = dao.deleteByNo(no);
 		
 		if(result == 0) {
-			throw new SQLException("해당 번호의 회원정보가 존재하지 않습니다.");
+			throw new SQLException("해당 회원이 삭제되지 않았습니다.");
 		}
 	}
 

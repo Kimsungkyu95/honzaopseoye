@@ -14,6 +14,36 @@
 
     <title>adminMemberList</title>
     
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		//form value 고정
+		
+		//삭제버튼클릭시
+		$('.deleteBtn').click(function(){
+			console.log($(this).val());
+			let memberNo = $(this).val();
+			if(confirm("해당 회원을 정말로 삭제하시겠습니까?")){
+    			$.ajax({
+                    url: "${path}/adminMemberDelete", //서버요청주소
+                    type: "post", //method방식(get, post, put, delete)
+                    dataType: "text", //서버가 응답해주는 데이터의 type(text, html, xml, json)
+                    data: {memberNo:memberNo}, //서버에게 보낼 parameter정보
+                    success: function (result) {
+                        alert(result);
+                        location.reload();
+                       	
+                    }, //성공했을 때 callback함수
+                    error: function (err) {
+                        alert(err + "발생했어요.");
+                    } //실패했을 때 callback함수
+                }); //ajax 끝				
+			}
+		})
+		
+	})
+	</script>
+    
     <style>
     	th, td {
             text-align: center;
@@ -48,7 +78,7 @@
 					      <td><a href="${pageContext.request.contextPath}/front?key=member&methodName=selectMemberByNoForAdmin&memberNo=${memberDto.memberNo}">${memberDto.memberID}</a></td>
 					      <td>${memberDto.memberName}</td>
 					      <td>${memberDto.memberExp}</td>
-					      <td><a class="" href="${pageContext.request.contextPath}/front?key=member&methodName=deleteByNo&memberNo=${memberDto.memberNo}">삭제</a></td>
+					      <td><button type="button" class="btn btn-primary btn-sm deleteBtn" value="${memberDto.memberNo}">삭제</button>
 					    </tr>
 				  	</tbody>
 			 	</c:forEach>

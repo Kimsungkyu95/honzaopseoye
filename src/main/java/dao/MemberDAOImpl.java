@@ -333,7 +333,6 @@ public class MemberDAOImpl implements MemberDAO {
 		int returnValue = 0;
 		
 		String sql = proFile.getProperty("member.deleteByNo");
-		//delete from member where num=?
 		Connection con = null;
 		PreparedStatement ps = null;
 		
