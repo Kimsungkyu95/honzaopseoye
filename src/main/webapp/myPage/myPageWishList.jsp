@@ -15,7 +15,10 @@
     <style>
     	h1{text-align:center;}
     </style>
-    
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+
+</script>
   </head>
   <body>
     <jsp:include page="../common/header.jsp"/>
@@ -24,20 +27,27 @@
 	<div class="p-5 mb-4 bg-light border rounded-3">
 		<div class="card" style="width:100%;">
 		  <div class="card-body">
-		  	
-		  	<!-- 사진 -->
-		  	<img src="../img/삼겹살.jpeg"width="30%"></img>
-		  	
-		  
-		    <h2 class="card-title">프릳츠커피컴퍼니</h2>
-		    <h4>양식 > 파스타 Lv.1 </h4>
-		    <h4>서울특별시 서초구 강남대로37길 </h4>
-		    <!-- 별점 -->
-		    
-		    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-		    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-		    <a href="#" class="card-link">상세페이지</a>
-		    <a href="#" class="card-link">길찾기</a>
+		  	<c:forEach items="${requestScope.wishList}" var="list">
+		  		${wishList.restaurantNo}
+		  		
+		  		<div class="card mb-3" style="max-width: 540px;">
+				  <div class="row g-0">
+				    <div class="col-md-4">
+				      <img src="${path}/img/삼겹살.jpeg" class="img-fluid rounded-start" alt="...">
+				    </div>
+				    <div class="col-md-8">
+				      <div class="card-body">
+				        <h5 class="card-title">프릳츠커피컴퍼니</h5>
+				        <p class="card-text">양식 > 파스타 Lv.1 </p>
+				        <p class="card-text"><small class="text-muted">서울특별시 서초구 강남대로37길</small></p>
+				        <a href="#" class="card-link">상세페이지</a>
+		    			<a href="#" class="card-link">길찾기</a>
+				      </div>
+				    </div>
+				  </div>
+				</div> 
+						
+		  	</c:forEach>
 		  </div>
 		</div>
 		<br>
