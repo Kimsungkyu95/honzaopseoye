@@ -63,7 +63,7 @@
                     let secondList = new Function("return " + $(this).val())();
                     console.log(secondList);
                     for (item of secondList) {
-                        str += str += `<option value=` + item.eng + `>`+ item.kor +`</option>`;
+                        str += "<option value=" + item.eng + ">"+ item.kor +"</option>";
                     }
                 }
                 $('#second-category').empty().html(str);
