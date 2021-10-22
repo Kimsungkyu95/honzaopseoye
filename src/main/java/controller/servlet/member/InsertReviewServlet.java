@@ -30,6 +30,10 @@ public class InsertReviewServlet extends HttpServlet {
 		String reviewContent = request.getParameter("reviewContent");
 		int reviewScore = Integer.parseInt(request.getParameter("reviewScore"));
 		
+		System.out.println(loginId);
+		System.out.println(restaurantNo);
+		System.out.println(reviewContent);
+		System.out.println(reviewScore);
 		
 		ReviewDTO reviewDTO = new ReviewDTO();
 		reviewDTO.setRestaurantNo(restaurantNo);
