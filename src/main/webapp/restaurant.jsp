@@ -101,10 +101,6 @@
 	            	<td>별점</td>
 	            	<td>:</td>
 	            	<td>
-	            		 <%-- <c:if test="${empty restaurnt.reviewList}">
-	            		 	별점없음
-	            		 </c:if> --%>
-	            	
 		            	<%
 		            		RestaurantDTO restaurantDTO =  (RestaurantDTO)request.getAttribute("restaurant");
 		            		List<ReviewDTO> reviewList = restaurantDTO.getReviewList();
@@ -115,8 +111,15 @@
 		            		double avg=0.0;
 		            		avg = (double)sum/reviewList.size();
 		            	%>
-		            	<%=Math.round(avg*100) / 100.0%>
-		            	
+		            	<%-- <%=Math.round(avg*100) / 100.0%>
+		            	 --%>
+		            	 <%
+			            	 if((Math.round(avg*100) / 100.0)==0.0){
+			            		out.print("별점없음");
+			            	 } else{
+			            		 out.print((Math.round(avg*100) / 100.0));
+			            	 }
+		            	 %>
 	            	</td>
 	            </tr>
 	            <tr>

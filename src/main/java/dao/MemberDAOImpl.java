@@ -813,6 +813,23 @@ int returnValue = 0;
 		return result;
 	}
 	
+	
+	public int giveExp(int memberNo, int restaurantNo, Connection con) throws SQLException{
+		PreparedStatement ps = null;
+		int result = 0;
+		try {
+			ps = con.prepareStatement("update member set member_exp = member_exp + (select give_exp from restaurant natural join levelgive_exp where restaurant_no = ?) where member_no = ?");
+			ps.setInt(1, restaurantNo);
+			ps.setInt(2, memberNo);
+			result = ps.executeUpdate();
+			
+		}finally {
+			DbUtil.dbClose(ps, null);
+		}
+				
+		return result;
+	}
+	
 	@Override
 	public int insertReview(String loginId, ReviewDTO reviewDTO) throws SQLException {
 		Connection con = null;
@@ -821,13 +838,20 @@ int returnValue = 0;
 		int result = 0;
 		try {
 			con = DbUtil.getConnection();
+			con.setAutoCommit(false);
+			
 			ps = con.prepareStatement("insert into review values(review_seq.nextval, ?, ?, ?, ?, sysdate)");
 			ps.setInt(1, memberNo);
 			ps.setInt(2, reviewDTO.getRestaurantNo());
 			ps.setInt(3, reviewDTO.getReviewScore());
-			ps.setString(4, reviewDTO.getReviewContent());
-			
+			ps.setString(4, reviewDTO.getReviewContent());			
 			result = ps.executeUpdate();
+			
+			if(giveExp(memberNo, reviewDTO.getRestaurantNo(), con) == 0) {
+				throw new SQLException("리뷰에 따른 경험치를 올리지 못했습니다.");
+			}	
+			
+			con.commit();
 		}finally {
 			DbUtil.dbClose(ps, con);
 		}
@@ -836,6 +860,4 @@ int returnValue = 0;
 		
 	}	
 	
-	
-
 }
