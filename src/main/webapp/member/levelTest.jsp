@@ -91,6 +91,12 @@ $(function() {
 
 	//Q3
 	$("#Q3_Yes").click(function() {
+		$("#Q3").hide();
+		$("#Q4").show();
+
+	});
+	
+	$("#Q3_No").click(function() {
 
 		$("<input />").attr("type", "hidden")
 	          .attr("name", "memberLevel")
@@ -98,11 +104,6 @@ $(function() {
 	          .appendTo("#actualRegistration");
 		
 		$("#actualRegistration").submit();
-	});
-	
-	$("#Q3_No").click(function() {
-		$("#Q3").hide();
-		$("#Q4").show();
 	});
 	
 	//Q4
@@ -267,7 +268,7 @@ $(function() {
   <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true" id="Q3_Yes">
      <div class="d-flex gap-2 w-100 justify-content-between">
       <div>
-        <h6 class="mb-0">Yes</h6>
+        <h6 class="mb-0">Yes (다음질문)</h6>
       </div>
     </div>
   </a>
@@ -275,7 +276,7 @@ $(function() {
   <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true" id="Q3_No">
     <div class="d-flex gap-2 w-100 justify-content-between">
       <div>
-        <h6 class="mb-0">No (다음질문)</h6>
+        <h6 class="mb-0">No </h6>
       </div>
     </div>
   </a>
