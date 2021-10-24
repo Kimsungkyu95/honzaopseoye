@@ -17,7 +17,9 @@ import dto.RestaurantDTO;
 import service.UserRestaurantService;
 import service.UserRestaurantServiceImpl;
 
-
+/**
+ * 유저 맛집 컨트롤러 
+ * */
 public class UserRestaurantController implements Controller {
 	
 	private UserRestaurantService urService = new UserRestaurantServiceImpl();
@@ -28,6 +30,7 @@ public class UserRestaurantController implements Controller {
 			throws ServletException, IOException {
 		return null;
 	}
+	
 	/**
 	 * 카테고리 목록 검색
 	 * */
@@ -120,6 +123,9 @@ public class UserRestaurantController implements Controller {
 		return new ModelAndView("restaurant.jsp");
 	}
 	
+	/**
+	 * 구와동을 통해서 좌표를 구해 맛집위치출력 
+	 * */
 	public ModelAndView selectByGu(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String gu = request.getParameter("gu");
 		String dong = request.getParameter("dong");

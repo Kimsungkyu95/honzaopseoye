@@ -34,7 +34,6 @@ public interface UserRestaurantDAO {
 
 	/**
 	 * 카테고리이름 가져오기 
-	 * @throws SQLException 
 	 * */
 	String selectCategoryDetailName(String restaurantNo) throws SQLException;
 	
