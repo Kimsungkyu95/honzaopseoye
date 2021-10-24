@@ -130,18 +130,7 @@
             </div>
             
             <div class="col">
-                <!-- <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">위시리스트</h5>
-                        <p class="card-text">
-                            내가 저장한 위시리스트를 관리할 수 있습니다.
-                            <br>
-                            조회, 수정, 삭제가 가능합니다.
-                        </p>
-                        <button type="button" onclick="location.href='myPageWishList.jsp'"
-                        class="btn btn-secondary btn-lg">WISHLIST</button>
-                    </div>
-                </div> -->
+
             </div>
         </div>
     </div>

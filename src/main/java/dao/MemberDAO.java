@@ -51,10 +51,5 @@ public interface MemberDAO {
 
 	int updateByNoForAdmin(MemberDTO member)throws SQLException;
 
-	RestaurantDTO wishListSelect(int no)throws SQLException;
-	
-	/**
-	 * 리뷰등록
-	 * */
 	int insertReview(String loginId, ReviewDTO reviewDTO) throws SQLException;
 }

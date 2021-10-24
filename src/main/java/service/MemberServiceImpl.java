@@ -199,12 +199,6 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public RestaurantDTO wishListSelect(int restaurantNo) throws SQLException {
-		RestaurantDTO dto = dao.wishListSelect(restaurantNo);
-		return dto;
-	}
-
-	@Override
 	public void insertReview(String loginId, ReviewDTO reviewDTO) throws SQLException {
 
 		if(dao.insertReview(loginId, reviewDTO)== 0) {
@@ -212,7 +206,4 @@ public class MemberServiceImpl implements MemberService {
 		}
 		
 	}
-	
-	
-
 }

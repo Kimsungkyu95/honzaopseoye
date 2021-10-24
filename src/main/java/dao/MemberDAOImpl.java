@@ -404,7 +404,8 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	/**
-	 * 
+	 * 회원이 작성한 리뷰리스트를 조회하는 메소드
+	 * @return 리뷰가 존재하지 않으면 null리턴
 	 * */
 	@Override
 	public ArrayList<MemberDTO> selectMemberList() throws SQLException {
@@ -487,7 +488,11 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return returnValue;
 	}
-
+	
+	/**
+	 * 관리자가 회원목록 조회메소드
+	 * @return 없거나 실패하면 null리턴
+	 */
 	@Override
 	public MemberDTO selectMemberByNoForAdmin(int no) throws SQLException {
 		MemberDTO returnValue = null;	
@@ -528,7 +533,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return returnValue;
 	}
 
-	
+	/**
+	 * 관리자가 회원정보 수정메소드
+	 * @return 실패시 0을 리턴
+	 */
 	@Override
 	public int updateMemberDetail(MemberDTO member) throws SQLException {
 		int returnValue = 0;
@@ -575,7 +583,8 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	/**
-	 * myPageAccount - 계정정보 확인(아이디-수정X, 이름, 이메일, 전화번호, 생년월일)
+	 * 회원 정보 조회(아이디, 이름, 이메일, 전화번호, 생년월일)메소드
+	 * @return 실패시 null리턴
 	 */
 	@Override
 	public MemberDTO selectMemberByID(String id) throws SQLException {
@@ -684,6 +693,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return pwd;
 	}
 
+	/**
+	 * 회원 리뷰리스트 조회 메소드
+	 * @return 없거나 실패시 null리턴
+	 */
 	@Override
 	public ArrayList<ReviewContentDTO> selectReviewList(String id) throws SQLException {
 		String sql = proFile.getProperty("member.selectReviewList");
@@ -789,7 +802,11 @@ int returnValue = 0;
 		}
 		return returnValue;
 	}
-
+	
+	/**
+	 * 관리자가 회원정보 수정메소드 
+	 * @return 실패시0리턴 
+	 */
 	@Override
 	public int updateByNoForAdmin(MemberDTO member) throws SQLException {
 		int returnValue = 0;
@@ -834,40 +851,6 @@ int returnValue = 0;
 		}
 		return returnValue;
 	}
-
-	@Override
-	public RestaurantDTO wishListSelect(int no) throws SQLException {
-		String sql = proFile.getProperty("member.wishListSelect");
-		
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		
-		RestaurantDTO returnValue = null;
-		
-		try {
-			con=DbUtil.getConnection();
-			ps=con.prepareStatement(sql);
-			ps.setInt(1, no);
-			rs=ps.executeQuery();
-			
-			if(rs.next()) {
-				int restaurantNo=rs.getInt(1);
-				int restaurantLevel=rs.getInt(2);
-				String restaurantName=rs.getString(3);
-				String restaurantAddr=rs.getString(4);
-				String restaurantImg=rs.getString(5);
-				
-				returnValue=new RestaurantDTO(restaurantNo, restaurantLevel, restaurantName, restaurantAddr, restaurantImg);
-			}
-			
-		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
-			e.printStackTrace();
-		}finally {
-			DbUtil.dbClose(ps, con);
-		}
-		return returnValue;
-	}
 	
 	/**
 	 * 회원 번호 확인용 메소드. 아이디를 입력하면 해당 회원의 번호를 알려준다.
@@ -893,7 +876,7 @@ int returnValue = 0;
 		return result;
 	}
 	
-	
+
 	public int giveExp(int memberNo, int restaurantNo, Connection con) throws SQLException{
 		PreparedStatement ps = null;
 		int result = 0;
@@ -910,6 +893,10 @@ int returnValue = 0;
 		return result;
 	}
 	
+	/**
+	 * 리뷰등록메소드 
+	 * @return 실패시 0리턴
+	 */
 	@Override
 	public int insertReview(String loginId, ReviewDTO reviewDTO) throws SQLException {
 		Connection con = null;
