@@ -26,8 +26,9 @@ DB: AWS RDS Oracle 12c<br>
 |스토리|스토리 전체 조회, 스토리 상세 조회, 스토리 등록, 스토리 수정, 스토리 삭제|
 ## :pushpin:프로젝트흐름도 
 ## :pushpin:화면 
-![메인]("https://user-images.githubusercontent.com/76465997/138592159-ffb95e4a-a2bd-4476-8f8d-06fcc63c933b.png")
-![레벨별]("https://user-images.githubusercontent.com/76465997/138592202-e66cfdce-f5d8-4c6d-8b51-4340e1f130d8.png")
-![태그별]("https://user-images.githubusercontent.com/76465997/138592198-01254639-98ce-46cf-b648-18e8de398c56.png")
-![관리자맛집]("https://user-images.githubusercontent.com/76465997/138592197-e3d4b7cd-7586-4878-904b-dc75c0d91b5c.png")
+<img width="1440" alt="메인" src="https://user-images.githubusercontent.com/76465997/138592778-154d7ca9-bec2-49c4-bf1f-2cc661556f66.png">
+<img width="50%" alt="태그별" src="https://user-images.githubusercontent.com/76465997/138592769-09e8ce35-60b2-40d6-9e3a-3518214020f4.png">
+<img width="1440" alt="레벨별" src="https://user-images.githubusercontent.com/76465997/138592776-0a664b7e-09eb-44c7-b361-4b82297751ad.png">
+<img width="50%" alt="관리자맛집" src="https://user-images.githubusercontent.com/76465997/138592765-a4c3eb35-188c-4372-b6a2-6ca59b75f93d.png">
+
 
