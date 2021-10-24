@@ -6,7 +6,9 @@ import java.util.List;
 import dto.CategoryDTO;
 import dto.CategoryDetailsDTO;
 import dto.RestaurantDTO;
-
+/**
+ * 유저맛집서비스
+ * */
 public interface UserRestaurantService {
 	/**
 	 * 카레고리상세별 식당목록 검색

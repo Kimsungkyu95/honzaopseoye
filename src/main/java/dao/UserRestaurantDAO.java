@@ -9,7 +9,9 @@ import dto.MenuDTO;
 import dto.RestaurantDTO;
 import dto.ReviewDTO;
 
-
+/**
+ * 유저맛집 DAO
+ * */
 public interface UserRestaurantDAO {
 	
 	/**
