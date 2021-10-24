@@ -17,8 +17,8 @@ DB: AWS RDS Oracle 12c<br>
 ![erd](https://user-images.githubusercontent.com/69083280/138587425-3e65fc53-1b05-4a20-828f-c99cfd8f2e5c.PNG)
 ## :pushpin: 기능요구사항 
 |기능|요구사항|
-|------|---|
-|계정관리|테스트2|
+|----|------|
+|계정관리|개인정보수정,로그인로그아웃,ID&PASSWORD찾기|
 |검색/카테고리|테스트2|
 |맛집|테스트2|
 |추천|테스트2|
