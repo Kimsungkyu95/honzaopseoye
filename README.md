@@ -26,3 +26,5 @@ DB: AWS RDS Oracle 12c<br>
 |스토리|스토리 전체 조회, 스토리 상세 조회, 스토리 등록, 스토리 수정, 스토리 삭제|
 ## :pushpin:프로젝트흐름도 
 ## :pushpin:화면 
+<img width="1440" alt="메인" src="https://user-images.githubusercontent.com/76465997/138592159-ffb95e4a-a2bd-4476-8f8d-06fcc63c933b.png">
+
