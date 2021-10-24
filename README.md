@@ -27,7 +27,7 @@ DB: AWS RDS Oracle 12c<br>
 ## :pushpin:프로젝트 흐름도 
 ![프로젝트흐름도](https://user-images.githubusercontent.com/76465997/138594915-65a4fd72-6975-48cd-a8ac-2e0dcf2ea4ba.png)
 ## :pushpin:화면 
-*메인
+메인
 <img width="1440" alt="메인" src="https://user-images.githubusercontent.com/76465997/138592778-154d7ca9-bec2-49c4-bf1f-2cc661556f66.png">
 <hr>
 태그별 추천
