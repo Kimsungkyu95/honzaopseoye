@@ -15,8 +15,9 @@ import util.DbUtil;
 public class AdminStoryDAOImpl implements AdminStoryDAO{
 
 	/**
-	 * 관리자 스토리 목록 전체 검색
-	 * */
+	 * 관리자 스토리 전체 목록 띄우는 메소드
+	 * @return 전체 스토리 리스트 
+	 */
 	@Override
 	public List<AdminStoryDTO> selectAll() {
 		Connection con = null;
@@ -45,8 +46,10 @@ public class AdminStoryDAOImpl implements AdminStoryDAO{
 	}
 	
 	/**
-	 * 관리자 스토리 삭제 기능
-	 * */
+	 * 관리자 스토리 삭제 메소드
+	 * @return 전체 스토리 리스트 
+	 * @param 스토리번호
+	 */
 	@Override
 	public int deleteByStoryNo(int storyNo){
 		Connection con=null;
@@ -70,9 +73,11 @@ public class AdminStoryDAOImpl implements AdminStoryDAO{
 		return result;
 	}
 
-	/**
-	 * 관리자 스토리 검색옵션으로 검색
-	 * */
+	 /**
+     * 검색 옵션으로 검색
+     * @return select 옵션에 해당하는 스토리 리스트 
+	  * @param 검색옵션 key, 검색어 value
+     */
 	@Override
 	public List<AdminStoryDTO> selectByOption(String selectKey, String selectValue) {
 		Connection conn = null;

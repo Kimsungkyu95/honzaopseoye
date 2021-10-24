@@ -1,4 +1,4 @@
-package controller.servlet.admin;
+package controller.servlet.adminStory;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import dao.AdminStoryDAO;
 import dao.AdminStoryDAOImpl;
 
+/**
+ * 관리자 스토리페이지 관련 클래스
+ * 스토리 삭제 서블릿
+ * @param 스토리 번호
+ * @return 삭제결과
+ * */
 @WebServlet("/adminStoryDelete")
 public class AdminStoryDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

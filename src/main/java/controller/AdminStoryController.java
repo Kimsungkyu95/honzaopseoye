@@ -24,7 +24,12 @@ public class AdminStoryController implements Controller {
 		return null;
 	}
 	
-
+   
+	/**
+	 * 관리자 스토리관리 부분 전체 목록 띄우는 메소드
+	 * @return 나이 대비 추천 영화 리스트
+	 * @throws Exception
+	 */
 	public ModelAndView selectByOption(HttpServletRequest request, HttpServletResponse response) 
 			throws Exception {
 		

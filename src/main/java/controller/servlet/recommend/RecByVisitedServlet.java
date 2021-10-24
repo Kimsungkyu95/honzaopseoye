@@ -15,6 +15,10 @@ import dao.RecommendDAOImpl;
 import dto.RecommendDTO;
 import net.sf.json.JSONArray;
 
+/**
+ * 추천페이지 관련 클래스
+ * 높은 조회수에 따른 추천 리스트 검색 서블릿
+ * */
 @WebServlet("/recByVisited")
 public class RecByVisitedServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

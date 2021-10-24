@@ -11,8 +11,15 @@ import java.util.Properties;
 import dto.RecommendDTO;
 import util.DbUtil;
 
+/**
+ * 추천 페이지 관련 구현 클래스
+ * */
 public class RecommendDAOImpl implements RecommendDAO {
 	
+	 /**
+     * 첫 화면에 띄울 기본 추천 리스트 검색 메소드
+     * @return 추천 맛집 리스트(조회수 높은 순)
+     */
 	public List<RecommendDTO> recByScore() {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -35,7 +42,12 @@ public class RecommendDAOImpl implements RecommendDAO {
 
 		return list;
 	}
-
+	
+	 /**
+     * 레벨에 따른 추천 리스트 검색 메소드
+     * @return 추천 맛집 리스트(레벨별) 
+	 * @param 맛집 레벨 번호
+     */
 	public List<RecommendDTO> recByLevel(int levelNo) {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -59,7 +71,11 @@ public class RecommendDAOImpl implements RecommendDAO {
 
 		return list;
 	}
-
+	
+	 /**
+     * 조회수에 따른 추천 리스트 검색 메소드
+     * @return 추천 맛집 리스트(조회수 높은 순)  
+     */
 	public List<RecommendDTO> recByVisited() {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -82,7 +98,12 @@ public class RecommendDAOImpl implements RecommendDAO {
 
 		return list;
 	}
-
+	
+	 /**
+     * 태그에 따른 추천 리스트 검색 메소드
+     * @return  추천 맛집 리스트(태그별)
+	 * @param 태그번호
+     */
 	public List<RecommendDTO> recByTag(int tagNo) {
 		Connection con = null;
 		PreparedStatement ps = null;

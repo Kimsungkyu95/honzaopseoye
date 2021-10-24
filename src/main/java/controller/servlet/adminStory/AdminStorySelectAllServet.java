@@ -1,4 +1,4 @@
-package controller.servlet.admin;
+package controller.servlet.adminStory;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,6 +15,11 @@ import dao.AdminStoryDAOImpl;
 import dto.AdminStoryDTO;
 import net.sf.json.JSONArray;
 
+/**
+ * 관리자 스토리페이지 관련 클래스
+ * 스토리 전체 검색 서블릿
+ * @return 전체 스토리 리스트
+ * */
 @WebServlet("/adminStorySelectAll")
 public class AdminStorySelectAllServet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

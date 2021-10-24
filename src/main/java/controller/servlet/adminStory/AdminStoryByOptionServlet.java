@@ -1,4 +1,4 @@
-package controller.servlet.admin;
+package controller.servlet.adminStory;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +16,12 @@ import dao.AdminStoryDAOImpl;
 import dto.AdminStoryDTO;
 import net.sf.json.JSONArray;
 
+/**
+ * 관리자 스토리페이지 관련 클래스
+ * select 옵션 key에 따른 스토리 검색 서블릿
+ * @param 옵션 key, 검색어 value
+ * @return 해당 스토리 리스트
+ * */
 @WebServlet("/selectByOption")
 public class AdminStoryByOptionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
