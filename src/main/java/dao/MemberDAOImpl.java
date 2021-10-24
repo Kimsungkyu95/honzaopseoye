@@ -17,6 +17,9 @@ import dto.ReviewContentDTO;
 import dto.ReviewDTO;
 import util.DbUtil;
 
+/**
+ * DB의 member 테이블 관련 기능들을 모아둔 데이터베이스 액세스 클래스 
+ * */
 public class MemberDAOImpl implements MemberDAO {
 	Properties proFile = new Properties();
 
@@ -29,6 +32,10 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 	}
 
+	/**
+	 *  아이디, 비밀번호를 입력받아서 아이디와 이름을 리턴하여 로그인을 하게 해주는 메소드
+	 *  @return MemberDTO (아이디, 이름만 있음)
+	 * */
 	@Override
 	public MemberDTO login(MemberDTO member) throws SQLException {
 		MemberDTO returnValue = null;
@@ -60,9 +67,10 @@ public class MemberDAOImpl implements MemberDAO {
 			}
 			
 			
-		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
-			e.printStackTrace();
-		}finally {
+		} /*
+			 * catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			 * e.printStackTrace(); }
+			 */finally {
 			DbUtil.dbClose(rs, ps, con);
 		}
 
@@ -70,6 +78,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return returnValue;
 	}
 
+	/**
+	 * 아이디를 입력받아서 중복되는 아이디가 있는지 찾아주는 메소드
+	 * @return 데이터 베이스에 존재하는 아이디. 없으면 null 리턴.
+	 * */
 	@Override
 	public String idCheck(String id) throws SQLException {
 		String returnValue = null;
@@ -97,16 +109,21 @@ public class MemberDAOImpl implements MemberDAO {
 			}
 			
 			
-		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
-			e.printStackTrace();
-		}finally {
+		} /*
+			 * catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			 * e.printStackTrace(); }
+			 */finally {
 			DbUtil.dbClose(rs, ps, con);
 		}
 
 		
 		return returnValue;
 	}
-
+	
+	/**
+	 * 이메일을 입력받아서 중복되는 이메일이 있는지 찾아주는 메소드
+	 * @return 데이터베이스에 존재하는 이메일. 없으면 null 리턴.
+	 * */
 	@Override
 	public String emailCheck(String email) throws SQLException {
 		String returnValue = null;
@@ -137,9 +154,10 @@ public class MemberDAOImpl implements MemberDAO {
 			}
 			
 			
-		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
-			e.printStackTrace();
-		}finally {
+		} /*
+			 * catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			 * e.printStackTrace(); }
+			 */finally {
 			DbUtil.dbClose(rs, ps, con);
 		}
 
@@ -149,6 +167,11 @@ public class MemberDAOImpl implements MemberDAO {
 		return returnValue;
 	}
 
+	/**
+	 * 회원 가입을 위한 데이터 삽입 메소드. id, pwd, name, email, phone, birth, exp를 입력 받는다.
+	 * member_no는 시퀀스로 관리되며 가입일은 sysdate로 자동으로 입력된다.
+	 * @return 가입 성공시 1 이상의 숫자. 가입 실패시 0.
+	 * */
 	@Override
 	public int insert(MemberDTO member) throws SQLException {
 		int returnValue = 0;
@@ -185,15 +208,20 @@ public class MemberDAOImpl implements MemberDAO {
 			
 			returnValue = ps.executeUpdate();
 			
-		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
-			e.printStackTrace();
-		}finally {
+		} /*
+			 * catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			 * e.printStackTrace(); }
+			 */finally {
 			DbUtil.dbClose(ps, con);
 		}
 
 		return returnValue;
 	}
 
+	/**
+	 * 아이디 찾기용 메소드. 이메일을 입력하면 해당 이메일로 가입된 아이디를 리턴해준다.
+	 * @return 이메일에 해당하는 아이디. 없으면 null 리턴. 
+	 * */
 	@Override
 	public String selectIdByEmail(String email) throws SQLException {
 		String returnValue = null;
@@ -223,9 +251,10 @@ public class MemberDAOImpl implements MemberDAO {
 			}
 			
 			
-		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
-			e.printStackTrace();
-		}finally {
+		} /*
+			 * catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			 * e.printStackTrace(); }
+			 */finally {
 			DbUtil.dbClose(rs, ps, con);
 		}
 
@@ -233,6 +262,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return returnValue;
 	}
 
+	/**
+	 * 회원 정보 수정용 메소드. 이름, 이메일, 전화번호, 생일을 바꿀 수 있다.
+	 * @return 성공하면 1 이상의 숫자. 실패시 0 리턴.
+	 * */
 	@Override
 	public int updateByNo(MemberDTO member) throws SQLException {
 		int returnValue = 0;
@@ -262,14 +295,19 @@ public class MemberDAOImpl implements MemberDAO {
 			
 			returnValue = ps.executeUpdate();
 			
-		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
-			e.printStackTrace();
-		}finally {
+		} /*
+			 * catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			 * e.printStackTrace(); }
+			 */finally {
 			DbUtil.dbClose(ps, con);
 		}
 		return returnValue;
 	}
 
+	/**
+	 * 프로필 사진 수정용 메소드. DB에 저장된 프로필 사진 이름을 바꿔준다.
+	 * @return 성공하면 1 이상의 숫자. 실패시 0을 리턴.
+	 * */
 	@Override
 	public int updateImageByNo(MemberDTO member) throws SQLException {
 		int returnValue = 0;
@@ -291,14 +329,19 @@ public class MemberDAOImpl implements MemberDAO {
 			
 			returnValue = ps.executeUpdate();
 			
-		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
-			e.printStackTrace();
-		}finally {
+		} /*
+			 * catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			 * e.printStackTrace(); }
+			 */finally {
 			DbUtil.dbClose(ps, con);
 		}
 		return returnValue;
 	}
 
+	/**
+	 * 비밀번호 변경용 메소드. 아이디와 비밀번호를 가진 MemberDTO 객체를 받아서 비밀번호를 업데이트 해준다.
+	 * @return 성공하면 1 이상의 숫자. 실패시 0을 리턴. 
+	 * */
 	@Override
 	public int updatePwdById(MemberDTO member) throws SQLException {
 		int returnValue = 0;
@@ -320,14 +363,19 @@ public class MemberDAOImpl implements MemberDAO {
 			
 			returnValue = ps.executeUpdate();
 			
-		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
-			e.printStackTrace();
-		}finally {
+		} /*
+			 * catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			 * e.printStackTrace(); }
+			 */finally {
 			DbUtil.dbClose(ps, con);
 		}
 		return returnValue;
 	}
 
+	/**
+	 * 회원 탈퇴혹은 삭제용 메소드. 회원번호를 입력받아서 번호에 해당하는 회원 레코드를 테이블에서 삭제한다.
+	 * @return 성공하면 1 이상의 숫자. 실패시 0을 리턴.
+	 * */
 	@Override
 	public int deleteByNo(int no) throws SQLException {
 		int returnValue = 0;
@@ -346,14 +394,18 @@ public class MemberDAOImpl implements MemberDAO {
 			
 			returnValue = ps.executeUpdate();
 			
-		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
-			e.printStackTrace();
-		}finally {
+		} /*
+			 * catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			 * e.printStackTrace(); }
+			 */finally {
 			DbUtil.dbClose(ps, con);
 		}
 		return returnValue;
 	}
 
+	/**
+	 * 
+	 * */
 	@Override
 	public ArrayList<MemberDTO> selectMemberList() throws SQLException {
 		
@@ -391,6 +443,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return list;
 	}
 
+	/**
+	 * 비밀번호 확인용 메소드. 회원의 아이디와 이메일을 입력하면 비밀번호를 리턴해준다.
+	 * @return 아이디와 이메일이 일치하는 비밀번호. 실패시 null을 리턴.
+	 * */
 	@Override
 	public String selectPwdByIdEmail(String id, String email) throws SQLException {
 		String returnValue = null;
@@ -421,9 +477,10 @@ public class MemberDAOImpl implements MemberDAO {
 			}
 			
 			
-		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
-			e.printStackTrace();
-		}finally {
+		} /*
+			 * catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			 * e.printStackTrace(); }
+			 */finally {
 			DbUtil.dbClose(rs, ps, con);
 		}
 
@@ -555,6 +612,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return returnValue;
 	}
 
+	/**
+	 * 회원 경험치 확인용 메소드. 아이디를 입력하면 해당 회원의 경험치 정보를 리턴한다.
+	 * @return 해당 회원의 경험치 정보가 담긴 LevelUpExpDTO. 실패시 null을 리턴.
+	 * */
 	@Override
 	public LevelUpExpDTO selectExpById(String id) {
 		LevelUpExpDTO returnValue = null;	
@@ -590,6 +651,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return returnValue;
 	}
 
+	/**
+	 * 비밀번호 확인용 메소드. 아이디를 입력하면 비밀번호를 알려준다.
+	 * @return String 비밀번호. 실패시 null을 리턴.
+	 * */
 	@Override
 	public String selectPwdById(String id) throws SQLException {
 		String pwd = null;	
@@ -610,9 +675,10 @@ public class MemberDAOImpl implements MemberDAO {
 				pwd=rs.getString(1);		
 			}
 		
-		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
-			e.printStackTrace();
-		}finally {
+		} /*
+			 * catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			 * e.printStackTrace(); }
+			 */finally {
 			DbUtil.dbClose(rs, ps, con);
 		}
 		return pwd;
@@ -658,6 +724,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return list;
 	}
 
+	/**
+	 * 프로필 이미지 확인용 메소드. 아이디를 입력하면 프로필 이미지 파일 이름을 리턴해준다.
+	 * @return 프로필 이미지 파일 이름. 실패시 null을 리턴.
+	 * */
 	@Override
 	public String selectProfileImageById(String id) throws SQLException {
 		String profileImage = null;	
@@ -679,15 +749,20 @@ public class MemberDAOImpl implements MemberDAO {
 				profileImage=rs.getString(1);		
 			}
 		
-		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
-			e.printStackTrace();
-		}finally {
+		} /*
+			 * catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			 * e.printStackTrace(); }
+			 */finally {
 			DbUtil.dbClose(rs, ps, con);
 		}
 		//System.out.println("dao : " +profileImage );
 		return profileImage;
 	}
 
+	/**
+	 * 프로필 이미지 수정용 메소드. 아이디와 수정할 이미지 파일 이름을 입력.
+	 * @return 성공시 1 이상의 숫자. 실패시 0을 리턴.
+	 * */
 	@Override
 	public int updupdateProfileImageById(String memberId, String profileImage) throws SQLException {
 int returnValue = 0;
@@ -706,9 +781,10 @@ int returnValue = 0;
 			
 			returnValue = ps.executeUpdate();
 			
-		} catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
-			e.printStackTrace();
-		}finally {
+		} /*
+			 * catch (Exception e) {//프로젝트 완료되고 오류 다 잡으면 catch블럭 지우는거 잊지 말기.
+			 * e.printStackTrace(); }
+			 */finally {
 			DbUtil.dbClose(ps, con);
 		}
 		return returnValue;
@@ -793,6 +869,10 @@ int returnValue = 0;
 		return returnValue;
 	}
 	
+	/**
+	 * 회원 번호 확인용 메소드. 아이디를 입력하면 해당 회원의 번호를 알려준다.
+	 * @return int값의 회원 번호. 실패시 0을 리턴.
+	 * */
 	public int selectMemberId(String loginId) throws SQLException{
 		Connection con = null;
 		PreparedStatement ps = null;
