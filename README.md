@@ -15,3 +15,9 @@ DB: AWS RDS Oracle 12c<br>
 3. JSON 데이터에 포함된 Kakao 플레이스 URL로 접근하여 맛집 이미지 크롤링
 ## :pushpin:ER-Diagram
 ![erd](https://user-images.githubusercontent.com/69083280/138587425-3e65fc53-1b05-4a20-828f-c99cfd8f2e5c.PNG)
+## :pushpin: 기능요구사항 
+|기능|요구사항|
+|------|---|
+|테스트1|테스트2|
+|테스트1|테스트2|
+|테스트1|테스트2|
