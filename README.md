@@ -27,8 +27,11 @@ DB: AWS RDS Oracle 12c<br>
 ## :pushpin:프로젝트흐름도 
 ## :pushpin:화면 
 <img width="1440" alt="메인" src="https://user-images.githubusercontent.com/76465997/138592778-154d7ca9-bec2-49c4-bf1f-2cc661556f66.png">
-<img width="50%" alt="태그별" src="https://user-images.githubusercontent.com/76465997/138592769-09e8ce35-60b2-40d6-9e3a-3518214020f4.png">
+<hr>
+<img width="1440" alt="태그별" src="https://user-images.githubusercontent.com/76465997/138592769-09e8ce35-60b2-40d6-9e3a-3518214020f4.png">
+<hr>
 <img width="1440" alt="레벨별" src="https://user-images.githubusercontent.com/76465997/138592776-0a664b7e-09eb-44c7-b361-4b82297751ad.png">
-<img width="50%" alt="관리자맛집" src="https://user-images.githubusercontent.com/76465997/138592765-a4c3eb35-188c-4372-b6a2-6ca59b75f93d.png">
+<hr>
+<img width="1440" alt="관리자맛집" src="https://user-images.githubusercontent.com/76465997/138592765-a4c3eb35-188c-4372-b6a2-6ca59b75f93d.png">
 
 
