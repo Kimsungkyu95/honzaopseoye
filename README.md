@@ -15,3 +15,16 @@ DB: AWS RDS Oracle 12c<br>
 3. JSON 데이터에 포함된 Kakao 플레이스 URL로 접근하여 맛집 이미지 크롤링
 ## :pushpin:ER-Diagram
 ![erd](https://user-images.githubusercontent.com/69083280/138587425-3e65fc53-1b05-4a20-828f-c99cfd8f2e5c.PNG)
+## :pushpin:기능요구사항 
+|기능|요구사항|
+|----|------|
+|계정관리|개인정보수정, 로그인로그아웃, ID&PASSWORD찾기, 회원가입기능, 회원탈퇴기능|
+|검색/카테고리|사용자위치기반검색, 카테고리에 대한 검색, 맛집에 따른 검색 |
+|맛집|별점매기는기능, 리뷰쓰는기능, 맛집등록, 수정, 삭제,조회|
+|추천|레벨에 따른 추천, 조회수 기준 추천, 태그에 따른 메뉴 추천|
+|레벨|경험치에 따른 레벨업 기능, 회원가입시 레벨 테스트를 통해서 각 회원마다 초기 레벨 설정|
+|스토리|스토리 전체 조회, 스토리 상세 조회, 스토리 등록, 스토리 수정, 스토리 삭제|
+## :pushpin:프로젝트흐름도 
+## :pushpin:화면 
+<img width="1440" alt="메인" src="https://user-images.githubusercontent.com/76465997/138592159-ffb95e4a-a2bd-4476-8f8d-06fcc63c933b.png">
+
