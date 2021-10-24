@@ -24,7 +24,8 @@ DB: AWS RDS Oracle 12c<br>
 |추천|레벨에 따른 추천, 조회수 기준 추천, 태그에 따른 메뉴 추천|
 |레벨|경험치에 따른 레벨업 기능, 회원가입시 레벨 테스트를 통해서 각 회원마다 초기 레벨 설정|
 |스토리|스토리 전체 조회, 스토리 상세 조회, 스토리 등록, 스토리 수정, 스토리 삭제|
-## :pushpin:프로젝트흐름도 
+## :pushpin:프로젝트 흐름도 
+![프로젝트흐름도](https://user-images.githubusercontent.com/76465997/138594915-65a4fd72-6975-48cd-a8ac-2e0dcf2ea4ba.png)
 ## :pushpin:화면 
 <img width="1440" alt="메인" src="https://user-images.githubusercontent.com/76465997/138592778-154d7ca9-bec2-49c4-bf1f-2cc661556f66.png">
 <hr>
