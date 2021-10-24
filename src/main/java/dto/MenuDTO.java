@@ -1,5 +1,8 @@
 package dto;
 
+/**
+ * 맛집 메뉴 DTO
+ * */
 public class MenuDTO {
 	private int menuNo;
 	private int restaurantNo;

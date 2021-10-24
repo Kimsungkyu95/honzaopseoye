@@ -2,6 +2,9 @@ package dto;
 
 import java.util.List;
 
+/**
+ * 멤버 DTO
+ * */
 public class MemberDTO {
 	private int memberNo;
 	private String memberID;

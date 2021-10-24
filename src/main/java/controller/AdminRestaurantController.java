@@ -22,6 +22,9 @@ import dto.RestaurantDTO;
 import service.AdminRestaurantService;
 import service.AdminRestaurantServiceImpl;
 
+/**
+ * 관리자 맛집 crud기능 제공 컨트롤러
+ * */
 public class AdminRestaurantController implements Controller {
 	
 	private AdminRestaurantService adminRestaurantService = new AdminRestaurantServiceImpl();

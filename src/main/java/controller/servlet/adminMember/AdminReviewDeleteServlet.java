@@ -14,7 +14,7 @@ import service.AdminMemberService;
 import service.AdminMemberServiceImpl;
 
 /**
- * Servlet implementation class ReviewDeleteServlet
+ * 리뷰 삭제 AJAX 통신하는 서블릿
  */
 @WebServlet("/adminReviewDeleteServlet")
 public class AdminReviewDeleteServlet extends HttpServlet {

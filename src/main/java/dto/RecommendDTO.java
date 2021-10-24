@@ -1,5 +1,8 @@
 package dto;
 
+/**
+ * 추천 알고리즘 관련 DTO
+ * */
 public class RecommendDTO {
 	private String restaurantImg;
 	private String restaurantName;

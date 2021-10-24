@@ -2,6 +2,9 @@ package dto;
 
 import java.util.List;
 
+/**
+ * 카테고리 DTO
+ * */
 public class CategoryDTO {
 	private int categoryNo;
 	private String categoryName;

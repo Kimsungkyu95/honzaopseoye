@@ -5,6 +5,9 @@ import java.util.List;
 
 import dto.RestaurantDTO;
 
+/**
+ * 관리자 맛집 crud 제공 서비스
+ * */
 public interface AdminRestaurantService {
 	/**
 	 * 맛집 데이터 insert

@@ -1,6 +1,8 @@
 package dto;
 
-
+/**
+ * 관리자 스토리 DTO
+ * */
 public class AdminStoryDTO {
 	private int storyNo;
 	private int memberNo;

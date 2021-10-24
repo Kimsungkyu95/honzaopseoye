@@ -1,5 +1,8 @@
 package dto;
 
+/**
+ * 리뷰 내용 DTO
+ * */
 public class ReviewContentDTO {
 	private int restaurantNo;
 	private int restaurantLevel;

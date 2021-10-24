@@ -1,5 +1,8 @@
 package dto;
 
+/**
+ * 리뷰 DTO
+ * */
 public class ReviewDTO {
 	private int reviewNo;
 	private int memberNo;

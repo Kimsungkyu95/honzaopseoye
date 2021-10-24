@@ -2,6 +2,9 @@ package dto;
 
 import java.util.List;
 
+/**
+ * 맛집 DTO
+ * */
 public class RestaurantDTO {
 	private int restaurantNo;
 	private int categoryDetailsNo;

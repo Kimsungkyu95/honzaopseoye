@@ -1,5 +1,8 @@
 package paging;
 
+/**
+ * 페이징 정보를 담고있는 class
+ * */
 public class PageCnt {
 	private static int pageCnt; //총페이지 수Math.ceil(전체레코드수 /pagesize) 
 	public static  int pagesize = 10;// 한 페이지 당 10개 출력물

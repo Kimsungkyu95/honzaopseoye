@@ -12,6 +12,9 @@ import dto.ReviewDTO;
 import service.AdminMemberService;
 import service.AdminMemberServiceImpl;
 
+/**
+ * 관리자 리뷰 조회 / 삭제 기능 제공 컨트롤러
+ * */
 public class AdminMemberController implements Controller {
 
 	private AdminMemberService adminMemberService = new AdminMemberServiceImpl();

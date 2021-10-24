@@ -1,5 +1,8 @@
 package dto;
 
+/**
+ * 멤버 레벨업 경험치 DTO
+ * */
 public class LevelUpExpDTO {
 	
 	private int memberExp;

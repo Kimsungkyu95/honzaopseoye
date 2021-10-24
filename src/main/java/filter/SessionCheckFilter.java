@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet Filter implementation class SessionCheckFilter
+ * Session check
  */
 @WebFilter("/front")
 public class SessionCheckFilter implements Filter {

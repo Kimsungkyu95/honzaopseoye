@@ -12,7 +12,9 @@ import dto.ReviewDTO;
 import paging.PageCnt;
 import util.DbUtil;
 
-
+/**
+ * 관리자 리뷰 조회, 삭제 
+ * */
 public class AdminMemberDAOImpl implements AdminMemberDAO {
 	private Properties proFile = new Properties();
 	
@@ -113,6 +115,10 @@ public class AdminMemberDAOImpl implements AdminMemberDAO {
 		
 	}
 
+	
+	/**
+	 * 리뷰 삭제
+	 * */
 	@Override
 	public int adminDeleteReview(int reviewNo) throws SQLException {
 		Connection conn = null;

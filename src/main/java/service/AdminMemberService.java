@@ -5,6 +5,9 @@ import java.util.List;
 
 import dto.ReviewDTO;
 
+/**
+ * 관리자 리뷰 조회 / 삭제 기능 제공 서비스
+ * */
 public interface AdminMemberService {
 	
 	/**

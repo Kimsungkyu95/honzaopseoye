@@ -1,5 +1,8 @@
 package dto;
 
+/**
+ * 스토리 이미지 DTO
+ * */
 public class StoryImgDTO {
 	private int storyImgNo;
 	private int storyDetailsNo;

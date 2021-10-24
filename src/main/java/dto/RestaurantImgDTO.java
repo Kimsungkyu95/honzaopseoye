@@ -1,5 +1,8 @@
 package dto;
 
+/**
+ * 맛집 이미지 DTO
+ * */
 public class RestaurantImgDTO {
 	private int restaurantImgNo;
 	private int restaurantNo;

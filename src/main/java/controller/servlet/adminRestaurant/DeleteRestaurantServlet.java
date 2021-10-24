@@ -14,7 +14,7 @@ import service.AdminRestaurantService;
 import service.AdminRestaurantServiceImpl;
 
 /**
- * Servlet implementation class DeleteRestaurantServlet
+ * 맛집 삭제 AJAX 통신하는 서블릿
  */
 @WebServlet("/deleteRestaurantServlet")
 public class DeleteRestaurantServlet extends HttpServlet {
