@@ -23,6 +23,9 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 		  }
 	   }
 	
+	/**
+	 * 스토리 전체 검색
+	 */
 	@Override
 	public List<StoryDTO> selectAll() {
 		Connection con = null;
@@ -56,6 +59,9 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 		return storyList;
 	}
 	
+	/**
+	 * 스토리 번호로 검색
+	 */
 	@Override
 	public StoryDTO selectByStoryNo(int storyNo) throws SQLException {
 		Connection con=null;
@@ -92,6 +98,9 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 		return storyDTO;
 	}
 
+	/**
+	 * 스토리 레코드 삽입
+	 */
 	@Override
 	public int insertStory(StoryDTO storyDTO) throws SQLException {
 		Connection con=null;
@@ -129,6 +138,9 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 		return result;
 	}
 
+	/**
+	 * 스토리 이미지 삽입
+	 */
 	public int insertStoryImg(List<String> storyImgList, Connection con) throws SQLException {
 		PreparedStatement ps=null;
 		int result=0;
@@ -154,6 +166,9 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 		return result;
 	}
 
+	/**
+	 * 스토리 레코드 수정
+	 */
 	@Override
 	public int updateStory(StoryDTO storyDTO) throws SQLException {
 		Connection con=null;
@@ -189,6 +204,9 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 		return result;
 	}
 
+	/**
+	 * 스토리 이미지 수정
+	 */
 	public int updateStoryImg(List<String> storyImgList, Connection con, int storyNo) throws SQLException {
 		PreparedStatement ps=null;
 		int result=0;
@@ -215,6 +233,9 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 		return result;
 	}
 	
+	/**
+	 * 스토리 레코드 삭제
+	 */
 	@Override
 	public int deleteStory(int storyNo, String password) throws SQLException {
 		Connection con=null;
@@ -238,6 +259,9 @@ public class UserStoryDAOImpl implements UserStoryDAO {
 		return result;
 	}
 
+	/**
+	 * 스토리 조회수 증가
+	 */
 	@Override
 	public int increamentByStoryVisited(int storyNo) throws SQLException {
 		Connection con=null;

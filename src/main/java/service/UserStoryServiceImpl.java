@@ -12,11 +12,17 @@ public class UserStoryServiceImpl implements UserStoryService {
 	
 	private UserStoryDAO storyDAO = new UserStoryDAOImpl();
 
+	/**
+	 * 스토리 전체 검색
+	 */
 	@Override
 	public List<StoryDTO> selectAll() throws SQLException {
 		return storyDAO.selectAll();
 	}
 
+	/**
+	 * 스토리 번호로 검색
+	 */
 	@Override
 	public StoryDTO selectByStoryNo(int storyNo, boolean flag) throws SQLException {
 		StoryDTO storyDTO = null;
@@ -34,12 +40,18 @@ public class UserStoryServiceImpl implements UserStoryService {
 		
 	}
 
+	/**
+	 * 스토리 레코드 삽입
+	 */
 	@Override
 	public void insertStory(StoryDTO storyDTO) throws SQLException {
 		if(storyDAO.insertStory(storyDTO) == 0 )
 			  throw new SQLException("스토리가 등록되지 않았습니다.");
 	}
 
+	/**
+	 * 스토리 레코드 수정
+	 */
 	@Override
 	public void updateStory(StoryDTO storyDTO) throws SQLException {
 		// 비밀번호 일치여부 판단
@@ -53,6 +65,9 @@ public class UserStoryServiceImpl implements UserStoryService {
 		}
 	}
 
+	/**
+	 * 스토리 레코드 삭제
+	 */
 	@Override
 	public void delete(int storyNo, String password, String path) throws SQLException {
 		// 비밀번호 일치여부를 판단

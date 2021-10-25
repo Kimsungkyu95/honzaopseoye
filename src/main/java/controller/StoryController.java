@@ -26,7 +26,7 @@ public class StoryController implements Controller {
 	}
 	
 	/**
-	 * 전체검색
+	 * 스토리 전체 검색
 	 * */
 	public ModelAndView selectAll(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -91,15 +91,7 @@ public class StoryController implements Controller {
 	}
 	
 	/**
-	 * 폼 업데이트
-	 * */
-	public ModelAndView updateForm(HttpServletRequest request, HttpServletResponse response) 
-			throws Exception {
-		return null;
-	}
-	
-	/**
-	 * 레코드 삽입
+	 * 스토리 레코드 삽입
 	 */
 	public ModelAndView insert(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -142,7 +134,7 @@ public class StoryController implements Controller {
 	}
 	
 	/**
-	 * 레코드 수정
+	 * 스토리 레코드 수정
 	 * */
 	public ModelAndView update(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -187,7 +179,7 @@ public class StoryController implements Controller {
 	}
 	
 	/**
-	 * 레코드 삭제
+	 * 스토리 레코드 삭제
 	 * */
 	public ModelAndView delete(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {

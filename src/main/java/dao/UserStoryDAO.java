@@ -17,7 +17,7 @@ public interface UserStoryDAO {
 	  StoryDTO selectByStoryNo(int storyNo) throws SQLException;
 	   
 	  /**
-	   * 조회수 증가
+	   * 스토리 조회수 증가
 	   * update story set story_visited = story_visited + 1 where story_no=?
 	   * */
 	  int increamentByStoryVisited(int storyNo) throws SQLException;
@@ -33,7 +33,7 @@ public interface UserStoryDAO {
 	  int updateStory(StoryDTO storyDTO) throws SQLException;
 	   
 	  /**
-	   * 스토리 삭제
+	   * 스토리 레코드 삭제
 	   */
 	  int deleteStory(int storyNo, String password) throws SQLException;
 }
