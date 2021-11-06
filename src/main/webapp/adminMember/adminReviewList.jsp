@@ -100,7 +100,7 @@
     </div>
 
     <div class="container bg-light pt-4 pb-3 px-5 mt-4 rounded shadow-lg">
-        <h2>맛집 목록</h2>
+        <h2>리뷰 목록</h2>
         <table class="table">
             <thead>
                 <tr>
